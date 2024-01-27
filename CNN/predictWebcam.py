@@ -6,28 +6,26 @@ import numpy as np
 import sys
 
 
-CATEGORIES = ["People", "No people"]
-
-IMG_SIZE = 64
-    
-if len(sys.argv) != 2:
-    print("Usage: python3 predict.py PATH_IMMAGINE")
-    exit()
-
-path_img = sys.argv[1]
+########################
+# IMAGE SIZE
+WEIGHT = 256
+HEIGHT = 256
+########################
 
 model = models.load_model('model')
 
 # Inizializza la telecamera (imposta il parametro 0 se stai usando la webcam integrata)
 cap = cv2.VideoCapture(0)
 
+counter_People = 0
+counter_NoPeople = 0
+
 while True:
     # Cattura un frame dalla telecamera
     ret, frame = cap.read()
 
-    # Effettua il resize del frame, se necessario
-    # Adatta le dimensioni in base a quelle che il tuo modello richiede
-    resized_frame = cv2.resize(frame, (IMG_SIZE, IMG_SIZE))
+    # Effettua il resize del frame
+    resized_frame = cv2.resize(frame, (WEIGHT, HEIGHT))
 
     # Normalizza i valori dei pixel del frame
     resized_frame = image.img_to_array(resized_frame)
@@ -36,7 +34,6 @@ while True:
 
     images = np.vstack([resized_frame])
 
-    # Esegui la predizione sul frame
     classes = model.predict(images, batch_size=10)
 
     # Visualizza il frame
@@ -45,9 +42,18 @@ while True:
     print(classes[0])
   
     if classes[0] > 0.5:
-       print("People!")
+        counter_People += 1
     else:
-       print("No people!")
+        counter_NoPeople += 1
+
+    if counter_People + counter_NoPeople == 20:
+        if counter_People > counter_NoPeople:
+            print("PEOPLE!")
+        else:
+            print("NO PEOPLE!")
+        
+        counter_People = 0
+        counter_NoPeople = 0
 
     # Interruzione del loop se viene premuto 'q'
     if cv2.waitKey(1) & 0xFF == ord('q'):
