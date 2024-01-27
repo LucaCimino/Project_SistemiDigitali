@@ -31,8 +31,8 @@ model.summary()
 
 
 # Percorsi dei dataset
-train_data_dir = "/home/luca/Scrivania/Magistrale/SistemiDigitali/Project_SistemiDigitali/CNN/dataset/training"
-test_data_dir = "/home/luca/Scrivania/Magistrale/SistemiDigitali/Project_SistemiDigitali/CNN/dataset/testing"
+train_data_dir = "/home/luca/Scrivania/Magistrale/SistemiDigitali/dataset/training"
+test_data_dir = "/home/luca/Scrivania/Magistrale/SistemiDigitali/dataset/testing"
 
 train_datagen = ImageDataGenerator(rescale=1.0/255)
 test_datagen = ImageDataGenerator(rescale=1.0/255)
@@ -54,7 +54,7 @@ test_generator = test_datagen.flow_from_directory(
 
 # Addestra il modello
 history = model.fit(train_generator, 
-                    epochs=10, 
+                    epochs=20, 
                     verbose=2,
                     validation_data=test_generator)
 
