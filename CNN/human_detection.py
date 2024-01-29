@@ -3,11 +3,18 @@ from tensorflow.keras import layers, models
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 
-########################
+###################################
+
 # IMAGE SIZE
 WEIGHT = 256
 HEIGHT = 256
-########################
+
+TRAINING_DATASET = "/home/luca/Scrivania/Magistrale/SistemiDigitali/Progetto/dataset/training/"
+TESTING_DATASET = "/home/luca/Scrivania/Magistrale/SistemiDigitali/Progetto/dataset/testing/"
+
+EPOCHS = 20
+
+###################################
 
 
 model = models.Sequential()
@@ -38,8 +45,8 @@ model.summary()
 
 
 # Percorsi dei dataset
-train_data_dir = "/home/luca/Scrivania/Magistrale/SistemiDigitali/dataset/training/"
-test_data_dir = "/home/luca/Scrivania/Magistrale/SistemiDigitali/dataset/testing/"
+train_data_dir = TRAINING_DATASET
+test_data_dir = TESTING_DATASET
 
 train_datagen = ImageDataGenerator(rescale=1.0/255)
 test_datagen = ImageDataGenerator(rescale=1.0/255)
@@ -61,7 +68,7 @@ test_generator = test_datagen.flow_from_directory(
 
 # Addestra il modello
 history = model.fit(train_generator, 
-                    epochs=20, 
+                    epochs=EPOCHS, 
                     verbose=2,
                     validation_data=test_generator)
 
