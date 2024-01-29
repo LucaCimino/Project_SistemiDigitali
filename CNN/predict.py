@@ -4,6 +4,7 @@ import cv2
 from keras.preprocessing import image
 import numpy as np
 import sys
+import time
 
 
 ########################
@@ -33,8 +34,11 @@ img = np.expand_dims(img, axis=0)
 images = np.vstack([img])
   
 # eseguiamo la predizione
+start = time.time()
 predictions = model.predict(images, batch_size=10, verbose=2)
-  
+finish = time.time()
+print("Prediction time =",finish-start,"s") 
+
 print(predictions[0])
 
 #####################

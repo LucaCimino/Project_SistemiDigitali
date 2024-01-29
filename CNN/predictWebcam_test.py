@@ -14,42 +14,48 @@ HEIGHT = 256
 
 model = models.load_model('model')
 
-# Inizializza la telecamera (imposta il parametro 0 se stai usando la webcam integrata)
-cap = cv2.VideoCapture(0)
+# Inizializza la telecamera (ls -l /dev | grep video)
+# 0 per la webcam integrata
+# 2 per la webcam esterna
+cap = cv2.VideoCapture(2)
 
 counter = 0
+frame_counter = 0
 
 while True:
     # Cattura un frame dalla telecamera
     ret, frame = cap.read()
 
-    # Effettua il resize del frame
-    resized_frame = cv2.resize(frame, (WEIGHT, HEIGHT))
+    frame_counter += 1
 
-    # Normalizza i valori dei pixel del frame
-    resized_frame = image.img_to_array(resized_frame)
-    normalized_frame = resized_frame / 255.0
-    resized_frame = np.expand_dims(resized_frame, axis=0)
+    if frame_counter == 20:
 
-    images = np.vstack([resized_frame])
+        # Effettua il resize del frame
+        resized_frame = cv2.resize(frame, (WEIGHT, HEIGHT))
 
-    classes = model.predict(images, batch_size=10)
+        # Normalizza i valori dei pixel del frame
+        resized_frame = image.img_to_array(resized_frame)
+        normalized_frame = resized_frame / 255.0
+        resized_frame = np.expand_dims(resized_frame, axis=0)
 
-    # Visualizza il frame
-    cv2.imshow("Frame", frame)
+        images = np.vstack([resized_frame])
 
-    print(classes[0])
-  
-    if classes[0] > 0.5:
-        # PEOPLE
-        cv2.imwrite("/tmp/SisDig/people/PEOPLE_" + str(counter) + ".jpg", frame)
-    else:
-        # NO PEOPLE
-        cv2.imwrite("/tmp/SisDig/no_people/NO_PEOPLE_" + str(counter) + ".jpg", frame)
+        classes = model.predict(images, batch_size=10)
 
-    counter += 1
+        # Visualizza il frame
+        cv2.imshow("Frame", frame)
 
-    time.sleep(1)
+        print(classes[0])
+    
+        if classes[0] > 0.5:
+            # PEOPLE
+            cv2.imwrite("/tmp/SisDig/people/PEOPLE_" + str(counter) + ".jpg", frame)
+        else:
+            # NO PEOPLE
+            cv2.imwrite("/tmp/SisDig/no_people/NO_PEOPLE_" + str(counter) + ".jpg", frame)
+
+        counter += 1
+        frame_counter = 0
 
     # Interruzione del loop se viene premuto 'q'
     if cv2.waitKey(1) & 0xFF == ord('q'):

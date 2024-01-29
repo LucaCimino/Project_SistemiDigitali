@@ -14,8 +14,10 @@ HEIGHT = 256
 
 model = models.load_model('model')
 
-# Inizializza la telecamera (imposta il parametro 0 se stai usando la webcam integrata)
-cap = cv2.VideoCapture(0)
+# Inizializza la telecamera (ls -l /dev | grep video)
+# 0 per la webcam integrata
+# 2 per la webcam esterna
+cap = cv2.VideoCapture(2)
 
 counter_People = 0
 counter_NoPeople = 0
@@ -46,11 +48,11 @@ while True:
     else:
         counter_NoPeople += 1
 
-    if counter_People + counter_NoPeople == 20:
+    if counter_People + counter_NoPeople == 8:
         if counter_People > counter_NoPeople:
-            print("PEOPLE!")
+            print("PEOPLE!", counter_People)
         else:
-            print("NO PEOPLE!")
+            print("NO PEOPLE!", counter_NoPeople)
         
         counter_People = 0
         counter_NoPeople = 0
