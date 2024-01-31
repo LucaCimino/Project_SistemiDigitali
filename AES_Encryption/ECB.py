@@ -9,7 +9,7 @@ print("Key =",key)
 # cipher = Cipher(algorithms.AES(key), modes.CBC(iv))
 cipher = Cipher(algorithms.AES(key), modes.ECB())
 encryptor = cipher.encryptor()
-plaintext = b"\x00\x11\x22\x33\x44\x55\x66\x77\x88\x99\xaa\xbb\xcc\xdd\xee\xff"
+plaintext = b"\x16\xc7\x22\x4d\x14\x5a\x26\x75\x00\x00\x00\x00\x00\x00\x00\x00"
 ct = encryptor.update(plaintext) + encryptor.finalize()
 
 print("Chiper =", ct)

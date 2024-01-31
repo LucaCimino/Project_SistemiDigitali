@@ -58,11 +58,11 @@ int main(int argc, char **argv)
 	aes_key_expansion(key, w);
 
 
-	printf("Key:\n");
+	printf("Key: ");
     for (i = 0; i < 8; i++) {
         printf("%02x %02x %02x %02x ", key[4*i+0], key[4*i+1], key[4*i+2], key[4*i+3]);
     }
-	printf("\n");
+	printf("\n\n");
 	
 	// ---------------------------- CTR -----------------------------
 
@@ -84,7 +84,7 @@ int main(int argc, char **argv)
 	while((bytes = read(input_file, in, 16)) > 0)
 	{
 		#ifdef DEBUG
-			printf("Nonce:\t");
+			printf("Nonce:\t\t");
 			for (i = 0; i < 4; i++) 
 				printf("%02x %02x %02x %02x ", nonce[4*i+0], nonce[4*i+1], nonce[4*i+2], nonce[4*i+3]);
 			printf("\n");
@@ -93,9 +93,15 @@ int main(int argc, char **argv)
 		aes_cipher(nonce, out, w);
 
 		#ifdef DEBUG
-			printf("Out:\t");
+			printf("Out:\t\t");
 			for (i = 0; i < 4; i++) 
 				printf("%02x %02x %02x %02x ", out[4*i+0], out[4*i+1], out[4*i+2], out[4*i+3]);
+			printf("\n");
+
+			printf("Letti %d bytes\n", bytes);
+			printf("Plaintext:\t");
+			for (i = 0; i < bytes; i++) 
+				printf("%02x ", in[i]);
 			printf("\n");
 		#endif
 
@@ -103,7 +109,7 @@ int main(int argc, char **argv)
 			All'ultima iterazione bytes può essere minore di 16
 			I bytes letti sono da in[0] fino a in[bytes-1] compreso
 		*/
-		for(i = 0; i < bytes ; i--)
+		for(i = 0; i < bytes ; i++)
 		{
 			chiper[i] =  in[i] ^ out[i];
 		}
@@ -111,12 +117,7 @@ int main(int argc, char **argv)
 		write(output_file, chiper, bytes);
 
 		#ifdef DEBUG
-			printf("Plaintext:\t");
-			for (i = 0; i < bytes; i++) 
-				printf("%02x ", in[i]);
-			printf("\n");
-
-			printf("Chiper:\t");
+			printf("Chiper:\t\t");
 			for (i = 0; i < bytes; i++) 
 				printf("%02x ", chiper[i]);
 			printf("\n");
