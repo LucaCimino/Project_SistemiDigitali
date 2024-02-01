@@ -1,6 +1,10 @@
 - gcc gmult.c aes.c ctr_main.c -o ctr
 - ./ctr plaintext.txt chiper.txt
 
+- python3 CTR.py
+
+I seguenti TEST corrispondono sia per l'implementazione C che per il modulo cryptography di Python
+
 ### Test 1
 
 Key:	        00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f 
