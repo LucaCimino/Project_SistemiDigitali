@@ -1,4 +1,4 @@
-<project xmlns="com.autoesl.autopilot.project" top="single_block_CTR_encrypt" name="AES_CTR">
+<project xmlns="com.autoesl.autopilot.project" name="AES_CTR" top="single_block_CTR_encrypt">
     <files>
         <file name="../testbench.cpp" sc="0" tb="1" cflags=""/>
         <file name="AES_CTR/aes.cpp" sc="0" tb="false" cflags=""/>
