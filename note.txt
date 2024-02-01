@@ -1,0 +1,26 @@
+Applicazione che esegue su Pynq.
+
+Scriviamo il codice per i dispositivi IP Core, che devono eseguire le parti più specializzate (l'elaborazione delle immagini oppure la cifratura).
+
+Attraverso gli IP Core, collegandoli tra di loro realizziamo la FPGA (la nostra rete programmabile).
+
+Utilizzo di overlay per astrarre il comportamento degli IP Core, e per interagire con loro in maniera di più alto livello.
+
+Scrivere il codice di controllo (gestione dei dispositivi o delle connessioni di rete), da far eseguire sul processore ARM della PYNQ.
+
+In questo modo si comprende il significato di avere una PYNQ, un dispositivo fatto da un processore che ne gestisce un po' il controllo, e da una parte di FPGA che esegue le operazioni più complesse, ottimizzandole.
+La comunicazione tra il processore e la FPGA avviene attraverso interfacce AXI.
+
+"L'interazione è orchestrata dal tuo codice Python sul processore ARM, che può richiamare funzioni definite negli overlay PYNQ o direttamente interagire con gli IP Core sulla FPGA."
+[ChatGPT]
+
+Questo porta a un miglioramento delle prestazioni, dei tempi e dell'utilizzo dell'energia.
+
+
+Protocolli di memoria
+
+Il protocollo standard che abbiamo imparato è adatto per operazioni di lettura/scrittura sulla memoria fisica o su dispositivi che rispondono alle operazioni di memoria.
+
+I2C è ottimo per collegare più dispositivi a bassa velocità su un unico bus seriale, utilizzando indirizzi e comandi specifici.
+
+AXI è progettato per sistemi complessi e ad alte prestazioni, in cui l'accesso ai registri dei dispositivi è diretto e veloce attraverso uno spazio di indirizzi specifico.
