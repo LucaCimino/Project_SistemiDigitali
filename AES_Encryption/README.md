@@ -58,4 +58,6 @@ Dimensioni di una frame della webcam = (480, 640, 3)
 - In RGB = 480 x 640 x 3 x 8 byte = 7.372.800
 
 
+### Utility
 
+Write binary file in bash: ```echo -n -e \\x01\\x02\\x56\\xee > myfile```

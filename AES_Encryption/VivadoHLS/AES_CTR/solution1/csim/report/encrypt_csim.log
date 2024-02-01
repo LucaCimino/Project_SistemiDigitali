@@ -1,0 +1,6 @@
+   Compiling ../../../testbench.cpp in debug mode
+   Compiling ../../../aes.cpp in debug mode
+../../../aes.cpp: In function 'uint8_t* aes_init(size_t)':
+../../../aes.cpp:309:27: error: invalid conversion from 'void*' to 'uint8_t* {aka unsigned char*}' [-fpermissive]
+make: *** [obj/aes.o] Error 1
+CRITICAL WARNING: [SIM 1] 'csim_design' failed: compilation error(s).
