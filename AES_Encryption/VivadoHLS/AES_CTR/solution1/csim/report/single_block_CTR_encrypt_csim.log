@@ -1,0 +1,7 @@
+   Compiling ../../../testbench.cpp in debug mode
+   Generating csim.exe
+Key:		00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f 
+Nonce:		01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f 10 
+Plaintext:	01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f 10 
+Chiper:		09 90 0b 52 00 b8 88 3c 96 52 41 f5 9e d1 1e e8 
+INFO: [SIM 1] CSim done with 0 errors.

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="aes.cpp" path="C:\Users\lucac\VivadoHLS\AES_CTR\aes.cpp"/>
+    <originFiles name="aes.h" path="C:\Users\lucac\VivadoHLS\AES_CTR\aes.h"/>
+    <originFiles name="ctr_main.cpp" path="C:\Users\lucac\VivadoHLS\AES_CTR\ctr_main.cpp"/>
+    <originFiles name="ctr_main.h" path="C:\Users\lucac\VivadoHLS\AES_CTR\ctr_main.h"/>
+    <originFiles name="gmult.cpp" path="C:\Users\lucac\VivadoHLS\AES_CTR\gmult.cpp"/>
+    <originFiles name="gmult.h" path="C:\Users\lucac\VivadoHLS\AES_CTR\gmult.h"/>
+  </source>
+  <testbench>
+    <originFiles name="testbench.cpp" path="C:\Users\lucac\VivadoHLS\AES_CTR\testbench.cpp"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>
