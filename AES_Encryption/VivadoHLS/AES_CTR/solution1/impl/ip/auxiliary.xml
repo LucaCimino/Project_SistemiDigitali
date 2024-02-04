@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="single_block_CTR_encrypt" xd:componentRef="single_block_CTR_encrypt" xd:initiationInterval="x" xd:clockPeriod="10.000000" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+  <xd:controlReg xd:name="control" xd:interfaceRef="ap_ctrl" xd:busTypeRef="acc_handshake" xd:type="acc_handshake"/>
+  <xd:arg xd:name="i_plaintext.data" xd:originalName="i_plaintext" xd:direction="in" xd:interfaceRef="i_plaintext" xd:busTypeRef="axis" xd:dataWidth="8"/>
+  <xd:arg xd:name="i_plaintext.user" xd:originalName="i_plaintext" xd:direction="in" xd:interfaceRef="i_plaintext" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="i_plaintext.last" xd:originalName="i_plaintext" xd:direction="in" xd:interfaceRef="i_plaintext" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="cipher.data" xd:originalName="cipher" xd:direction="out" xd:interfaceRef="cipher" xd:busTypeRef="axis" xd:dataWidth="8"/>
+  <xd:arg xd:name="cipher.user" xd:originalName="cipher" xd:direction="out" xd:interfaceRef="cipher" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="cipher.last" xd:originalName="cipher" xd:direction="out" xd:interfaceRef="cipher" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:latencyEstimates xd:best-case="undef" xd:worst-case="undef" xd:average-case="undef"/>
+  <xd:resourceEstimates xd:LUT="2106" xd:FF="1163" xd:BRAM="4" xd:DSP="0"/>
+</xd:acceleratorMap>

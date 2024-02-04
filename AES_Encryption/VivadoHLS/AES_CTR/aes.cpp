@@ -1,5 +1,4 @@
 #include "aes.h"
-#include "gmult.h"
 
 
 /*
@@ -26,6 +25,7 @@ uint8_t gsub(uint8_t a, uint8_t b) {
  * NOTE: This function can be easily replaced with a look up table for a speed
  *       boost, at the expense of an increase in memory size (around 65 KB). See
  *       the aes.h header file to find the macro definition.
+ */
 uint8_t gmult(uint8_t a, uint8_t b) {
 
 	uint8_t p = 0, i = 0, hbs = 0;
@@ -43,7 +43,7 @@ uint8_t gmult(uint8_t a, uint8_t b) {
 
 	return (uint8_t)p;
 }
-*/
+
 
 /*
  * Addition of 4 byte words

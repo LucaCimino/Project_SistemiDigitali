@@ -1,1 +1,1 @@
-obj/aes.o: ../../../aes.cpp ../../../aes.h ../../../gmult.h
+obj/aes.o: ../../../aes.cpp ../../../aes.h

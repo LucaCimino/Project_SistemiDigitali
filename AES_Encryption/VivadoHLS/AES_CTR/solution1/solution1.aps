@@ -5,7 +5,9 @@
     <clockList>
         <clock name="default" period="10"/>
     </clockList>
-    <config/>
+    <config>
+        <schedule model="single_block_CTR_encrypt"/>
+    </config>
     <UIConfigurations>
         <UIAutosynConf hideTrivialOp="true" isBasedOnBoard="false" isSolutionDirty="false" isStopAskAgain="false" showDetailDesignViewer="false">
             <Platform>xilinx/zynq/zynq</Platform>
@@ -39,7 +41,7 @@
         </UIAutoSimConf>
     </UIConfigurations>
     <ExportDesign askAgain="true" evaluate="false" formatName="ip_catalog" rtl="verilog">
-        <Format formatName="ip_catalog"/>
+        <Format description="with TLAST and USER signal" formatName="ip_catalog" version="7.0" vendor="" library="" driver_input_dir="" display_name="" taxonomy=""/>
         <Format formatName="sysgen"/>
         <Format formatName="sysgen_ise"/>
         <Format formatName="syn_dcp"/>

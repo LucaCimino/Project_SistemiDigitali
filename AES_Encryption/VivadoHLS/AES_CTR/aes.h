@@ -21,8 +21,6 @@
 #define Nr 10
 
 
-#define gmult(a,b) gmult_aes[256*a + b]
-
 uint8_t *aes_init(size_t key_size);
 
 void aes_key_expansion(uint8_t *key, uint8_t *w);

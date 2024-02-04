@@ -1,0 +1,433 @@
+
+
+================================================================
+== Vivado HLS Report for 'single_block_CTR_encrypt_mix_columns'
+================================================================
+* Date:           Sun Feb 04 10:32:38 2024
+
+* Version:        2016.2 (Build 1577090 on Thu Jun 02 16:59:10 MDT 2016)
+* Project:        AES_CTR
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      4.10|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |  101|  101|  101|  101|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------+-----+-----+----------+-----------+-----------+------+----------+
+        |             |  Latency  | Iteration|  Initiation Interval  | Trip |          |
+        |  Loop Name  | min | max |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------+-----+-----+----------+-----------+-----------+------+----------+
+        |- Loop 1     |  100|  100|        25|          -|          -|     4|    no    |
+        | + Loop 1.1  |    8|    8|         2|          -|          -|     4|    no    |
+        | + Loop 1.2  |    4|    4|         1|          -|          -|     4|    no    |
+        +-------------+-----+-----+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 6
+* Pipeline: 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / (!exitcond2)
+3 --> 
+	4  / (!exitcond1)
+	5  / (exitcond1)
+4 --> 
+	3  / true
+5 --> 
+	6  / true
+6 --> 
+	2  / (exitcond)
+	6  / (!exitcond)
+* FSM state operations: 
+
+ <State 1>: 1.57ns
+ST_1: col_0_s [1/1] 0.00ns
+:0  %col_0_s = alloca i8
+
+ST_1: col_1_s [1/1] 0.00ns
+:1  %col_1_s = alloca i8
+
+ST_1: col_2_s [1/1] 0.00ns
+:2  %col_2_s = alloca i8
+
+ST_1: col_3_s [1/1] 0.00ns
+:3  %col_3_s = alloca i8
+
+ST_1: stg_11 [1/1] 1.57ns
+:4  br label %.loopexit
+
+
+ <State 2>: 1.62ns
+ST_2: j [1/1] 0.00ns
+.loopexit:0  %j = phi i3 [ 0, %0 ], [ %j_2, %2 ]
+
+ST_2: exitcond2 [1/1] 1.62ns
+.loopexit:1  %exitcond2 = icmp eq i3 %j, -4
+
+ST_2: empty [1/1] 0.00ns
+.loopexit:2  %empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4)
+
+ST_2: j_2 [1/1] 0.80ns
+.loopexit:3  %j_2 = add i3 %j, 1
+
+ST_2: stg_16 [1/1] 0.00ns
+.loopexit:4  br i1 %exitcond2, label %4, label %.preheader.preheader
+
+ST_2: tmp_cast [1/1] 0.00ns
+.preheader.preheader:0  %tmp_cast = zext i3 %j to i4
+
+ST_2: stg_18 [1/1] 1.57ns
+.preheader.preheader:1  br label %.preheader
+
+ST_2: stg_19 [1/1] 0.00ns
+:0  ret void
+
+
+ <State 3>: 3.19ns
+ST_3: i [1/1] 0.00ns
+.preheader:0  %i = phi i3 [ 0, %.preheader.preheader ], [ %i_8, %_ifconv ]
+
+ST_3: exitcond1 [1/1] 1.62ns
+.preheader:1  %exitcond1 = icmp eq i3 %i, -4
+
+ST_3: empty_16 [1/1] 0.00ns
+.preheader:2  %empty_16 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4)
+
+ST_3: i_8 [1/1] 0.80ns
+.preheader:3  %i_8 = add i3 %i, 1
+
+ST_3: stg_24 [1/1] 0.00ns
+.preheader:4  br i1 %exitcond1, label %1, label %_ifconv
+
+ST_3: tmp_11 [1/1] 0.00ns
+_ifconv:4  %tmp_11 = trunc i3 %i to i2
+
+ST_3: tmp_s [1/1] 0.00ns
+_ifconv:5  %tmp_s = call i4 @_ssdm_op_BitConcatenate.i4.i2.i2(i2 %tmp_11, i2 0)
+
+ST_3: tmp_4 [1/1] 0.80ns
+_ifconv:6  %tmp_4 = add i4 %tmp_cast, %tmp_s
+
+ST_3: tmp_5 [1/1] 0.00ns
+_ifconv:7  %tmp_5 = zext i4 %tmp_4 to i64
+
+ST_3: state_addr [1/1] 0.00ns
+_ifconv:8  %state_addr = getelementptr [16 x i8]* %state, i64 0, i64 %tmp_5
+
+ST_3: col_0 [2/2] 2.39ns
+_ifconv:9  %col_0 = load i8* %state_addr, align 1
+
+ST_3: col_0_load [1/1] 0.00ns
+:0  %col_0_load = load i8* %col_0_s
+
+ST_3: col_1_load [1/1] 0.00ns
+:1  %col_1_load = load i8* %col_1_s
+
+ST_3: col_2_load [1/1] 0.00ns
+:2  %col_2_load = load i8* %col_2_s
+
+ST_3: col_3_load [1/1] 0.00ns
+:3  %col_3_load = load i8* %col_3_s
+
+ST_3: tmp_i [2/2] 3.05ns
+:4  %tmp_i = call fastcc zeroext i8 @single_block_CTR_encrypt_gmult(i4 zeroext 2, i8 zeroext %col_0_load)
+
+ST_3: tmp_i_17 [2/2] 3.05ns
+:5  %tmp_i_17 = call fastcc zeroext i8 @single_block_CTR_encrypt_gmult(i4 zeroext 3, i8 zeroext %col_1_load)
+
+ST_3: tmp_20_i [2/2] 3.05ns
+:6  %tmp_20_i = call fastcc zeroext i8 @single_block_CTR_encrypt_gmult(i4 zeroext 1, i8 zeroext %col_2_load)
+
+ST_3: tmp_21_i [2/2] 3.05ns
+:7  %tmp_21_i = call fastcc zeroext i8 @single_block_CTR_encrypt_gmult(i4 zeroext 1, i8 zeroext %col_3_load)
+
+ST_3: tmp_24_i [2/2] 3.05ns
+:11  %tmp_24_i = call fastcc zeroext i8 @single_block_CTR_encrypt_gmult(i4 zeroext 1, i8 zeroext %col_0_load)
+
+ST_3: tmp_25_i [2/2] 3.05ns
+:12  %tmp_25_i = call fastcc zeroext i8 @single_block_CTR_encrypt_gmult(i4 zeroext 2, i8 zeroext %col_1_load)
+
+ST_3: tmp_26_i [2/2] 3.05ns
+:13  %tmp_26_i = call fastcc zeroext i8 @single_block_CTR_encrypt_gmult(i4 zeroext 3, i8 zeroext %col_2_load)
+
+ST_3: tmp_29_i [2/2] 3.05ns
+:17  %tmp_29_i = call fastcc zeroext i8 @single_block_CTR_encrypt_gmult(i4 zeroext 1, i8 zeroext %col_1_load)
+
+ST_3: tmp_30_i [2/2] 3.05ns
+:18  %tmp_30_i = call fastcc zeroext i8 @single_block_CTR_encrypt_gmult(i4 zeroext 2, i8 zeroext %col_2_load)
+
+ST_3: tmp_31_i [2/2] 3.05ns
+:19  %tmp_31_i = call fastcc zeroext i8 @single_block_CTR_encrypt_gmult(i4 zeroext 3, i8 zeroext %col_3_load)
+
+ST_3: tmp_34_i [2/2] 3.05ns
+:23  %tmp_34_i = call fastcc zeroext i8 @single_block_CTR_encrypt_gmult(i4 zeroext 3, i8 zeroext %col_0_load)
+
+ST_3: tmp_35_i [2/2] 3.05ns
+:24  %tmp_35_i = call fastcc zeroext i8 @single_block_CTR_encrypt_gmult(i4 zeroext 2, i8 zeroext %col_3_load)
+
+
+ <State 4>: 4.10ns
+ST_4: col_0_load_1 [1/1] 0.00ns
+_ifconv:0  %col_0_load_1 = load i8* %col_0_s
+
+ST_4: col_1_load_1 [1/1] 0.00ns
+_ifconv:1  %col_1_load_1 = load i8* %col_1_s
+
+ST_4: col_2_load_1 [1/1] 0.00ns
+_ifconv:2  %col_2_load_1 = load i8* %col_2_s
+
+ST_4: col_3_load_1 [1/1] 0.00ns
+_ifconv:3  %col_3_load_1 = load i8* %col_3_s
+
+ST_4: col_0 [1/2] 2.39ns
+_ifconv:9  %col_0 = load i8* %state_addr, align 1
+
+ST_4: sel_tmp [1/1] 1.36ns
+_ifconv:10  %sel_tmp = icmp eq i2 %tmp_11, -2
+
+ST_4: sel_tmp2 [1/1] 1.36ns
+_ifconv:11  %sel_tmp2 = icmp eq i2 %tmp_11, 1
+
+ST_4: sel_tmp4 [1/1] 1.36ns
+_ifconv:12  %sel_tmp4 = icmp eq i2 %tmp_11, 0
+
+ST_4: or_cond [1/1] 1.37ns
+_ifconv:13  %or_cond = or i1 %sel_tmp4, %sel_tmp2
+
+ST_4: newSel [1/1] 0.00ns (grouped into LUT with out node col_3)
+_ifconv:14  %newSel = select i1 %sel_tmp, i8 %col_3_load_1, i8 %col_0
+
+ST_4: col_3 [1/1] 1.37ns (out node of the LUT)
+_ifconv:15  %col_3 = select i1 %or_cond, i8 %col_3_load_1, i8 %newSel
+
+ST_4: newSel2 [1/1] 0.00ns (grouped into LUT with out node col_3_1)
+_ifconv:16  %newSel2 = select i1 %sel_tmp, i8 %col_0, i8 %col_2_load_1
+
+ST_4: col_3_1 [1/1] 1.37ns (out node of the LUT)
+_ifconv:17  %col_3_1 = select i1 %or_cond, i8 %col_2_load_1, i8 %newSel2
+
+ST_4: col_3_3 [1/1] 0.00ns (grouped into LUT with out node col_3_4)
+_ifconv:18  %col_3_3 = select i1 %sel_tmp2, i8 %col_0, i8 %col_1_load_1
+
+ST_4: col_3_4 [1/1] 1.37ns (out node of the LUT)
+_ifconv:19  %col_3_4 = select i1 %sel_tmp4, i8 %col_1_load_1, i8 %col_3_3
+
+ST_4: col_3_5 [1/1] 1.37ns
+_ifconv:20  %col_3_5 = select i1 %sel_tmp4, i8 %col_0, i8 %col_0_load_1
+
+ST_4: stg_63 [1/1] 0.00ns
+_ifconv:21  store i8 %col_3, i8* %col_3_s
+
+ST_4: stg_64 [1/1] 0.00ns
+_ifconv:22  store i8 %col_3_1, i8* %col_2_s
+
+ST_4: stg_65 [1/1] 0.00ns
+_ifconv:23  store i8 %col_3_4, i8* %col_1_s
+
+ST_4: stg_66 [1/1] 0.00ns
+_ifconv:24  store i8 %col_3_5, i8* %col_0_s
+
+ST_4: stg_67 [1/1] 0.00ns
+_ifconv:25  br label %.preheader
+
+
+ <State 5>: 1.57ns
+ST_5: tmp_i [1/2] 0.00ns
+:4  %tmp_i = call fastcc zeroext i8 @single_block_CTR_encrypt_gmult(i4 zeroext 2, i8 zeroext %col_0_load)
+
+ST_5: tmp_i_17 [1/2] 0.00ns
+:5  %tmp_i_17 = call fastcc zeroext i8 @single_block_CTR_encrypt_gmult(i4 zeroext 3, i8 zeroext %col_1_load)
+
+ST_5: tmp_20_i [1/2] 0.00ns
+:6  %tmp_20_i = call fastcc zeroext i8 @single_block_CTR_encrypt_gmult(i4 zeroext 1, i8 zeroext %col_2_load)
+
+ST_5: tmp_21_i [1/2] 0.00ns
+:7  %tmp_21_i = call fastcc zeroext i8 @single_block_CTR_encrypt_gmult(i4 zeroext 1, i8 zeroext %col_3_load)
+
+ST_5: tmp [1/1] 0.00ns (grouped into LUT with out node res_0)
+:8  %tmp = xor i8 %tmp_i_17, %tmp_i
+
+ST_5: tmp2 [1/1] 0.00ns (grouped into LUT with out node res_0)
+:9  %tmp2 = xor i8 %tmp_20_i, %tmp_21_i
+
+ST_5: res_0 [1/1] 1.37ns (out node of the LUT)
+:10  %res_0 = xor i8 %tmp2, %tmp
+
+ST_5: tmp_24_i [1/2] 0.00ns
+:11  %tmp_24_i = call fastcc zeroext i8 @single_block_CTR_encrypt_gmult(i4 zeroext 1, i8 zeroext %col_0_load)
+
+ST_5: tmp_25_i [1/2] 0.00ns
+:12  %tmp_25_i = call fastcc zeroext i8 @single_block_CTR_encrypt_gmult(i4 zeroext 2, i8 zeroext %col_1_load)
+
+ST_5: tmp_26_i [1/2] 0.00ns
+:13  %tmp_26_i = call fastcc zeroext i8 @single_block_CTR_encrypt_gmult(i4 zeroext 3, i8 zeroext %col_2_load)
+
+ST_5: tmp3 [1/1] 0.00ns (grouped into LUT with out node res_1)
+:14  %tmp3 = xor i8 %tmp_25_i, %tmp_24_i
+
+ST_5: tmp4 [1/1] 0.00ns (grouped into LUT with out node res_1)
+:15  %tmp4 = xor i8 %tmp_26_i, %tmp_21_i
+
+ST_5: res_1 [1/1] 1.37ns (out node of the LUT)
+:16  %res_1 = xor i8 %tmp4, %tmp3
+
+ST_5: tmp_29_i [1/2] 0.00ns
+:17  %tmp_29_i = call fastcc zeroext i8 @single_block_CTR_encrypt_gmult(i4 zeroext 1, i8 zeroext %col_1_load)
+
+ST_5: tmp_30_i [1/2] 0.00ns
+:18  %tmp_30_i = call fastcc zeroext i8 @single_block_CTR_encrypt_gmult(i4 zeroext 2, i8 zeroext %col_2_load)
+
+ST_5: tmp_31_i [1/2] 0.00ns
+:19  %tmp_31_i = call fastcc zeroext i8 @single_block_CTR_encrypt_gmult(i4 zeroext 3, i8 zeroext %col_3_load)
+
+ST_5: tmp5 [1/1] 0.00ns (grouped into LUT with out node res_2)
+:20  %tmp5 = xor i8 %tmp_29_i, %tmp_24_i
+
+ST_5: tmp6 [1/1] 0.00ns (grouped into LUT with out node res_2)
+:21  %tmp6 = xor i8 %tmp_30_i, %tmp_31_i
+
+ST_5: res_2 [1/1] 1.37ns (out node of the LUT)
+:22  %res_2 = xor i8 %tmp6, %tmp5
+
+ST_5: tmp_34_i [1/2] 0.00ns
+:23  %tmp_34_i = call fastcc zeroext i8 @single_block_CTR_encrypt_gmult(i4 zeroext 3, i8 zeroext %col_0_load)
+
+ST_5: tmp_35_i [1/2] 0.00ns
+:24  %tmp_35_i = call fastcc zeroext i8 @single_block_CTR_encrypt_gmult(i4 zeroext 2, i8 zeroext %col_3_load)
+
+ST_5: tmp7 [1/1] 0.00ns (grouped into LUT with out node res_3)
+:25  %tmp7 = xor i8 %tmp_29_i, %tmp_34_i
+
+ST_5: tmp8 [1/1] 0.00ns (grouped into LUT with out node res_3)
+:26  %tmp8 = xor i8 %tmp_20_i, %tmp_35_i
+
+ST_5: res_3 [1/1] 1.37ns (out node of the LUT)
+:27  %res_3 = xor i8 %tmp8, %tmp7
+
+ST_5: stg_92 [1/1] 1.57ns
+:28  br label %2
+
+
+ <State 6>: 3.96ns
+ST_6: i_1 [1/1] 0.00ns
+:0  %i_1 = phi i3 [ 0, %1 ], [ %i_9, %3 ]
+
+ST_6: exitcond [1/1] 1.62ns
+:1  %exitcond = icmp eq i3 %i_1, -4
+
+ST_6: empty_18 [1/1] 0.00ns
+:2  %empty_18 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4)
+
+ST_6: i_9 [1/1] 0.80ns
+:3  %i_9 = add i3 %i_1, 1
+
+ST_6: stg_97 [1/1] 0.00ns
+:4  br i1 %exitcond, label %.loopexit, label %3
+
+ST_6: tmp_12 [1/1] 0.00ns
+:0  %tmp_12 = trunc i3 %i_1 to i2
+
+ST_6: tmp_9 [1/1] 1.57ns
+:1  %tmp_9 = call i8 @_ssdm_op_Mux.ap_auto.4i8.i2(i8 %res_0, i8 %res_1, i8 %res_2, i8 %res_3, i2 %tmp_12)
+
+ST_6: tmp_6 [1/1] 0.00ns
+:2  %tmp_6 = call i4 @_ssdm_op_BitConcatenate.i4.i2.i2(i2 %tmp_12, i2 0)
+
+ST_6: tmp_7 [1/1] 0.80ns
+:3  %tmp_7 = add i4 %tmp_cast, %tmp_6
+
+ST_6: tmp_8 [1/1] 0.00ns
+:4  %tmp_8 = zext i4 %tmp_7 to i64
+
+ST_6: state_addr_4 [1/1] 0.00ns
+:5  %state_addr_4 = getelementptr [16 x i8]* %state, i64 0, i64 %tmp_8
+
+ST_6: stg_104 [1/1] 2.39ns
+:6  store i8 %tmp_9, i8* %state_addr_4, align 1
+
+ST_6: stg_105 [1/1] 0.00ns
+:7  br label %2
+
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ No timing violations. 
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

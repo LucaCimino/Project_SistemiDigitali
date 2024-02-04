@@ -62,16 +62,6 @@
 			<location>C:/Users/lucac/VivadoHLS/AES_CTR/ctr_main.h</location>
 		</link>
 		<link>
-			<name>source/gmult.cpp</name>
-			<type>1</type>
-			<location>C:/Users/lucac/VivadoHLS/AES_CTR/gmult.cpp</location>
-		</link>
-		<link>
-			<name>source/gmult.h</name>
-			<type>1</type>
-			<location>C:/Users/lucac/VivadoHLS/AES_CTR/gmult.h</location>
-		</link>
-		<link>
 			<name>testbench/testbench.cpp</name>
 			<type>1</type>
 			<location>C:/Users/lucac/VivadoHLS/AES_CTR/testbench.cpp</location>

@@ -1,18 +1,24 @@
-#include "ap_int.h"
-#include <unistd.h>
+#include <hls_stream.h>
+#include <stdint.h>
+#include <ap_int.h>
+
+#define BLOCK_SIZE 16 //bytes
+
+struct stream_type {
+	uint8_t data;
+	ap_uint<1> user;  // USER signal
+	ap_uint<1> last;  // TLAST signal
+};
 
 /*
  * Funzione che implementa la cifratura con AES in modalità CTR su un singolo blocco di testo
  *
  * Input:
- *   - nonce     -> 128 bit di nonce
- *   - key       -> 128 bit di chiave
  *   - plaintext -> 128 bit di testo da cifrare
  *
  * Output:
- *   - chiper    -> 128 bit di testo cifrato
+ *   - cipher    -> 128 bit di testo cifrato
  *
  */
 
-void single_block_CTR_encrypt(uint8_t *plaintext, uint8_t *key,
-		                      uint8_t *nonce, uint8_t *chiper);
+void single_block_CTR_encrypt(hls::stream<stream_type> &i_plaintext, hls::stream<stream_type> &cipher);

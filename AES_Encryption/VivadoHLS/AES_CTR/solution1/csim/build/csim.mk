@@ -19,7 +19,7 @@ __SIM_DDS__ = 1
 
 ObjDir = obj
 
-HLS_SOURCES = ../../../testbench.cpp ../../../aes.cpp ../../../ctr_main.cpp ../../../gmult.cpp
+HLS_SOURCES = ../../../testbench.cpp ../../../ctr_main.cpp ../../../aes.cpp
 
 TARGET := csim.exe
 
@@ -76,20 +76,14 @@ $(ObjDir)/testbench.o: ../../../testbench.cpp $(ObjDir)/.dir
 
 -include $(ObjDir)/testbench.d
 
-$(ObjDir)/aes.o: ../../../aes.cpp $(ObjDir)/.dir
-	$(Echo) "   Compiling ../../../aes.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
-	$(Verb)  $(CC) -c -MMD  $(IFLAG) $(DFLAG)  $< -o $@ ; \
-
--include $(ObjDir)/aes.d
-
 $(ObjDir)/ctr_main.o: ../../../ctr_main.cpp $(ObjDir)/.dir
 	$(Echo) "   Compiling ../../../ctr_main.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
 	$(Verb)  $(CC) -c -MMD  $(IFLAG) $(DFLAG)  $< -o $@ ; \
 
 -include $(ObjDir)/ctr_main.d
 
-$(ObjDir)/gmult.o: ../../../gmult.cpp $(ObjDir)/.dir
-	$(Echo) "   Compiling ../../../gmult.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
+$(ObjDir)/aes.o: ../../../aes.cpp $(ObjDir)/.dir
+	$(Echo) "   Compiling ../../../aes.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
 	$(Verb)  $(CC) -c -MMD  $(IFLAG) $(DFLAG)  $< -o $@ ; \
 
--include $(ObjDir)/gmult.d
+-include $(ObjDir)/aes.d
