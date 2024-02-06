@@ -24,3 +24,21 @@ Il protocollo standard che abbiamo imparato è adatto per operazioni di lettura/
 I2C è ottimo per collegare più dispositivi a bassa velocità su un unico bus seriale, utilizzando indirizzi e comandi specifici.
 
 AXI è progettato per sistemi complessi e ad alte prestazioni, in cui l'accesso ai registri dei dispositivi è diretto e veloce attraverso uno spazio di indirizzi specifico.
+
+
+
+INTERAZIONE OVERLAY
+Quando eseguiamo codice python ci sono certe operazioni che eseguire su processore impiegano molto tempo e vorremmo accelerarle.
+Atraverso l'utilizzo di rete programmabile possiamo accelerare certe operazioni.
+
+Utilizzo di Overlay in python ci permette di astrarre gli ip core e fornire supporto alla programmazione di alto livello.
+
+Quando utilizziamo un Overlay dobbiamo importare la classe Overlay.
+
+Poi possiamo inizializzare fornendogli il file bit stream.
+overlay = Overlay("..../../file.bit)
+
+A questo punto possiamo ispezionarlo, cioè atttraverso la funzione "help" ci verrà fornita la descrizione del driver e ci viene spiegato a quali indirizzi bisogna scrivere i dati.
+Infine si potrebbe estendere la classe se non è molto user friendly andando creare delle funzioni per i comandi di scrittura e lettura, in modo tale da rendere più trasparente sul codice.
+
+A questo punto suppongo che noi si debba scaricare tutti i file .bit degli ip core che utilizziamo, poi dopo inizializziamo Overlay(...) inserendo il path del file .bit, e infine invocandone le funzioni che offre.
