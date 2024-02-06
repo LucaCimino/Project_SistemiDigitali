@@ -1,21 +1,42 @@
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 import os
+import time
 
-key = b"\x00\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f"
-iv = os.urandom(16)
-
+key = b"\x63\xd3\x71\xe3\x6b\xb2\x12\x85\xe7\x67\xd2\xff\x11\x15\xe3\xab"
 print("Key =",key)
+print("")
 
-# cipher = Cipher(algorithms.AES(key), modes.CBC(iv))
 cipher = Cipher(algorithms.AES(key), modes.ECB())
 encryptor = cipher.encryptor()
-plaintext = b"\x16\xc7\x22\x4d\x14\x5a\x26\x75\x00\x00\x00\x00\x00\x00\x00\x00"
+plaintext = b"\x04\xb4\x56\xee\x17\xa6\x6a\xbe\x53\x28\xa7\x73\xd6\x7c\xd8\x6a"
+print("Plaintext:\t", plaintext)
+start = time.time()
 ct = encryptor.update(plaintext) + encryptor.finalize()
+end = time.time()
+print("Chiper:\t", ct,)
+print("Execution time:", end - start, "s")
+print("")
 
-print("Chiper =", ct)
+cipher = Cipher(algorithms.AES(key), modes.ECB())
+encryptor = cipher.encryptor()
+plaintext = b"\x33\xdd\x56\xee\x17\xa6\x1a\x13\x32\x23\xa7\x73\x65\x1c\xd2\x41"
+print("Plaintext:\t", plaintext)
+ct = encryptor.update(plaintext) + encryptor.finalize()
+print("Chiper:\t", ct)
+print("")
 
+cipher = Cipher(algorithms.AES(key), modes.ECB())
+encryptor = cipher.encryptor()
+plaintext = b"\xc4\x74\x15\x74\xa7\xa6\xc1\xa3\x73\x28\x17\x76\x73\xbc\x3f\xe1"
+print("Plaintext:\t", plaintext)
+ct = encryptor.update(plaintext) + encryptor.finalize()
+print("Chiper:\t", ct)
+print("")
+
+
+'''
 decryptor = cipher.decryptor()
 dt = decryptor.update(ct) + decryptor.finalize()
 
 print("Plaintext =", dt)
-
+'''

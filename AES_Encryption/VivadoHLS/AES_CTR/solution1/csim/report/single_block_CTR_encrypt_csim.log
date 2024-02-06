@@ -1,9 +1,0 @@
-   Compiling ../../../ctr_main.cpp in debug mode
-   Generating csim.exe
-Plaintext:	04 b4 56 ee 17 a6 6a be 53 28 a7 73 d6 7c d8 6a 
-TLAST : 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-Cipher:		a3 2a ac 44 c0 23 98 a6 df 13 10 4c 4f 55 22 72 
----------------
-Plaintext:	04 b4 56 ee 17 a6 6a be 53 28 a7 73 d6 7c d8 6a 
-Cipher:		72 35 2c 9c f8 e9 12 5c e1 77 7a 08 14 91 d9 f7 
-INFO: [SIM 1] CSim done with 0 errors.

@@ -1,0 +1,268 @@
+
+
+================================================================
+== Vivado HLS Report for 'single_block_AES_encrypt'
+================================================================
+* Date:           Tue Feb 06 11:53:19 2024
+
+* Version:        2016.2 (Build 1577090 on Thu Jun 02 16:59:10 MDT 2016)
+* Project:        AES_Encryption
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      6.47|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |    ?|    ?|    ?|    ?|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |          |  Latency  | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name| min | max |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |- Loop 1  |   16|   16|         1|          -|          -|    16|    no    |
+        |- Loop 2  |   32|   32|         2|          -|          -|    16|    no    |
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 7
+* Pipeline: 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / (exitcond1)
+	2  / (!exitcond1)
+3 --> 
+	4  / true
+4 --> 
+	5  / true
+5 --> 
+	6  / true
+6 --> 
+	7  / (!exitcond)
+7 --> 
+	6  / true
+* FSM state operations: 
+
+ <State 1>: 1.57ns
+ST_1: stg_8 [1/1] 0.00ns
+:0  call void (...)* @_ssdm_op_SpecBitsMap(i8* %i_plaintext_V_data), !map !19
+
+ST_1: stg_9 [1/1] 0.00ns
+:1  call void (...)* @_ssdm_op_SpecBitsMap(i1* %i_plaintext_V_user_V), !map !23
+
+ST_1: stg_10 [1/1] 0.00ns
+:2  call void (...)* @_ssdm_op_SpecBitsMap(i1* %i_plaintext_V_last_V), !map !27
+
+ST_1: stg_11 [1/1] 0.00ns
+:3  call void (...)* @_ssdm_op_SpecBitsMap(i8* %cipher_V_data), !map !31
+
+ST_1: stg_12 [1/1] 0.00ns
+:4  call void (...)* @_ssdm_op_SpecBitsMap(i1* %cipher_V_user_V), !map !35
+
+ST_1: stg_13 [1/1] 0.00ns
+:5  call void (...)* @_ssdm_op_SpecBitsMap(i1* %cipher_V_last_V), !map !39
+
+ST_1: stg_14 [1/1] 0.00ns
+:6  call void (...)* @_ssdm_op_SpecTopModule([25 x i8]* @single_block_AES_encrypt_str) nounwind
+
+ST_1: plaintext [1/1] 0.00ns
+:7  %plaintext = alloca [16 x i8], align 16
+
+ST_1: out [1/1] 0.00ns
+:8  %out = alloca [16 x i8], align 16
+
+ST_1: w [1/1] 0.00ns
+:9  %w = alloca [176 x i8], align 16
+
+ST_1: stg_18 [1/1] 0.00ns
+:10  call void (...)* @_ssdm_op_SpecInterface(i8* %i_plaintext_V_data, i1* %i_plaintext_V_user_V, i1* %i_plaintext_V_last_V, [5 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1) nounwind
+
+ST_1: stg_19 [1/1] 0.00ns
+:11  call void (...)* @_ssdm_op_SpecInterface(i8* %cipher_V_data, i1* %cipher_V_user_V, i1* %cipher_V_last_V, [5 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1) nounwind
+
+ST_1: stg_20 [1/1] 0.00ns
+:12  call void (...)* @_ssdm_op_SpecInterface(i32 0, [13 x i8]* @p_str2, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1) nounwind
+
+ST_1: stg_21 [1/1] 1.57ns
+:13  br label %1
+
+
+ <State 2>: 2.39ns
+ST_2: i [1/1] 0.00ns
+:0  %i = phi i5 [ 0, %0 ], [ %i_2, %2 ]
+
+ST_2: exitcond1 [1/1] 1.91ns
+:1  %exitcond1 = icmp eq i5 %i, -16
+
+ST_2: empty [1/1] 0.00ns
+:2  %empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 16, i64 16, i64 16)
+
+ST_2: i_2 [1/1] 1.72ns
+:3  %i_2 = add i5 %i, 1
+
+ST_2: stg_26 [1/1] 0.00ns
+:4  br i1 %exitcond1, label %3, label %2
+
+ST_2: empty_10 [1/1] 0.00ns
+:0  %empty_10 = call { i8, i1, i1 } @_ssdm_op_Read.axis.volatile.i8P.i1P.i1P(i8* %i_plaintext_V_data, i1* %i_plaintext_V_user_V, i1* %i_plaintext_V_last_V)
+
+ST_2: tmp_data [1/1] 0.00ns
+:1  %tmp_data = extractvalue { i8, i1, i1 } %empty_10, 0
+
+ST_2: tmp [1/1] 0.00ns
+:2  %tmp = zext i5 %i to i64
+
+ST_2: plaintext_addr [1/1] 0.00ns
+:3  %plaintext_addr = getelementptr inbounds [16 x i8]* %plaintext, i64 0, i64 %tmp
+
+ST_2: stg_31 [1/1] 2.39ns
+:4  store i8 %tmp_data, i8* %plaintext_addr, align 1
+
+ST_2: stg_32 [1/1] 0.00ns
+:5  br label %1
+
+ST_2: stg_33 [2/2] 0.00ns
+:0  call fastcc void @single_block_AES_encrypt_aes_key_expansion([176 x i8]* %w)
+
+
+ <State 3>: 0.00ns
+ST_3: stg_34 [1/2] 0.00ns
+:0  call fastcc void @single_block_AES_encrypt_aes_key_expansion([176 x i8]* %w)
+
+
+ <State 4>: 0.00ns
+ST_4: stg_35 [2/2] 0.00ns
+:1  call fastcc void @single_block_AES_encrypt_aes_cipher([16 x i8]* %plaintext, [16 x i8]* %out, [176 x i8]* %w)
+
+
+ <State 5>: 1.57ns
+ST_5: stg_36 [1/2] 0.00ns
+:1  call fastcc void @single_block_AES_encrypt_aes_cipher([16 x i8]* %plaintext, [16 x i8]* %out, [176 x i8]* %w)
+
+ST_5: stg_37 [1/1] 1.57ns
+:2  br label %4
+
+
+ <State 6>: 2.39ns
+ST_6: i_1 [1/1] 0.00ns
+:0  %i_1 = phi i5 [ 0, %3 ], [ %i_3, %5 ]
+
+ST_6: exitcond [1/1] 1.91ns
+:1  %exitcond = icmp eq i5 %i_1, -16
+
+ST_6: empty_11 [1/1] 0.00ns
+:2  %empty_11 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 16, i64 16, i64 16)
+
+ST_6: i_3 [1/1] 1.72ns
+:3  %i_3 = add i5 %i_1, 1
+
+ST_6: stg_42 [1/1] 0.00ns
+:4  br i1 %exitcond, label %6, label %5
+
+ST_6: tmp_s [1/1] 0.00ns
+:0  %tmp_s = zext i5 %i_1 to i64
+
+ST_6: out_addr [1/1] 0.00ns
+:1  %out_addr = getelementptr inbounds [16 x i8]* %out, i64 0, i64 %tmp_s
+
+ST_6: tmp_data_1 [2/2] 2.39ns
+:2  %tmp_data_1 = load i8* %out_addr, align 1
+
+ST_6: tmp_last_V [1/1] 1.91ns
+:3  %tmp_last_V = icmp eq i5 %i_1, 15
+
+ST_6: stg_47 [1/1] 0.00ns
+:0  ret void
+
+
+ <State 7>: 2.39ns
+ST_7: tmp_data_1 [1/2] 2.39ns
+:2  %tmp_data_1 = load i8* %out_addr, align 1
+
+ST_7: stg_49 [1/1] 0.00ns
+:4  call void @_ssdm_op_Write.axis.volatile.i8P.i1P.i1P(i8* %cipher_V_data, i1* %cipher_V_user_V, i1* %cipher_V_last_V, i8 %tmp_data_1, i1 true, i1 %tmp_last_V)
+
+ST_7: stg_50 [1/1] 0.00ns
+:5  br label %4
+
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ No timing violations. 
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

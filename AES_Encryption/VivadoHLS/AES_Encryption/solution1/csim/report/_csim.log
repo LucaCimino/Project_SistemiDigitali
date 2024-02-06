@@ -1,0 +1,10 @@
+   Compiling ../../../testbench.cpp in debug mode
+   Generating csim.exe
+Plaintext:	04 b4 56 ee 17 a6 6a be 53 28 a7 73 d6 7c d8 6a 
+TLAST : 	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+Cipher:		91 19 b8 ea 48 1c ab 35 82 27 43 68 de 16 fc f9 
+---------------
+Plaintext:	04 b4 56 ee 17 a6 6a be 53 28 a7 73 d6 7c d8 6a 
+TLAST : 	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+Cipher:		91 19 b8 ea 48 1c ab 35 82 27 43 68 de 16 fc f9 
+INFO: [SIM 1] CSim done with 0 errors.

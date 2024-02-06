@@ -1,0 +1,461 @@
+
+
+================================================================
+== Vivado HLS Report for 'single_block_AES_encrypt_aes_cipher'
+================================================================
+* Date:           Tue Feb 06 11:53:18 2024
+
+* Version:        2016.2 (Build 1577090 on Thu Jun 02 16:59:10 MDT 2016)
+* Project:        AES_Encryption
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      6.47|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +------+------+------+------+---------+
+    |   Latency   |   Interval  | Pipeline|
+    |  min |  max |  min |  max |   Type  |
+    +------+------+------+------+---------+
+    |  2167|  2707|  2167|  2707|   none  |
+    +------+------+------+------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------+------+------+-----------+-----------+-----------+------+----------+
+        |             |   Latency   | Iteration |  Initiation Interval  | Trip |          |
+        |  Loop Name  |  min |  max |  Latency  |  achieved |   target  | Count| Pipelined|
+        +-------------+------+------+-----------+-----------+-----------+------+----------+
+        |- Loop 1     |    40|    40|         10|          -|          -|     4|    no    |
+        | + Loop 1.1  |     8|     8|          2|          -|          -|     4|    no    |
+        |- Loop 2     |  1953|  2439| 217 ~ 271 |          -|          -|     9|    no    |
+        |- Loop 3     |    40|    40|         10|          -|          -|     4|    no    |
+        | + Loop 3.1  |     8|     8|          2|          -|          -|     4|    no    |
+        +-------------+------+------+-----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 21
+* Pipeline: 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	5  / (exitcond4)
+	3  / (!exitcond4)
+3 --> 
+	2  / (exitcond3)
+	4  / (!exitcond3)
+4 --> 
+	3  / true
+5 --> 
+	6  / true
+6 --> 
+	7  / (!exitcond2)
+	14  / (exitcond2)
+7 --> 
+	8  / true
+8 --> 
+	9  / true
+9 --> 
+	10  / true
+10 --> 
+	11  / true
+11 --> 
+	12  / true
+12 --> 
+	13  / true
+13 --> 
+	6  / true
+14 --> 
+	15  / true
+15 --> 
+	16  / true
+16 --> 
+	17  / true
+17 --> 
+	18  / true
+18 --> 
+	19  / true
+19 --> 
+	20  / (!exitcond1)
+20 --> 
+	19  / (exitcond)
+	21  / (!exitcond)
+21 --> 
+	20  / true
+* FSM state operations: 
+
+ <State 1>: 1.57ns
+ST_1: state [1/1] 0.00ns
+:0  %state = alloca [16 x i8], align 16
+
+ST_1: stg_23 [1/1] 1.57ns
+:1  br label %.loopexit1
+
+
+ <State 2>: 1.62ns
+ST_2: i [1/1] 0.00ns
+.loopexit1:0  %i = phi i3 [ 0, %0 ], [ %i_12, %.preheader5 ]
+
+ST_2: exitcond4 [1/1] 1.62ns
+.loopexit1:1  %exitcond4 = icmp eq i3 %i, -4
+
+ST_2: empty [1/1] 0.00ns
+.loopexit1:2  %empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4)
+
+ST_2: i_12 [1/1] 0.80ns
+.loopexit1:3  %i_12 = add i3 %i, 1
+
+ST_2: stg_28 [1/1] 0.00ns
+.loopexit1:4  br i1 %exitcond4, label %2, label %.preheader5.preheader
+
+ST_2: tmp_cast [1/1] 0.00ns
+.preheader5.preheader:0  %tmp_cast = zext i3 %i to i4
+
+ST_2: tmp [1/1] 0.00ns
+.preheader5.preheader:1  %tmp = trunc i3 %i to i2
+
+ST_2: tmp_s [1/1] 0.00ns
+.preheader5.preheader:2  %tmp_s = call i4 @_ssdm_op_BitConcatenate.i4.i2.i2(i2 %tmp, i2 0)
+
+ST_2: stg_32 [1/1] 1.57ns
+.preheader5.preheader:3  br label %.preheader5
+
+ST_2: stg_33 [2/2] 1.04ns
+:0  call fastcc void @single_block_AES_encrypt_add_round_key([16 x i8]* %state, [176 x i8]* %w, i6 zeroext 0)
+
+
+ <State 3>: 3.19ns
+ST_3: j [1/1] 0.00ns
+.preheader5:0  %j = phi i3 [ %j_3, %1 ], [ 0, %.preheader5.preheader ]
+
+ST_3: exitcond3 [1/1] 1.62ns
+.preheader5:1  %exitcond3 = icmp eq i3 %j, -4
+
+ST_3: empty_25 [1/1] 0.00ns
+.preheader5:2  %empty_25 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4)
+
+ST_3: j_3 [1/1] 0.80ns
+.preheader5:3  %j_3 = add i3 %j, 1
+
+ST_3: stg_38 [1/1] 0.00ns
+.preheader5:4  br i1 %exitcond3, label %.loopexit1, label %1
+
+ST_3: tmp_63_cast [1/1] 0.00ns
+:0  %tmp_63_cast = zext i3 %j to i4
+
+ST_3: tmp_55 [1/1] 0.00ns
+:1  %tmp_55 = trunc i3 %j to i2
+
+ST_3: tmp_40 [1/1] 0.00ns
+:2  %tmp_40 = call i4 @_ssdm_op_BitConcatenate.i4.i2.i2(i2 %tmp_55, i2 0)
+
+ST_3: tmp_41 [1/1] 0.80ns
+:3  %tmp_41 = add i4 %tmp_cast, %tmp_40
+
+ST_3: tmp_42 [1/1] 0.00ns
+:4  %tmp_42 = zext i4 %tmp_41 to i64
+
+ST_3: in_addr [1/1] 0.00ns
+:5  %in_addr = getelementptr [16 x i8]* %in_r, i64 0, i64 %tmp_42
+
+ST_3: in_load [2/2] 2.39ns
+:6  %in_load = load i8* %in_addr, align 1
+
+ST_3: tmp_43 [1/1] 0.80ns
+:7  %tmp_43 = add i4 %tmp_63_cast, %tmp_s
+
+
+ <State 4>: 4.78ns
+ST_4: in_load [1/2] 2.39ns
+:6  %in_load = load i8* %in_addr, align 1
+
+ST_4: tmp_44 [1/1] 0.00ns
+:8  %tmp_44 = zext i4 %tmp_43 to i64
+
+ST_4: state_addr [1/1] 0.00ns
+:9  %state_addr = getelementptr inbounds [16 x i8]* %state, i64 0, i64 %tmp_44
+
+ST_4: stg_50 [1/1] 2.39ns
+:10  store i8 %in_load, i8* %state_addr, align 1
+
+ST_4: stg_51 [1/1] 0.00ns
+:11  br label %.preheader5
+
+
+ <State 5>: 1.57ns
+ST_5: stg_52 [1/2] 0.00ns
+:0  call fastcc void @single_block_AES_encrypt_add_round_key([16 x i8]* %state, [176 x i8]* %w, i6 zeroext 0)
+
+ST_5: stg_53 [1/1] 1.57ns
+:1  br label %3
+
+
+ <State 6>: 1.88ns
+ST_6: r [1/1] 0.00ns
+:0  %r = phi i4 [ 1, %2 ], [ %r_1, %4 ]
+
+ST_6: exitcond2 [1/1] 1.88ns
+:1  %exitcond2 = icmp eq i4 %r, -6
+
+ST_6: empty_26 [1/1] 0.00ns
+:2  %empty_26 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 9, i64 9, i64 9)
+
+ST_6: stg_57 [1/1] 0.00ns
+:3  br i1 %exitcond2, label %5, label %4
+
+ST_6: stg_58 [2/2] 0.00ns
+:0  call fastcc void @single_block_AES_encrypt_sub_bytes([16 x i8]* %state)
+
+ST_6: stg_59 [2/2] 0.00ns
+:0  call fastcc void @single_block_AES_encrypt_sub_bytes([16 x i8]* %state)
+
+
+ <State 7>: 0.00ns
+ST_7: stg_60 [1/2] 0.00ns
+:0  call fastcc void @single_block_AES_encrypt_sub_bytes([16 x i8]* %state)
+
+
+ <State 8>: 0.00ns
+ST_8: stg_61 [2/2] 0.00ns
+:1  call fastcc void @single_block_AES_encrypt_shift_rows([16 x i8]* %state)
+
+
+ <State 9>: 0.00ns
+ST_9: stg_62 [1/2] 0.00ns
+:1  call fastcc void @single_block_AES_encrypt_shift_rows([16 x i8]* %state)
+
+
+ <State 10>: 0.00ns
+ST_10: stg_63 [2/2] 0.00ns
+:2  call fastcc void @single_block_AES_encrypt_mix_columns([16 x i8]* %state)
+
+
+ <State 11>: 0.00ns
+ST_11: stg_64 [1/2] 0.00ns
+:2  call fastcc void @single_block_AES_encrypt_mix_columns([16 x i8]* %state)
+
+
+ <State 12>: 1.04ns
+ST_12: r_cast3_cast [1/1] 0.00ns
+:3  %r_cast3_cast = zext i4 %r to i6
+
+ST_12: stg_66 [2/2] 1.04ns
+:4  call fastcc void @single_block_AES_encrypt_add_round_key([16 x i8]* %state, [176 x i8]* %w, i6 zeroext %r_cast3_cast)
+
+ST_12: r_1 [1/1] 0.80ns
+:5  %r_1 = add i4 %r, 1
+
+
+ <State 13>: 0.00ns
+ST_13: stg_68 [1/2] 0.00ns
+:4  call fastcc void @single_block_AES_encrypt_add_round_key([16 x i8]* %state, [176 x i8]* %w, i6 zeroext %r_cast3_cast)
+
+ST_13: stg_69 [1/1] 0.00ns
+:6  br label %3
+
+
+ <State 14>: 0.00ns
+ST_14: stg_70 [1/2] 0.00ns
+:0  call fastcc void @single_block_AES_encrypt_sub_bytes([16 x i8]* %state)
+
+
+ <State 15>: 0.00ns
+ST_15: stg_71 [2/2] 0.00ns
+:1  call fastcc void @single_block_AES_encrypt_shift_rows([16 x i8]* %state)
+
+
+ <State 16>: 0.00ns
+ST_16: stg_72 [1/2] 0.00ns
+:1  call fastcc void @single_block_AES_encrypt_shift_rows([16 x i8]* %state)
+
+
+ <State 17>: 1.04ns
+ST_17: stg_73 [2/2] 1.04ns
+:2  call fastcc void @single_block_AES_encrypt_add_round_key([16 x i8]* %state, [176 x i8]* %w, i6 zeroext 10)
+
+
+ <State 18>: 1.57ns
+ST_18: stg_74 [1/2] 0.00ns
+:2  call fastcc void @single_block_AES_encrypt_add_round_key([16 x i8]* %state, [176 x i8]* %w, i6 zeroext 10)
+
+ST_18: stg_75 [1/1] 1.57ns
+:3  br label %.loopexit
+
+
+ <State 19>: 1.62ns
+ST_19: i_1 [1/1] 0.00ns
+.loopexit:0  %i_1 = phi i3 [ 0, %5 ], [ %i_13, %.preheader ]
+
+ST_19: exitcond1 [1/1] 1.62ns
+.loopexit:1  %exitcond1 = icmp eq i3 %i_1, -4
+
+ST_19: empty_27 [1/1] 0.00ns
+.loopexit:2  %empty_27 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4)
+
+ST_19: i_13 [1/1] 0.80ns
+.loopexit:3  %i_13 = add i3 %i_1, 1
+
+ST_19: stg_80 [1/1] 0.00ns
+.loopexit:4  br i1 %exitcond1, label %7, label %.preheader.preheader
+
+ST_19: tmp_69_cast [1/1] 0.00ns
+.preheader.preheader:0  %tmp_69_cast = zext i3 %i_1 to i4
+
+ST_19: tmp_56 [1/1] 0.00ns
+.preheader.preheader:1  %tmp_56 = trunc i3 %i_1 to i2
+
+ST_19: tmp_45 [1/1] 0.00ns
+.preheader.preheader:2  %tmp_45 = call i4 @_ssdm_op_BitConcatenate.i4.i2.i2(i2 %tmp_56, i2 0)
+
+ST_19: stg_84 [1/1] 1.57ns
+.preheader.preheader:3  br label %.preheader
+
+ST_19: stg_85 [1/1] 0.00ns
+:0  ret void
+
+
+ <State 20>: 3.19ns
+ST_20: j_1 [1/1] 0.00ns
+.preheader:0  %j_1 = phi i3 [ %j_4, %6 ], [ 0, %.preheader.preheader ]
+
+ST_20: exitcond [1/1] 1.62ns
+.preheader:1  %exitcond = icmp eq i3 %j_1, -4
+
+ST_20: empty_28 [1/1] 0.00ns
+.preheader:2  %empty_28 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4)
+
+ST_20: j_4 [1/1] 0.80ns
+.preheader:3  %j_4 = add i3 %j_1, 1
+
+ST_20: stg_90 [1/1] 0.00ns
+.preheader:4  br i1 %exitcond, label %.loopexit, label %6
+
+ST_20: tmp_71_cast [1/1] 0.00ns
+:0  %tmp_71_cast = zext i3 %j_1 to i4
+
+ST_20: tmp_46 [1/1] 0.80ns
+:1  %tmp_46 = add i4 %tmp_71_cast, %tmp_45
+
+ST_20: tmp_47 [1/1] 0.00ns
+:2  %tmp_47 = zext i4 %tmp_46 to i64
+
+ST_20: state_addr_5 [1/1] 0.00ns
+:3  %state_addr_5 = getelementptr inbounds [16 x i8]* %state, i64 0, i64 %tmp_47
+
+ST_20: state_load [2/2] 2.39ns
+:4  %state_load = load i8* %state_addr_5, align 1
+
+ST_20: tmp_57 [1/1] 0.00ns
+:5  %tmp_57 = trunc i3 %j_1 to i2
+
+ST_20: tmp_48 [1/1] 0.00ns
+:6  %tmp_48 = call i4 @_ssdm_op_BitConcatenate.i4.i2.i2(i2 %tmp_57, i2 0)
+
+ST_20: tmp_49 [1/1] 0.80ns
+:7  %tmp_49 = add i4 %tmp_69_cast, %tmp_48
+
+
+ <State 21>: 4.78ns
+ST_21: state_load [1/2] 2.39ns
+:4  %state_load = load i8* %state_addr_5, align 1
+
+ST_21: tmp_50 [1/1] 0.00ns
+:8  %tmp_50 = zext i4 %tmp_49 to i64
+
+ST_21: out_addr [1/1] 0.00ns
+:9  %out_addr = getelementptr [16 x i8]* %out_r, i64 0, i64 %tmp_50
+
+ST_21: stg_102 [1/1] 2.39ns
+:10  store i8 %state_load, i8* %out_addr, align 1
+
+ST_21: stg_103 [1/1] 0.00ns
+:11  br label %.preheader
+
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ No timing violations. 
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+	State 17
+	State 18
+	State 19
+	State 20
+	State 21
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A
