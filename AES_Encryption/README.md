@@ -121,4 +121,14 @@ La top function `void single_block_CTR_encrypt(hls::stream<stream_type> &i_plain
 
 
 
+################################################
+
+
+1. Importare sulla pynq l'immagine
+2. eseguire il notebook
+3. con scp copiare il file binario con il cifrato dalla pynq all'host
+4. con src/pyScript/ecb_image_decryption.py decifrare il file
+
+
+
 
