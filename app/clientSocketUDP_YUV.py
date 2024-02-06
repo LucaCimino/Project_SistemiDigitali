@@ -40,6 +40,8 @@ while True:
 
 # Configurazione della finestra per la visualizzazione dei frame
 # cv2.namedWindow("Received Frame", cv2.WINDOW_NORMAL)
+window_name = "Received Frame"
+prev_frame_received = False
 
 while True:
     try:
@@ -55,7 +57,8 @@ while True:
         print('dimensione dopo il resize', frame_rgb.shape)
 
         # Visualizzazione del frame
-        cv2.imshow("Received Frame", frame_rgb)
+        cv2.imshow(window_name, frame_rgb)
+        prev_frame_received = True
 
         # Interruzione del loop se viene premuto il tasto 'q'
         if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -63,8 +66,10 @@ while True:
 
     except socket.timeout:
         # Gestione del timeout
-        print('timeout, stampo frame nero')
-        cv2.imshow("Received Frame", black_frame)
+        print('Timeout, nessun frame ricevuto')
+        if prev_frame_received:
+            cv2.destroyWindow(window_name)
+            prev_frame_received = False
         cv2.waitKey(1)
         continue
         # print("Timeout sulla ricezione della conferma. Riprovare.")
