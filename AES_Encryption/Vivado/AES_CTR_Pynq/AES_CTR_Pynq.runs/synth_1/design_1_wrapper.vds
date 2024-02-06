@@ -2,8 +2,8 @@
 # Vivado v2016.2 (64-bit)
 # SW Build 1577090 on Thu Jun  2 16:32:40 MDT 2016
 # IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
-# Start of session at: Sun Feb 04 11:05:20 2024
-# Process ID: 20172
+# Start of session at: Mon Feb 05 15:21:40 2024
+# Process ID: 5252
 # Current directory: C:/Users/lucac/Vivado/AES_CTR_Pynq/AES_CTR_Pynq.runs/synth_1
 # Command line: vivado.exe -log design_1_wrapper.vds -mode batch -messageDb vivado.pb -notrace -source design_1_wrapper.tcl
 # Log file: C:/Users/lucac/Vivado/AES_CTR_Pynq/AES_CTR_Pynq.runs/synth_1/design_1_wrapper.vds
@@ -18,9 +18,9 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 16720 
+INFO: Helper process launched with PID 9244 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:17 . Memory (MB): peak = 391.023 ; gain = 183.668
+Starting RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:13 . Memory (MB): peak = 390.648 ; gain = 183.746
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'design_1_wrapper' [C:/Users/lucac/Vivado/AES_CTR_Pynq/AES_CTR_Pynq.srcs/sources_1/bd/design_1/hdl/design_1_wrapper.v:12]
 INFO: [Synth 8-638] synthesizing module 'design_1' [C:/Users/lucac/Vivado/AES_CTR_Pynq/AES_CTR_Pynq.srcs/sources_1/bd/design_1/hdl/design_1.v:13]
@@ -47,14 +47,14 @@ INFO: [Synth 8-638] synthesizing module 'design_1_axi_dma_0_2' [c:/Users/lucac/V
 	Parameter C_M_AXI_MM2S_ADDR_WIDTH bound to: 32 - type: integer 
 	Parameter C_M_AXI_MM2S_DATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_M_AXIS_MM2S_TDATA_WIDTH bound to: 8 - type: integer 
-	Parameter C_INCLUDE_MM2S_DRE bound to: 0 - type: integer 
+	Parameter C_INCLUDE_MM2S_DRE bound to: 1 - type: integer 
 	Parameter C_INCLUDE_S2MM bound to: 1 - type: integer 
 	Parameter C_INCLUDE_S2MM_SF bound to: 1 - type: integer 
 	Parameter C_S2MM_BURST_SIZE bound to: 16 - type: integer 
 	Parameter C_M_AXI_S2MM_ADDR_WIDTH bound to: 32 - type: integer 
 	Parameter C_M_AXI_S2MM_DATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_S_AXIS_S2MM_TDATA_WIDTH bound to: 8 - type: integer 
-	Parameter C_INCLUDE_S2MM_DRE bound to: 0 - type: integer 
+	Parameter C_INCLUDE_S2MM_DRE bound to: 1 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
 INFO: [Synth 8-3491] module 'axi_dma' declared at 'c:/Users/lucac/Vivado/AES_CTR_Pynq/AES_CTR_Pynq.srcs/sources_1/bd/design_1/ipshared/xilinx.com/axi_dma_v7_1/hdl/src/vhdl/axi_dma.vhd:76' bound to instance 'U0' of component 'axi_dma' [c:/Users/lucac/Vivado/AES_CTR_Pynq/AES_CTR_Pynq.srcs/sources_1/bd/design_1/ip/design_1_axi_dma_0_2/synth/design_1_axi_dma_0_2.vhd:416]
 INFO: [Synth 8-638] synthesizing module 'axi_dma' [c:/Users/lucac/Vivado/AES_CTR_Pynq/AES_CTR_Pynq.srcs/sources_1/bd/design_1/ipshared/xilinx.com/axi_dma_v7_1/hdl/src/vhdl/axi_dma.vhd:420]
@@ -72,14 +72,14 @@ INFO: [Synth 8-638] synthesizing module 'axi_dma' [c:/Users/lucac/Vivado/AES_CTR
 	Parameter C_S_AXIS_S2MM_STS_TDATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_INCLUDE_MM2S bound to: 1 - type: integer 
 	Parameter C_INCLUDE_MM2S_SF bound to: 1 - type: integer 
-	Parameter C_INCLUDE_MM2S_DRE bound to: 0 - type: integer 
+	Parameter C_INCLUDE_MM2S_DRE bound to: 1 - type: integer 
 	Parameter C_MM2S_BURST_SIZE bound to: 16 - type: integer 
 	Parameter C_M_AXI_MM2S_ADDR_WIDTH bound to: 32 - type: integer 
 	Parameter C_M_AXI_MM2S_DATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_M_AXIS_MM2S_TDATA_WIDTH bound to: 8 - type: integer 
 	Parameter C_INCLUDE_S2MM bound to: 1 - type: integer 
 	Parameter C_INCLUDE_S2MM_SF bound to: 1 - type: integer 
-	Parameter C_INCLUDE_S2MM_DRE bound to: 0 - type: integer 
+	Parameter C_INCLUDE_S2MM_DRE bound to: 1 - type: integer 
 	Parameter C_S2MM_BURST_SIZE bound to: 16 - type: integer 
 	Parameter C_M_AXI_S2MM_ADDR_WIDTH bound to: 32 - type: integer 
 	Parameter C_M_AXI_S2MM_DATA_WIDTH bound to: 32 - type: integer 
@@ -753,7 +753,7 @@ INFO: [Synth 8-638] synthesizing module 'axi_datamover' [c:/Users/lucac/Vivado/A
 	Parameter C_INCLUDE_MM2S_STSFIFO bound to: 1 - type: integer 
 	Parameter C_MM2S_STSCMD_FIFO_DEPTH bound to: 1 - type: integer 
 	Parameter C_MM2S_STSCMD_IS_ASYNC bound to: 0 - type: integer 
-	Parameter C_INCLUDE_MM2S_DRE bound to: 0 - type: integer 
+	Parameter C_INCLUDE_MM2S_DRE bound to: 1 - type: integer 
 	Parameter C_MM2S_BURST_SIZE bound to: 16 - type: integer 
 	Parameter C_MM2S_BTT_USED bound to: 14 - type: integer 
 	Parameter C_MM2S_ADDR_PIPE_DEPTH bound to: 4 - type: integer 
@@ -767,7 +767,7 @@ INFO: [Synth 8-638] synthesizing module 'axi_datamover' [c:/Users/lucac/Vivado/A
 	Parameter C_INCLUDE_S2MM_STSFIFO bound to: 1 - type: integer 
 	Parameter C_S2MM_STSCMD_FIFO_DEPTH bound to: 1 - type: integer 
 	Parameter C_S2MM_STSCMD_IS_ASYNC bound to: 0 - type: integer 
-	Parameter C_INCLUDE_S2MM_DRE bound to: 0 - type: integer 
+	Parameter C_INCLUDE_S2MM_DRE bound to: 1 - type: integer 
 	Parameter C_S2MM_BURST_SIZE bound to: 16 - type: integer 
 	Parameter C_S2MM_BTT_USED bound to: 14 - type: integer 
 	Parameter C_S2MM_SUPPORT_INDET_BTT bound to: 1 - type: integer 
@@ -792,7 +792,7 @@ INFO: [Synth 8-638] synthesizing module 'axi_datamover_mm2s_full_wrap' [c:/Users
 	Parameter C_INCLUDE_MM2S_STSFIFO bound to: 1 - type: integer 
 	Parameter C_MM2S_STSCMD_FIFO_DEPTH bound to: 1 - type: integer 
 	Parameter C_MM2S_STSCMD_IS_ASYNC bound to: 0 - type: integer 
-	Parameter C_INCLUDE_MM2S_DRE bound to: 0 - type: integer 
+	Parameter C_INCLUDE_MM2S_DRE bound to: 1 - type: integer 
 	Parameter C_MM2S_BURST_SIZE bound to: 16 - type: integer 
 	Parameter C_MM2S_BTT_USED bound to: 14 - type: integer 
 	Parameter C_MM2S_ADDR_PIPE_DEPTH bound to: 4 - type: integer 
@@ -2431,7 +2431,7 @@ INFO: [Synth 8-638] synthesizing module 'axi_datamover_s2mm_full_wrap' [c:/Users
 	Parameter C_INCLUDE_S2MM_STSFIFO bound to: 1 - type: integer 
 	Parameter C_S2MM_STSCMD_FIFO_DEPTH bound to: 1 - type: integer 
 	Parameter C_S2MM_STSCMD_IS_ASYNC bound to: 0 - type: integer 
-	Parameter C_INCLUDE_S2MM_DRE bound to: 0 - type: integer 
+	Parameter C_INCLUDE_S2MM_DRE bound to: 1 - type: integer 
 	Parameter C_S2MM_BURST_SIZE bound to: 16 - type: integer 
 	Parameter C_S2MM_BTT_USED bound to: 14 - type: integer 
 	Parameter C_S2MM_SUPPORT_INDET_BTT bound to: 1 - type: integer 
@@ -11331,7 +11331,7 @@ WARNING: [Synth 8-3331] design axi_infrastructure_v1_1_0_axi2vector__parameteriz
 WARNING: [Synth 8-3331] design axi_infrastructure_v1_1_0_axi2vector__parameterized6 has unconnected port s_axi_arlen[6]
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:04:33 ; elapsed = 00:05:20 . Memory (MB): peak = 682.441 ; gain = 475.086
+Finished RTL Elaboration : Time (s): cpu = 00:04:35 ; elapsed = 00:05:05 . Memory (MB): peak = 681.930 ; gain = 475.027
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -11355,7 +11355,7 @@ INFO: [Synth 8-3295] tying undriven pin INCLUDE_S2MM_SOF_EOF_GENERATOR.I_S2MM_DM
 INFO: [Synth 8-3295] tying undriven pin INCLUDE_S2MM_SOF_EOF_GENERATOR.I_S2MM_DMA_MNGR:s2mm_desc_info_in[1] to constant 0 [c:/Users/lucac/Vivado/AES_CTR_Pynq/AES_CTR_Pynq.srcs/sources_1/bd/design_1/ipshared/xilinx.com/axi_dma_v7_1/hdl/src/vhdl/axi_dma.vhd:1745]
 INFO: [Synth 8-3295] tying undriven pin INCLUDE_S2MM_SOF_EOF_GENERATOR.I_S2MM_DMA_MNGR:s2mm_desc_info_in[0] to constant 0 [c:/Users/lucac/Vivado/AES_CTR_Pynq/AES_CTR_Pynq.srcs/sources_1/bd/design_1/ipshared/xilinx.com/axi_dma_v7_1/hdl/src/vhdl/axi_dma.vhd:1745]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:04:34 ; elapsed = 00:05:22 . Memory (MB): peak = 682.441 ; gain = 475.086
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:04:37 ; elapsed = 00:05:08 . Memory (MB): peak = 681.930 ; gain = 475.027
 ---------------------------------------------------------------------------------
 INFO: [Netlist 29-17] Analyzing 27 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -11393,16 +11393,16 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   FDR => FDRE: 24 instances
   SRL16 => SRL16E: 1 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.048 . Memory (MB): peak = 911.801 ; gain = 0.023
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.047 . Memory (MB): peak = 911.168 ; gain = 0.023
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:04:49 ; elapsed = 00:05:41 . Memory (MB): peak = 911.801 ; gain = 704.445
+Finished Constraint Validation : Time (s): cpu = 00:04:52 ; elapsed = 00:05:25 . Memory (MB): peak = 912.094 ; gain = 705.191
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:04:49 ; elapsed = 00:05:41 . Memory (MB): peak = 911.801 ; gain = 704.445
+Finished Loading Part and Timing Information : Time (s): cpu = 00:04:52 ; elapsed = 00:05:25 . Memory (MB): peak = 912.094 ; gain = 705.191
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -11429,7 +11429,7 @@ Applied set_property DONT_TOUCH = true for design_1_i/single_block_CTR_encrypt_0
 Applied set_property DONT_TOUCH = true for design_1_i/xlconcat_0. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for design_1_i/xlconstant_0. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:04:49 ; elapsed = 00:05:41 . Memory (MB): peak = 911.801 ; gain = 704.445
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:04:52 ; elapsed = 00:05:25 . Memory (MB): peak = 912.094 ; gain = 705.191
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-4471] merging register 'GEN_SYNC_WRITE.rst_wvalid_re_reg' into 'GEN_SYNC_WRITE.bvalid_i_reg' [c:/Users/lucac/Vivado/AES_CTR_Pynq/AES_CTR_Pynq.srcs/sources_1/bd/design_1/ipshared/xilinx.com/axi_dma_v7_1/hdl/src/vhdl/axi_dma_lite_if.vhd:271]
 INFO: [Synth 8-4471] merging register 'GEN_SYNC_READ.rst_rvalid_re_reg' into 'GEN_SYNC_READ.s_axi_lite_rvalid_i_reg' [c:/Users/lucac/Vivado/AES_CTR_Pynq/AES_CTR_Pynq.srcs/sources_1/bd/design_1/ipshared/xilinx.com/axi_dma_v7_1/hdl/src/vhdl/axi_dma_lite_if.vhd:1042]
@@ -11721,7 +11721,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 
 INFO: [Synth 8-3971] The signal ram_reg was recognized as a true dual port RAM template.
 INFO: [Synth 8-3971] The signal ram_reg was recognized as a true dual port RAM template.
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:05:00 ; elapsed = 00:05:54 . Memory (MB): peak = 911.801 ; gain = 704.445
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:05:02 ; elapsed = 00:05:37 . Memory (MB): peak = 912.094 ; gain = 705.191
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -13755,7 +13755,7 @@ BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
 ---------------------------------------------------------------------------------
 Finished Part Resource Summary
 ---------------------------------------------------------------------------------
-Start Parallel Synthesis Optimization  : Time (s): cpu = 00:05:00 ; elapsed = 00:05:55 . Memory (MB): peak = 911.801 ; gain = 704.445
+Start Parallel Synthesis Optimization  : Time (s): cpu = 00:05:02 ; elapsed = 00:05:38 . Memory (MB): peak = 912.094 ; gain = 705.191
 ---------------------------------------------------------------------------------
 Start Cross Boundary Optimization
 ---------------------------------------------------------------------------------
@@ -13853,9 +13853,9 @@ INFO: [Synth 8-5587] ROM size for "p_0_out" is below threshold of ROM address wi
 INFO: [Synth 8-5542] Attribute ram_style/rom_style = distributed specified for ROM  "p_0_out". This will be implemented in logic
 INFO: [Synth 8-5587] ROM size for "p_0_out" is below threshold of ROM address width. It will be mapped to LUTs
 ---------------------------------------------------------------------------------
-Finished Cross Boundary Optimization : Time (s): cpu = 00:05:05 ; elapsed = 00:06:00 . Memory (MB): peak = 911.801 ; gain = 704.445
+Finished Cross Boundary Optimization : Time (s): cpu = 00:05:07 ; elapsed = 00:05:43 . Memory (MB): peak = 912.094 ; gain = 705.191
 ---------------------------------------------------------------------------------
-Finished Parallel Reinference  : Time (s): cpu = 00:05:05 ; elapsed = 00:06:00 . Memory (MB): peak = 911.801 ; gain = 704.445
+Finished Parallel Reinference  : Time (s): cpu = 00:05:07 ; elapsed = 00:05:43 . Memory (MB): peak = 912.094 ; gain = 705.191
 
 Report RTL Partitions: 
 +-+--------------+------------+----------+
@@ -14194,9 +14194,9 @@ INFO: [Synth 8-3333] propagating constant 0 across sequential element (design_1_
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (design_1_i/single_block_CTR_encrypt_0/\inst/grp_single_block_CTR_encrypt_aes_cipher_fu_220/grp_single_block_CTR_encrypt_add_round_key_fu_153/tmp_50_reg_275_reg[1] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (design_1_i/single_block_CTR_encrypt_0/\inst/grp_single_block_CTR_encrypt_aes_cipher_fu_220/grp_single_block_CTR_encrypt_mix_columns_fu_148/tmp_cast_reg_507_reg[3] )
 ---------------------------------------------------------------------------------
-Finished Area Optimization : Time (s): cpu = 00:05:28 ; elapsed = 00:06:28 . Memory (MB): peak = 911.801 ; gain = 704.445
+Finished Area Optimization : Time (s): cpu = 00:05:29 ; elapsed = 00:06:07 . Memory (MB): peak = 912.094 ; gain = 705.191
 ---------------------------------------------------------------------------------
-Finished Parallel Area Optimization  : Time (s): cpu = 00:05:28 ; elapsed = 00:06:28 . Memory (MB): peak = 911.801 ; gain = 704.445
+Finished Parallel Area Optimization  : Time (s): cpu = 00:05:29 ; elapsed = 00:06:07 . Memory (MB): peak = 912.094 ; gain = 705.191
 
 Report RTL Partitions: 
 +-+--------------+------------+----------+
@@ -14210,10 +14210,10 @@ Start Timing Optimization
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:05:37 ; elapsed = 00:06:37 . Memory (MB): peak = 1089.781 ; gain = 882.426
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:05:37 ; elapsed = 00:06:16 . Memory (MB): peak = 1091.160 ; gain = 884.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:05:55 ; elapsed = 00:06:58 . Memory (MB): peak = 1226.254 ; gain = 1018.898
+Finished Timing Optimization : Time (s): cpu = 00:05:54 ; elapsed = 00:06:34 . Memory (MB): peak = 1227.637 ; gain = 1020.734
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -14231,16 +14231,16 @@ INFO: [Synth 8-4480] The timing for the instance inst/grp_single_block_CTR_encry
 INFO: [Synth 8-4480] The timing for the instance inst/grp_single_block_CTR_encrypt_aes_cipher_fu_220/grp_single_block_CTR_encrypt_sub_bytes_fu_168/s_box_U/single_block_CTR_encrypt_aes_key_expansion_s_box_rom_U/q0_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 INFO: [Synth 8-4480] The timing for the instance inst/grp_single_block_CTR_encrypt_aes_cipher_fu_220/grp_single_block_CTR_encrypt_sub_bytes_fu_168/s_box_U/single_block_CTR_encrypt_aes_key_expansion_s_box_rom_U/q0_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:06:02 ; elapsed = 00:07:06 . Memory (MB): peak = 1230.727 ; gain = 1023.371
+Finished Technology Mapping : Time (s): cpu = 00:06:01 ; elapsed = 00:06:41 . Memory (MB): peak = 1231.402 ; gain = 1024.500
 ---------------------------------------------------------------------------------
-Finished Parallel Technology Mapping Optimization  : Time (s): cpu = 00:06:02 ; elapsed = 00:07:06 . Memory (MB): peak = 1230.727 ; gain = 1023.371
+Finished Parallel Technology Mapping Optimization  : Time (s): cpu = 00:06:01 ; elapsed = 00:06:41 . Memory (MB): peak = 1231.402 ; gain = 1024.500
 
 Report RTL Partitions: 
 +-+--------------+------------+----------+
 | |RTL Partition |Replication |Instances |
 +-+--------------+------------+----------+
 +-+--------------+------------+----------+
-Finished Parallel Synthesis Optimization  : Time (s): cpu = 00:06:02 ; elapsed = 00:07:06 . Memory (MB): peak = 1230.727 ; gain = 1023.371
+Finished Parallel Synthesis Optimization  : Time (s): cpu = 00:06:01 ; elapsed = 00:06:41 . Memory (MB): peak = 1231.402 ; gain = 1024.500
 ---------------------------------------------------------------------------------
 Start IO Insertion
 ---------------------------------------------------------------------------------
@@ -14375,7 +14375,7 @@ WARNING: [Synth 8-5396] Clock pin C has keep related attribute (keep/mark_debug/
 WARNING: [Synth 8-5396] Clock pin C has keep related attribute (keep/mark_debug/dont_touch) which could create extra logic on its net [c:/Users/lucac/Vivado/AES_CTR_Pynq/AES_CTR_Pynq.srcs/sources_1/bd/design_1/ipshared/xilinx.com/axi_dwidth_converter_v2_1/hdl/verilog/axi_dwidth_converter_v2_1_w_upsizer.v:1116]
 INFO: [Common 17-14] Message 'Synth 8-5396' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:06:04 ; elapsed = 00:07:08 . Memory (MB): peak = 1230.727 ; gain = 1023.371
+Finished IO Insertion : Time (s): cpu = 00:06:03 ; elapsed = 00:06:43 . Memory (MB): peak = 1231.402 ; gain = 1024.500
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -14388,7 +14388,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:06:04 ; elapsed = 00:07:08 . Memory (MB): peak = 1230.727 ; gain = 1023.371
+Finished Renaming Generated Instances : Time (s): cpu = 00:06:03 ; elapsed = 00:06:43 . Memory (MB): peak = 1231.402 ; gain = 1024.500
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -14400,25 +14400,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:06:06 ; elapsed = 00:07:10 . Memory (MB): peak = 1230.727 ; gain = 1023.371
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:06:04 ; elapsed = 00:06:45 . Memory (MB): peak = 1231.402 ; gain = 1024.500
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:06:06 ; elapsed = 00:07:10 . Memory (MB): peak = 1230.727 ; gain = 1023.371
+Finished Renaming Generated Ports : Time (s): cpu = 00:06:04 ; elapsed = 00:06:45 . Memory (MB): peak = 1231.402 ; gain = 1024.500
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:06:06 ; elapsed = 00:07:10 . Memory (MB): peak = 1230.727 ; gain = 1023.371
+Finished Handling Custom Attributes : Time (s): cpu = 00:06:05 ; elapsed = 00:06:45 . Memory (MB): peak = 1231.402 ; gain = 1024.500
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:06:06 ; elapsed = 00:07:10 . Memory (MB): peak = 1230.727 ; gain = 1023.371
+Finished Renaming Generated Nets : Time (s): cpu = 00:06:05 ; elapsed = 00:06:45 . Memory (MB): peak = 1231.402 ; gain = 1024.500
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -14910,11 +14910,11 @@ Report Instance Areas:
 |404   |    xlconstant_0                                                       |design_1_xlconstant_0_2                                              |     0|
 +------+-----------------------------------------------------------------------+---------------------------------------------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:06:06 ; elapsed = 00:07:10 . Memory (MB): peak = 1230.727 ; gain = 1023.371
+Finished Writing Synthesis Report : Time (s): cpu = 00:06:05 ; elapsed = 00:06:45 . Memory (MB): peak = 1231.402 ; gain = 1024.500
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 4349 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:21 ; elapsed = 00:06:48 . Memory (MB): peak = 1230.727 ; gain = 708.320
-Synthesis Optimization Complete : Time (s): cpu = 00:06:06 ; elapsed = 00:07:10 . Memory (MB): peak = 1230.727 ; gain = 1023.371
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:17 ; elapsed = 00:06:25 . Memory (MB): peak = 1231.402 ; gain = 704.762
+Synthesis Optimization Complete : Time (s): cpu = 00:06:05 ; elapsed = 00:06:45 . Memory (MB): peak = 1231.402 ; gain = 1024.500
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Netlist 29-17] Analyzing 150 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -14933,6 +14933,6 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 INFO: [Common 17-83] Releasing license: Synthesis
 1469 Infos, 312 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:06:08 ; elapsed = 00:07:09 . Memory (MB): peak = 1230.727 ; gain = 937.680
-report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.063 . Memory (MB): peak = 1230.727 ; gain = 0.000
-INFO: [Common 17-206] Exiting Vivado at Sun Feb 04 11:12:40 2024...
+synth_design: Time (s): cpu = 00:06:06 ; elapsed = 00:06:45 . Memory (MB): peak = 1231.402 ; gain = 934.926
+report_utilization: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.078 . Memory (MB): peak = 1231.402 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Mon Feb 05 15:28:35 2024...
