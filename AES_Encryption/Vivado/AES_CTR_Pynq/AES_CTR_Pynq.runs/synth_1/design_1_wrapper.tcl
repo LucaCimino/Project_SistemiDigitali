@@ -31,8 +31,6 @@ set_property used_in_implementation false [get_files -all c:/Users/lucac/Vivado/
 set_property used_in_implementation false [get_files -all c:/Users/lucac/Vivado/AES_CTR_Pynq/AES_CTR_Pynq.srcs/sources_1/bd/design_1/ip/design_1_auto_us_0/design_1_auto_us_0_clocks.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/lucac/Vivado/AES_CTR_Pynq/AES_CTR_Pynq.srcs/sources_1/bd/design_1/ip/design_1_auto_us_1/design_1_auto_us_1_ooc.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/lucac/Vivado/AES_CTR_Pynq/AES_CTR_Pynq.srcs/sources_1/bd/design_1/ip/design_1_auto_us_1/design_1_auto_us_1_clocks.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/lucac/Vivado/AES_CTR_Pynq/AES_CTR_Pynq.srcs/sources_1/bd/design_1/ip/design_1_auto_us_2/design_1_auto_us_2_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/lucac/Vivado/AES_CTR_Pynq/AES_CTR_Pynq.srcs/sources_1/bd/design_1/ip/design_1_auto_us_2/design_1_auto_us_2_clocks.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/lucac/Vivado/AES_CTR_Pynq/AES_CTR_Pynq.srcs/sources_1/bd/design_1/ip/design_1_auto_pc_1/design_1_auto_pc_1_ooc.xdc]
 set_property used_in_implementation false [get_files -all C:/Users/lucac/Vivado/AES_CTR_Pynq/AES_CTR_Pynq.srcs/sources_1/bd/design_1/design_1_ooc.xdc]
 set_property is_locked true [get_files C:/Users/lucac/Vivado/AES_CTR_Pynq/AES_CTR_Pynq.srcs/sources_1/bd/design_1/design_1.bd]

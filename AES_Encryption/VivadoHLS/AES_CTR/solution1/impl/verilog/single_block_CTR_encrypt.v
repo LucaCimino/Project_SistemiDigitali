@@ -12,10 +12,6 @@
 module single_block_CTR_encrypt (
         ap_clk,
         ap_rst_n,
-        ap_start,
-        ap_done,
-        ap_idle,
-        ap_ready,
         i_plaintext_TDATA,
         i_plaintext_TVALID,
         i_plaintext_TREADY,
@@ -39,7 +35,6 @@ parameter    ap_ST_st8_fsm_7 = 11'b10000000;
 parameter    ap_ST_st9_fsm_8 = 11'b100000000;
 parameter    ap_ST_st10_fsm_9 = 11'b1000000000;
 parameter    ap_ST_st11_fsm_10 = 11'b10000000000;
-parameter    ap_const_lv32_0 = 32'b00000000000000000000000000000000;
 parameter    ap_const_lv32_1 = 32'b1;
 parameter    ap_const_lv32_8 = 32'b1000;
 parameter    ap_const_lv32_5 = 32'b101;
@@ -47,6 +42,7 @@ parameter    ap_const_lv32_7 = 32'b111;
 parameter    ap_const_lv32_9 = 32'b1001;
 parameter    ap_const_lv32_A = 32'b1010;
 parameter    ap_const_lv5_0 = 5'b00000;
+parameter    ap_const_lv32_0 = 32'b00000000000000000000000000000000;
 parameter    ap_const_lv32_4 = 32'b100;
 parameter    ap_const_lv32_6 = 32'b110;
 parameter    ap_const_lv5_F = 5'b1111;
@@ -61,10 +57,6 @@ parameter    ap_const_lv8_1 = 8'b1;
 
 input   ap_clk;
 input   ap_rst_n;
-input   ap_start;
-output   ap_done;
-output   ap_idle;
-output   ap_ready;
 input  [7:0] i_plaintext_TDATA;
 input   i_plaintext_TVALID;
 output   i_plaintext_TREADY;
@@ -76,53 +68,48 @@ input   cipher_TREADY;
 output  [0:0] cipher_TUSER;
 output  [0:0] cipher_TLAST;
 
-reg ap_done;
-reg ap_idle;
-reg ap_ready;
 reg i_plaintext_TREADY;
 reg cipher_TVALID;
 
 reg    ap_rst_n_inv;
-(* fsm_encoding = "none" *) reg   [10:0] ap_CS_fsm;
-reg    ap_sig_cseq_ST_st1_fsm_0;
-reg    ap_sig_28;
 reg   [3:0] nonce_address0;
 reg    nonce_ce0;
 reg    nonce_we0;
 reg   [7:0] nonce_d0;
 wire   [7:0] nonce_q0;
 reg    i_plaintext_TDATA_blk_n;
+(* fsm_encoding = "none" *) reg   [10:0] ap_CS_fsm;
 reg    ap_sig_cseq_ST_st2_fsm_1;
-reg    ap_sig_61;
-wire   [0:0] exitcond1_fu_241_p2;
+reg    ap_sig_48;
+wire   [0:0] exitcond1_fu_243_p2;
 reg    cipher_TDATA_blk_n;
 reg    ap_sig_cseq_ST_st9_fsm_8;
-reg    ap_sig_73;
-wire   [4:0] i_4_fu_247_p2;
-reg    ap_sig_79;
-wire   [4:0] i_5_fu_269_p2;
-reg   [4:0] i_5_reg_358;
+reg    ap_sig_60;
+wire   [4:0] i_4_fu_249_p2;
+reg    ap_sig_66;
+wire   [4:0] i_5_fu_271_p2;
+reg   [4:0] i_5_reg_360;
 reg    ap_sig_cseq_ST_st6_fsm_5;
-reg    ap_sig_89;
-wire   [63:0] tmp_s_fu_275_p1;
-reg   [63:0] tmp_s_reg_363;
-wire   [0:0] exitcond2_fu_263_p2;
-wire   [4:0] i_6_fu_294_p2;
-reg   [4:0] i_6_reg_381;
+reg    ap_sig_76;
+wire   [63:0] tmp_s_fu_277_p1;
+reg   [63:0] tmp_s_reg_365;
+wire   [0:0] exitcond2_fu_265_p2;
+wire   [4:0] i_6_fu_296_p2;
+reg   [4:0] i_6_reg_383;
 reg    ap_sig_cseq_ST_st8_fsm_7;
-reg    ap_sig_107;
-wire   [0:0] exitcond_fu_288_p2;
-wire   [0:0] tmp_last_V_fu_305_p2;
-reg   [0:0] tmp_last_V_reg_391;
-wire   [0:0] tmp_3_fu_315_p3;
-reg   [0:0] tmp_3_reg_396;
+reg    ap_sig_94;
+wire   [0:0] exitcond_fu_290_p2;
+wire   [0:0] tmp_last_V_fu_307_p2;
+reg   [0:0] tmp_last_V_reg_393;
+wire   [0:0] tmp_3_fu_317_p3;
+reg   [0:0] tmp_3_reg_398;
 reg    ap_sig_cseq_ST_st10_fsm_9;
-reg    ap_sig_123;
-reg   [3:0] nonce_addr_reg_400;
-wire   [4:0] i_7_fu_334_p2;
+reg    ap_sig_110;
+reg   [3:0] nonce_addr_reg_402;
+wire   [4:0] i_7_fu_336_p2;
 reg    ap_sig_cseq_ST_st11_fsm_10;
-reg    ap_sig_136;
-wire   [0:0] tmp_6_fu_328_p2;
+reg    ap_sig_123;
+wire   [0:0] tmp_6_fu_330_p2;
 reg   [3:0] plaintext_address0;
 reg    plaintext_ce0;
 reg    plaintext_we0;
@@ -141,61 +128,63 @@ wire   [7:0] w_q0;
 reg   [7:0] w_address1;
 reg    w_ce1;
 wire   [7:0] w_q1;
-wire    grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_start;
-wire    grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_done;
-wire    grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_idle;
-wire    grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_ready;
-wire   [3:0] grp_single_block_CTR_encrypt_aes_cipher_fu_220_in_r_address0;
-wire    grp_single_block_CTR_encrypt_aes_cipher_fu_220_in_r_ce0;
-wire   [3:0] grp_single_block_CTR_encrypt_aes_cipher_fu_220_out_r_address0;
-wire    grp_single_block_CTR_encrypt_aes_cipher_fu_220_out_r_ce0;
-wire    grp_single_block_CTR_encrypt_aes_cipher_fu_220_out_r_we0;
-wire   [7:0] grp_single_block_CTR_encrypt_aes_cipher_fu_220_out_r_d0;
-wire   [7:0] grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_address0;
-wire    grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_ce0;
-wire   [7:0] grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_address1;
-wire    grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_ce1;
-wire    grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_start;
-wire    grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_done;
-wire    grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_idle;
-wire    grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_ready;
-wire   [7:0] grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_address0;
-wire    grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_ce0;
-wire    grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_we0;
-wire   [7:0] grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_d0;
-wire   [7:0] grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_address1;
-wire    grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_ce1;
-wire    grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_we1;
-wire   [7:0] grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_d1;
-reg   [4:0] i_reg_175;
-reg   [4:0] i_1_reg_186;
+wire    grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_start;
+wire    grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_done;
+wire    grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_idle;
+wire    grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_ready;
+wire   [3:0] grp_single_block_CTR_encrypt_aes_cipher_fu_222_in_r_address0;
+wire    grp_single_block_CTR_encrypt_aes_cipher_fu_222_in_r_ce0;
+wire   [3:0] grp_single_block_CTR_encrypt_aes_cipher_fu_222_out_r_address0;
+wire    grp_single_block_CTR_encrypt_aes_cipher_fu_222_out_r_ce0;
+wire    grp_single_block_CTR_encrypt_aes_cipher_fu_222_out_r_we0;
+wire   [7:0] grp_single_block_CTR_encrypt_aes_cipher_fu_222_out_r_d0;
+wire   [7:0] grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_address0;
+wire    grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_ce0;
+wire   [7:0] grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_address1;
+wire    grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_ce1;
+wire    grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_start;
+wire    grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_done;
+wire    grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_idle;
+wire    grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_ready;
+wire   [7:0] grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_address0;
+wire    grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_ce0;
+wire    grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_we0;
+wire   [7:0] grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_d0;
+wire   [7:0] grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_address1;
+wire    grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_ce1;
+wire    grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_we1;
+wire   [7:0] grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_d1;
+reg   [4:0] i_reg_177;
+reg    ap_sig_cseq_ST_st1_fsm_0;
+reg    ap_sig_217;
+reg   [4:0] i_1_reg_188;
 reg    ap_sig_cseq_ST_st5_fsm_4;
-reg    ap_sig_236;
+reg    ap_sig_227;
 reg    ap_sig_cseq_ST_st7_fsm_6;
-reg    ap_sig_246;
-reg   [4:0] i_2_reg_197;
+reg    ap_sig_237;
+reg   [4:0] i_2_reg_199;
 reg    ap_sig_ioackin_cipher_TREADY;
-reg   [4:0] i_3_reg_208;
-reg    ap_reg_grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_start;
+reg   [4:0] i_3_reg_210;
+reg    ap_reg_grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_start;
 reg    ap_sig_cseq_ST_st4_fsm_3;
-reg    ap_sig_268;
-reg    ap_reg_grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_start;
+reg    ap_sig_259;
+reg    ap_reg_grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_start;
 reg    ap_sig_cseq_ST_st3_fsm_2;
-reg    ap_sig_287;
-wire   [63:0] tmp_fu_258_p1;
-wire   [63:0] tmp_2_fu_300_p1;
-wire   [63:0] tmp_5_fu_323_p1;
+reg    ap_sig_278;
+wire   [63:0] tmp_fu_260_p1;
+wire   [63:0] tmp_2_fu_302_p1;
+wire   [63:0] tmp_5_fu_325_p1;
 reg    ap_reg_ioackin_cipher_TREADY;
-wire   [7:0] tmp_7_fu_340_p2;
-wire  signed [31:0] i_3_cast_fu_311_p1;
+wire   [7:0] tmp_7_fu_342_p2;
+wire  signed [31:0] i_3_cast_fu_313_p1;
 reg   [10:0] ap_NS_fsm;
-reg    ap_sig_412;
+reg    ap_sig_403;
 
 // power-on initialization
 initial begin
 #0 ap_CS_fsm = 11'b1;
-#0 ap_reg_grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_start = 1'b0;
-#0 ap_reg_grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_start = 1'b0;
+#0 ap_reg_grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_start = 1'b0;
+#0 ap_reg_grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_start = 1'b0;
 #0 ap_reg_ioackin_cipher_TREADY = 1'b0;
 end
 
@@ -236,8 +225,8 @@ cipher_nonce_U(
     .reset(ap_rst_n_inv),
     .address0(cipher_nonce_address0),
     .ce0(cipher_nonce_ce0),
-    .we0(grp_single_block_CTR_encrypt_aes_cipher_fu_220_out_r_we0),
-    .d0(grp_single_block_CTR_encrypt_aes_cipher_fu_220_out_r_d0),
+    .we0(grp_single_block_CTR_encrypt_aes_cipher_fu_222_out_r_we0),
+    .d0(grp_single_block_CTR_encrypt_aes_cipher_fu_222_out_r_d0),
     .q0(cipher_nonce_q0)
 );
 
@@ -264,54 +253,54 @@ w_U(
     .reset(ap_rst_n_inv),
     .address0(w_address0),
     .ce0(w_ce0),
-    .we0(grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_we0),
-    .d0(grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_d0),
+    .we0(grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_we0),
+    .d0(grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_d0),
     .q0(w_q0),
     .address1(w_address1),
     .ce1(w_ce1),
-    .we1(grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_we1),
-    .d1(grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_d1),
+    .we1(grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_we1),
+    .d1(grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_d1),
     .q1(w_q1)
 );
 
-single_block_CTR_encrypt_aes_cipher grp_single_block_CTR_encrypt_aes_cipher_fu_220(
+single_block_CTR_encrypt_aes_cipher grp_single_block_CTR_encrypt_aes_cipher_fu_222(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_start),
-    .ap_done(grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_done),
-    .ap_idle(grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_idle),
-    .ap_ready(grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_ready),
-    .in_r_address0(grp_single_block_CTR_encrypt_aes_cipher_fu_220_in_r_address0),
-    .in_r_ce0(grp_single_block_CTR_encrypt_aes_cipher_fu_220_in_r_ce0),
+    .ap_start(grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_start),
+    .ap_done(grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_done),
+    .ap_idle(grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_idle),
+    .ap_ready(grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_ready),
+    .in_r_address0(grp_single_block_CTR_encrypt_aes_cipher_fu_222_in_r_address0),
+    .in_r_ce0(grp_single_block_CTR_encrypt_aes_cipher_fu_222_in_r_ce0),
     .in_r_q0(nonce_q0),
-    .out_r_address0(grp_single_block_CTR_encrypt_aes_cipher_fu_220_out_r_address0),
-    .out_r_ce0(grp_single_block_CTR_encrypt_aes_cipher_fu_220_out_r_ce0),
-    .out_r_we0(grp_single_block_CTR_encrypt_aes_cipher_fu_220_out_r_we0),
-    .out_r_d0(grp_single_block_CTR_encrypt_aes_cipher_fu_220_out_r_d0),
-    .w_address0(grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_address0),
-    .w_ce0(grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_ce0),
+    .out_r_address0(grp_single_block_CTR_encrypt_aes_cipher_fu_222_out_r_address0),
+    .out_r_ce0(grp_single_block_CTR_encrypt_aes_cipher_fu_222_out_r_ce0),
+    .out_r_we0(grp_single_block_CTR_encrypt_aes_cipher_fu_222_out_r_we0),
+    .out_r_d0(grp_single_block_CTR_encrypt_aes_cipher_fu_222_out_r_d0),
+    .w_address0(grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_address0),
+    .w_ce0(grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_ce0),
     .w_q0(w_q0),
-    .w_address1(grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_address1),
-    .w_ce1(grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_ce1),
+    .w_address1(grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_address1),
+    .w_ce1(grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_ce1),
     .w_q1(w_q1)
 );
 
-single_block_CTR_encrypt_aes_key_expansion grp_single_block_CTR_encrypt_aes_key_expansion_fu_230(
+single_block_CTR_encrypt_aes_key_expansion grp_single_block_CTR_encrypt_aes_key_expansion_fu_232(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_start),
-    .ap_done(grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_done),
-    .ap_idle(grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_idle),
-    .ap_ready(grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_ready),
-    .w_address0(grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_address0),
-    .w_ce0(grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_ce0),
-    .w_we0(grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_we0),
-    .w_d0(grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_d0),
+    .ap_start(grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_start),
+    .ap_done(grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_done),
+    .ap_idle(grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_idle),
+    .ap_ready(grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_ready),
+    .w_address0(grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_address0),
+    .w_ce0(grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_ce0),
+    .w_we0(grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_we0),
+    .w_d0(grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_d0),
     .w_q0(w_q0),
-    .w_address1(grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_address1),
-    .w_ce1(grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_ce1),
-    .w_we1(grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_we1),
-    .w_d1(grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_d1),
+    .w_address1(grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_address1),
+    .w_ce1(grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_ce1),
+    .w_we1(grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_we1),
+    .w_d1(grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_d1),
     .w_q1(w_q1)
 );
 
@@ -325,24 +314,24 @@ end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        ap_reg_grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_start <= 1'b0;
+        ap_reg_grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_start <= 1'b0;
     end else begin
         if ((1'b1 == ap_sig_cseq_ST_st4_fsm_3)) begin
-            ap_reg_grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_start <= 1'b1;
-        end else if ((1'b1 == grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_ready)) begin
-            ap_reg_grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_start <= 1'b0;
+            ap_reg_grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_start <= 1'b1;
+        end else if ((1'b1 == grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_ready)) begin
+            ap_reg_grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_start <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        ap_reg_grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_start <= 1'b0;
+        ap_reg_grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_start <= 1'b0;
     end else begin
-        if (((1'b1 == ap_sig_cseq_ST_st2_fsm_1) & ~ap_sig_79 & ~(exitcond1_fu_241_p2 == 1'b0))) begin
-            ap_reg_grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_start <= 1'b1;
-        end else if ((1'b1 == grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_ready)) begin
-            ap_reg_grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_start <= 1'b0;
+        if (((1'b1 == ap_sig_cseq_ST_st2_fsm_1) & ~ap_sig_66 & ~(exitcond1_fu_243_p2 == 1'b0))) begin
+            ap_reg_grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_start <= 1'b1;
+        end else if ((1'b1 == grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_ready)) begin
+            ap_reg_grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_start <= 1'b0;
         end
     end
 end
@@ -361,98 +350,74 @@ end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_sig_cseq_ST_st7_fsm_6)) begin
-        i_1_reg_186 <= i_5_reg_358;
-    end else if (((1'b1 == ap_sig_cseq_ST_st5_fsm_4) & ~(1'b0 == grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_done))) begin
-        i_1_reg_186 <= ap_const_lv5_0;
+        i_1_reg_188 <= i_5_reg_360;
+    end else if (((1'b1 == ap_sig_cseq_ST_st5_fsm_4) & ~(1'b0 == grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_done))) begin
+        i_1_reg_188 <= ap_const_lv5_0;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_sig_cseq_ST_st6_fsm_5) & ~(1'b0 == exitcond2_fu_263_p2))) begin
-        i_2_reg_197 <= ap_const_lv5_0;
+    if (((1'b1 == ap_sig_cseq_ST_st6_fsm_5) & ~(1'b0 == exitcond2_fu_265_p2))) begin
+        i_2_reg_199 <= ap_const_lv5_0;
     end else if (((1'b1 == ap_sig_cseq_ST_st9_fsm_8) & ~(1'b0 == ap_sig_ioackin_cipher_TREADY))) begin
-        i_2_reg_197 <= i_6_reg_381;
+        i_2_reg_199 <= i_6_reg_383;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_sig_cseq_ST_st8_fsm_7) & ~(1'b0 == exitcond_fu_288_p2))) begin
-        i_3_reg_208 <= ap_const_lv5_F;
-    end else if (((1'b1 == ap_sig_cseq_ST_st11_fsm_10) & (1'b0 == tmp_3_reg_396) & ~(1'b0 == tmp_6_fu_328_p2))) begin
-        i_3_reg_208 <= i_7_fu_334_p2;
+    if (((1'b1 == ap_sig_cseq_ST_st8_fsm_7) & ~(1'b0 == exitcond_fu_290_p2))) begin
+        i_3_reg_210 <= ap_const_lv5_F;
+    end else if (((1'b1 == ap_sig_cseq_ST_st11_fsm_10) & (1'b0 == tmp_3_reg_398) & ~(1'b0 == tmp_6_fu_330_p2))) begin
+        i_3_reg_210 <= i_7_fu_336_p2;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_sig_cseq_ST_st2_fsm_1) & (exitcond1_fu_241_p2 == 1'b0) & ~ap_sig_79)) begin
-        i_reg_175 <= i_4_fu_247_p2;
-    end else if (((1'b1 == ap_sig_cseq_ST_st1_fsm_0) & ~(ap_start == 1'b0))) begin
-        i_reg_175 <= ap_const_lv5_0;
+    if (((1'b1 == ap_sig_cseq_ST_st2_fsm_1) & (exitcond1_fu_243_p2 == 1'b0) & ~ap_sig_66)) begin
+        i_reg_177 <= i_4_fu_249_p2;
+    end else if ((1'b1 == ap_sig_cseq_ST_st1_fsm_0)) begin
+        i_reg_177 <= ap_const_lv5_0;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_sig_cseq_ST_st6_fsm_5)) begin
-        i_5_reg_358 <= i_5_fu_269_p2;
+        i_5_reg_360 <= i_5_fu_271_p2;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_sig_cseq_ST_st8_fsm_7)) begin
-        i_6_reg_381 <= i_6_fu_294_p2;
+        i_6_reg_383 <= i_6_fu_296_p2;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_sig_cseq_ST_st10_fsm_9) & (1'b0 == tmp_3_fu_315_p3))) begin
-        nonce_addr_reg_400 <= tmp_5_fu_323_p1;
+    if (((1'b1 == ap_sig_cseq_ST_st10_fsm_9) & (1'b0 == tmp_3_fu_317_p3))) begin
+        nonce_addr_reg_402 <= tmp_5_fu_325_p1;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_sig_cseq_ST_st10_fsm_9)) begin
-        tmp_3_reg_396 <= i_3_reg_208[ap_const_lv32_4];
+        tmp_3_reg_398 <= i_3_reg_210[ap_const_lv32_4];
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_sig_cseq_ST_st8_fsm_7) & (1'b0 == exitcond_fu_288_p2))) begin
-        tmp_last_V_reg_391 <= tmp_last_V_fu_305_p2;
+    if (((1'b1 == ap_sig_cseq_ST_st8_fsm_7) & (1'b0 == exitcond_fu_290_p2))) begin
+        tmp_last_V_reg_393 <= tmp_last_V_fu_307_p2;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_sig_cseq_ST_st6_fsm_5) & (1'b0 == exitcond2_fu_263_p2))) begin
-        tmp_s_reg_363[4 : 0] <= tmp_s_fu_275_p1[4 : 0];
+    if (((1'b1 == ap_sig_cseq_ST_st6_fsm_5) & (1'b0 == exitcond2_fu_265_p2))) begin
+        tmp_s_reg_365[4 : 0] <= tmp_s_fu_277_p1[4 : 0];
     end
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_sig_cseq_ST_st11_fsm_10) & ((1'b0 == tmp_6_fu_328_p2) | ~(1'b0 == tmp_3_reg_396)))) begin
-        ap_done = 1'b1;
-    end else begin
-        ap_done = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((1'b0 == ap_start) & (1'b1 == ap_sig_cseq_ST_st1_fsm_0))) begin
-        ap_idle = 1'b1;
-    end else begin
-        ap_idle = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((1'b1 == ap_sig_cseq_ST_st11_fsm_10) & ((1'b0 == tmp_6_fu_328_p2) | ~(1'b0 == tmp_3_reg_396)))) begin
-        ap_ready = 1'b1;
-    end else begin
-        ap_ready = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_123) begin
+    if (ap_sig_110) begin
         ap_sig_cseq_ST_st10_fsm_9 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st10_fsm_9 = 1'b0;
@@ -460,7 +425,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_136) begin
+    if (ap_sig_123) begin
         ap_sig_cseq_ST_st11_fsm_10 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st11_fsm_10 = 1'b0;
@@ -468,7 +433,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_28) begin
+    if (ap_sig_217) begin
         ap_sig_cseq_ST_st1_fsm_0 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st1_fsm_0 = 1'b0;
@@ -476,7 +441,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_61) begin
+    if (ap_sig_48) begin
         ap_sig_cseq_ST_st2_fsm_1 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st2_fsm_1 = 1'b0;
@@ -484,7 +449,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_287) begin
+    if (ap_sig_278) begin
         ap_sig_cseq_ST_st3_fsm_2 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st3_fsm_2 = 1'b0;
@@ -492,7 +457,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_268) begin
+    if (ap_sig_259) begin
         ap_sig_cseq_ST_st4_fsm_3 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st4_fsm_3 = 1'b0;
@@ -500,7 +465,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_236) begin
+    if (ap_sig_227) begin
         ap_sig_cseq_ST_st5_fsm_4 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st5_fsm_4 = 1'b0;
@@ -508,7 +473,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_89) begin
+    if (ap_sig_76) begin
         ap_sig_cseq_ST_st6_fsm_5 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st6_fsm_5 = 1'b0;
@@ -516,7 +481,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_246) begin
+    if (ap_sig_237) begin
         ap_sig_cseq_ST_st7_fsm_6 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st7_fsm_6 = 1'b0;
@@ -524,7 +489,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_107) begin
+    if (ap_sig_94) begin
         ap_sig_cseq_ST_st8_fsm_7 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st8_fsm_7 = 1'b0;
@@ -532,7 +497,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_73) begin
+    if (ap_sig_60) begin
         ap_sig_cseq_ST_st9_fsm_8 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st9_fsm_8 = 1'b0;
@@ -565,9 +530,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_sig_cseq_ST_st6_fsm_5)) begin
-        cipher_nonce_address0 = tmp_s_fu_275_p1;
+        cipher_nonce_address0 = tmp_s_fu_277_p1;
     end else if ((1'b1 == ap_sig_cseq_ST_st5_fsm_4)) begin
-        cipher_nonce_address0 = grp_single_block_CTR_encrypt_aes_cipher_fu_220_out_r_address0;
+        cipher_nonce_address0 = grp_single_block_CTR_encrypt_aes_cipher_fu_222_out_r_address0;
     end else begin
         cipher_nonce_address0 = 'bx;
     end
@@ -577,14 +542,14 @@ always @ (*) begin
     if ((1'b1 == ap_sig_cseq_ST_st6_fsm_5)) begin
         cipher_nonce_ce0 = 1'b1;
     end else if ((1'b1 == ap_sig_cseq_ST_st5_fsm_4)) begin
-        cipher_nonce_ce0 = grp_single_block_CTR_encrypt_aes_cipher_fu_220_out_r_ce0;
+        cipher_nonce_ce0 = grp_single_block_CTR_encrypt_aes_cipher_fu_222_out_r_ce0;
     end else begin
         cipher_nonce_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_sig_cseq_ST_st2_fsm_1) & (exitcond1_fu_241_p2 == 1'b0))) begin
+    if (((1'b1 == ap_sig_cseq_ST_st2_fsm_1) & (exitcond1_fu_243_p2 == 1'b0))) begin
         i_plaintext_TDATA_blk_n = i_plaintext_TVALID;
     end else begin
         i_plaintext_TDATA_blk_n = 1'b1;
@@ -592,7 +557,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_sig_cseq_ST_st2_fsm_1) & (exitcond1_fu_241_p2 == 1'b0) & ~ap_sig_79)) begin
+    if (((1'b1 == ap_sig_cseq_ST_st2_fsm_1) & (exitcond1_fu_243_p2 == 1'b0) & ~ap_sig_66)) begin
         i_plaintext_TREADY = 1'b1;
     end else begin
         i_plaintext_TREADY = 1'b0;
@@ -600,32 +565,32 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if ((((1'b1 == ap_sig_cseq_ST_st11_fsm_10) & (1'b0 == tmp_3_reg_396) & ~(1'b0 == tmp_6_fu_328_p2)) | ((1'b1 == ap_sig_cseq_ST_st11_fsm_10) & (1'b0 == tmp_3_reg_396) & (1'b0 == tmp_6_fu_328_p2)))) begin
-        nonce_address0 = nonce_addr_reg_400;
+    if ((((1'b1 == ap_sig_cseq_ST_st11_fsm_10) & (1'b0 == tmp_3_reg_398) & ~(1'b0 == tmp_6_fu_330_p2)) | ((1'b1 == ap_sig_cseq_ST_st11_fsm_10) & (1'b0 == tmp_3_reg_398) & (1'b0 == tmp_6_fu_330_p2)))) begin
+        nonce_address0 = nonce_addr_reg_402;
     end else if ((1'b1 == ap_sig_cseq_ST_st10_fsm_9)) begin
-        nonce_address0 = tmp_5_fu_323_p1;
+        nonce_address0 = tmp_5_fu_325_p1;
     end else if ((1'b1 == ap_sig_cseq_ST_st5_fsm_4)) begin
-        nonce_address0 = grp_single_block_CTR_encrypt_aes_cipher_fu_220_in_r_address0;
+        nonce_address0 = grp_single_block_CTR_encrypt_aes_cipher_fu_222_in_r_address0;
     end else begin
         nonce_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_sig_cseq_ST_st10_fsm_9) | ((1'b1 == ap_sig_cseq_ST_st11_fsm_10) & (1'b0 == tmp_3_reg_396) & ~(1'b0 == tmp_6_fu_328_p2)) | ((1'b1 == ap_sig_cseq_ST_st11_fsm_10) & (1'b0 == tmp_3_reg_396) & (1'b0 == tmp_6_fu_328_p2)))) begin
+    if (((1'b1 == ap_sig_cseq_ST_st10_fsm_9) | ((1'b1 == ap_sig_cseq_ST_st11_fsm_10) & (1'b0 == tmp_3_reg_398) & ~(1'b0 == tmp_6_fu_330_p2)) | ((1'b1 == ap_sig_cseq_ST_st11_fsm_10) & (1'b0 == tmp_3_reg_398) & (1'b0 == tmp_6_fu_330_p2)))) begin
         nonce_ce0 = 1'b1;
     end else if ((1'b1 == ap_sig_cseq_ST_st5_fsm_4)) begin
-        nonce_ce0 = grp_single_block_CTR_encrypt_aes_cipher_fu_220_in_r_ce0;
+        nonce_ce0 = grp_single_block_CTR_encrypt_aes_cipher_fu_222_in_r_ce0;
     end else begin
         nonce_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if (ap_sig_412) begin
-        if ((1'b0 == tmp_6_fu_328_p2)) begin
-            nonce_d0 = tmp_7_fu_340_p2;
-        end else if (~(1'b0 == tmp_6_fu_328_p2)) begin
+    if (ap_sig_403) begin
+        if ((1'b0 == tmp_6_fu_330_p2)) begin
+            nonce_d0 = tmp_7_fu_342_p2;
+        end else if (~(1'b0 == tmp_6_fu_330_p2)) begin
             nonce_d0 = ap_const_lv8_0;
         end else begin
             nonce_d0 = 'bx;
@@ -636,7 +601,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if ((((1'b1 == ap_sig_cseq_ST_st11_fsm_10) & (1'b0 == tmp_3_reg_396) & ~(1'b0 == tmp_6_fu_328_p2)) | ((1'b1 == ap_sig_cseq_ST_st11_fsm_10) & (1'b0 == tmp_3_reg_396) & (1'b0 == tmp_6_fu_328_p2)))) begin
+    if ((((1'b1 == ap_sig_cseq_ST_st11_fsm_10) & (1'b0 == tmp_3_reg_398) & ~(1'b0 == tmp_6_fu_330_p2)) | ((1'b1 == ap_sig_cseq_ST_st11_fsm_10) & (1'b0 == tmp_3_reg_398) & (1'b0 == tmp_6_fu_330_p2)))) begin
         nonce_we0 = 1'b1;
     end else begin
         nonce_we0 = 1'b0;
@@ -645,9 +610,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_sig_cseq_ST_st7_fsm_6)) begin
-        out_address0 = tmp_s_reg_363;
+        out_address0 = tmp_s_reg_365;
     end else if ((1'b1 == ap_sig_cseq_ST_st8_fsm_7)) begin
-        out_address0 = tmp_2_fu_300_p1;
+        out_address0 = tmp_2_fu_302_p1;
     end else begin
         out_address0 = 'bx;
     end
@@ -671,16 +636,16 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        plaintext_address0 = tmp_fu_258_p1;
+        plaintext_address0 = tmp_fu_260_p1;
     end else if ((1'b1 == ap_sig_cseq_ST_st6_fsm_5)) begin
-        plaintext_address0 = tmp_s_fu_275_p1;
+        plaintext_address0 = tmp_s_fu_277_p1;
     end else begin
         plaintext_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((((1'b1 == ap_sig_cseq_ST_st2_fsm_1) & ~ap_sig_79) | (1'b1 == ap_sig_cseq_ST_st6_fsm_5))) begin
+    if ((((1'b1 == ap_sig_cseq_ST_st2_fsm_1) & ~ap_sig_66) | (1'b1 == ap_sig_cseq_ST_st6_fsm_5))) begin
         plaintext_ce0 = 1'b1;
     end else begin
         plaintext_ce0 = 1'b0;
@@ -688,7 +653,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_sig_cseq_ST_st2_fsm_1) & (exitcond1_fu_241_p2 == 1'b0) & ~ap_sig_79)) begin
+    if (((1'b1 == ap_sig_cseq_ST_st2_fsm_1) & (exitcond1_fu_243_p2 == 1'b0) & ~ap_sig_66)) begin
         plaintext_we0 = 1'b1;
     end else begin
         plaintext_we0 = 1'b0;
@@ -697,9 +662,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_sig_cseq_ST_st3_fsm_2)) begin
-        w_address0 = grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_address0;
+        w_address0 = grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_address0;
     end else if ((1'b1 == ap_sig_cseq_ST_st5_fsm_4)) begin
-        w_address0 = grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_address0;
+        w_address0 = grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_address0;
     end else begin
         w_address0 = 'bx;
     end
@@ -707,9 +672,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_sig_cseq_ST_st3_fsm_2)) begin
-        w_address1 = grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_address1;
+        w_address1 = grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_address1;
     end else if ((1'b1 == ap_sig_cseq_ST_st5_fsm_4)) begin
-        w_address1 = grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_address1;
+        w_address1 = grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_address1;
     end else begin
         w_address1 = 'bx;
     end
@@ -717,9 +682,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_sig_cseq_ST_st3_fsm_2)) begin
-        w_ce0 = grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_ce0;
+        w_ce0 = grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_ce0;
     end else if ((1'b1 == ap_sig_cseq_ST_st5_fsm_4)) begin
-        w_ce0 = grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_ce0;
+        w_ce0 = grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_ce0;
     end else begin
         w_ce0 = 1'b0;
     end
@@ -727,9 +692,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_sig_cseq_ST_st3_fsm_2)) begin
-        w_ce1 = grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_ce1;
+        w_ce1 = grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_ce1;
     end else if ((1'b1 == ap_sig_cseq_ST_st5_fsm_4)) begin
-        w_ce1 = grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_ce1;
+        w_ce1 = grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_ce1;
     end else begin
         w_ce1 = 1'b0;
     end
@@ -738,23 +703,19 @@ end
 always @ (*) begin
     case (ap_CS_fsm)
         ap_ST_st1_fsm_0 : begin
-            if (~(ap_start == 1'b0)) begin
-                ap_NS_fsm = ap_ST_st2_fsm_1;
-            end else begin
-                ap_NS_fsm = ap_ST_st1_fsm_0;
-            end
+            ap_NS_fsm = ap_ST_st2_fsm_1;
         end
         ap_ST_st2_fsm_1 : begin
-            if (((exitcond1_fu_241_p2 == 1'b0) & ~ap_sig_79)) begin
+            if (((exitcond1_fu_243_p2 == 1'b0) & ~ap_sig_66)) begin
                 ap_NS_fsm = ap_ST_st2_fsm_1;
-            end else if ((~ap_sig_79 & ~(exitcond1_fu_241_p2 == 1'b0))) begin
+            end else if ((~ap_sig_66 & ~(exitcond1_fu_243_p2 == 1'b0))) begin
                 ap_NS_fsm = ap_ST_st3_fsm_2;
             end else begin
                 ap_NS_fsm = ap_ST_st2_fsm_1;
             end
         end
         ap_ST_st3_fsm_2 : begin
-            if (~(1'b0 == grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_done)) begin
+            if (~(1'b0 == grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_done)) begin
                 ap_NS_fsm = ap_ST_st4_fsm_3;
             end else begin
                 ap_NS_fsm = ap_ST_st3_fsm_2;
@@ -764,14 +725,14 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_st5_fsm_4;
         end
         ap_ST_st5_fsm_4 : begin
-            if (~(1'b0 == grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_done)) begin
+            if (~(1'b0 == grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_done)) begin
                 ap_NS_fsm = ap_ST_st6_fsm_5;
             end else begin
                 ap_NS_fsm = ap_ST_st5_fsm_4;
             end
         end
         ap_ST_st6_fsm_5 : begin
-            if (~(1'b0 == exitcond2_fu_263_p2)) begin
+            if (~(1'b0 == exitcond2_fu_265_p2)) begin
                 ap_NS_fsm = ap_ST_st8_fsm_7;
             end else begin
                 ap_NS_fsm = ap_ST_st7_fsm_6;
@@ -781,7 +742,7 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_st6_fsm_5;
         end
         ap_ST_st8_fsm_7 : begin
-            if (~(1'b0 == exitcond_fu_288_p2)) begin
+            if (~(1'b0 == exitcond_fu_290_p2)) begin
                 ap_NS_fsm = ap_ST_st10_fsm_9;
             end else begin
                 ap_NS_fsm = ap_ST_st9_fsm_8;
@@ -798,7 +759,7 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_st11_fsm_10;
         end
         ap_ST_st11_fsm_10 : begin
-            if (((1'b0 == tmp_6_fu_328_p2) | ~(1'b0 == tmp_3_reg_396))) begin
+            if (((1'b0 == tmp_6_fu_330_p2) | ~(1'b0 == tmp_3_reg_398))) begin
                 ap_NS_fsm = ap_ST_st1_fsm_0;
             end else begin
                 ap_NS_fsm = ap_ST_st10_fsm_9;
@@ -815,103 +776,103 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    ap_sig_107 = (1'b1 == ap_CS_fsm[ap_const_lv32_7]);
+    ap_sig_110 = (1'b1 == ap_CS_fsm[ap_const_lv32_9]);
 end
 
 always @ (*) begin
-    ap_sig_123 = (1'b1 == ap_CS_fsm[ap_const_lv32_9]);
+    ap_sig_123 = (1'b1 == ap_CS_fsm[ap_const_lv32_A]);
 end
 
 always @ (*) begin
-    ap_sig_136 = (1'b1 == ap_CS_fsm[ap_const_lv32_A]);
+    ap_sig_217 = (1'b1 == ap_CS_fsm[ap_const_lv32_0]);
 end
 
 always @ (*) begin
-    ap_sig_236 = (1'b1 == ap_CS_fsm[ap_const_lv32_4]);
+    ap_sig_227 = (1'b1 == ap_CS_fsm[ap_const_lv32_4]);
 end
 
 always @ (*) begin
-    ap_sig_246 = (1'b1 == ap_CS_fsm[ap_const_lv32_6]);
+    ap_sig_237 = (1'b1 == ap_CS_fsm[ap_const_lv32_6]);
 end
 
 always @ (*) begin
-    ap_sig_268 = (1'b1 == ap_CS_fsm[ap_const_lv32_3]);
+    ap_sig_259 = (1'b1 == ap_CS_fsm[ap_const_lv32_3]);
 end
 
 always @ (*) begin
-    ap_sig_28 = (ap_CS_fsm[ap_const_lv32_0] == 1'b1);
+    ap_sig_278 = (1'b1 == ap_CS_fsm[ap_const_lv32_2]);
 end
 
 always @ (*) begin
-    ap_sig_287 = (1'b1 == ap_CS_fsm[ap_const_lv32_2]);
+    ap_sig_403 = ((1'b1 == ap_sig_cseq_ST_st11_fsm_10) & (1'b0 == tmp_3_reg_398));
 end
 
 always @ (*) begin
-    ap_sig_412 = ((1'b1 == ap_sig_cseq_ST_st11_fsm_10) & (1'b0 == tmp_3_reg_396));
+    ap_sig_48 = (ap_CS_fsm[ap_const_lv32_1] == 1'b1);
 end
 
 always @ (*) begin
-    ap_sig_61 = (1'b1 == ap_CS_fsm[ap_const_lv32_1]);
+    ap_sig_60 = (1'b1 == ap_CS_fsm[ap_const_lv32_8]);
 end
 
 always @ (*) begin
-    ap_sig_73 = (1'b1 == ap_CS_fsm[ap_const_lv32_8]);
+    ap_sig_66 = ((exitcond1_fu_243_p2 == 1'b0) & (i_plaintext_TVALID == 1'b0));
 end
 
 always @ (*) begin
-    ap_sig_79 = ((exitcond1_fu_241_p2 == 1'b0) & (i_plaintext_TVALID == 1'b0));
+    ap_sig_76 = (1'b1 == ap_CS_fsm[ap_const_lv32_5]);
 end
 
 always @ (*) begin
-    ap_sig_89 = (1'b1 == ap_CS_fsm[ap_const_lv32_5]);
+    ap_sig_94 = (1'b1 == ap_CS_fsm[ap_const_lv32_7]);
 end
 
 assign cipher_TDATA = out_q0;
 
-assign cipher_TLAST = tmp_last_V_reg_391;
+assign cipher_TLAST = tmp_last_V_reg_393;
 
 assign cipher_TUSER = 1'b1;
 
-assign exitcond1_fu_241_p2 = ((i_reg_175 == ap_const_lv5_10) ? 1'b1 : 1'b0);
+assign exitcond1_fu_243_p2 = ((i_reg_177 == ap_const_lv5_10) ? 1'b1 : 1'b0);
 
-assign exitcond2_fu_263_p2 = ((i_1_reg_186 == ap_const_lv5_10) ? 1'b1 : 1'b0);
+assign exitcond2_fu_265_p2 = ((i_1_reg_188 == ap_const_lv5_10) ? 1'b1 : 1'b0);
 
-assign exitcond_fu_288_p2 = ((i_2_reg_197 == ap_const_lv5_10) ? 1'b1 : 1'b0);
+assign exitcond_fu_290_p2 = ((i_2_reg_199 == ap_const_lv5_10) ? 1'b1 : 1'b0);
 
-assign grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_start = ap_reg_grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_start;
+assign grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_start = ap_reg_grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_start;
 
-assign grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_start = ap_reg_grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_start;
+assign grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_start = ap_reg_grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_start;
 
-assign i_3_cast_fu_311_p1 = $signed(i_3_reg_208);
+assign i_3_cast_fu_313_p1 = $signed(i_3_reg_210);
 
-assign i_4_fu_247_p2 = (i_reg_175 + ap_const_lv5_1);
+assign i_4_fu_249_p2 = (i_reg_177 + ap_const_lv5_1);
 
-assign i_5_fu_269_p2 = (i_1_reg_186 + ap_const_lv5_1);
+assign i_5_fu_271_p2 = (i_1_reg_188 + ap_const_lv5_1);
 
-assign i_6_fu_294_p2 = (i_2_reg_197 + ap_const_lv5_1);
+assign i_6_fu_296_p2 = (i_2_reg_199 + ap_const_lv5_1);
 
-assign i_7_fu_334_p2 = ($signed(i_3_reg_208) + $signed(ap_const_lv5_1F));
+assign i_7_fu_336_p2 = ($signed(i_3_reg_210) + $signed(ap_const_lv5_1F));
 
 assign out_d0 = (cipher_nonce_q0 ^ plaintext_q0);
 
-assign tmp_2_fu_300_p1 = i_2_reg_197;
+assign tmp_2_fu_302_p1 = i_2_reg_199;
 
-assign tmp_3_fu_315_p3 = i_3_reg_208[ap_const_lv32_4];
+assign tmp_3_fu_317_p3 = i_3_reg_210[ap_const_lv32_4];
 
-assign tmp_5_fu_323_p1 = $unsigned(i_3_cast_fu_311_p1);
+assign tmp_5_fu_325_p1 = $unsigned(i_3_cast_fu_313_p1);
 
-assign tmp_6_fu_328_p2 = ((nonce_q0 == ap_const_lv8_FF) ? 1'b1 : 1'b0);
+assign tmp_6_fu_330_p2 = ((nonce_q0 == ap_const_lv8_FF) ? 1'b1 : 1'b0);
 
-assign tmp_7_fu_340_p2 = (nonce_q0 + ap_const_lv8_1);
+assign tmp_7_fu_342_p2 = (nonce_q0 + ap_const_lv8_1);
 
-assign tmp_fu_258_p1 = i_reg_175;
+assign tmp_fu_260_p1 = i_reg_177;
 
-assign tmp_last_V_fu_305_p2 = ((i_2_reg_197 == ap_const_lv5_F) ? 1'b1 : 1'b0);
+assign tmp_last_V_fu_307_p2 = ((i_2_reg_199 == ap_const_lv5_F) ? 1'b1 : 1'b0);
 
-assign tmp_s_fu_275_p1 = i_1_reg_186;
+assign tmp_s_fu_277_p1 = i_1_reg_188;
 
 always @ (posedge ap_clk) begin
-    tmp_s_reg_363[63:5] <= 59'b00000000000000000000000000000000000000000000000000000000000;
+    tmp_s_reg_365[63:5] <= 59'b00000000000000000000000000000000000000000000000000000000000;
 end
 
 endmodule //single_block_CTR_encrypt

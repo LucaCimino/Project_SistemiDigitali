@@ -25,9 +25,6 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_1_proces
 # IP: bd/design_1/ip/design_1_xbar_2/design_1_xbar_2.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_1_xbar_2 || ORIG_REF_NAME==design_1_xbar_2}]
 
-# IP: bd/design_1/ip/design_1_xlconstant_0_2/design_1_xlconstant_0_2.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_1_xlconstant_0_2 || ORIG_REF_NAME==design_1_xlconstant_0_2}]
-
 # IP: bd/design_1/ip/design_1_single_block_CTR_encrypt_0_1/design_1_single_block_CTR_encrypt_0_1.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_1_single_block_CTR_encrypt_0_1 || ORIG_REF_NAME==design_1_single_block_CTR_encrypt_0_1}]
 
@@ -39,9 +36,6 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_1_auto_u
 
 # IP: bd/design_1/ip/design_1_auto_us_1/design_1_auto_us_1.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_1_auto_us_1 || ORIG_REF_NAME==design_1_auto_us_1}]
-
-# IP: bd/design_1/ip/design_1_auto_us_2/design_1_auto_us_2.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_1_auto_us_2 || ORIG_REF_NAME==design_1_auto_us_2}]
 
 # IP: bd/design_1/ip/design_1_auto_pc_1/design_1_auto_pc_1.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_1_auto_pc_1 || ORIG_REF_NAME==design_1_auto_pc_1}]
@@ -80,11 +74,6 @@ set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {R
 
 # XDC: bd/design_1/ip/design_1_auto_us_1/design_1_auto_us_1_clocks.xdc
 set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==design_1_auto_us_1 || ORIG_REF_NAME==design_1_auto_us_1}] {/inst }]/inst ]]
-
-# XDC: bd/design_1/ip/design_1_auto_us_2/design_1_auto_us_2_ooc.xdc
-
-# XDC: bd/design_1/ip/design_1_auto_us_2/design_1_auto_us_2_clocks.xdc
-set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==design_1_auto_us_2 || ORIG_REF_NAME==design_1_auto_us_2}] {/inst }]/inst ]]
 
 # XDC: bd/design_1/ip/design_1_auto_pc_1/design_1_auto_pc_1_ooc.xdc
 

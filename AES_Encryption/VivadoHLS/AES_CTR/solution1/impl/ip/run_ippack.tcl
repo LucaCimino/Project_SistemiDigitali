@@ -32,9 +32,9 @@ proc glob-r {{dir .}} {
 set Vendor      "xilinx.com"
 set Library     "hls"
 set IPName      "single_block_CTR_encrypt"
-set Version     "7.0"
+set Version     "9.0"
 set DisplayName "Single_block_ctr_encrypt"
-set Revision    "2113413153"
+set Revision    "2113415957"
 set Description "with TLAST and USER signal"
 set Device      "zynq"
 set Taxonomy    "/VIVADO_HLS_IP"
@@ -67,32 +67,6 @@ set Interfaces {
         polarity "ACTIVE_LOW"
         ctype {
             RST {
-                Type "bool"
-                Width "1"
-                Bits "1"
-            }
-        }
-    }
-    ap_ctrl {
-        type "ap_ctrl"
-        ctrl_ports "ap_start ap_done ap_idle ap_ready"
-        ctype {
-            start {
-                Type "bool"
-                Width "1"
-                Bits "1"
-            }
-            done {
-                Type "bool"
-                Width "1"
-                Bits "1"
-            }
-            idle {
-                Type "bool"
-                Width "1"
-                Bits "1"
-            }
-            ready {
                 Type "bool"
                 Width "1"
                 Bits "1"
@@ -1659,7 +1633,7 @@ ipx::archive_core [file join [pwd] $ZipFile] $core
 
 ## Generate XO file if kernel.xml file is dumped
 set enable_xo_gen 0
-set kernel_files {C:/Users/lucac/VivadoHLS/AES_CTR/aes.cpp C:/Users/lucac/VivadoHLS/AES_CTR/ctr_main.cpp}
+set kernel_files {C:/Users/lucac/VivadoHLS/AES_CTR/ctr_main.cpp C:/Users/lucac/VivadoHLS/AES_CTR/aes.cpp}
 if {$enable_xo_gen} {
     set sdaccel_dir [file join [pwd] .. sdaccel]
     set db_dir [file join [pwd] .. .. .autopilot db]

@@ -41,7 +41,7 @@
         </UIAutoSimConf>
     </UIConfigurations>
     <ExportDesign askAgain="true" evaluate="false" formatName="ip_catalog" rtl="verilog">
-        <Format description="with TLAST and USER signal" formatName="ip_catalog" version="7.0" vendor="" library="" driver_input_dir="" display_name="" taxonomy=""/>
+        <Format description="with TLAST and USER signal" formatName="ip_catalog" version="9.0" vendor="" library="" driver_input_dir="" display_name="" taxonomy=""/>
         <Format formatName="sysgen"/>
         <Format formatName="sysgen_ise"/>
         <Format formatName="syn_dcp"/>

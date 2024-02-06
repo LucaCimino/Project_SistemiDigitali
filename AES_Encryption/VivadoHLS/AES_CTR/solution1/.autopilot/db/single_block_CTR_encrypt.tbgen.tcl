@@ -1,8 +1,8 @@
 set C_TypeInfoList {{ 
 "single_block_CTR_encrypt" : [[], { "return": [[], "void"]} , [{"ExternC" : 0}], [ {"i_plaintext": [[], {"reference": "0"}] }, {"cipher": [[], {"reference": "0"}] }],["1"],""],
  "1": [ "R", [[], {"array": ["2", [4]]}],""], 
-"2": [ "uint8_t", {"typedef": [[[], {"scalar": "unsigned char"}],""]}], 
 "0": [ "stream<stream_type>", {"hls_type": {"stream": [[[[],"3"]],"4"]}}], 
+"2": [ "uint8_t", {"typedef": [[[], {"scalar": "unsigned char"}],""]}], 
 "3": [ "stream_type", {"struct": [[],[],[{ "data": [[8], "5"]},{ "user": [[], "6"]},{ "last": [[], "6"]}],""]}], 
 "6": [ "ap_uint<1>", {"hls_type": {"ap_uint": [[[[], {"scalar": { "int": 1}}]],""]}}], 
 "5": [ "uint8_t", {"typedef": [[[], {"scalar": "unsigned char"}],""]}],
@@ -13,7 +13,7 @@ set isCombinational 0
 set isDatapathOnly 0
 set isPipelined 0
 set pipeline_type none
-set FunctionProtocol ap_ctrl_hs
+set FunctionProtocol ap_ctrl_none
 set isOneStateSeq 0
 set C_modelName {single_block_CTR_encrypt}
 set C_modelType { void 0 }
@@ -33,14 +33,10 @@ set C_modelArgMapList {[
  	{ "Name" : "cipher_V_user_V", "interface" : "axis", "bitwidth" : 1, "direction" : "WRITEONLY", "bitSlice":[{"low":0,"up":0,"cElement": [{"cName": "cipher.V.user.V","cData": "uint1","bit_use": { "low": 0,"up": 0},"cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
  	{ "Name" : "cipher_V_last_V", "interface" : "axis", "bitwidth" : 1, "direction" : "WRITEONLY", "bitSlice":[{"low":0,"up":0,"cElement": [{"cName": "cipher.V.last.V","cData": "uint1","bit_use": { "low": 0,"up": 0},"cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} ]}
 # RTL Port declarations: 
-set portNum 16
+set portNum 12
 set portList { 
 	{ ap_clk sc_in sc_logic 1 clock -1 } 
 	{ ap_rst_n sc_in sc_logic 1 reset -1 active_low_sync } 
-	{ ap_start sc_in sc_logic 1 start -1 } 
-	{ ap_done sc_out sc_logic 1 predone -1 } 
-	{ ap_idle sc_out sc_logic 1 done -1 } 
-	{ ap_ready sc_out sc_logic 1 ready -1 } 
 	{ i_plaintext_TDATA sc_in sc_lv 8 signal 0 } 
 	{ i_plaintext_TVALID sc_in sc_logic 1 invld 0 } 
 	{ i_plaintext_TREADY sc_out sc_logic 1 inacc 2 } 
@@ -55,10 +51,6 @@ set portList {
 set NewPortList {[ 
 	{ "name": "ap_clk", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "clock", "bundle":{"name": "ap_clk", "role": "default" }} , 
  	{ "name": "ap_rst_n", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "reset", "bundle":{"name": "ap_rst_n", "role": "default" }} , 
- 	{ "name": "ap_start", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "start", "bundle":{"name": "ap_start", "role": "default" }} , 
- 	{ "name": "ap_done", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "predone", "bundle":{"name": "ap_done", "role": "default" }} , 
- 	{ "name": "ap_idle", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "done", "bundle":{"name": "ap_idle", "role": "default" }} , 
- 	{ "name": "ap_ready", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "ready", "bundle":{"name": "ap_ready", "role": "default" }} , 
  	{ "name": "i_plaintext_TDATA", "direction": "in", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "i_plaintext_V_data", "role": "default" }} , 
  	{ "name": "i_plaintext_TVALID", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "invld", "bundle":{"name": "i_plaintext_V_data", "role": "default" }} , 
  	{ "name": "i_plaintext_TREADY", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "inacc", "bundle":{"name": "i_plaintext_V_last_V", "role": "default" }} , 
@@ -71,7 +63,7 @@ set NewPortList {[
  	{ "name": "cipher_TLAST", "direction": "out", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "cipher_V_last_V", "role": "default" }}  ]}
 
 set RtlHierarchyInfo {[
-	{"Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2", "3", "4", "5", "6", "26"], "CDFG" : "single_block_CTR_encrypt", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
+	{"Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2", "3", "4", "5", "6", "26"], "CDFG" : "single_block_CTR_encrypt", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "0",
 		"Port" : [
 		{"Name" : "i_plaintext_V_data", "Type" : "Axis", "Direction" : "I", "BlockSignal" : [
 			{"Name" : "i_plaintext_TDATA_blk_n", "Type" : "RtlSignal"}], "SubConnect" : []}, 
@@ -82,24 +74,24 @@ set RtlHierarchyInfo {[
 		{"Name" : "cipher_V_user_V", "Type" : "Axis", "Direction" : "O", "BlockSignal" : [], "SubConnect" : []}, 
 		{"Name" : "cipher_V_last_V", "Type" : "Axis", "Direction" : "O", "BlockSignal" : [], "SubConnect" : []}, 
 		{"Name" : "key", "Type" : "Memory", "Direction" : "I", "BlockSignal" : [], "SubConnect" : [
-			{"SubInst" : "grp_single_block_CTR_encrypt_aes_key_expansion_fu_230", "Port" : "key"}]}, 
+			{"SubInst" : "grp_single_block_CTR_encrypt_aes_key_expansion_fu_232", "Port" : "key"}]}, 
 		{"Name" : "s_box", "Type" : "Memory", "Direction" : "I", "BlockSignal" : [], "SubConnect" : [
-			{"SubInst" : "grp_single_block_CTR_encrypt_aes_cipher_fu_220", "Port" : "s_box"}, 
-			{"SubInst" : "grp_single_block_CTR_encrypt_aes_key_expansion_fu_230", "Port" : "s_box"}]}, 
+			{"SubInst" : "grp_single_block_CTR_encrypt_aes_key_expansion_fu_232", "Port" : "s_box"}, 
+			{"SubInst" : "grp_single_block_CTR_encrypt_aes_cipher_fu_222", "Port" : "s_box"}]}, 
 		{"Name" : "R", "Type" : "Memory", "Direction" : "IO", "BlockSignal" : [], "SubConnect" : [
-			{"SubInst" : "grp_single_block_CTR_encrypt_aes_key_expansion_fu_230", "Port" : "R"}]}, 
+			{"SubInst" : "grp_single_block_CTR_encrypt_aes_key_expansion_fu_232", "Port" : "R"}]}, 
 		{"Name" : "nonce", "Type" : "Memory", "Direction" : "IO", "BlockSignal" : [], "SubConnect" : [
-			{"SubInst" : "grp_single_block_CTR_encrypt_aes_cipher_fu_220", "Port" : "in_r"}]}],
+			{"SubInst" : "grp_single_block_CTR_encrypt_aes_cipher_fu_222", "Port" : "in_r"}]}],
 		"WaitState" : [
-		{"State" : "ap_ST_st5_fsm_4", "FSM" : "ap_CS_fsm", "SubInst" : "grp_single_block_CTR_encrypt_aes_cipher_fu_220"},
-		{"State" : "ap_ST_st3_fsm_2", "FSM" : "ap_CS_fsm", "SubInst" : "grp_single_block_CTR_encrypt_aes_key_expansion_fu_230"}],
+		{"State" : "ap_ST_st5_fsm_4", "FSM" : "ap_CS_fsm", "SubInst" : "grp_single_block_CTR_encrypt_aes_cipher_fu_222"},
+		{"State" : "ap_ST_st3_fsm_2", "FSM" : "ap_CS_fsm", "SubInst" : "grp_single_block_CTR_encrypt_aes_key_expansion_fu_232"}],
 		"SubBlockPort" : []},
 	{"Level" : "1", "Path" : "`AUTOTB_DUT_INST.nonce_U", "Parent" : "0", "Child" : []},
 	{"Level" : "1", "Path" : "`AUTOTB_DUT_INST.plaintext_U", "Parent" : "0", "Child" : []},
 	{"Level" : "1", "Path" : "`AUTOTB_DUT_INST.cipher_nonce_U", "Parent" : "0", "Child" : []},
 	{"Level" : "1", "Path" : "`AUTOTB_DUT_INST.out_U", "Parent" : "0", "Child" : []},
 	{"Level" : "1", "Path" : "`AUTOTB_DUT_INST.w_U", "Parent" : "0", "Child" : []},
-	{"Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_220", "Parent" : "0", "Child" : ["7", "8", "22", "23", "24"], "CDFG" : "single_block_CTR_encrypt_aes_cipher", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
+	{"Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_222", "Parent" : "0", "Child" : ["7", "8", "22", "23", "24"], "CDFG" : "single_block_CTR_encrypt_aes_cipher", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
 		"Port" : [
 		{"Name" : "in_r", "Type" : "Memory", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
 		{"Name" : "out_r", "Type" : "Memory", "Direction" : "O", "BlockSignal" : [], "SubConnect" : []}, 
@@ -117,8 +109,8 @@ set RtlHierarchyInfo {[
 		{"State" : "ap_ST_st7_fsm_6", "FSM" : "ap_CS_fsm", "SubInst" : "grp_single_block_CTR_encrypt_sub_bytes_fu_168"},
 		{"State" : "ap_ST_st14_fsm_13", "FSM" : "ap_CS_fsm", "SubInst" : "grp_single_block_CTR_encrypt_sub_bytes_fu_168"}],
 		"SubBlockPort" : []},
-	{"Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_220.state_U", "Parent" : "6", "Child" : []},
-	{"Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_220.grp_single_block_CTR_encrypt_mix_columns_fu_148", "Parent" : "6", "Child" : ["9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21"], "CDFG" : "single_block_CTR_encrypt_mix_columns", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
+	{"Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_222.state_U", "Parent" : "6", "Child" : []},
+	{"Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_222.grp_single_block_CTR_encrypt_mix_columns_fu_148", "Parent" : "6", "Child" : ["9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21"], "CDFG" : "single_block_CTR_encrypt_mix_columns", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
 		"Port" : [
 		{"Name" : "state", "Type" : "Memory", "Direction" : "IO", "BlockSignal" : [], "SubConnect" : []}],
 		"WaitState" : [
@@ -135,99 +127,99 @@ set RtlHierarchyInfo {[
 		{"State" : "ap_ST_st5_fsm_4", "FSM" : "ap_CS_fsm", "SubInst" : "grp_single_block_CTR_encrypt_gmult_fu_173"},
 		{"State" : "ap_ST_st5_fsm_4", "FSM" : "ap_CS_fsm", "SubInst" : "grp_single_block_CTR_encrypt_gmult_fu_180"}],
 		"SubBlockPort" : []},
-	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_220.grp_single_block_CTR_encrypt_mix_columns_fu_148.grp_single_block_CTR_encrypt_gmult_fu_103", "Parent" : "8", "Child" : [], "CDFG" : "single_block_CTR_encrypt_gmult", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
+	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_222.grp_single_block_CTR_encrypt_mix_columns_fu_148.grp_single_block_CTR_encrypt_gmult_fu_103", "Parent" : "8", "Child" : [], "CDFG" : "single_block_CTR_encrypt_gmult", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
 		"Port" : [
 		{"Name" : "a", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
 		{"Name" : "b", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}],
 		"WaitState" : [],
 		"SubBlockPort" : []},
-	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_220.grp_single_block_CTR_encrypt_mix_columns_fu_148.grp_single_block_CTR_encrypt_gmult_fu_110", "Parent" : "8", "Child" : [], "CDFG" : "single_block_CTR_encrypt_gmult", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
+	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_222.grp_single_block_CTR_encrypt_mix_columns_fu_148.grp_single_block_CTR_encrypt_gmult_fu_110", "Parent" : "8", "Child" : [], "CDFG" : "single_block_CTR_encrypt_gmult", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
 		"Port" : [
 		{"Name" : "a", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
 		{"Name" : "b", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}],
 		"WaitState" : [],
 		"SubBlockPort" : []},
-	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_220.grp_single_block_CTR_encrypt_mix_columns_fu_148.grp_single_block_CTR_encrypt_gmult_fu_117", "Parent" : "8", "Child" : [], "CDFG" : "single_block_CTR_encrypt_gmult", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
+	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_222.grp_single_block_CTR_encrypt_mix_columns_fu_148.grp_single_block_CTR_encrypt_gmult_fu_117", "Parent" : "8", "Child" : [], "CDFG" : "single_block_CTR_encrypt_gmult", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
 		"Port" : [
 		{"Name" : "a", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
 		{"Name" : "b", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}],
 		"WaitState" : [],
 		"SubBlockPort" : []},
-	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_220.grp_single_block_CTR_encrypt_mix_columns_fu_148.grp_single_block_CTR_encrypt_gmult_fu_124", "Parent" : "8", "Child" : [], "CDFG" : "single_block_CTR_encrypt_gmult", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
+	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_222.grp_single_block_CTR_encrypt_mix_columns_fu_148.grp_single_block_CTR_encrypt_gmult_fu_124", "Parent" : "8", "Child" : [], "CDFG" : "single_block_CTR_encrypt_gmult", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
 		"Port" : [
 		{"Name" : "a", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
 		{"Name" : "b", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}],
 		"WaitState" : [],
 		"SubBlockPort" : []},
-	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_220.grp_single_block_CTR_encrypt_mix_columns_fu_148.grp_single_block_CTR_encrypt_gmult_fu_131", "Parent" : "8", "Child" : [], "CDFG" : "single_block_CTR_encrypt_gmult", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
+	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_222.grp_single_block_CTR_encrypt_mix_columns_fu_148.grp_single_block_CTR_encrypt_gmult_fu_131", "Parent" : "8", "Child" : [], "CDFG" : "single_block_CTR_encrypt_gmult", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
 		"Port" : [
 		{"Name" : "a", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
 		{"Name" : "b", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}],
 		"WaitState" : [],
 		"SubBlockPort" : []},
-	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_220.grp_single_block_CTR_encrypt_mix_columns_fu_148.grp_single_block_CTR_encrypt_gmult_fu_138", "Parent" : "8", "Child" : [], "CDFG" : "single_block_CTR_encrypt_gmult", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
+	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_222.grp_single_block_CTR_encrypt_mix_columns_fu_148.grp_single_block_CTR_encrypt_gmult_fu_138", "Parent" : "8", "Child" : [], "CDFG" : "single_block_CTR_encrypt_gmult", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
 		"Port" : [
 		{"Name" : "a", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
 		{"Name" : "b", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}],
 		"WaitState" : [],
 		"SubBlockPort" : []},
-	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_220.grp_single_block_CTR_encrypt_mix_columns_fu_148.grp_single_block_CTR_encrypt_gmult_fu_145", "Parent" : "8", "Child" : [], "CDFG" : "single_block_CTR_encrypt_gmult", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
+	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_222.grp_single_block_CTR_encrypt_mix_columns_fu_148.grp_single_block_CTR_encrypt_gmult_fu_145", "Parent" : "8", "Child" : [], "CDFG" : "single_block_CTR_encrypt_gmult", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
 		"Port" : [
 		{"Name" : "a", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
 		{"Name" : "b", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}],
 		"WaitState" : [],
 		"SubBlockPort" : []},
-	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_220.grp_single_block_CTR_encrypt_mix_columns_fu_148.grp_single_block_CTR_encrypt_gmult_fu_152", "Parent" : "8", "Child" : [], "CDFG" : "single_block_CTR_encrypt_gmult", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
+	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_222.grp_single_block_CTR_encrypt_mix_columns_fu_148.grp_single_block_CTR_encrypt_gmult_fu_152", "Parent" : "8", "Child" : [], "CDFG" : "single_block_CTR_encrypt_gmult", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
 		"Port" : [
 		{"Name" : "a", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
 		{"Name" : "b", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}],
 		"WaitState" : [],
 		"SubBlockPort" : []},
-	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_220.grp_single_block_CTR_encrypt_mix_columns_fu_148.grp_single_block_CTR_encrypt_gmult_fu_159", "Parent" : "8", "Child" : [], "CDFG" : "single_block_CTR_encrypt_gmult", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
+	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_222.grp_single_block_CTR_encrypt_mix_columns_fu_148.grp_single_block_CTR_encrypt_gmult_fu_159", "Parent" : "8", "Child" : [], "CDFG" : "single_block_CTR_encrypt_gmult", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
 		"Port" : [
 		{"Name" : "a", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
 		{"Name" : "b", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}],
 		"WaitState" : [],
 		"SubBlockPort" : []},
-	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_220.grp_single_block_CTR_encrypt_mix_columns_fu_148.grp_single_block_CTR_encrypt_gmult_fu_166", "Parent" : "8", "Child" : [], "CDFG" : "single_block_CTR_encrypt_gmult", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
+	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_222.grp_single_block_CTR_encrypt_mix_columns_fu_148.grp_single_block_CTR_encrypt_gmult_fu_166", "Parent" : "8", "Child" : [], "CDFG" : "single_block_CTR_encrypt_gmult", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
 		"Port" : [
 		{"Name" : "a", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
 		{"Name" : "b", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}],
 		"WaitState" : [],
 		"SubBlockPort" : []},
-	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_220.grp_single_block_CTR_encrypt_mix_columns_fu_148.grp_single_block_CTR_encrypt_gmult_fu_173", "Parent" : "8", "Child" : [], "CDFG" : "single_block_CTR_encrypt_gmult", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
+	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_222.grp_single_block_CTR_encrypt_mix_columns_fu_148.grp_single_block_CTR_encrypt_gmult_fu_173", "Parent" : "8", "Child" : [], "CDFG" : "single_block_CTR_encrypt_gmult", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
 		"Port" : [
 		{"Name" : "a", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
 		{"Name" : "b", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}],
 		"WaitState" : [],
 		"SubBlockPort" : []},
-	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_220.grp_single_block_CTR_encrypt_mix_columns_fu_148.grp_single_block_CTR_encrypt_gmult_fu_180", "Parent" : "8", "Child" : [], "CDFG" : "single_block_CTR_encrypt_gmult", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
+	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_222.grp_single_block_CTR_encrypt_mix_columns_fu_148.grp_single_block_CTR_encrypt_gmult_fu_180", "Parent" : "8", "Child" : [], "CDFG" : "single_block_CTR_encrypt_gmult", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
 		"Port" : [
 		{"Name" : "a", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
 		{"Name" : "b", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}],
 		"WaitState" : [],
 		"SubBlockPort" : []},
-	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_220.grp_single_block_CTR_encrypt_mix_columns_fu_148.single_block_CTR_encrypt_mux_4to1_sel2_8_1_U12", "Parent" : "8", "Child" : []},
-	{"Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_220.grp_single_block_CTR_encrypt_add_round_key_fu_153", "Parent" : "6", "Child" : [], "CDFG" : "single_block_CTR_encrypt_add_round_key", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
+	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_222.grp_single_block_CTR_encrypt_mix_columns_fu_148.single_block_CTR_encrypt_mux_4to1_sel2_8_1_U12", "Parent" : "8", "Child" : []},
+	{"Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_222.grp_single_block_CTR_encrypt_add_round_key_fu_153", "Parent" : "6", "Child" : [], "CDFG" : "single_block_CTR_encrypt_add_round_key", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
 		"Port" : [
 		{"Name" : "state", "Type" : "Memory", "Direction" : "IO", "BlockSignal" : [], "SubConnect" : []}, 
 		{"Name" : "w", "Type" : "Memory", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
 		{"Name" : "r", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}],
 		"WaitState" : [],
 		"SubBlockPort" : []},
-	{"Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_220.grp_single_block_CTR_encrypt_shift_rows_fu_163", "Parent" : "6", "Child" : [], "CDFG" : "single_block_CTR_encrypt_shift_rows", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
+	{"Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_222.grp_single_block_CTR_encrypt_shift_rows_fu_163", "Parent" : "6", "Child" : [], "CDFG" : "single_block_CTR_encrypt_shift_rows", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
 		"Port" : [
 		{"Name" : "state", "Type" : "Memory", "Direction" : "IO", "BlockSignal" : [], "SubConnect" : []}],
 		"WaitState" : [],
 		"SubBlockPort" : []},
-	{"Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_220.grp_single_block_CTR_encrypt_sub_bytes_fu_168", "Parent" : "6", "Child" : ["25"], "CDFG" : "single_block_CTR_encrypt_sub_bytes", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
+	{"Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_222.grp_single_block_CTR_encrypt_sub_bytes_fu_168", "Parent" : "6", "Child" : ["25"], "CDFG" : "single_block_CTR_encrypt_sub_bytes", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
 		"Port" : [
 		{"Name" : "state", "Type" : "Memory", "Direction" : "IO", "BlockSignal" : [], "SubConnect" : []}, 
 		{"Name" : "s_box", "Type" : "Memory", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}],
 		"WaitState" : [],
 		"SubBlockPort" : []},
-	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_220.grp_single_block_CTR_encrypt_sub_bytes_fu_168.s_box_U", "Parent" : "24", "Child" : []},
-	{"Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_key_expansion_fu_230", "Parent" : "0", "Child" : ["27", "28", "29", "30"], "CDFG" : "single_block_CTR_encrypt_aes_key_expansion", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
+	{"Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_cipher_fu_222.grp_single_block_CTR_encrypt_sub_bytes_fu_168.s_box_U", "Parent" : "24", "Child" : []},
+	{"Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_key_expansion_fu_232", "Parent" : "0", "Child" : ["27", "28", "29", "30"], "CDFG" : "single_block_CTR_encrypt_aes_key_expansion", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
 		"Port" : [
 		{"Name" : "w", "Type" : "Memory", "Direction" : "IO", "BlockSignal" : [], "SubConnect" : []}, 
 		{"Name" : "key", "Type" : "Memory", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
@@ -235,10 +227,10 @@ set RtlHierarchyInfo {[
 		{"Name" : "R", "Type" : "Memory", "Direction" : "IO", "BlockSignal" : [], "SubConnect" : []}],
 		"WaitState" : [],
 		"SubBlockPort" : []},
-	{"Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_key_expansion_fu_230.key_U", "Parent" : "26", "Child" : []},
-	{"Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_key_expansion_fu_230.s_box_U", "Parent" : "26", "Child" : []},
-	{"Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_key_expansion_fu_230.R_U", "Parent" : "26", "Child" : []},
-	{"Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_key_expansion_fu_230.single_block_CTR_encrypt_mux_4to1_sel2_8_1_U0", "Parent" : "26", "Child" : []}]}
+	{"Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_key_expansion_fu_232.key_U", "Parent" : "26", "Child" : []},
+	{"Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_key_expansion_fu_232.s_box_U", "Parent" : "26", "Child" : []},
+	{"Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_key_expansion_fu_232.R_U", "Parent" : "26", "Child" : []},
+	{"Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_single_block_CTR_encrypt_aes_key_expansion_fu_232.single_block_CTR_encrypt_mux_4to1_sel2_8_1_U0", "Parent" : "26", "Child" : []}]}
 
 set PerformanceInfo {[
 	{"Name" : "Latency", "Min" : "-1", "Max" : "-1"}

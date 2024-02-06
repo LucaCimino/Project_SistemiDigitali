@@ -13,10 +13,6 @@ entity single_block_CTR_encrypt is
 port (
     ap_clk : IN STD_LOGIC;
     ap_rst_n : IN STD_LOGIC;
-    ap_start : IN STD_LOGIC;
-    ap_done : OUT STD_LOGIC;
-    ap_idle : OUT STD_LOGIC;
-    ap_ready : OUT STD_LOGIC;
     i_plaintext_TDATA : IN STD_LOGIC_VECTOR (7 downto 0);
     i_plaintext_TVALID : IN STD_LOGIC;
     i_plaintext_TREADY : OUT STD_LOGIC;
@@ -47,9 +43,8 @@ architecture behav of single_block_CTR_encrypt is
     constant ap_ST_st9_fsm_8 : STD_LOGIC_VECTOR (10 downto 0) := "00100000000";
     constant ap_ST_st10_fsm_9 : STD_LOGIC_VECTOR (10 downto 0) := "01000000000";
     constant ap_ST_st11_fsm_10 : STD_LOGIC_VECTOR (10 downto 0) := "10000000000";
-    constant ap_const_lv32_0 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000000";
-    constant ap_const_lv1_1 : STD_LOGIC_VECTOR (0 downto 0) := "1";
     constant ap_const_lv32_1 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000001";
+    constant ap_const_lv1_1 : STD_LOGIC_VECTOR (0 downto 0) := "1";
     constant ap_const_lv1_0 : STD_LOGIC_VECTOR (0 downto 0) := "0";
     constant ap_const_lv32_8 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000001000";
     constant ap_const_lv32_5 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000101";
@@ -57,6 +52,7 @@ architecture behav of single_block_CTR_encrypt is
     constant ap_const_lv32_9 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000001001";
     constant ap_const_lv32_A : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000001010";
     constant ap_const_lv5_0 : STD_LOGIC_VECTOR (4 downto 0) := "00000";
+    constant ap_const_lv32_0 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000000";
     constant ap_const_lv32_4 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000100";
     constant ap_const_lv32_6 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000110";
     constant ap_const_lv5_F : STD_LOGIC_VECTOR (4 downto 0) := "01111";
@@ -70,48 +66,46 @@ architecture behav of single_block_CTR_encrypt is
     constant ap_const_lv8_1 : STD_LOGIC_VECTOR (7 downto 0) := "00000001";
 
     signal ap_rst_n_inv : STD_LOGIC;
-    signal ap_CS_fsm : STD_LOGIC_VECTOR (10 downto 0) := "00000000001";
-    attribute fsm_encoding : string;
-    attribute fsm_encoding of ap_CS_fsm : signal is "none";
-    signal ap_sig_cseq_ST_st1_fsm_0 : STD_LOGIC;
-    signal ap_sig_28 : BOOLEAN;
     signal nonce_address0 : STD_LOGIC_VECTOR (3 downto 0);
     signal nonce_ce0 : STD_LOGIC;
     signal nonce_we0 : STD_LOGIC;
     signal nonce_d0 : STD_LOGIC_VECTOR (7 downto 0);
     signal nonce_q0 : STD_LOGIC_VECTOR (7 downto 0);
     signal i_plaintext_TDATA_blk_n : STD_LOGIC;
+    signal ap_CS_fsm : STD_LOGIC_VECTOR (10 downto 0) := "00000000001";
+    attribute fsm_encoding : string;
+    attribute fsm_encoding of ap_CS_fsm : signal is "none";
     signal ap_sig_cseq_ST_st2_fsm_1 : STD_LOGIC;
-    signal ap_sig_61 : BOOLEAN;
-    signal exitcond1_fu_241_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal ap_sig_48 : BOOLEAN;
+    signal exitcond1_fu_243_p2 : STD_LOGIC_VECTOR (0 downto 0);
     signal cipher_TDATA_blk_n : STD_LOGIC;
     signal ap_sig_cseq_ST_st9_fsm_8 : STD_LOGIC;
-    signal ap_sig_73 : BOOLEAN;
-    signal i_4_fu_247_p2 : STD_LOGIC_VECTOR (4 downto 0);
-    signal ap_sig_79 : BOOLEAN;
-    signal i_5_fu_269_p2 : STD_LOGIC_VECTOR (4 downto 0);
-    signal i_5_reg_358 : STD_LOGIC_VECTOR (4 downto 0);
+    signal ap_sig_60 : BOOLEAN;
+    signal i_4_fu_249_p2 : STD_LOGIC_VECTOR (4 downto 0);
+    signal ap_sig_66 : BOOLEAN;
+    signal i_5_fu_271_p2 : STD_LOGIC_VECTOR (4 downto 0);
+    signal i_5_reg_360 : STD_LOGIC_VECTOR (4 downto 0);
     signal ap_sig_cseq_ST_st6_fsm_5 : STD_LOGIC;
-    signal ap_sig_89 : BOOLEAN;
-    signal tmp_s_fu_275_p1 : STD_LOGIC_VECTOR (63 downto 0);
-    signal tmp_s_reg_363 : STD_LOGIC_VECTOR (63 downto 0);
-    signal exitcond2_fu_263_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal i_6_fu_294_p2 : STD_LOGIC_VECTOR (4 downto 0);
-    signal i_6_reg_381 : STD_LOGIC_VECTOR (4 downto 0);
+    signal ap_sig_76 : BOOLEAN;
+    signal tmp_s_fu_277_p1 : STD_LOGIC_VECTOR (63 downto 0);
+    signal tmp_s_reg_365 : STD_LOGIC_VECTOR (63 downto 0);
+    signal exitcond2_fu_265_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal i_6_fu_296_p2 : STD_LOGIC_VECTOR (4 downto 0);
+    signal i_6_reg_383 : STD_LOGIC_VECTOR (4 downto 0);
     signal ap_sig_cseq_ST_st8_fsm_7 : STD_LOGIC;
-    signal ap_sig_107 : BOOLEAN;
-    signal exitcond_fu_288_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal tmp_last_V_fu_305_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal tmp_last_V_reg_391 : STD_LOGIC_VECTOR (0 downto 0);
-    signal tmp_3_fu_315_p3 : STD_LOGIC_VECTOR (0 downto 0);
-    signal tmp_3_reg_396 : STD_LOGIC_VECTOR (0 downto 0);
+    signal ap_sig_94 : BOOLEAN;
+    signal exitcond_fu_290_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal tmp_last_V_fu_307_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal tmp_last_V_reg_393 : STD_LOGIC_VECTOR (0 downto 0);
+    signal tmp_3_fu_317_p3 : STD_LOGIC_VECTOR (0 downto 0);
+    signal tmp_3_reg_398 : STD_LOGIC_VECTOR (0 downto 0);
     signal ap_sig_cseq_ST_st10_fsm_9 : STD_LOGIC;
-    signal ap_sig_123 : BOOLEAN;
-    signal nonce_addr_reg_400 : STD_LOGIC_VECTOR (3 downto 0);
-    signal i_7_fu_334_p2 : STD_LOGIC_VECTOR (4 downto 0);
+    signal ap_sig_110 : BOOLEAN;
+    signal nonce_addr_reg_402 : STD_LOGIC_VECTOR (3 downto 0);
+    signal i_7_fu_336_p2 : STD_LOGIC_VECTOR (4 downto 0);
     signal ap_sig_cseq_ST_st11_fsm_10 : STD_LOGIC;
-    signal ap_sig_136 : BOOLEAN;
-    signal tmp_6_fu_328_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal ap_sig_123 : BOOLEAN;
+    signal tmp_6_fu_330_p2 : STD_LOGIC_VECTOR (0 downto 0);
     signal plaintext_address0 : STD_LOGIC_VECTOR (3 downto 0);
     signal plaintext_ce0 : STD_LOGIC;
     signal plaintext_we0 : STD_LOGIC;
@@ -130,55 +124,57 @@ architecture behav of single_block_CTR_encrypt is
     signal w_address1 : STD_LOGIC_VECTOR (7 downto 0);
     signal w_ce1 : STD_LOGIC;
     signal w_q1 : STD_LOGIC_VECTOR (7 downto 0);
-    signal grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_start : STD_LOGIC;
-    signal grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_done : STD_LOGIC;
-    signal grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_idle : STD_LOGIC;
-    signal grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_ready : STD_LOGIC;
-    signal grp_single_block_CTR_encrypt_aes_cipher_fu_220_in_r_address0 : STD_LOGIC_VECTOR (3 downto 0);
-    signal grp_single_block_CTR_encrypt_aes_cipher_fu_220_in_r_ce0 : STD_LOGIC;
-    signal grp_single_block_CTR_encrypt_aes_cipher_fu_220_out_r_address0 : STD_LOGIC_VECTOR (3 downto 0);
-    signal grp_single_block_CTR_encrypt_aes_cipher_fu_220_out_r_ce0 : STD_LOGIC;
-    signal grp_single_block_CTR_encrypt_aes_cipher_fu_220_out_r_we0 : STD_LOGIC;
-    signal grp_single_block_CTR_encrypt_aes_cipher_fu_220_out_r_d0 : STD_LOGIC_VECTOR (7 downto 0);
-    signal grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_address0 : STD_LOGIC_VECTOR (7 downto 0);
-    signal grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_ce0 : STD_LOGIC;
-    signal grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_address1 : STD_LOGIC_VECTOR (7 downto 0);
-    signal grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_ce1 : STD_LOGIC;
-    signal grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_start : STD_LOGIC;
-    signal grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_done : STD_LOGIC;
-    signal grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_idle : STD_LOGIC;
-    signal grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_ready : STD_LOGIC;
-    signal grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_address0 : STD_LOGIC_VECTOR (7 downto 0);
-    signal grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_ce0 : STD_LOGIC;
-    signal grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_we0 : STD_LOGIC;
-    signal grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_d0 : STD_LOGIC_VECTOR (7 downto 0);
-    signal grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_address1 : STD_LOGIC_VECTOR (7 downto 0);
-    signal grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_ce1 : STD_LOGIC;
-    signal grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_we1 : STD_LOGIC;
-    signal grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_d1 : STD_LOGIC_VECTOR (7 downto 0);
-    signal i_reg_175 : STD_LOGIC_VECTOR (4 downto 0);
-    signal i_1_reg_186 : STD_LOGIC_VECTOR (4 downto 0);
+    signal grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_start : STD_LOGIC;
+    signal grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_done : STD_LOGIC;
+    signal grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_idle : STD_LOGIC;
+    signal grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_ready : STD_LOGIC;
+    signal grp_single_block_CTR_encrypt_aes_cipher_fu_222_in_r_address0 : STD_LOGIC_VECTOR (3 downto 0);
+    signal grp_single_block_CTR_encrypt_aes_cipher_fu_222_in_r_ce0 : STD_LOGIC;
+    signal grp_single_block_CTR_encrypt_aes_cipher_fu_222_out_r_address0 : STD_LOGIC_VECTOR (3 downto 0);
+    signal grp_single_block_CTR_encrypt_aes_cipher_fu_222_out_r_ce0 : STD_LOGIC;
+    signal grp_single_block_CTR_encrypt_aes_cipher_fu_222_out_r_we0 : STD_LOGIC;
+    signal grp_single_block_CTR_encrypt_aes_cipher_fu_222_out_r_d0 : STD_LOGIC_VECTOR (7 downto 0);
+    signal grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_address0 : STD_LOGIC_VECTOR (7 downto 0);
+    signal grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_ce0 : STD_LOGIC;
+    signal grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_address1 : STD_LOGIC_VECTOR (7 downto 0);
+    signal grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_ce1 : STD_LOGIC;
+    signal grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_start : STD_LOGIC;
+    signal grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_done : STD_LOGIC;
+    signal grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_idle : STD_LOGIC;
+    signal grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_ready : STD_LOGIC;
+    signal grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_address0 : STD_LOGIC_VECTOR (7 downto 0);
+    signal grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_ce0 : STD_LOGIC;
+    signal grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_we0 : STD_LOGIC;
+    signal grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_d0 : STD_LOGIC_VECTOR (7 downto 0);
+    signal grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_address1 : STD_LOGIC_VECTOR (7 downto 0);
+    signal grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_ce1 : STD_LOGIC;
+    signal grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_we1 : STD_LOGIC;
+    signal grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_d1 : STD_LOGIC_VECTOR (7 downto 0);
+    signal i_reg_177 : STD_LOGIC_VECTOR (4 downto 0);
+    signal ap_sig_cseq_ST_st1_fsm_0 : STD_LOGIC;
+    signal ap_sig_217 : BOOLEAN;
+    signal i_1_reg_188 : STD_LOGIC_VECTOR (4 downto 0);
     signal ap_sig_cseq_ST_st5_fsm_4 : STD_LOGIC;
-    signal ap_sig_236 : BOOLEAN;
+    signal ap_sig_227 : BOOLEAN;
     signal ap_sig_cseq_ST_st7_fsm_6 : STD_LOGIC;
-    signal ap_sig_246 : BOOLEAN;
-    signal i_2_reg_197 : STD_LOGIC_VECTOR (4 downto 0);
+    signal ap_sig_237 : BOOLEAN;
+    signal i_2_reg_199 : STD_LOGIC_VECTOR (4 downto 0);
     signal ap_sig_ioackin_cipher_TREADY : STD_LOGIC;
-    signal i_3_reg_208 : STD_LOGIC_VECTOR (4 downto 0);
-    signal ap_reg_grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_start : STD_LOGIC := '0';
+    signal i_3_reg_210 : STD_LOGIC_VECTOR (4 downto 0);
+    signal ap_reg_grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_start : STD_LOGIC := '0';
     signal ap_sig_cseq_ST_st4_fsm_3 : STD_LOGIC;
-    signal ap_sig_268 : BOOLEAN;
-    signal ap_reg_grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_start : STD_LOGIC := '0';
+    signal ap_sig_259 : BOOLEAN;
+    signal ap_reg_grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_start : STD_LOGIC := '0';
     signal ap_sig_cseq_ST_st3_fsm_2 : STD_LOGIC;
-    signal ap_sig_287 : BOOLEAN;
-    signal tmp_fu_258_p1 : STD_LOGIC_VECTOR (63 downto 0);
-    signal tmp_2_fu_300_p1 : STD_LOGIC_VECTOR (63 downto 0);
-    signal tmp_5_fu_323_p1 : STD_LOGIC_VECTOR (63 downto 0);
+    signal ap_sig_278 : BOOLEAN;
+    signal tmp_fu_260_p1 : STD_LOGIC_VECTOR (63 downto 0);
+    signal tmp_2_fu_302_p1 : STD_LOGIC_VECTOR (63 downto 0);
+    signal tmp_5_fu_325_p1 : STD_LOGIC_VECTOR (63 downto 0);
     signal ap_reg_ioackin_cipher_TREADY : STD_LOGIC := '0';
-    signal tmp_7_fu_340_p2 : STD_LOGIC_VECTOR (7 downto 0);
-    signal i_3_cast_fu_311_p1 : STD_LOGIC_VECTOR (31 downto 0);
+    signal tmp_7_fu_342_p2 : STD_LOGIC_VECTOR (7 downto 0);
+    signal i_3_cast_fu_313_p1 : STD_LOGIC_VECTOR (31 downto 0);
     signal ap_NS_fsm : STD_LOGIC_VECTOR (10 downto 0);
-    signal ap_sig_412 : BOOLEAN;
+    signal ap_sig_403 : BOOLEAN;
 
     component single_block_CTR_encrypt_aes_cipher IS
     port (
@@ -318,8 +314,8 @@ begin
         reset => ap_rst_n_inv,
         address0 => cipher_nonce_address0,
         ce0 => cipher_nonce_ce0,
-        we0 => grp_single_block_CTR_encrypt_aes_cipher_fu_220_out_r_we0,
-        d0 => grp_single_block_CTR_encrypt_aes_cipher_fu_220_out_r_d0,
+        we0 => grp_single_block_CTR_encrypt_aes_cipher_fu_222_out_r_we0,
+        d0 => grp_single_block_CTR_encrypt_aes_cipher_fu_222_out_r_d0,
         q0 => cipher_nonce_q0);
 
     out_U : component single_block_CTR_encrypt_plaintext
@@ -346,54 +342,54 @@ begin
         reset => ap_rst_n_inv,
         address0 => w_address0,
         ce0 => w_ce0,
-        we0 => grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_we0,
-        d0 => grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_d0,
+        we0 => grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_we0,
+        d0 => grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_d0,
         q0 => w_q0,
         address1 => w_address1,
         ce1 => w_ce1,
-        we1 => grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_we1,
-        d1 => grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_d1,
+        we1 => grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_we1,
+        d1 => grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_d1,
         q1 => w_q1);
 
-    grp_single_block_CTR_encrypt_aes_cipher_fu_220 : component single_block_CTR_encrypt_aes_cipher
+    grp_single_block_CTR_encrypt_aes_cipher_fu_222 : component single_block_CTR_encrypt_aes_cipher
     port map (
         ap_clk => ap_clk,
         ap_rst => ap_rst_n_inv,
-        ap_start => grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_start,
-        ap_done => grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_done,
-        ap_idle => grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_idle,
-        ap_ready => grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_ready,
-        in_r_address0 => grp_single_block_CTR_encrypt_aes_cipher_fu_220_in_r_address0,
-        in_r_ce0 => grp_single_block_CTR_encrypt_aes_cipher_fu_220_in_r_ce0,
+        ap_start => grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_start,
+        ap_done => grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_done,
+        ap_idle => grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_idle,
+        ap_ready => grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_ready,
+        in_r_address0 => grp_single_block_CTR_encrypt_aes_cipher_fu_222_in_r_address0,
+        in_r_ce0 => grp_single_block_CTR_encrypt_aes_cipher_fu_222_in_r_ce0,
         in_r_q0 => nonce_q0,
-        out_r_address0 => grp_single_block_CTR_encrypt_aes_cipher_fu_220_out_r_address0,
-        out_r_ce0 => grp_single_block_CTR_encrypt_aes_cipher_fu_220_out_r_ce0,
-        out_r_we0 => grp_single_block_CTR_encrypt_aes_cipher_fu_220_out_r_we0,
-        out_r_d0 => grp_single_block_CTR_encrypt_aes_cipher_fu_220_out_r_d0,
-        w_address0 => grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_address0,
-        w_ce0 => grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_ce0,
+        out_r_address0 => grp_single_block_CTR_encrypt_aes_cipher_fu_222_out_r_address0,
+        out_r_ce0 => grp_single_block_CTR_encrypt_aes_cipher_fu_222_out_r_ce0,
+        out_r_we0 => grp_single_block_CTR_encrypt_aes_cipher_fu_222_out_r_we0,
+        out_r_d0 => grp_single_block_CTR_encrypt_aes_cipher_fu_222_out_r_d0,
+        w_address0 => grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_address0,
+        w_ce0 => grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_ce0,
         w_q0 => w_q0,
-        w_address1 => grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_address1,
-        w_ce1 => grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_ce1,
+        w_address1 => grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_address1,
+        w_ce1 => grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_ce1,
         w_q1 => w_q1);
 
-    grp_single_block_CTR_encrypt_aes_key_expansion_fu_230 : component single_block_CTR_encrypt_aes_key_expansion
+    grp_single_block_CTR_encrypt_aes_key_expansion_fu_232 : component single_block_CTR_encrypt_aes_key_expansion
     port map (
         ap_clk => ap_clk,
         ap_rst => ap_rst_n_inv,
-        ap_start => grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_start,
-        ap_done => grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_done,
-        ap_idle => grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_idle,
-        ap_ready => grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_ready,
-        w_address0 => grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_address0,
-        w_ce0 => grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_ce0,
-        w_we0 => grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_we0,
-        w_d0 => grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_d0,
+        ap_start => grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_start,
+        ap_done => grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_done,
+        ap_idle => grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_idle,
+        ap_ready => grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_ready,
+        w_address0 => grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_address0,
+        w_ce0 => grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_ce0,
+        w_we0 => grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_we0,
+        w_d0 => grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_d0,
         w_q0 => w_q0,
-        w_address1 => grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_address1,
-        w_ce1 => grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_ce1,
-        w_we1 => grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_we1,
-        w_d1 => grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_d1,
+        w_address1 => grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_address1,
+        w_ce1 => grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_ce1,
+        w_we1 => grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_we1,
+        w_d1 => grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_d1,
         w_q1 => w_q1);
 
 
@@ -412,32 +408,32 @@ begin
     end process;
 
 
-    ap_reg_grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_start_assign_proc : process(ap_clk)
+    ap_reg_grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_start_assign_proc : process(ap_clk)
     begin
         if (ap_clk'event and ap_clk =  '1') then
             if (ap_rst_n_inv = '1') then
-                ap_reg_grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_start <= ap_const_logic_0;
+                ap_reg_grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_start <= ap_const_logic_0;
             else
                 if ((ap_const_logic_1 = ap_sig_cseq_ST_st4_fsm_3)) then 
-                    ap_reg_grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_start <= ap_const_logic_1;
-                elsif ((ap_const_logic_1 = grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_ready)) then 
-                    ap_reg_grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_start <= ap_const_logic_0;
+                    ap_reg_grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_start <= ap_const_logic_1;
+                elsif ((ap_const_logic_1 = grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_ready)) then 
+                    ap_reg_grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_start <= ap_const_logic_0;
                 end if; 
             end if;
         end if;
     end process;
 
 
-    ap_reg_grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_start_assign_proc : process(ap_clk)
+    ap_reg_grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_start_assign_proc : process(ap_clk)
     begin
         if (ap_clk'event and ap_clk =  '1') then
             if (ap_rst_n_inv = '1') then
-                ap_reg_grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_start <= ap_const_logic_0;
+                ap_reg_grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_start <= ap_const_logic_0;
             else
-                if (((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1) and not(ap_sig_79) and not((exitcond1_fu_241_p2 = ap_const_lv1_0)))) then 
-                    ap_reg_grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_start <= ap_const_logic_1;
-                elsif ((ap_const_logic_1 = grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_ready)) then 
-                    ap_reg_grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_start <= ap_const_logic_0;
+                if (((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1) and not(ap_sig_66) and not((exitcond1_fu_243_p2 = ap_const_lv1_0)))) then 
+                    ap_reg_grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_start <= ap_const_logic_1;
+                elsif ((ap_const_logic_1 = grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_ready)) then 
+                    ap_reg_grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_start <= ap_const_logic_0;
                 end if; 
             end if;
         end if;
@@ -460,46 +456,46 @@ begin
     end process;
 
 
-    i_1_reg_186_assign_proc : process (ap_clk)
+    i_1_reg_188_assign_proc : process (ap_clk)
     begin
         if (ap_clk'event and ap_clk = '1') then
             if ((ap_const_logic_1 = ap_sig_cseq_ST_st7_fsm_6)) then 
-                i_1_reg_186 <= i_5_reg_358;
-            elsif (((ap_const_logic_1 = ap_sig_cseq_ST_st5_fsm_4) and not((ap_const_logic_0 = grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_done)))) then 
-                i_1_reg_186 <= ap_const_lv5_0;
+                i_1_reg_188 <= i_5_reg_360;
+            elsif (((ap_const_logic_1 = ap_sig_cseq_ST_st5_fsm_4) and not((ap_const_logic_0 = grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_done)))) then 
+                i_1_reg_188 <= ap_const_lv5_0;
             end if; 
         end if;
     end process;
 
-    i_2_reg_197_assign_proc : process (ap_clk)
+    i_2_reg_199_assign_proc : process (ap_clk)
     begin
         if (ap_clk'event and ap_clk = '1') then
-            if (((ap_const_logic_1 = ap_sig_cseq_ST_st6_fsm_5) and not((ap_const_lv1_0 = exitcond2_fu_263_p2)))) then 
-                i_2_reg_197 <= ap_const_lv5_0;
+            if (((ap_const_logic_1 = ap_sig_cseq_ST_st6_fsm_5) and not((ap_const_lv1_0 = exitcond2_fu_265_p2)))) then 
+                i_2_reg_199 <= ap_const_lv5_0;
             elsif (((ap_const_logic_1 = ap_sig_cseq_ST_st9_fsm_8) and not((ap_const_logic_0 = ap_sig_ioackin_cipher_TREADY)))) then 
-                i_2_reg_197 <= i_6_reg_381;
+                i_2_reg_199 <= i_6_reg_383;
             end if; 
         end if;
     end process;
 
-    i_3_reg_208_assign_proc : process (ap_clk)
+    i_3_reg_210_assign_proc : process (ap_clk)
     begin
         if (ap_clk'event and ap_clk = '1') then
-            if (((ap_const_logic_1 = ap_sig_cseq_ST_st8_fsm_7) and not((ap_const_lv1_0 = exitcond_fu_288_p2)))) then 
-                i_3_reg_208 <= ap_const_lv5_F;
-            elsif (((ap_const_logic_1 = ap_sig_cseq_ST_st11_fsm_10) and (ap_const_lv1_0 = tmp_3_reg_396) and not((ap_const_lv1_0 = tmp_6_fu_328_p2)))) then 
-                i_3_reg_208 <= i_7_fu_334_p2;
+            if (((ap_const_logic_1 = ap_sig_cseq_ST_st8_fsm_7) and not((ap_const_lv1_0 = exitcond_fu_290_p2)))) then 
+                i_3_reg_210 <= ap_const_lv5_F;
+            elsif (((ap_const_logic_1 = ap_sig_cseq_ST_st11_fsm_10) and (ap_const_lv1_0 = tmp_3_reg_398) and not((ap_const_lv1_0 = tmp_6_fu_330_p2)))) then 
+                i_3_reg_210 <= i_7_fu_336_p2;
             end if; 
         end if;
     end process;
 
-    i_reg_175_assign_proc : process (ap_clk)
+    i_reg_177_assign_proc : process (ap_clk)
     begin
         if (ap_clk'event and ap_clk = '1') then
-            if (((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1) and (exitcond1_fu_241_p2 = ap_const_lv1_0) and not(ap_sig_79))) then 
-                i_reg_175 <= i_4_fu_247_p2;
-            elsif (((ap_const_logic_1 = ap_sig_cseq_ST_st1_fsm_0) and not((ap_start = ap_const_logic_0)))) then 
-                i_reg_175 <= ap_const_lv5_0;
+            if (((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1) and (exitcond1_fu_243_p2 = ap_const_lv1_0) and not(ap_sig_66))) then 
+                i_reg_177 <= i_4_fu_249_p2;
+            elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st1_fsm_0)) then 
+                i_reg_177 <= ap_const_lv5_0;
             end if; 
         end if;
     end process;
@@ -507,7 +503,7 @@ begin
     begin
         if (ap_clk'event and ap_clk = '1') then
             if ((ap_const_logic_1 = ap_sig_cseq_ST_st6_fsm_5)) then
-                i_5_reg_358 <= i_5_fu_269_p2;
+                i_5_reg_360 <= i_5_fu_271_p2;
             end if;
         end if;
     end process;
@@ -515,15 +511,15 @@ begin
     begin
         if (ap_clk'event and ap_clk = '1') then
             if ((ap_const_logic_1 = ap_sig_cseq_ST_st8_fsm_7)) then
-                i_6_reg_381 <= i_6_fu_294_p2;
+                i_6_reg_383 <= i_6_fu_296_p2;
             end if;
         end if;
     end process;
     process (ap_clk)
     begin
         if (ap_clk'event and ap_clk = '1') then
-            if (((ap_const_logic_1 = ap_sig_cseq_ST_st10_fsm_9) and (ap_const_lv1_0 = tmp_3_fu_315_p3))) then
-                nonce_addr_reg_400 <= tmp_5_fu_323_p1(4 - 1 downto 0);
+            if (((ap_const_logic_1 = ap_sig_cseq_ST_st10_fsm_9) and (ap_const_lv1_0 = tmp_3_fu_317_p3))) then
+                nonce_addr_reg_402 <= tmp_5_fu_325_p1(4 - 1 downto 0);
             end if;
         end if;
     end process;
@@ -531,47 +527,43 @@ begin
     begin
         if (ap_clk'event and ap_clk = '1') then
             if ((ap_const_logic_1 = ap_sig_cseq_ST_st10_fsm_9)) then
-                tmp_3_reg_396 <= i_3_reg_208(4 downto 4);
+                tmp_3_reg_398 <= i_3_reg_210(4 downto 4);
             end if;
         end if;
     end process;
     process (ap_clk)
     begin
         if (ap_clk'event and ap_clk = '1') then
-            if (((ap_const_logic_1 = ap_sig_cseq_ST_st8_fsm_7) and (ap_const_lv1_0 = exitcond_fu_288_p2))) then
-                tmp_last_V_reg_391 <= tmp_last_V_fu_305_p2;
+            if (((ap_const_logic_1 = ap_sig_cseq_ST_st8_fsm_7) and (ap_const_lv1_0 = exitcond_fu_290_p2))) then
+                tmp_last_V_reg_393 <= tmp_last_V_fu_307_p2;
             end if;
         end if;
     end process;
     process (ap_clk)
     begin
         if (ap_clk'event and ap_clk = '1') then
-            if (((ap_const_logic_1 = ap_sig_cseq_ST_st6_fsm_5) and (ap_const_lv1_0 = exitcond2_fu_263_p2))) then
-                    tmp_s_reg_363(4 downto 0) <= tmp_s_fu_275_p1(4 downto 0);
+            if (((ap_const_logic_1 = ap_sig_cseq_ST_st6_fsm_5) and (ap_const_lv1_0 = exitcond2_fu_265_p2))) then
+                    tmp_s_reg_365(4 downto 0) <= tmp_s_fu_277_p1(4 downto 0);
             end if;
         end if;
     end process;
-    tmp_s_reg_363(63 downto 5) <= "00000000000000000000000000000000000000000000000000000000000";
+    tmp_s_reg_365(63 downto 5) <= "00000000000000000000000000000000000000000000000000000000000";
 
-    ap_NS_fsm_assign_proc : process (ap_start, ap_CS_fsm, exitcond1_fu_241_p2, ap_sig_79, exitcond2_fu_263_p2, exitcond_fu_288_p2, tmp_3_reg_396, tmp_6_fu_328_p2, grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_done, grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_done, ap_sig_ioackin_cipher_TREADY)
+    ap_NS_fsm_assign_proc : process (ap_CS_fsm, exitcond1_fu_243_p2, ap_sig_66, exitcond2_fu_265_p2, exitcond_fu_290_p2, tmp_3_reg_398, tmp_6_fu_330_p2, grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_done, grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_done, ap_sig_ioackin_cipher_TREADY)
     begin
         case ap_CS_fsm is
             when ap_ST_st1_fsm_0 => 
-                if (not((ap_start = ap_const_logic_0))) then
-                    ap_NS_fsm <= ap_ST_st2_fsm_1;
-                else
-                    ap_NS_fsm <= ap_ST_st1_fsm_0;
-                end if;
+                ap_NS_fsm <= ap_ST_st2_fsm_1;
             when ap_ST_st2_fsm_1 => 
-                if (((exitcond1_fu_241_p2 = ap_const_lv1_0) and not(ap_sig_79))) then
+                if (((exitcond1_fu_243_p2 = ap_const_lv1_0) and not(ap_sig_66))) then
                     ap_NS_fsm <= ap_ST_st2_fsm_1;
-                elsif ((not(ap_sig_79) and not((exitcond1_fu_241_p2 = ap_const_lv1_0)))) then
+                elsif ((not(ap_sig_66) and not((exitcond1_fu_243_p2 = ap_const_lv1_0)))) then
                     ap_NS_fsm <= ap_ST_st3_fsm_2;
                 else
                     ap_NS_fsm <= ap_ST_st2_fsm_1;
                 end if;
             when ap_ST_st3_fsm_2 => 
-                if (not((ap_const_logic_0 = grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_done))) then
+                if (not((ap_const_logic_0 = grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_done))) then
                     ap_NS_fsm <= ap_ST_st4_fsm_3;
                 else
                     ap_NS_fsm <= ap_ST_st3_fsm_2;
@@ -579,13 +571,13 @@ begin
             when ap_ST_st4_fsm_3 => 
                 ap_NS_fsm <= ap_ST_st5_fsm_4;
             when ap_ST_st5_fsm_4 => 
-                if (not((ap_const_logic_0 = grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_done))) then
+                if (not((ap_const_logic_0 = grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_done))) then
                     ap_NS_fsm <= ap_ST_st6_fsm_5;
                 else
                     ap_NS_fsm <= ap_ST_st5_fsm_4;
                 end if;
             when ap_ST_st6_fsm_5 => 
-                if (not((ap_const_lv1_0 = exitcond2_fu_263_p2))) then
+                if (not((ap_const_lv1_0 = exitcond2_fu_265_p2))) then
                     ap_NS_fsm <= ap_ST_st8_fsm_7;
                 else
                     ap_NS_fsm <= ap_ST_st7_fsm_6;
@@ -593,7 +585,7 @@ begin
             when ap_ST_st7_fsm_6 => 
                 ap_NS_fsm <= ap_ST_st6_fsm_5;
             when ap_ST_st8_fsm_7 => 
-                if (not((ap_const_lv1_0 = exitcond_fu_288_p2))) then
+                if (not((ap_const_lv1_0 = exitcond_fu_290_p2))) then
                     ap_NS_fsm <= ap_ST_st10_fsm_9;
                 else
                     ap_NS_fsm <= ap_ST_st9_fsm_8;
@@ -607,7 +599,7 @@ begin
             when ap_ST_st10_fsm_9 => 
                 ap_NS_fsm <= ap_ST_st11_fsm_10;
             when ap_ST_st11_fsm_10 => 
-                if (((ap_const_lv1_0 = tmp_6_fu_328_p2) or not((ap_const_lv1_0 = tmp_3_reg_396)))) then
+                if (((ap_const_lv1_0 = tmp_6_fu_330_p2) or not((ap_const_lv1_0 = tmp_3_reg_398)))) then
                     ap_NS_fsm <= ap_ST_st1_fsm_0;
                 else
                     ap_NS_fsm <= ap_ST_st10_fsm_9;
@@ -617,123 +609,93 @@ begin
         end case;
     end process;
 
-    ap_done_assign_proc : process(tmp_3_reg_396, ap_sig_cseq_ST_st11_fsm_10, tmp_6_fu_328_p2)
-    begin
-        if (((ap_const_logic_1 = ap_sig_cseq_ST_st11_fsm_10) and ((ap_const_lv1_0 = tmp_6_fu_328_p2) or not((ap_const_lv1_0 = tmp_3_reg_396))))) then 
-            ap_done <= ap_const_logic_1;
-        else 
-            ap_done <= ap_const_logic_0;
-        end if; 
-    end process;
-
-
-    ap_idle_assign_proc : process(ap_start, ap_sig_cseq_ST_st1_fsm_0)
-    begin
-        if (((ap_const_logic_0 = ap_start) and (ap_const_logic_1 = ap_sig_cseq_ST_st1_fsm_0))) then 
-            ap_idle <= ap_const_logic_1;
-        else 
-            ap_idle <= ap_const_logic_0;
-        end if; 
-    end process;
-
-
-    ap_ready_assign_proc : process(tmp_3_reg_396, ap_sig_cseq_ST_st11_fsm_10, tmp_6_fu_328_p2)
-    begin
-        if (((ap_const_logic_1 = ap_sig_cseq_ST_st11_fsm_10) and ((ap_const_lv1_0 = tmp_6_fu_328_p2) or not((ap_const_lv1_0 = tmp_3_reg_396))))) then 
-            ap_ready <= ap_const_logic_1;
-        else 
-            ap_ready <= ap_const_logic_0;
-        end if; 
-    end process;
-
-
     ap_rst_n_inv_assign_proc : process(ap_rst_n)
     begin
                 ap_rst_n_inv <= not(ap_rst_n);
     end process;
 
 
-    ap_sig_107_assign_proc : process(ap_CS_fsm)
+    ap_sig_110_assign_proc : process(ap_CS_fsm)
     begin
-                ap_sig_107 <= (ap_const_lv1_1 = ap_CS_fsm(7 downto 7));
+                ap_sig_110 <= (ap_const_lv1_1 = ap_CS_fsm(9 downto 9));
     end process;
 
 
     ap_sig_123_assign_proc : process(ap_CS_fsm)
     begin
-                ap_sig_123 <= (ap_const_lv1_1 = ap_CS_fsm(9 downto 9));
+                ap_sig_123 <= (ap_const_lv1_1 = ap_CS_fsm(10 downto 10));
     end process;
 
 
-    ap_sig_136_assign_proc : process(ap_CS_fsm)
+    ap_sig_217_assign_proc : process(ap_CS_fsm)
     begin
-                ap_sig_136 <= (ap_const_lv1_1 = ap_CS_fsm(10 downto 10));
+                ap_sig_217 <= (ap_const_lv1_1 = ap_CS_fsm(0 downto 0));
     end process;
 
 
-    ap_sig_236_assign_proc : process(ap_CS_fsm)
+    ap_sig_227_assign_proc : process(ap_CS_fsm)
     begin
-                ap_sig_236 <= (ap_const_lv1_1 = ap_CS_fsm(4 downto 4));
+                ap_sig_227 <= (ap_const_lv1_1 = ap_CS_fsm(4 downto 4));
     end process;
 
 
-    ap_sig_246_assign_proc : process(ap_CS_fsm)
+    ap_sig_237_assign_proc : process(ap_CS_fsm)
     begin
-                ap_sig_246 <= (ap_const_lv1_1 = ap_CS_fsm(6 downto 6));
+                ap_sig_237 <= (ap_const_lv1_1 = ap_CS_fsm(6 downto 6));
     end process;
 
 
-    ap_sig_268_assign_proc : process(ap_CS_fsm)
+    ap_sig_259_assign_proc : process(ap_CS_fsm)
     begin
-                ap_sig_268 <= (ap_const_lv1_1 = ap_CS_fsm(3 downto 3));
+                ap_sig_259 <= (ap_const_lv1_1 = ap_CS_fsm(3 downto 3));
     end process;
 
 
-    ap_sig_28_assign_proc : process(ap_CS_fsm)
+    ap_sig_278_assign_proc : process(ap_CS_fsm)
     begin
-                ap_sig_28 <= (ap_CS_fsm(0 downto 0) = ap_const_lv1_1);
+                ap_sig_278 <= (ap_const_lv1_1 = ap_CS_fsm(2 downto 2));
     end process;
 
 
-    ap_sig_287_assign_proc : process(ap_CS_fsm)
+    ap_sig_403_assign_proc : process(tmp_3_reg_398, ap_sig_cseq_ST_st11_fsm_10)
     begin
-                ap_sig_287 <= (ap_const_lv1_1 = ap_CS_fsm(2 downto 2));
+                ap_sig_403 <= ((ap_const_logic_1 = ap_sig_cseq_ST_st11_fsm_10) and (ap_const_lv1_0 = tmp_3_reg_398));
     end process;
 
 
-    ap_sig_412_assign_proc : process(tmp_3_reg_396, ap_sig_cseq_ST_st11_fsm_10)
+    ap_sig_48_assign_proc : process(ap_CS_fsm)
     begin
-                ap_sig_412 <= ((ap_const_logic_1 = ap_sig_cseq_ST_st11_fsm_10) and (ap_const_lv1_0 = tmp_3_reg_396));
+                ap_sig_48 <= (ap_CS_fsm(1 downto 1) = ap_const_lv1_1);
     end process;
 
 
-    ap_sig_61_assign_proc : process(ap_CS_fsm)
+    ap_sig_60_assign_proc : process(ap_CS_fsm)
     begin
-                ap_sig_61 <= (ap_const_lv1_1 = ap_CS_fsm(1 downto 1));
+                ap_sig_60 <= (ap_const_lv1_1 = ap_CS_fsm(8 downto 8));
     end process;
 
 
-    ap_sig_73_assign_proc : process(ap_CS_fsm)
+    ap_sig_66_assign_proc : process(i_plaintext_TVALID, exitcond1_fu_243_p2)
     begin
-                ap_sig_73 <= (ap_const_lv1_1 = ap_CS_fsm(8 downto 8));
+                ap_sig_66 <= ((exitcond1_fu_243_p2 = ap_const_lv1_0) and (i_plaintext_TVALID = ap_const_logic_0));
     end process;
 
 
-    ap_sig_79_assign_proc : process(i_plaintext_TVALID, exitcond1_fu_241_p2)
+    ap_sig_76_assign_proc : process(ap_CS_fsm)
     begin
-                ap_sig_79 <= ((exitcond1_fu_241_p2 = ap_const_lv1_0) and (i_plaintext_TVALID = ap_const_logic_0));
+                ap_sig_76 <= (ap_const_lv1_1 = ap_CS_fsm(5 downto 5));
     end process;
 
 
-    ap_sig_89_assign_proc : process(ap_CS_fsm)
+    ap_sig_94_assign_proc : process(ap_CS_fsm)
     begin
-                ap_sig_89 <= (ap_const_lv1_1 = ap_CS_fsm(5 downto 5));
+                ap_sig_94 <= (ap_const_lv1_1 = ap_CS_fsm(7 downto 7));
     end process;
 
 
-    ap_sig_cseq_ST_st10_fsm_9_assign_proc : process(ap_sig_123)
+    ap_sig_cseq_ST_st10_fsm_9_assign_proc : process(ap_sig_110)
     begin
-        if (ap_sig_123) then 
+        if (ap_sig_110) then 
             ap_sig_cseq_ST_st10_fsm_9 <= ap_const_logic_1;
         else 
             ap_sig_cseq_ST_st10_fsm_9 <= ap_const_logic_0;
@@ -741,9 +703,9 @@ begin
     end process;
 
 
-    ap_sig_cseq_ST_st11_fsm_10_assign_proc : process(ap_sig_136)
+    ap_sig_cseq_ST_st11_fsm_10_assign_proc : process(ap_sig_123)
     begin
-        if (ap_sig_136) then 
+        if (ap_sig_123) then 
             ap_sig_cseq_ST_st11_fsm_10 <= ap_const_logic_1;
         else 
             ap_sig_cseq_ST_st11_fsm_10 <= ap_const_logic_0;
@@ -751,9 +713,9 @@ begin
     end process;
 
 
-    ap_sig_cseq_ST_st1_fsm_0_assign_proc : process(ap_sig_28)
+    ap_sig_cseq_ST_st1_fsm_0_assign_proc : process(ap_sig_217)
     begin
-        if (ap_sig_28) then 
+        if (ap_sig_217) then 
             ap_sig_cseq_ST_st1_fsm_0 <= ap_const_logic_1;
         else 
             ap_sig_cseq_ST_st1_fsm_0 <= ap_const_logic_0;
@@ -761,9 +723,9 @@ begin
     end process;
 
 
-    ap_sig_cseq_ST_st2_fsm_1_assign_proc : process(ap_sig_61)
+    ap_sig_cseq_ST_st2_fsm_1_assign_proc : process(ap_sig_48)
     begin
-        if (ap_sig_61) then 
+        if (ap_sig_48) then 
             ap_sig_cseq_ST_st2_fsm_1 <= ap_const_logic_1;
         else 
             ap_sig_cseq_ST_st2_fsm_1 <= ap_const_logic_0;
@@ -771,9 +733,9 @@ begin
     end process;
 
 
-    ap_sig_cseq_ST_st3_fsm_2_assign_proc : process(ap_sig_287)
+    ap_sig_cseq_ST_st3_fsm_2_assign_proc : process(ap_sig_278)
     begin
-        if (ap_sig_287) then 
+        if (ap_sig_278) then 
             ap_sig_cseq_ST_st3_fsm_2 <= ap_const_logic_1;
         else 
             ap_sig_cseq_ST_st3_fsm_2 <= ap_const_logic_0;
@@ -781,9 +743,9 @@ begin
     end process;
 
 
-    ap_sig_cseq_ST_st4_fsm_3_assign_proc : process(ap_sig_268)
+    ap_sig_cseq_ST_st4_fsm_3_assign_proc : process(ap_sig_259)
     begin
-        if (ap_sig_268) then 
+        if (ap_sig_259) then 
             ap_sig_cseq_ST_st4_fsm_3 <= ap_const_logic_1;
         else 
             ap_sig_cseq_ST_st4_fsm_3 <= ap_const_logic_0;
@@ -791,9 +753,9 @@ begin
     end process;
 
 
-    ap_sig_cseq_ST_st5_fsm_4_assign_proc : process(ap_sig_236)
+    ap_sig_cseq_ST_st5_fsm_4_assign_proc : process(ap_sig_227)
     begin
-        if (ap_sig_236) then 
+        if (ap_sig_227) then 
             ap_sig_cseq_ST_st5_fsm_4 <= ap_const_logic_1;
         else 
             ap_sig_cseq_ST_st5_fsm_4 <= ap_const_logic_0;
@@ -801,9 +763,9 @@ begin
     end process;
 
 
-    ap_sig_cseq_ST_st6_fsm_5_assign_proc : process(ap_sig_89)
+    ap_sig_cseq_ST_st6_fsm_5_assign_proc : process(ap_sig_76)
     begin
-        if (ap_sig_89) then 
+        if (ap_sig_76) then 
             ap_sig_cseq_ST_st6_fsm_5 <= ap_const_logic_1;
         else 
             ap_sig_cseq_ST_st6_fsm_5 <= ap_const_logic_0;
@@ -811,9 +773,9 @@ begin
     end process;
 
 
-    ap_sig_cseq_ST_st7_fsm_6_assign_proc : process(ap_sig_246)
+    ap_sig_cseq_ST_st7_fsm_6_assign_proc : process(ap_sig_237)
     begin
-        if (ap_sig_246) then 
+        if (ap_sig_237) then 
             ap_sig_cseq_ST_st7_fsm_6 <= ap_const_logic_1;
         else 
             ap_sig_cseq_ST_st7_fsm_6 <= ap_const_logic_0;
@@ -821,9 +783,9 @@ begin
     end process;
 
 
-    ap_sig_cseq_ST_st8_fsm_7_assign_proc : process(ap_sig_107)
+    ap_sig_cseq_ST_st8_fsm_7_assign_proc : process(ap_sig_94)
     begin
-        if (ap_sig_107) then 
+        if (ap_sig_94) then 
             ap_sig_cseq_ST_st8_fsm_7 <= ap_const_logic_1;
         else 
             ap_sig_cseq_ST_st8_fsm_7 <= ap_const_logic_0;
@@ -831,9 +793,9 @@ begin
     end process;
 
 
-    ap_sig_cseq_ST_st9_fsm_8_assign_proc : process(ap_sig_73)
+    ap_sig_cseq_ST_st9_fsm_8_assign_proc : process(ap_sig_60)
     begin
-        if (ap_sig_73) then 
+        if (ap_sig_60) then 
             ap_sig_cseq_ST_st9_fsm_8 <= ap_const_logic_1;
         else 
             ap_sig_cseq_ST_st9_fsm_8 <= ap_const_logic_0;
@@ -861,7 +823,7 @@ begin
         end if; 
     end process;
 
-    cipher_TLAST <= tmp_last_V_reg_391;
+    cipher_TLAST <= tmp_last_V_reg_393;
     cipher_TUSER <= ap_const_lv1_1;
 
     cipher_TVALID_assign_proc : process(ap_sig_cseq_ST_st9_fsm_8, ap_reg_ioackin_cipher_TREADY)
@@ -874,44 +836,44 @@ begin
     end process;
 
 
-    cipher_nonce_address0_assign_proc : process(ap_sig_cseq_ST_st6_fsm_5, tmp_s_fu_275_p1, grp_single_block_CTR_encrypt_aes_cipher_fu_220_out_r_address0, ap_sig_cseq_ST_st5_fsm_4)
+    cipher_nonce_address0_assign_proc : process(ap_sig_cseq_ST_st6_fsm_5, tmp_s_fu_277_p1, grp_single_block_CTR_encrypt_aes_cipher_fu_222_out_r_address0, ap_sig_cseq_ST_st5_fsm_4)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st6_fsm_5)) then 
-            cipher_nonce_address0 <= tmp_s_fu_275_p1(4 - 1 downto 0);
+            cipher_nonce_address0 <= tmp_s_fu_277_p1(4 - 1 downto 0);
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st5_fsm_4)) then 
-            cipher_nonce_address0 <= grp_single_block_CTR_encrypt_aes_cipher_fu_220_out_r_address0;
+            cipher_nonce_address0 <= grp_single_block_CTR_encrypt_aes_cipher_fu_222_out_r_address0;
         else 
             cipher_nonce_address0 <= "XXXX";
         end if; 
     end process;
 
 
-    cipher_nonce_ce0_assign_proc : process(ap_sig_cseq_ST_st6_fsm_5, grp_single_block_CTR_encrypt_aes_cipher_fu_220_out_r_ce0, ap_sig_cseq_ST_st5_fsm_4)
+    cipher_nonce_ce0_assign_proc : process(ap_sig_cseq_ST_st6_fsm_5, grp_single_block_CTR_encrypt_aes_cipher_fu_222_out_r_ce0, ap_sig_cseq_ST_st5_fsm_4)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st6_fsm_5)) then 
             cipher_nonce_ce0 <= ap_const_logic_1;
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st5_fsm_4)) then 
-            cipher_nonce_ce0 <= grp_single_block_CTR_encrypt_aes_cipher_fu_220_out_r_ce0;
+            cipher_nonce_ce0 <= grp_single_block_CTR_encrypt_aes_cipher_fu_222_out_r_ce0;
         else 
             cipher_nonce_ce0 <= ap_const_logic_0;
         end if; 
     end process;
 
-    exitcond1_fu_241_p2 <= "1" when (i_reg_175 = ap_const_lv5_10) else "0";
-    exitcond2_fu_263_p2 <= "1" when (i_1_reg_186 = ap_const_lv5_10) else "0";
-    exitcond_fu_288_p2 <= "1" when (i_2_reg_197 = ap_const_lv5_10) else "0";
-    grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_start <= ap_reg_grp_single_block_CTR_encrypt_aes_cipher_fu_220_ap_start;
-    grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_start <= ap_reg_grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_ap_start;
-        i_3_cast_fu_311_p1 <= std_logic_vector(resize(signed(i_3_reg_208),32));
+    exitcond1_fu_243_p2 <= "1" when (i_reg_177 = ap_const_lv5_10) else "0";
+    exitcond2_fu_265_p2 <= "1" when (i_1_reg_188 = ap_const_lv5_10) else "0";
+    exitcond_fu_290_p2 <= "1" when (i_2_reg_199 = ap_const_lv5_10) else "0";
+    grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_start <= ap_reg_grp_single_block_CTR_encrypt_aes_cipher_fu_222_ap_start;
+    grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_start <= ap_reg_grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_ap_start;
+        i_3_cast_fu_313_p1 <= std_logic_vector(resize(signed(i_3_reg_210),32));
 
-    i_4_fu_247_p2 <= std_logic_vector(unsigned(i_reg_175) + unsigned(ap_const_lv5_1));
-    i_5_fu_269_p2 <= std_logic_vector(unsigned(i_1_reg_186) + unsigned(ap_const_lv5_1));
-    i_6_fu_294_p2 <= std_logic_vector(unsigned(i_2_reg_197) + unsigned(ap_const_lv5_1));
-    i_7_fu_334_p2 <= std_logic_vector(unsigned(i_3_reg_208) + unsigned(ap_const_lv5_1F));
+    i_4_fu_249_p2 <= std_logic_vector(unsigned(i_reg_177) + unsigned(ap_const_lv5_1));
+    i_5_fu_271_p2 <= std_logic_vector(unsigned(i_1_reg_188) + unsigned(ap_const_lv5_1));
+    i_6_fu_296_p2 <= std_logic_vector(unsigned(i_2_reg_199) + unsigned(ap_const_lv5_1));
+    i_7_fu_336_p2 <= std_logic_vector(unsigned(i_3_reg_210) + unsigned(ap_const_lv5_1F));
 
-    i_plaintext_TDATA_blk_n_assign_proc : process(i_plaintext_TVALID, ap_sig_cseq_ST_st2_fsm_1, exitcond1_fu_241_p2)
+    i_plaintext_TDATA_blk_n_assign_proc : process(i_plaintext_TVALID, ap_sig_cseq_ST_st2_fsm_1, exitcond1_fu_243_p2)
     begin
-        if (((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1) and (exitcond1_fu_241_p2 = ap_const_lv1_0))) then 
+        if (((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1) and (exitcond1_fu_243_p2 = ap_const_lv1_0))) then 
             i_plaintext_TDATA_blk_n <= i_plaintext_TVALID;
         else 
             i_plaintext_TDATA_blk_n <= ap_const_logic_1;
@@ -919,9 +881,9 @@ begin
     end process;
 
 
-    i_plaintext_TREADY_assign_proc : process(ap_sig_cseq_ST_st2_fsm_1, exitcond1_fu_241_p2, ap_sig_79)
+    i_plaintext_TREADY_assign_proc : process(ap_sig_cseq_ST_st2_fsm_1, exitcond1_fu_243_p2, ap_sig_66)
     begin
-        if ((((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1) and (exitcond1_fu_241_p2 = ap_const_lv1_0) and not(ap_sig_79)))) then 
+        if ((((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1) and (exitcond1_fu_243_p2 = ap_const_lv1_0) and not(ap_sig_66)))) then 
             i_plaintext_TREADY <= ap_const_logic_1;
         else 
             i_plaintext_TREADY <= ap_const_logic_0;
@@ -929,38 +891,38 @@ begin
     end process;
 
 
-    nonce_address0_assign_proc : process(tmp_3_reg_396, ap_sig_cseq_ST_st10_fsm_9, nonce_addr_reg_400, ap_sig_cseq_ST_st11_fsm_10, tmp_6_fu_328_p2, grp_single_block_CTR_encrypt_aes_cipher_fu_220_in_r_address0, ap_sig_cseq_ST_st5_fsm_4, tmp_5_fu_323_p1)
+    nonce_address0_assign_proc : process(tmp_3_reg_398, ap_sig_cseq_ST_st10_fsm_9, nonce_addr_reg_402, ap_sig_cseq_ST_st11_fsm_10, tmp_6_fu_330_p2, grp_single_block_CTR_encrypt_aes_cipher_fu_222_in_r_address0, ap_sig_cseq_ST_st5_fsm_4, tmp_5_fu_325_p1)
     begin
-        if ((((ap_const_logic_1 = ap_sig_cseq_ST_st11_fsm_10) and (ap_const_lv1_0 = tmp_3_reg_396) and not((ap_const_lv1_0 = tmp_6_fu_328_p2))) or ((ap_const_logic_1 = ap_sig_cseq_ST_st11_fsm_10) and (ap_const_lv1_0 = tmp_3_reg_396) and (ap_const_lv1_0 = tmp_6_fu_328_p2)))) then 
-            nonce_address0 <= nonce_addr_reg_400;
+        if ((((ap_const_logic_1 = ap_sig_cseq_ST_st11_fsm_10) and (ap_const_lv1_0 = tmp_3_reg_398) and not((ap_const_lv1_0 = tmp_6_fu_330_p2))) or ((ap_const_logic_1 = ap_sig_cseq_ST_st11_fsm_10) and (ap_const_lv1_0 = tmp_3_reg_398) and (ap_const_lv1_0 = tmp_6_fu_330_p2)))) then 
+            nonce_address0 <= nonce_addr_reg_402;
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st10_fsm_9)) then 
-            nonce_address0 <= tmp_5_fu_323_p1(4 - 1 downto 0);
+            nonce_address0 <= tmp_5_fu_325_p1(4 - 1 downto 0);
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st5_fsm_4)) then 
-            nonce_address0 <= grp_single_block_CTR_encrypt_aes_cipher_fu_220_in_r_address0;
+            nonce_address0 <= grp_single_block_CTR_encrypt_aes_cipher_fu_222_in_r_address0;
         else 
             nonce_address0 <= "XXXX";
         end if; 
     end process;
 
 
-    nonce_ce0_assign_proc : process(tmp_3_reg_396, ap_sig_cseq_ST_st10_fsm_9, ap_sig_cseq_ST_st11_fsm_10, tmp_6_fu_328_p2, grp_single_block_CTR_encrypt_aes_cipher_fu_220_in_r_ce0, ap_sig_cseq_ST_st5_fsm_4)
+    nonce_ce0_assign_proc : process(tmp_3_reg_398, ap_sig_cseq_ST_st10_fsm_9, ap_sig_cseq_ST_st11_fsm_10, tmp_6_fu_330_p2, grp_single_block_CTR_encrypt_aes_cipher_fu_222_in_r_ce0, ap_sig_cseq_ST_st5_fsm_4)
     begin
-        if (((ap_const_logic_1 = ap_sig_cseq_ST_st10_fsm_9) or ((ap_const_logic_1 = ap_sig_cseq_ST_st11_fsm_10) and (ap_const_lv1_0 = tmp_3_reg_396) and not((ap_const_lv1_0 = tmp_6_fu_328_p2))) or ((ap_const_logic_1 = ap_sig_cseq_ST_st11_fsm_10) and (ap_const_lv1_0 = tmp_3_reg_396) and (ap_const_lv1_0 = tmp_6_fu_328_p2)))) then 
+        if (((ap_const_logic_1 = ap_sig_cseq_ST_st10_fsm_9) or ((ap_const_logic_1 = ap_sig_cseq_ST_st11_fsm_10) and (ap_const_lv1_0 = tmp_3_reg_398) and not((ap_const_lv1_0 = tmp_6_fu_330_p2))) or ((ap_const_logic_1 = ap_sig_cseq_ST_st11_fsm_10) and (ap_const_lv1_0 = tmp_3_reg_398) and (ap_const_lv1_0 = tmp_6_fu_330_p2)))) then 
             nonce_ce0 <= ap_const_logic_1;
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st5_fsm_4)) then 
-            nonce_ce0 <= grp_single_block_CTR_encrypt_aes_cipher_fu_220_in_r_ce0;
+            nonce_ce0 <= grp_single_block_CTR_encrypt_aes_cipher_fu_222_in_r_ce0;
         else 
             nonce_ce0 <= ap_const_logic_0;
         end if; 
     end process;
 
 
-    nonce_d0_assign_proc : process(tmp_6_fu_328_p2, tmp_7_fu_340_p2, ap_sig_412)
+    nonce_d0_assign_proc : process(tmp_6_fu_330_p2, tmp_7_fu_342_p2, ap_sig_403)
     begin
-        if (ap_sig_412) then
-            if ((ap_const_lv1_0 = tmp_6_fu_328_p2)) then 
-                nonce_d0 <= tmp_7_fu_340_p2;
-            elsif (not((ap_const_lv1_0 = tmp_6_fu_328_p2))) then 
+        if (ap_sig_403) then
+            if ((ap_const_lv1_0 = tmp_6_fu_330_p2)) then 
+                nonce_d0 <= tmp_7_fu_342_p2;
+            elsif (not((ap_const_lv1_0 = tmp_6_fu_330_p2))) then 
                 nonce_d0 <= ap_const_lv8_0;
             else 
                 nonce_d0 <= "XXXXXXXX";
@@ -971,9 +933,9 @@ begin
     end process;
 
 
-    nonce_we0_assign_proc : process(tmp_3_reg_396, ap_sig_cseq_ST_st11_fsm_10, tmp_6_fu_328_p2)
+    nonce_we0_assign_proc : process(tmp_3_reg_398, ap_sig_cseq_ST_st11_fsm_10, tmp_6_fu_330_p2)
     begin
-        if ((((ap_const_logic_1 = ap_sig_cseq_ST_st11_fsm_10) and (ap_const_lv1_0 = tmp_3_reg_396) and not((ap_const_lv1_0 = tmp_6_fu_328_p2))) or ((ap_const_logic_1 = ap_sig_cseq_ST_st11_fsm_10) and (ap_const_lv1_0 = tmp_3_reg_396) and (ap_const_lv1_0 = tmp_6_fu_328_p2)))) then 
+        if ((((ap_const_logic_1 = ap_sig_cseq_ST_st11_fsm_10) and (ap_const_lv1_0 = tmp_3_reg_398) and not((ap_const_lv1_0 = tmp_6_fu_330_p2))) or ((ap_const_logic_1 = ap_sig_cseq_ST_st11_fsm_10) and (ap_const_lv1_0 = tmp_3_reg_398) and (ap_const_lv1_0 = tmp_6_fu_330_p2)))) then 
             nonce_we0 <= ap_const_logic_1;
         else 
             nonce_we0 <= ap_const_logic_0;
@@ -981,12 +943,12 @@ begin
     end process;
 
 
-    out_address0_assign_proc : process(tmp_s_reg_363, ap_sig_cseq_ST_st8_fsm_7, ap_sig_cseq_ST_st7_fsm_6, tmp_2_fu_300_p1)
+    out_address0_assign_proc : process(tmp_s_reg_365, ap_sig_cseq_ST_st8_fsm_7, ap_sig_cseq_ST_st7_fsm_6, tmp_2_fu_302_p1)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st7_fsm_6)) then 
-            out_address0 <= tmp_s_reg_363(4 - 1 downto 0);
+            out_address0 <= tmp_s_reg_365(4 - 1 downto 0);
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st8_fsm_7)) then 
-            out_address0 <= tmp_2_fu_300_p1(4 - 1 downto 0);
+            out_address0 <= tmp_2_fu_302_p1(4 - 1 downto 0);
         else 
             out_address0 <= "XXXX";
         end if; 
@@ -1014,21 +976,21 @@ begin
     end process;
 
 
-    plaintext_address0_assign_proc : process(ap_sig_cseq_ST_st2_fsm_1, ap_sig_cseq_ST_st6_fsm_5, tmp_s_fu_275_p1, tmp_fu_258_p1)
+    plaintext_address0_assign_proc : process(ap_sig_cseq_ST_st2_fsm_1, ap_sig_cseq_ST_st6_fsm_5, tmp_s_fu_277_p1, tmp_fu_260_p1)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1)) then 
-            plaintext_address0 <= tmp_fu_258_p1(4 - 1 downto 0);
+            plaintext_address0 <= tmp_fu_260_p1(4 - 1 downto 0);
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st6_fsm_5)) then 
-            plaintext_address0 <= tmp_s_fu_275_p1(4 - 1 downto 0);
+            plaintext_address0 <= tmp_s_fu_277_p1(4 - 1 downto 0);
         else 
             plaintext_address0 <= "XXXX";
         end if; 
     end process;
 
 
-    plaintext_ce0_assign_proc : process(ap_sig_cseq_ST_st2_fsm_1, ap_sig_79, ap_sig_cseq_ST_st6_fsm_5)
+    plaintext_ce0_assign_proc : process(ap_sig_cseq_ST_st2_fsm_1, ap_sig_66, ap_sig_cseq_ST_st6_fsm_5)
     begin
-        if ((((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1) and not(ap_sig_79)) or (ap_const_logic_1 = ap_sig_cseq_ST_st6_fsm_5))) then 
+        if ((((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1) and not(ap_sig_66)) or (ap_const_logic_1 = ap_sig_cseq_ST_st6_fsm_5))) then 
             plaintext_ce0 <= ap_const_logic_1;
         else 
             plaintext_ce0 <= ap_const_logic_0;
@@ -1036,66 +998,66 @@ begin
     end process;
 
 
-    plaintext_we0_assign_proc : process(ap_sig_cseq_ST_st2_fsm_1, exitcond1_fu_241_p2, ap_sig_79)
+    plaintext_we0_assign_proc : process(ap_sig_cseq_ST_st2_fsm_1, exitcond1_fu_243_p2, ap_sig_66)
     begin
-        if ((((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1) and (exitcond1_fu_241_p2 = ap_const_lv1_0) and not(ap_sig_79)))) then 
+        if ((((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1) and (exitcond1_fu_243_p2 = ap_const_lv1_0) and not(ap_sig_66)))) then 
             plaintext_we0 <= ap_const_logic_1;
         else 
             plaintext_we0 <= ap_const_logic_0;
         end if; 
     end process;
 
-    tmp_2_fu_300_p1 <= std_logic_vector(resize(unsigned(i_2_reg_197),64));
-    tmp_3_fu_315_p3 <= i_3_reg_208(4 downto 4);
-    tmp_5_fu_323_p1 <= std_logic_vector(resize(unsigned(i_3_cast_fu_311_p1),64));
-    tmp_6_fu_328_p2 <= "1" when (nonce_q0 = ap_const_lv8_FF) else "0";
-    tmp_7_fu_340_p2 <= std_logic_vector(unsigned(nonce_q0) + unsigned(ap_const_lv8_1));
-    tmp_fu_258_p1 <= std_logic_vector(resize(unsigned(i_reg_175),64));
-    tmp_last_V_fu_305_p2 <= "1" when (i_2_reg_197 = ap_const_lv5_F) else "0";
-    tmp_s_fu_275_p1 <= std_logic_vector(resize(unsigned(i_1_reg_186),64));
+    tmp_2_fu_302_p1 <= std_logic_vector(resize(unsigned(i_2_reg_199),64));
+    tmp_3_fu_317_p3 <= i_3_reg_210(4 downto 4);
+    tmp_5_fu_325_p1 <= std_logic_vector(resize(unsigned(i_3_cast_fu_313_p1),64));
+    tmp_6_fu_330_p2 <= "1" when (nonce_q0 = ap_const_lv8_FF) else "0";
+    tmp_7_fu_342_p2 <= std_logic_vector(unsigned(nonce_q0) + unsigned(ap_const_lv8_1));
+    tmp_fu_260_p1 <= std_logic_vector(resize(unsigned(i_reg_177),64));
+    tmp_last_V_fu_307_p2 <= "1" when (i_2_reg_199 = ap_const_lv5_F) else "0";
+    tmp_s_fu_277_p1 <= std_logic_vector(resize(unsigned(i_1_reg_188),64));
 
-    w_address0_assign_proc : process(grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_address0, grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_address0, ap_sig_cseq_ST_st5_fsm_4, ap_sig_cseq_ST_st3_fsm_2)
+    w_address0_assign_proc : process(grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_address0, grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_address0, ap_sig_cseq_ST_st5_fsm_4, ap_sig_cseq_ST_st3_fsm_2)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st3_fsm_2)) then 
-            w_address0 <= grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_address0;
+            w_address0 <= grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_address0;
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st5_fsm_4)) then 
-            w_address0 <= grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_address0;
+            w_address0 <= grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_address0;
         else 
             w_address0 <= "XXXXXXXX";
         end if; 
     end process;
 
 
-    w_address1_assign_proc : process(grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_address1, grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_address1, ap_sig_cseq_ST_st5_fsm_4, ap_sig_cseq_ST_st3_fsm_2)
+    w_address1_assign_proc : process(grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_address1, grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_address1, ap_sig_cseq_ST_st5_fsm_4, ap_sig_cseq_ST_st3_fsm_2)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st3_fsm_2)) then 
-            w_address1 <= grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_address1;
+            w_address1 <= grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_address1;
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st5_fsm_4)) then 
-            w_address1 <= grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_address1;
+            w_address1 <= grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_address1;
         else 
             w_address1 <= "XXXXXXXX";
         end if; 
     end process;
 
 
-    w_ce0_assign_proc : process(grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_ce0, grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_ce0, ap_sig_cseq_ST_st5_fsm_4, ap_sig_cseq_ST_st3_fsm_2)
+    w_ce0_assign_proc : process(grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_ce0, grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_ce0, ap_sig_cseq_ST_st5_fsm_4, ap_sig_cseq_ST_st3_fsm_2)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st3_fsm_2)) then 
-            w_ce0 <= grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_ce0;
+            w_ce0 <= grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_ce0;
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st5_fsm_4)) then 
-            w_ce0 <= grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_ce0;
+            w_ce0 <= grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_ce0;
         else 
             w_ce0 <= ap_const_logic_0;
         end if; 
     end process;
 
 
-    w_ce1_assign_proc : process(grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_ce1, grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_ce1, ap_sig_cseq_ST_st5_fsm_4, ap_sig_cseq_ST_st3_fsm_2)
+    w_ce1_assign_proc : process(grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_ce1, grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_ce1, ap_sig_cseq_ST_st5_fsm_4, ap_sig_cseq_ST_st3_fsm_2)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st3_fsm_2)) then 
-            w_ce1 <= grp_single_block_CTR_encrypt_aes_key_expansion_fu_230_w_ce1;
+            w_ce1 <= grp_single_block_CTR_encrypt_aes_key_expansion_fu_232_w_ce1;
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st5_fsm_4)) then 
-            w_ce1 <= grp_single_block_CTR_encrypt_aes_cipher_fu_220_w_ce1;
+            w_ce1 <= grp_single_block_CTR_encrypt_aes_cipher_fu_222_w_ce1;
         else 
             w_ce1 <= ap_const_logic_0;
         end if; 

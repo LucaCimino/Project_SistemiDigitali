@@ -73,8 +73,6 @@ set rc [catch {
   set_property processing_order LATE [get_files c:/Users/lucac/Vivado/AES_CTR_Pynq/AES_CTR_Pynq.srcs/sources_1/bd/design_1/ip/design_1_auto_us_0/design_1_auto_us_0_clocks.xdc]
   read_xdc -ref design_1_auto_us_1 -cells inst c:/Users/lucac/Vivado/AES_CTR_Pynq/AES_CTR_Pynq.srcs/sources_1/bd/design_1/ip/design_1_auto_us_1/design_1_auto_us_1_clocks.xdc
   set_property processing_order LATE [get_files c:/Users/lucac/Vivado/AES_CTR_Pynq/AES_CTR_Pynq.srcs/sources_1/bd/design_1/ip/design_1_auto_us_1/design_1_auto_us_1_clocks.xdc]
-  read_xdc -ref design_1_auto_us_2 -cells inst c:/Users/lucac/Vivado/AES_CTR_Pynq/AES_CTR_Pynq.srcs/sources_1/bd/design_1/ip/design_1_auto_us_2/design_1_auto_us_2_clocks.xdc
-  set_property processing_order LATE [get_files c:/Users/lucac/Vivado/AES_CTR_Pynq/AES_CTR_Pynq.srcs/sources_1/bd/design_1/ip/design_1_auto_us_2/design_1_auto_us_2_clocks.xdc]
   link_design -top design_1_wrapper -part xc7z020clg400-1
   write_hwdef -file design_1_wrapper.hwdef
   close_msg_db -file init_design.pb

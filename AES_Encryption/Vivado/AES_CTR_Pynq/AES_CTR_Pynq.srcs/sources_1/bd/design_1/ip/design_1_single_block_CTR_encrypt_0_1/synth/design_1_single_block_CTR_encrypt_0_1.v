@@ -47,20 +47,16 @@
 // DO NOT MODIFY THIS FILE.
 
 
-// IP VLNV: xilinx.com:hls:single_block_CTR_encrypt:7.0
-// IP Revision: 2113413153
+// IP VLNV: xilinx.com:hls:single_block_CTR_encrypt:9.0
+// IP Revision: 2113415957
 
 (* X_CORE_INFO = "single_block_CTR_encrypt,Vivado 2016.2" *)
 (* CHECK_LICENSE_TYPE = "design_1_single_block_CTR_encrypt_0_1,single_block_CTR_encrypt,{}" *)
-(* CORE_GENERATION_INFO = "design_1_single_block_CTR_encrypt_0_1,single_block_CTR_encrypt,{x_ipProduct=Vivado 2016.2,x_ipVendor=xilinx.com,x_ipLibrary=hls,x_ipName=single_block_CTR_encrypt,x_ipVersion=7.0,x_ipCoreRevision=2113413153,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
+(* CORE_GENERATION_INFO = "design_1_single_block_CTR_encrypt_0_1,single_block_CTR_encrypt,{x_ipProduct=Vivado 2016.2,x_ipVendor=xilinx.com,x_ipLibrary=hls,x_ipName=single_block_CTR_encrypt,x_ipVersion=9.0,x_ipCoreRevision=2113415957,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_1_single_block_CTR_encrypt_0_1 (
   ap_clk,
   ap_rst_n,
-  ap_start,
-  ap_done,
-  ap_idle,
-  ap_ready,
   i_plaintext_TVALID,
   i_plaintext_TREADY,
   i_plaintext_TDATA,
@@ -77,14 +73,6 @@ module design_1_single_block_CTR_encrypt_0_1 (
 input wire ap_clk;
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 ap_rst_n RST" *)
 input wire ap_rst_n;
-(* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake:1.0 ap_ctrl start" *)
-input wire ap_start;
-(* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake:1.0 ap_ctrl done" *)
-output wire ap_done;
-(* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake:1.0 ap_ctrl idle" *)
-output wire ap_idle;
-(* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake:1.0 ap_ctrl ready" *)
-output wire ap_ready;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 i_plaintext TVALID" *)
 input wire i_plaintext_TVALID;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 i_plaintext TREADY" *)
@@ -109,10 +97,6 @@ output wire [0 : 0] cipher_TUSER;
   single_block_CTR_encrypt inst (
     .ap_clk(ap_clk),
     .ap_rst_n(ap_rst_n),
-    .ap_start(ap_start),
-    .ap_done(ap_done),
-    .ap_idle(ap_idle),
-    .ap_ready(ap_ready),
     .i_plaintext_TVALID(i_plaintext_TVALID),
     .i_plaintext_TREADY(i_plaintext_TREADY),
     .i_plaintext_TDATA(i_plaintext_TDATA),

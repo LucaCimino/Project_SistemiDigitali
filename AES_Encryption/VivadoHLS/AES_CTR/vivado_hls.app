@@ -6,10 +6,10 @@
     </Simulation>
     <files xmlns="">
         <file name="../testbench.cpp" sc="0" tb="1" cflags=" "/>
-        <file name="AES_CTR/aes.cpp" sc="0" tb="false" cflags=""/>
-        <file name="AES_CTR/aes.h" sc="0" tb="false" cflags=""/>
-        <file name="AES_CTR/ctr_main.cpp" sc="0" tb="false" cflags=""/>
         <file name="AES_CTR/ctr_main.h" sc="0" tb="false" cflags=""/>
+        <file name="AES_CTR/ctr_main.cpp" sc="0" tb="false" cflags=""/>
+        <file name="AES_CTR/aes.h" sc="0" tb="false" cflags=""/>
+        <file name="AES_CTR/aes.cpp" sc="0" tb="false" cflags=""/>
     </files>
     <solutions xmlns="">
         <solution name="solution1" status="active"/>

@@ -33217,6 +33217,8 @@ void single_block_CTR_encrypt(hls::stream<stream_type> &i_plaintext, hls::stream
 _ssdm_op_SpecInterface(&i_plaintext, "axis", 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, "");
 _ssdm_op_SpecInterface(&cipher, "axis", 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, "");
 
+_ssdm_op_SpecInterface(0, "ap_ctrl_none", 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, "");
+
 
  /* Input:
 	 *   - plaintext -> 128 bit di testo da cifrare

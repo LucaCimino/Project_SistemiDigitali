@@ -41,7 +41,7 @@ set SCTraceFileName "mytrace"
 set SCTraceFileFormat "vcd"
 set SCTraceOption "all"
 set TargetInfo "xc7z020:clg400:-1"
-set SourceFiles {sc {} c {../aes.cpp ../ctr_main.cpp}}
+set SourceFiles {sc {} c {../ctr_main.cpp ../aes.cpp}}
 set SourceFlags {sc {} c {{} {}}}
 set DirectiveFile {C:/Users/lucac/VivadoHLS/AES_CTR/solution1/solution1.directive}
 set TBFiles {verilog ../testbench.cpp bc ../testbench.cpp vhdl ../testbench.cpp sc ../testbench.cpp cas ../testbench.cpp c {}}

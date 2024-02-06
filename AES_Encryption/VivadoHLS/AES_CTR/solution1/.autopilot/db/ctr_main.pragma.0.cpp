@@ -33207,6 +33207,8 @@ void single_block_CTR_encrypt(hls::stream<stream_type> &i_plaintext, hls::stream
 #pragma HLS INTERFACE axis port=&i_plaintext
 #pragma HLS INTERFACE axis port=&cipher
 
+#pragma HLS INTERFACE ap_ctrl_none port=return
+
 
  /* Input:
 	 *   - plaintext -> 128 bit di testo da cifrare
