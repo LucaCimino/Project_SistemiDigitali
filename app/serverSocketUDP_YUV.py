@@ -4,8 +4,8 @@ import sys
 import time
 import socket
 
-import pickle
-import struct
+#import pickle
+#import struct
 
 COMPRESSED_WIDTH=240
 COMPRESSED_HEIGHT=180
@@ -77,7 +77,7 @@ def test(server_socket, client_address):
 
     ########################
     # Inizializza la telecamera (imposta il parametro 0 se stai usando la webcam integrata)
-    cap = cv2.VideoCapture(2)
+    cap = cv2.VideoCapture(0)
 
     # Cattura un frame dalla telecamera
     _, oldFrame = cap.read()
@@ -85,13 +85,19 @@ def test(server_socket, client_address):
     # Effettua il resize del frame
     #resized_frame = cv2.resize(oldFrame, (WIGHT, HEIGHT))
 
+
+    startTime=0
+    endTime=0
     threshold_count=0
     while True:
         # Cattura un frame dalla telecamera
+
+        startTime=time.time()
+
         _, actualFrame = cap.read()
 
         # Visualizza il frame
-        cv2.imshow("Frame", actualFrame)
+        #cv2.imshow("Frame", actualFrame)
 
         img1_rgb = cv2.cvtColor(oldFrame, cv2.COLOR_BGR2RGB)
         img2_rgb = cv2.cvtColor(actualFrame, cv2.COLOR_BGR2RGB)
@@ -133,7 +139,11 @@ def test(server_socket, client_address):
                 threshold_count=0
             else:
                 record(actualFrame, server_socket, client_address)
-        time.sleep(0.5)
+        
+        endTime=time.time()
+        print('time: ',endTime-startTime)
+
+        time.sleep(0.05)
 
 
 
