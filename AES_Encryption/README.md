@@ -97,13 +97,11 @@ Chiper:		33 fc 4b cc 49 32 5c 51 f3 00 03 07 49 9d 5c 35
 
 # VivadoHLS
 
-La top function `void single_block_CTR_encrypt(hls::stream<stream_type> &i_plaintext, hls::stream<stream_type> &cipher)` implementa un IPCore che cifra un singolo blocco di plaintext da 128 con AES in modalità CTR usando una chiave da 128 bit.
+La top function `void single_block_AES_encrypt(hls::stream<stream_type> &i_plaintext, hls::stream<stream_type> &cipher)` implementa un IPCore che cifra un singolo blocco di plaintext da 128 con AES in modalità ECB usando una chiave da 128 bit.
 
 - plaintext e chiper vengono comunicati su due interfacce AXI Stream
 
-- Chiave e nonce sono cablati all'interno dell'IPCore e non possono essere modificati a meno di non rigenerare l'IPCore
-
-- Nonce viene incrementato di 1 ad ogni chiamata
+- La chiave è cablata all'interno dell'IPCore e non può essere modificata a meno di non rigenerare l'IPCore
 
 - plaintext deve essere necessariamente da 128 bit. Se necessario occorre fare il padding prima di inviarlo all'IPCore.
 
@@ -121,14 +119,18 @@ La top function `void single_block_CTR_encrypt(hls::stream<stream_type> &i_plain
 
 
 
-################################################
+# Pynq Execution
+
+1. Importare sulla pynq l'immagine da cifrare
+
+2. Avviare il client remoto src/client/ecb_image_decryption_network.py
+
+3. eseguire il notebook
+
+4. Verificare l'immagine arrivata (original_image.jpg)
 
 
-1. Importare sulla pynq l'immagine
-2. eseguire il notebook
-3. con scp copiare il file binario con il cifrato dalla pynq all'host
-4. con src/pyScript/ecb_image_decryption.py decifrare il file
+### Test
 
-
-
+- Cifratura immagine 40x30 pixel RGB in 0.16717195510864258 s
 
