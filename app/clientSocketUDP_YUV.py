@@ -2,6 +2,8 @@ import cv2
 import socket
 import sys
 import numpy as np
+import time
+from multiprocessing import Process
 
 if len(sys.argv) != 3:
     print("usage: serverSocket ip_server port_server")
@@ -13,17 +15,23 @@ server_port = int(sys.argv[2])
 
 # Creazione della socket UDP
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-
 # Impostazione del timeout a 5 secondi
 client_socket.settimeout(5.0)
 
-black_frame = np.zeros((480, 640, 3), dtype=np.uint8)
-
 request_message = "Inizia invio frame"
+
+
+def feedback():
+    while True:
+        print("Sono una principessa")
+        client_socket.sendto("ack".encode(), (server_ip, server_port))
+        time.sleep(1.0)
+
 
 while True:
     try:
         # Invio del messaggio di richiesta al server
+        print(f"invio messaggio a {server_ip} : {server_port}")
         client_socket.sendto(request_message.encode(), (server_ip, server_port))
 
         # Ricezione del messaggio di conferma dal server
@@ -37,6 +45,10 @@ while True:
     except socket.timeout:
         # Gestione del timeout
         print("Timeout sulla ricezione della conferma. Riprovare.")
+
+# si attiva il processo che esegue in background per dare un feedback al server.
+p = Process(target=feedback())
+p.start()
 
 # Configurazione della finestra per la visualizzazione dei frame
 # cv2.namedWindow("Received Frame", cv2.WINDOW_NORMAL)
