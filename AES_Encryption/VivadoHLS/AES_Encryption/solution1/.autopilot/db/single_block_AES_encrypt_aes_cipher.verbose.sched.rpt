@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'single_block_AES_encrypt_aes_cipher'
 ================================================================
-* Date:           Thu Feb 08 10:03:57 2024
+* Date:           Thu Feb 08 12:12:18 2024
 
 * Version:        2016.2 (Build 1577090 on Thu Jun 02 16:59:10 MDT 2016)
 * Project:        AES_Encryption
@@ -20,7 +20,7 @@
     +--------+-------+----------+------------+
     |  Clock | Target| Estimated| Uncertainty|
     +--------+-------+----------+------------+
-    |ap_clk  |  10.00|      9.24|        1.25|
+    |ap_clk  |  10.00|     12.35|        1.25|
     +--------+-------+----------+------------+
 
 + Latency (clock cycles): 
@@ -273,7 +273,7 @@ IsGatedGlobalClock: 0
 99 --> 
 * FSM state operations: 
 
- <State 1>: 1.37ns
+ <State 1>: 2.41ns
 ST_1: in_15_read_1 [1/1] 0.00ns
 .preheader5.preheader.0:0  %in_15_read_1 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %in_15_read)
 
@@ -322,7 +322,7 @@ ST_1: in_1_read_1 [1/1] 0.00ns
 ST_1: in_0_read_1 [1/1] 0.00ns
 .preheader5.preheader.0:15  %in_0_read_1 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %in_0_read)
 
-ST_1: call_ret5 [9/9] 1.37ns
+ST_1: call_ret5 [9/9] 2.41ns
 .preheader5.preheader.0:16  %call_ret5 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %in_0_read_1, i8 %in_4_read_1, i8 %in_8_read_1, i8 %in_12_read_1, i8 %in_1_read_1, i8 %in_5_read_1, i8 %in_9_read_1, i8 %in_13_read_1, i8 %in_2_read_1, i8 %in_6_read_1, i8 %in_10_read_1, i8 %in_14_read_1, i8 %in_3_read_1, i8 %in_7_read_1, i8 %in_11_read_1, i8 %in_15_read_1, [176 x i8]* %w, i5 0)
 
 
@@ -361,7 +361,7 @@ ST_8: call_ret5 [2/9] 4.08ns
 .preheader5.preheader.0:16  %call_ret5 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %in_0_read_1, i8 %in_4_read_1, i8 %in_8_read_1, i8 %in_12_read_1, i8 %in_1_read_1, i8 %in_5_read_1, i8 %in_9_read_1, i8 %in_13_read_1, i8 %in_2_read_1, i8 %in_6_read_1, i8 %in_10_read_1, i8 %in_14_read_1, i8 %in_3_read_1, i8 %in_7_read_1, i8 %in_11_read_1, i8 %in_15_read_1, [176 x i8]* %w, i5 0)
 
 
- <State 9>: 4.08ns
+ <State 9>: 5.12ns
 ST_9: call_ret5 [1/9] 4.08ns
 .preheader5.preheader.0:16  %call_ret5 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %in_0_read_1, i8 %in_4_read_1, i8 %in_8_read_1, i8 %in_12_read_1, i8 %in_1_read_1, i8 %in_5_read_1, i8 %in_9_read_1, i8 %in_13_read_1, i8 %in_2_read_1, i8 %in_6_read_1, i8 %in_10_read_1, i8 %in_14_read_1, i8 %in_3_read_1, i8 %in_7_read_1, i8 %in_11_read_1, i8 %in_15_read_1, [176 x i8]* %w, i5 0)
 
@@ -413,11 +413,11 @@ ST_9: state_14 [1/1] 0.00ns
 ST_9: state_15 [1/1] 0.00ns
 .preheader5.preheader.0:32  %state_15 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret5, 15
 
-ST_9: call_ret6 [2/2] 0.00ns
+ST_9: call_ret6 [2/2] 1.04ns
 .preheader5.preheader.0:33  %call_ret6 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_sub_bytes(i8 %state_0, i8 %state_1, i8 %state_2, i8 %state_3, i8 %state_4, i8 %state_5, i8 %state_6, i8 %state_7, i8 %state_8, i8 %state_9, i8 %state_10, i8 %state_11, i8 %state_12, i8 %state_13, i8 %state_14, i8 %state_15)
 
 
- <State 10>: 9.24ns
+ <State 10>: 12.35ns
 ST_10: call_ret6 [1/2] 2.39ns
 .preheader5.preheader.0:33  %call_ret6 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_sub_bytes(i8 %state_0, i8 %state_1, i8 %state_2, i8 %state_3, i8 %state_4, i8 %state_5, i8 %state_6, i8 %state_7, i8 %state_8, i8 %state_9, i8 %state_10, i8 %state_11, i8 %state_12, i8 %state_13, i8 %state_14, i8 %state_15)
 
@@ -469,7 +469,7 @@ ST_10: state_14_1 [1/1] 0.00ns
 ST_10: state_15_1 [1/1] 0.00ns
 .preheader5.preheader.0:49  %state_15_1 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret6, 15
 
-ST_10: call_ret7 [1/1] 0.00ns
+ST_10: call_ret7 [1/1] 1.04ns
 .preheader5.preheader.0:50  %call_ret7 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_shift_rows(i8 %state_4_1, i8 %state_5_1, i8 %state_6_1, i8 %state_7_1, i8 %state_8_1, i8 %state_9_1, i8 %state_10_1, i8 %state_11_1, i8 %state_12_1, i8 %state_13_1, i8 %state_14_1, i8 %state_15_1)
 
 ST_10: state_4_2 [1/1] 0.00ns
@@ -508,7 +508,7 @@ ST_10: state_14_2 [1/1] 0.00ns
 ST_10: state_15_2 [1/1] 0.00ns
 .preheader5.preheader.0:62  %state_15_2 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret7, 11
 
-ST_10: call_ret8 [1/1] 5.48ns
+ST_10: call_ret8 [1/1] 6.52ns
 .preheader5.preheader.0:63  %call_ret8 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_mix_columns(i8 %state_0_1, i8 %state_1_1, i8 %state_2_1, i8 %state_3_1, i8 %state_4_2, i8 %state_5_2, i8 %state_6_2, i8 %state_7_2, i8 %state_8_2, i8 %state_9_2, i8 %state_10_2, i8 %state_11_2, i8 %state_12_2, i8 %state_13_2, i8 %state_14_2, i8 %state_15_2)
 
 ST_10: state_0_2 [1/1] 0.00ns
@@ -559,7 +559,7 @@ ST_10: state_14_3 [1/1] 0.00ns
 ST_10: state_15_3 [1/1] 0.00ns
 .preheader5.preheader.0:79  %state_15_3 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret8, 15
 
-ST_10: call_ret9 [9/9] 1.37ns
+ST_10: call_ret9 [9/9] 2.41ns
 .preheader5.preheader.0:80  %call_ret9 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_2, i8 %state_1_2, i8 %state_2_2, i8 %state_3_2, i8 %state_4_3, i8 %state_5_3, i8 %state_6_3, i8 %state_7_3, i8 %state_8_3, i8 %state_9_3, i8 %state_10_3, i8 %state_11_3, i8 %state_12_3, i8 %state_13_3, i8 %state_14_3, i8 %state_15_3, [176 x i8]* %w, i5 1)
 
 
@@ -598,7 +598,7 @@ ST_17: call_ret9 [2/9] 4.08ns
 .preheader5.preheader.0:80  %call_ret9 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_2, i8 %state_1_2, i8 %state_2_2, i8 %state_3_2, i8 %state_4_3, i8 %state_5_3, i8 %state_6_3, i8 %state_7_3, i8 %state_8_3, i8 %state_9_3, i8 %state_10_3, i8 %state_11_3, i8 %state_12_3, i8 %state_13_3, i8 %state_14_3, i8 %state_15_3, [176 x i8]* %w, i5 1)
 
 
- <State 18>: 4.08ns
+ <State 18>: 5.12ns
 ST_18: call_ret9 [1/9] 4.08ns
 .preheader5.preheader.0:80  %call_ret9 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_2, i8 %state_1_2, i8 %state_2_2, i8 %state_3_2, i8 %state_4_3, i8 %state_5_3, i8 %state_6_3, i8 %state_7_3, i8 %state_8_3, i8 %state_9_3, i8 %state_10_3, i8 %state_11_3, i8 %state_12_3, i8 %state_13_3, i8 %state_14_3, i8 %state_15_3, [176 x i8]* %w, i5 1)
 
@@ -650,11 +650,11 @@ ST_18: state_14_4 [1/1] 0.00ns
 ST_18: state_15_4 [1/1] 0.00ns
 .preheader5.preheader.0:96  %state_15_4 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret9, 15
 
-ST_18: call_ret1 [2/2] 0.00ns
+ST_18: call_ret1 [2/2] 1.04ns
 .preheader5.preheader.0:97  %call_ret1 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_sub_bytes(i8 %state_0_3, i8 %state_1_3, i8 %state_2_3, i8 %state_3_3, i8 %state_4_4, i8 %state_5_4, i8 %state_6_4, i8 %state_7_4, i8 %state_8_4, i8 %state_9_4, i8 %state_10_4, i8 %state_11_4, i8 %state_12_4, i8 %state_13_4, i8 %state_14_4, i8 %state_15_4)
 
 
- <State 19>: 9.24ns
+ <State 19>: 12.35ns
 ST_19: call_ret1 [1/2] 2.39ns
 .preheader5.preheader.0:97  %call_ret1 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_sub_bytes(i8 %state_0_3, i8 %state_1_3, i8 %state_2_3, i8 %state_3_3, i8 %state_4_4, i8 %state_5_4, i8 %state_6_4, i8 %state_7_4, i8 %state_8_4, i8 %state_9_4, i8 %state_10_4, i8 %state_11_4, i8 %state_12_4, i8 %state_13_4, i8 %state_14_4, i8 %state_15_4)
 
@@ -706,7 +706,7 @@ ST_19: state_14_5 [1/1] 0.00ns
 ST_19: state_15_5 [1/1] 0.00ns
 .preheader5.preheader.0:113  %state_15_5 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret1, 15
 
-ST_19: call_ret2 [1/1] 0.00ns
+ST_19: call_ret2 [1/1] 1.04ns
 .preheader5.preheader.0:114  %call_ret2 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_shift_rows(i8 %state_4_5, i8 %state_5_5, i8 %state_6_5, i8 %state_7_5, i8 %state_8_5, i8 %state_9_5, i8 %state_10_5, i8 %state_11_5, i8 %state_12_5, i8 %state_13_5, i8 %state_14_5, i8 %state_15_5)
 
 ST_19: state_4_6 [1/1] 0.00ns
@@ -745,7 +745,7 @@ ST_19: state_14_6 [1/1] 0.00ns
 ST_19: state_15_6 [1/1] 0.00ns
 .preheader5.preheader.0:126  %state_15_6 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret2, 11
 
-ST_19: call_ret3 [1/1] 5.48ns
+ST_19: call_ret3 [1/1] 6.52ns
 .preheader5.preheader.0:127  %call_ret3 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_mix_columns(i8 %state_0_4, i8 %state_1_4, i8 %state_2_4, i8 %state_3_4, i8 %state_4_6, i8 %state_5_6, i8 %state_6_6, i8 %state_7_6, i8 %state_8_6, i8 %state_9_6, i8 %state_10_6, i8 %state_11_6, i8 %state_12_6, i8 %state_13_6, i8 %state_14_6, i8 %state_15_6)
 
 ST_19: state_0_5 [1/1] 0.00ns
@@ -796,7 +796,7 @@ ST_19: state_14_7 [1/1] 0.00ns
 ST_19: state_15_7 [1/1] 0.00ns
 .preheader5.preheader.0:143  %state_15_7 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret3, 15
 
-ST_19: call_ret4 [9/9] 1.37ns
+ST_19: call_ret4 [9/9] 2.41ns
 .preheader5.preheader.0:144  %call_ret4 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_5, i8 %state_1_5, i8 %state_2_5, i8 %state_3_5, i8 %state_4_7, i8 %state_5_7, i8 %state_6_7, i8 %state_7_7, i8 %state_8_7, i8 %state_9_7, i8 %state_10_7, i8 %state_11_7, i8 %state_12_7, i8 %state_13_7, i8 %state_14_7, i8 %state_15_7, [176 x i8]* %w, i5 2)
 
 
@@ -835,7 +835,7 @@ ST_26: call_ret4 [2/9] 4.08ns
 .preheader5.preheader.0:144  %call_ret4 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_5, i8 %state_1_5, i8 %state_2_5, i8 %state_3_5, i8 %state_4_7, i8 %state_5_7, i8 %state_6_7, i8 %state_7_7, i8 %state_8_7, i8 %state_9_7, i8 %state_10_7, i8 %state_11_7, i8 %state_12_7, i8 %state_13_7, i8 %state_14_7, i8 %state_15_7, [176 x i8]* %w, i5 2)
 
 
- <State 27>: 4.08ns
+ <State 27>: 5.12ns
 ST_27: call_ret4 [1/9] 4.08ns
 .preheader5.preheader.0:144  %call_ret4 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_5, i8 %state_1_5, i8 %state_2_5, i8 %state_3_5, i8 %state_4_7, i8 %state_5_7, i8 %state_6_7, i8 %state_7_7, i8 %state_8_7, i8 %state_9_7, i8 %state_10_7, i8 %state_11_7, i8 %state_12_7, i8 %state_13_7, i8 %state_14_7, i8 %state_15_7, [176 x i8]* %w, i5 2)
 
@@ -887,11 +887,11 @@ ST_27: state_14_8 [1/1] 0.00ns
 ST_27: state_15_8 [1/1] 0.00ns
 .preheader5.preheader.0:160  %state_15_8 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret4, 15
 
-ST_27: call_ret10 [2/2] 0.00ns
+ST_27: call_ret10 [2/2] 1.04ns
 .preheader5.preheader.0:161  %call_ret10 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_sub_bytes(i8 %state_0_6, i8 %state_1_6, i8 %state_2_6, i8 %state_3_6, i8 %state_4_8, i8 %state_5_8, i8 %state_6_8, i8 %state_7_8, i8 %state_8_8, i8 %state_9_8, i8 %state_10_8, i8 %state_11_8, i8 %state_12_8, i8 %state_13_8, i8 %state_14_8, i8 %state_15_8)
 
 
- <State 28>: 9.24ns
+ <State 28>: 12.35ns
 ST_28: call_ret10 [1/2] 2.39ns
 .preheader5.preheader.0:161  %call_ret10 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_sub_bytes(i8 %state_0_6, i8 %state_1_6, i8 %state_2_6, i8 %state_3_6, i8 %state_4_8, i8 %state_5_8, i8 %state_6_8, i8 %state_7_8, i8 %state_8_8, i8 %state_9_8, i8 %state_10_8, i8 %state_11_8, i8 %state_12_8, i8 %state_13_8, i8 %state_14_8, i8 %state_15_8)
 
@@ -943,7 +943,7 @@ ST_28: state_14_9 [1/1] 0.00ns
 ST_28: state_15_9 [1/1] 0.00ns
 .preheader5.preheader.0:177  %state_15_9 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret10, 15
 
-ST_28: call_ret11 [1/1] 0.00ns
+ST_28: call_ret11 [1/1] 1.04ns
 .preheader5.preheader.0:178  %call_ret11 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_shift_rows(i8 %state_4_9, i8 %state_5_9, i8 %state_6_9, i8 %state_7_9, i8 %state_8_9, i8 %state_9_9, i8 %state_10_9, i8 %state_11_9, i8 %state_12_9, i8 %state_13_9, i8 %state_14_9, i8 %state_15_9)
 
 ST_28: state_4_10 [1/1] 0.00ns
@@ -982,7 +982,7 @@ ST_28: state_14_10 [1/1] 0.00ns
 ST_28: state_15_10 [1/1] 0.00ns
 .preheader5.preheader.0:190  %state_15_10 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret11, 11
 
-ST_28: call_ret12 [1/1] 5.48ns
+ST_28: call_ret12 [1/1] 6.52ns
 .preheader5.preheader.0:191  %call_ret12 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_mix_columns(i8 %state_0_7, i8 %state_1_7, i8 %state_2_7, i8 %state_3_7, i8 %state_4_10, i8 %state_5_10, i8 %state_6_10, i8 %state_7_10, i8 %state_8_10, i8 %state_9_10, i8 %state_10_10, i8 %state_11_10, i8 %state_12_10, i8 %state_13_10, i8 %state_14_10, i8 %state_15_10)
 
 ST_28: state_0_8 [1/1] 0.00ns
@@ -1033,7 +1033,7 @@ ST_28: state_14_11 [1/1] 0.00ns
 ST_28: state_15_11 [1/1] 0.00ns
 .preheader5.preheader.0:207  %state_15_11 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret12, 15
 
-ST_28: call_ret13 [9/9] 1.37ns
+ST_28: call_ret13 [9/9] 2.41ns
 .preheader5.preheader.0:208  %call_ret13 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_8, i8 %state_1_8, i8 %state_2_8, i8 %state_3_8, i8 %state_4_11, i8 %state_5_11, i8 %state_6_11, i8 %state_7_11, i8 %state_8_11, i8 %state_9_11, i8 %state_10_11, i8 %state_11_11, i8 %state_12_11, i8 %state_13_11, i8 %state_14_11, i8 %state_15_11, [176 x i8]* %w, i5 3)
 
 
@@ -1072,7 +1072,7 @@ ST_35: call_ret13 [2/9] 4.08ns
 .preheader5.preheader.0:208  %call_ret13 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_8, i8 %state_1_8, i8 %state_2_8, i8 %state_3_8, i8 %state_4_11, i8 %state_5_11, i8 %state_6_11, i8 %state_7_11, i8 %state_8_11, i8 %state_9_11, i8 %state_10_11, i8 %state_11_11, i8 %state_12_11, i8 %state_13_11, i8 %state_14_11, i8 %state_15_11, [176 x i8]* %w, i5 3)
 
 
- <State 36>: 4.08ns
+ <State 36>: 5.12ns
 ST_36: call_ret13 [1/9] 4.08ns
 .preheader5.preheader.0:208  %call_ret13 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_8, i8 %state_1_8, i8 %state_2_8, i8 %state_3_8, i8 %state_4_11, i8 %state_5_11, i8 %state_6_11, i8 %state_7_11, i8 %state_8_11, i8 %state_9_11, i8 %state_10_11, i8 %state_11_11, i8 %state_12_11, i8 %state_13_11, i8 %state_14_11, i8 %state_15_11, [176 x i8]* %w, i5 3)
 
@@ -1124,11 +1124,11 @@ ST_36: state_14_12 [1/1] 0.00ns
 ST_36: state_15_12 [1/1] 0.00ns
 .preheader5.preheader.0:224  %state_15_12 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret13, 15
 
-ST_36: call_ret14 [2/2] 0.00ns
+ST_36: call_ret14 [2/2] 1.04ns
 .preheader5.preheader.0:225  %call_ret14 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_sub_bytes(i8 %state_0_9, i8 %state_1_9, i8 %state_2_9, i8 %state_3_9, i8 %state_4_12, i8 %state_5_12, i8 %state_6_12, i8 %state_7_12, i8 %state_8_12, i8 %state_9_12, i8 %state_10_12, i8 %state_11_12, i8 %state_12_12, i8 %state_13_12, i8 %state_14_12, i8 %state_15_12)
 
 
- <State 37>: 9.24ns
+ <State 37>: 12.35ns
 ST_37: call_ret14 [1/2] 2.39ns
 .preheader5.preheader.0:225  %call_ret14 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_sub_bytes(i8 %state_0_9, i8 %state_1_9, i8 %state_2_9, i8 %state_3_9, i8 %state_4_12, i8 %state_5_12, i8 %state_6_12, i8 %state_7_12, i8 %state_8_12, i8 %state_9_12, i8 %state_10_12, i8 %state_11_12, i8 %state_12_12, i8 %state_13_12, i8 %state_14_12, i8 %state_15_12)
 
@@ -1180,7 +1180,7 @@ ST_37: state_14_13 [1/1] 0.00ns
 ST_37: state_15_13 [1/1] 0.00ns
 .preheader5.preheader.0:241  %state_15_13 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret14, 15
 
-ST_37: call_ret15 [1/1] 0.00ns
+ST_37: call_ret15 [1/1] 1.04ns
 .preheader5.preheader.0:242  %call_ret15 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_shift_rows(i8 %state_4_13, i8 %state_5_13, i8 %state_6_13, i8 %state_7_13, i8 %state_8_13, i8 %state_9_13, i8 %state_10_13, i8 %state_11_13, i8 %state_12_13, i8 %state_13_13, i8 %state_14_13, i8 %state_15_13)
 
 ST_37: state_4_14 [1/1] 0.00ns
@@ -1219,7 +1219,7 @@ ST_37: state_14_14 [1/1] 0.00ns
 ST_37: state_15_14 [1/1] 0.00ns
 .preheader5.preheader.0:254  %state_15_14 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret15, 11
 
-ST_37: call_ret16 [1/1] 5.48ns
+ST_37: call_ret16 [1/1] 6.52ns
 .preheader5.preheader.0:255  %call_ret16 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_mix_columns(i8 %state_0_10, i8 %state_1_10, i8 %state_2_10, i8 %state_3_10, i8 %state_4_14, i8 %state_5_14, i8 %state_6_14, i8 %state_7_14, i8 %state_8_14, i8 %state_9_14, i8 %state_10_14, i8 %state_11_14, i8 %state_12_14, i8 %state_13_14, i8 %state_14_14, i8 %state_15_14)
 
 ST_37: state_0_11 [1/1] 0.00ns
@@ -1270,7 +1270,7 @@ ST_37: state_14_15 [1/1] 0.00ns
 ST_37: state_15_15 [1/1] 0.00ns
 .preheader5.preheader.0:271  %state_15_15 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret16, 15
 
-ST_37: call_ret17 [9/9] 1.37ns
+ST_37: call_ret17 [9/9] 2.41ns
 .preheader5.preheader.0:272  %call_ret17 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_11, i8 %state_1_11, i8 %state_2_11, i8 %state_3_11, i8 %state_4_15, i8 %state_5_15, i8 %state_6_15, i8 %state_7_15, i8 %state_8_15, i8 %state_9_15, i8 %state_10_15, i8 %state_11_15, i8 %state_12_15, i8 %state_13_15, i8 %state_14_15, i8 %state_15_15, [176 x i8]* %w, i5 4)
 
 
@@ -1309,7 +1309,7 @@ ST_44: call_ret17 [2/9] 4.08ns
 .preheader5.preheader.0:272  %call_ret17 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_11, i8 %state_1_11, i8 %state_2_11, i8 %state_3_11, i8 %state_4_15, i8 %state_5_15, i8 %state_6_15, i8 %state_7_15, i8 %state_8_15, i8 %state_9_15, i8 %state_10_15, i8 %state_11_15, i8 %state_12_15, i8 %state_13_15, i8 %state_14_15, i8 %state_15_15, [176 x i8]* %w, i5 4)
 
 
- <State 45>: 4.08ns
+ <State 45>: 5.12ns
 ST_45: call_ret17 [1/9] 4.08ns
 .preheader5.preheader.0:272  %call_ret17 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_11, i8 %state_1_11, i8 %state_2_11, i8 %state_3_11, i8 %state_4_15, i8 %state_5_15, i8 %state_6_15, i8 %state_7_15, i8 %state_8_15, i8 %state_9_15, i8 %state_10_15, i8 %state_11_15, i8 %state_12_15, i8 %state_13_15, i8 %state_14_15, i8 %state_15_15, [176 x i8]* %w, i5 4)
 
@@ -1361,11 +1361,11 @@ ST_45: state_14_16 [1/1] 0.00ns
 ST_45: state_15_16 [1/1] 0.00ns
 .preheader5.preheader.0:288  %state_15_16 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret17, 15
 
-ST_45: call_ret18 [2/2] 0.00ns
+ST_45: call_ret18 [2/2] 1.04ns
 .preheader5.preheader.0:289  %call_ret18 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_sub_bytes(i8 %state_0_12, i8 %state_1_12, i8 %state_2_12, i8 %state_3_12, i8 %state_4_16, i8 %state_5_16, i8 %state_6_16, i8 %state_7_16, i8 %state_8_16, i8 %state_9_16, i8 %state_10_16, i8 %state_11_16, i8 %state_12_16, i8 %state_13_16, i8 %state_14_16, i8 %state_15_16)
 
 
- <State 46>: 9.24ns
+ <State 46>: 12.35ns
 ST_46: call_ret18 [1/2] 2.39ns
 .preheader5.preheader.0:289  %call_ret18 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_sub_bytes(i8 %state_0_12, i8 %state_1_12, i8 %state_2_12, i8 %state_3_12, i8 %state_4_16, i8 %state_5_16, i8 %state_6_16, i8 %state_7_16, i8 %state_8_16, i8 %state_9_16, i8 %state_10_16, i8 %state_11_16, i8 %state_12_16, i8 %state_13_16, i8 %state_14_16, i8 %state_15_16)
 
@@ -1417,7 +1417,7 @@ ST_46: state_14_17 [1/1] 0.00ns
 ST_46: state_15_17 [1/1] 0.00ns
 .preheader5.preheader.0:305  %state_15_17 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret18, 15
 
-ST_46: call_ret19 [1/1] 0.00ns
+ST_46: call_ret19 [1/1] 1.04ns
 .preheader5.preheader.0:306  %call_ret19 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_shift_rows(i8 %state_4_17, i8 %state_5_17, i8 %state_6_17, i8 %state_7_17, i8 %state_8_17, i8 %state_9_17, i8 %state_10_17, i8 %state_11_17, i8 %state_12_17, i8 %state_13_17, i8 %state_14_17, i8 %state_15_17)
 
 ST_46: state_4_18 [1/1] 0.00ns
@@ -1456,7 +1456,7 @@ ST_46: state_14_18 [1/1] 0.00ns
 ST_46: state_15_18 [1/1] 0.00ns
 .preheader5.preheader.0:318  %state_15_18 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret19, 11
 
-ST_46: call_ret20 [1/1] 5.48ns
+ST_46: call_ret20 [1/1] 6.52ns
 .preheader5.preheader.0:319  %call_ret20 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_mix_columns(i8 %state_0_13, i8 %state_1_13, i8 %state_2_13, i8 %state_3_13, i8 %state_4_18, i8 %state_5_18, i8 %state_6_18, i8 %state_7_18, i8 %state_8_18, i8 %state_9_18, i8 %state_10_18, i8 %state_11_18, i8 %state_12_18, i8 %state_13_18, i8 %state_14_18, i8 %state_15_18)
 
 ST_46: state_0_14 [1/1] 0.00ns
@@ -1507,7 +1507,7 @@ ST_46: state_14_19 [1/1] 0.00ns
 ST_46: state_15_19 [1/1] 0.00ns
 .preheader5.preheader.0:335  %state_15_19 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret20, 15
 
-ST_46: call_ret21 [9/9] 1.37ns
+ST_46: call_ret21 [9/9] 2.41ns
 .preheader5.preheader.0:336  %call_ret21 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_14, i8 %state_1_14, i8 %state_2_14, i8 %state_3_14, i8 %state_4_19, i8 %state_5_19, i8 %state_6_19, i8 %state_7_19, i8 %state_8_19, i8 %state_9_19, i8 %state_10_19, i8 %state_11_19, i8 %state_12_19, i8 %state_13_19, i8 %state_14_19, i8 %state_15_19, [176 x i8]* %w, i5 5)
 
 
@@ -1546,7 +1546,7 @@ ST_53: call_ret21 [2/9] 4.08ns
 .preheader5.preheader.0:336  %call_ret21 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_14, i8 %state_1_14, i8 %state_2_14, i8 %state_3_14, i8 %state_4_19, i8 %state_5_19, i8 %state_6_19, i8 %state_7_19, i8 %state_8_19, i8 %state_9_19, i8 %state_10_19, i8 %state_11_19, i8 %state_12_19, i8 %state_13_19, i8 %state_14_19, i8 %state_15_19, [176 x i8]* %w, i5 5)
 
 
- <State 54>: 4.08ns
+ <State 54>: 5.12ns
 ST_54: call_ret21 [1/9] 4.08ns
 .preheader5.preheader.0:336  %call_ret21 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_14, i8 %state_1_14, i8 %state_2_14, i8 %state_3_14, i8 %state_4_19, i8 %state_5_19, i8 %state_6_19, i8 %state_7_19, i8 %state_8_19, i8 %state_9_19, i8 %state_10_19, i8 %state_11_19, i8 %state_12_19, i8 %state_13_19, i8 %state_14_19, i8 %state_15_19, [176 x i8]* %w, i5 5)
 
@@ -1598,11 +1598,11 @@ ST_54: state_14_20 [1/1] 0.00ns
 ST_54: state_15_20 [1/1] 0.00ns
 .preheader5.preheader.0:352  %state_15_20 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret21, 15
 
-ST_54: call_ret22 [2/2] 0.00ns
+ST_54: call_ret22 [2/2] 1.04ns
 .preheader5.preheader.0:353  %call_ret22 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_sub_bytes(i8 %state_0_15, i8 %state_1_15, i8 %state_2_15, i8 %state_3_15, i8 %state_4_20, i8 %state_5_20, i8 %state_6_20, i8 %state_7_20, i8 %state_8_20, i8 %state_9_20, i8 %state_10_20, i8 %state_11_20, i8 %state_12_20, i8 %state_13_20, i8 %state_14_20, i8 %state_15_20)
 
 
- <State 55>: 9.24ns
+ <State 55>: 12.35ns
 ST_55: call_ret22 [1/2] 2.39ns
 .preheader5.preheader.0:353  %call_ret22 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_sub_bytes(i8 %state_0_15, i8 %state_1_15, i8 %state_2_15, i8 %state_3_15, i8 %state_4_20, i8 %state_5_20, i8 %state_6_20, i8 %state_7_20, i8 %state_8_20, i8 %state_9_20, i8 %state_10_20, i8 %state_11_20, i8 %state_12_20, i8 %state_13_20, i8 %state_14_20, i8 %state_15_20)
 
@@ -1654,7 +1654,7 @@ ST_55: state_14_21 [1/1] 0.00ns
 ST_55: state_15_21 [1/1] 0.00ns
 .preheader5.preheader.0:369  %state_15_21 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret22, 15
 
-ST_55: call_ret23 [1/1] 0.00ns
+ST_55: call_ret23 [1/1] 1.04ns
 .preheader5.preheader.0:370  %call_ret23 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_shift_rows(i8 %state_4_21, i8 %state_5_21, i8 %state_6_21, i8 %state_7_21, i8 %state_8_21, i8 %state_9_21, i8 %state_10_21, i8 %state_11_21, i8 %state_12_21, i8 %state_13_21, i8 %state_14_21, i8 %state_15_21)
 
 ST_55: state_4_22 [1/1] 0.00ns
@@ -1693,7 +1693,7 @@ ST_55: state_14_22 [1/1] 0.00ns
 ST_55: state_15_22 [1/1] 0.00ns
 .preheader5.preheader.0:382  %state_15_22 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret23, 11
 
-ST_55: call_ret24 [1/1] 5.48ns
+ST_55: call_ret24 [1/1] 6.52ns
 .preheader5.preheader.0:383  %call_ret24 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_mix_columns(i8 %state_0_16, i8 %state_1_16, i8 %state_2_16, i8 %state_3_16, i8 %state_4_22, i8 %state_5_22, i8 %state_6_22, i8 %state_7_22, i8 %state_8_22, i8 %state_9_22, i8 %state_10_22, i8 %state_11_22, i8 %state_12_22, i8 %state_13_22, i8 %state_14_22, i8 %state_15_22)
 
 ST_55: state_0_17 [1/1] 0.00ns
@@ -1744,7 +1744,7 @@ ST_55: state_14_23 [1/1] 0.00ns
 ST_55: state_15_23 [1/1] 0.00ns
 .preheader5.preheader.0:399  %state_15_23 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret24, 15
 
-ST_55: call_ret25 [9/9] 1.37ns
+ST_55: call_ret25 [9/9] 2.41ns
 .preheader5.preheader.0:400  %call_ret25 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_17, i8 %state_1_17, i8 %state_2_17, i8 %state_3_17, i8 %state_4_23, i8 %state_5_23, i8 %state_6_23, i8 %state_7_23, i8 %state_8_23, i8 %state_9_23, i8 %state_10_23, i8 %state_11_23, i8 %state_12_23, i8 %state_13_23, i8 %state_14_23, i8 %state_15_23, [176 x i8]* %w, i5 6)
 
 
@@ -1783,7 +1783,7 @@ ST_62: call_ret25 [2/9] 4.08ns
 .preheader5.preheader.0:400  %call_ret25 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_17, i8 %state_1_17, i8 %state_2_17, i8 %state_3_17, i8 %state_4_23, i8 %state_5_23, i8 %state_6_23, i8 %state_7_23, i8 %state_8_23, i8 %state_9_23, i8 %state_10_23, i8 %state_11_23, i8 %state_12_23, i8 %state_13_23, i8 %state_14_23, i8 %state_15_23, [176 x i8]* %w, i5 6)
 
 
- <State 63>: 4.08ns
+ <State 63>: 5.12ns
 ST_63: call_ret25 [1/9] 4.08ns
 .preheader5.preheader.0:400  %call_ret25 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_17, i8 %state_1_17, i8 %state_2_17, i8 %state_3_17, i8 %state_4_23, i8 %state_5_23, i8 %state_6_23, i8 %state_7_23, i8 %state_8_23, i8 %state_9_23, i8 %state_10_23, i8 %state_11_23, i8 %state_12_23, i8 %state_13_23, i8 %state_14_23, i8 %state_15_23, [176 x i8]* %w, i5 6)
 
@@ -1835,11 +1835,11 @@ ST_63: state_14_24 [1/1] 0.00ns
 ST_63: state_15_24 [1/1] 0.00ns
 .preheader5.preheader.0:416  %state_15_24 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret25, 15
 
-ST_63: call_ret26 [2/2] 0.00ns
+ST_63: call_ret26 [2/2] 1.04ns
 .preheader5.preheader.0:417  %call_ret26 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_sub_bytes(i8 %state_0_18, i8 %state_1_18, i8 %state_2_18, i8 %state_3_18, i8 %state_4_24, i8 %state_5_24, i8 %state_6_24, i8 %state_7_24, i8 %state_8_24, i8 %state_9_24, i8 %state_10_24, i8 %state_11_24, i8 %state_12_24, i8 %state_13_24, i8 %state_14_24, i8 %state_15_24)
 
 
- <State 64>: 9.24ns
+ <State 64>: 12.35ns
 ST_64: call_ret26 [1/2] 2.39ns
 .preheader5.preheader.0:417  %call_ret26 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_sub_bytes(i8 %state_0_18, i8 %state_1_18, i8 %state_2_18, i8 %state_3_18, i8 %state_4_24, i8 %state_5_24, i8 %state_6_24, i8 %state_7_24, i8 %state_8_24, i8 %state_9_24, i8 %state_10_24, i8 %state_11_24, i8 %state_12_24, i8 %state_13_24, i8 %state_14_24, i8 %state_15_24)
 
@@ -1891,7 +1891,7 @@ ST_64: state_14_25 [1/1] 0.00ns
 ST_64: state_15_25 [1/1] 0.00ns
 .preheader5.preheader.0:433  %state_15_25 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret26, 15
 
-ST_64: call_ret27 [1/1] 0.00ns
+ST_64: call_ret27 [1/1] 1.04ns
 .preheader5.preheader.0:434  %call_ret27 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_shift_rows(i8 %state_4_25, i8 %state_5_25, i8 %state_6_25, i8 %state_7_25, i8 %state_8_25, i8 %state_9_25, i8 %state_10_25, i8 %state_11_25, i8 %state_12_25, i8 %state_13_25, i8 %state_14_25, i8 %state_15_25)
 
 ST_64: state_4_26 [1/1] 0.00ns
@@ -1930,7 +1930,7 @@ ST_64: state_14_26 [1/1] 0.00ns
 ST_64: state_15_26 [1/1] 0.00ns
 .preheader5.preheader.0:446  %state_15_26 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret27, 11
 
-ST_64: call_ret28 [1/1] 5.48ns
+ST_64: call_ret28 [1/1] 6.52ns
 .preheader5.preheader.0:447  %call_ret28 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_mix_columns(i8 %state_0_19, i8 %state_1_19, i8 %state_2_19, i8 %state_3_19, i8 %state_4_26, i8 %state_5_26, i8 %state_6_26, i8 %state_7_26, i8 %state_8_26, i8 %state_9_26, i8 %state_10_26, i8 %state_11_26, i8 %state_12_26, i8 %state_13_26, i8 %state_14_26, i8 %state_15_26)
 
 ST_64: state_0_20 [1/1] 0.00ns
@@ -1981,7 +1981,7 @@ ST_64: state_14_27 [1/1] 0.00ns
 ST_64: state_15_27 [1/1] 0.00ns
 .preheader5.preheader.0:463  %state_15_27 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret28, 15
 
-ST_64: call_ret29 [9/9] 1.37ns
+ST_64: call_ret29 [9/9] 2.41ns
 .preheader5.preheader.0:464  %call_ret29 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_20, i8 %state_1_20, i8 %state_2_20, i8 %state_3_20, i8 %state_4_27, i8 %state_5_27, i8 %state_6_27, i8 %state_7_27, i8 %state_8_27, i8 %state_9_27, i8 %state_10_27, i8 %state_11_27, i8 %state_12_27, i8 %state_13_27, i8 %state_14_27, i8 %state_15_27, [176 x i8]* %w, i5 7)
 
 
@@ -2020,7 +2020,7 @@ ST_71: call_ret29 [2/9] 4.08ns
 .preheader5.preheader.0:464  %call_ret29 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_20, i8 %state_1_20, i8 %state_2_20, i8 %state_3_20, i8 %state_4_27, i8 %state_5_27, i8 %state_6_27, i8 %state_7_27, i8 %state_8_27, i8 %state_9_27, i8 %state_10_27, i8 %state_11_27, i8 %state_12_27, i8 %state_13_27, i8 %state_14_27, i8 %state_15_27, [176 x i8]* %w, i5 7)
 
 
- <State 72>: 4.08ns
+ <State 72>: 5.12ns
 ST_72: call_ret29 [1/9] 4.08ns
 .preheader5.preheader.0:464  %call_ret29 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_20, i8 %state_1_20, i8 %state_2_20, i8 %state_3_20, i8 %state_4_27, i8 %state_5_27, i8 %state_6_27, i8 %state_7_27, i8 %state_8_27, i8 %state_9_27, i8 %state_10_27, i8 %state_11_27, i8 %state_12_27, i8 %state_13_27, i8 %state_14_27, i8 %state_15_27, [176 x i8]* %w, i5 7)
 
@@ -2072,11 +2072,11 @@ ST_72: state_14_28 [1/1] 0.00ns
 ST_72: state_15_28 [1/1] 0.00ns
 .preheader5.preheader.0:480  %state_15_28 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret29, 15
 
-ST_72: call_ret30 [2/2] 0.00ns
+ST_72: call_ret30 [2/2] 1.04ns
 .preheader5.preheader.0:481  %call_ret30 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_sub_bytes(i8 %state_0_21, i8 %state_1_21, i8 %state_2_21, i8 %state_3_21, i8 %state_4_28, i8 %state_5_28, i8 %state_6_28, i8 %state_7_28, i8 %state_8_28, i8 %state_9_28, i8 %state_10_28, i8 %state_11_28, i8 %state_12_28, i8 %state_13_28, i8 %state_14_28, i8 %state_15_28)
 
 
- <State 73>: 9.24ns
+ <State 73>: 12.35ns
 ST_73: call_ret30 [1/2] 2.39ns
 .preheader5.preheader.0:481  %call_ret30 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_sub_bytes(i8 %state_0_21, i8 %state_1_21, i8 %state_2_21, i8 %state_3_21, i8 %state_4_28, i8 %state_5_28, i8 %state_6_28, i8 %state_7_28, i8 %state_8_28, i8 %state_9_28, i8 %state_10_28, i8 %state_11_28, i8 %state_12_28, i8 %state_13_28, i8 %state_14_28, i8 %state_15_28)
 
@@ -2128,7 +2128,7 @@ ST_73: state_14_29 [1/1] 0.00ns
 ST_73: state_15_29 [1/1] 0.00ns
 .preheader5.preheader.0:497  %state_15_29 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret30, 15
 
-ST_73: call_ret31 [1/1] 0.00ns
+ST_73: call_ret31 [1/1] 1.04ns
 .preheader5.preheader.0:498  %call_ret31 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_shift_rows(i8 %state_4_29, i8 %state_5_29, i8 %state_6_29, i8 %state_7_29, i8 %state_8_29, i8 %state_9_29, i8 %state_10_29, i8 %state_11_29, i8 %state_12_29, i8 %state_13_29, i8 %state_14_29, i8 %state_15_29)
 
 ST_73: state_4_30 [1/1] 0.00ns
@@ -2167,7 +2167,7 @@ ST_73: state_14_30 [1/1] 0.00ns
 ST_73: state_15_30 [1/1] 0.00ns
 .preheader5.preheader.0:510  %state_15_30 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret31, 11
 
-ST_73: call_ret32 [1/1] 5.48ns
+ST_73: call_ret32 [1/1] 6.52ns
 .preheader5.preheader.0:511  %call_ret32 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_mix_columns(i8 %state_0_22, i8 %state_1_22, i8 %state_2_22, i8 %state_3_22, i8 %state_4_30, i8 %state_5_30, i8 %state_6_30, i8 %state_7_30, i8 %state_8_30, i8 %state_9_30, i8 %state_10_30, i8 %state_11_30, i8 %state_12_30, i8 %state_13_30, i8 %state_14_30, i8 %state_15_30)
 
 ST_73: state_0_23 [1/1] 0.00ns
@@ -2218,7 +2218,7 @@ ST_73: state_14_31 [1/1] 0.00ns
 ST_73: state_15_31 [1/1] 0.00ns
 .preheader5.preheader.0:527  %state_15_31 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret32, 15
 
-ST_73: call_ret33 [9/9] 1.37ns
+ST_73: call_ret33 [9/9] 2.41ns
 .preheader5.preheader.0:528  %call_ret33 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_23, i8 %state_1_23, i8 %state_2_23, i8 %state_3_23, i8 %state_4_31, i8 %state_5_31, i8 %state_6_31, i8 %state_7_31, i8 %state_8_31, i8 %state_9_31, i8 %state_10_31, i8 %state_11_31, i8 %state_12_31, i8 %state_13_31, i8 %state_14_31, i8 %state_15_31, [176 x i8]* %w, i5 8)
 
 
@@ -2257,7 +2257,7 @@ ST_80: call_ret33 [2/9] 4.08ns
 .preheader5.preheader.0:528  %call_ret33 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_23, i8 %state_1_23, i8 %state_2_23, i8 %state_3_23, i8 %state_4_31, i8 %state_5_31, i8 %state_6_31, i8 %state_7_31, i8 %state_8_31, i8 %state_9_31, i8 %state_10_31, i8 %state_11_31, i8 %state_12_31, i8 %state_13_31, i8 %state_14_31, i8 %state_15_31, [176 x i8]* %w, i5 8)
 
 
- <State 81>: 4.08ns
+ <State 81>: 5.12ns
 ST_81: call_ret33 [1/9] 4.08ns
 .preheader5.preheader.0:528  %call_ret33 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_23, i8 %state_1_23, i8 %state_2_23, i8 %state_3_23, i8 %state_4_31, i8 %state_5_31, i8 %state_6_31, i8 %state_7_31, i8 %state_8_31, i8 %state_9_31, i8 %state_10_31, i8 %state_11_31, i8 %state_12_31, i8 %state_13_31, i8 %state_14_31, i8 %state_15_31, [176 x i8]* %w, i5 8)
 
@@ -2309,11 +2309,11 @@ ST_81: state_14_32 [1/1] 0.00ns
 ST_81: state_15_32 [1/1] 0.00ns
 .preheader5.preheader.0:544  %state_15_32 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret33, 15
 
-ST_81: call_ret34 [2/2] 0.00ns
+ST_81: call_ret34 [2/2] 1.04ns
 .preheader5.preheader.0:545  %call_ret34 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_sub_bytes(i8 %state_0_24, i8 %state_1_24, i8 %state_2_24, i8 %state_3_24, i8 %state_4_32, i8 %state_5_32, i8 %state_6_32, i8 %state_7_32, i8 %state_8_32, i8 %state_9_32, i8 %state_10_32, i8 %state_11_32, i8 %state_12_32, i8 %state_13_32, i8 %state_14_32, i8 %state_15_32)
 
 
- <State 82>: 9.24ns
+ <State 82>: 12.35ns
 ST_82: call_ret34 [1/2] 2.39ns
 .preheader5.preheader.0:545  %call_ret34 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_sub_bytes(i8 %state_0_24, i8 %state_1_24, i8 %state_2_24, i8 %state_3_24, i8 %state_4_32, i8 %state_5_32, i8 %state_6_32, i8 %state_7_32, i8 %state_8_32, i8 %state_9_32, i8 %state_10_32, i8 %state_11_32, i8 %state_12_32, i8 %state_13_32, i8 %state_14_32, i8 %state_15_32)
 
@@ -2365,7 +2365,7 @@ ST_82: state_14_33 [1/1] 0.00ns
 ST_82: state_15_33 [1/1] 0.00ns
 .preheader5.preheader.0:561  %state_15_33 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret34, 15
 
-ST_82: call_ret35 [1/1] 0.00ns
+ST_82: call_ret35 [1/1] 1.04ns
 .preheader5.preheader.0:562  %call_ret35 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_shift_rows(i8 %state_4_33, i8 %state_5_33, i8 %state_6_33, i8 %state_7_33, i8 %state_8_33, i8 %state_9_33, i8 %state_10_33, i8 %state_11_33, i8 %state_12_33, i8 %state_13_33, i8 %state_14_33, i8 %state_15_33)
 
 ST_82: state_4_34 [1/1] 0.00ns
@@ -2404,7 +2404,7 @@ ST_82: state_14_34 [1/1] 0.00ns
 ST_82: state_15_34 [1/1] 0.00ns
 .preheader5.preheader.0:574  %state_15_34 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret35, 11
 
-ST_82: call_ret [1/1] 5.48ns
+ST_82: call_ret [1/1] 6.52ns
 .preheader5.preheader.0:575  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_mix_columns(i8 %state_0_25, i8 %state_1_25, i8 %state_2_25, i8 %state_3_25, i8 %state_4_34, i8 %state_5_34, i8 %state_6_34, i8 %state_7_34, i8 %state_8_34, i8 %state_9_34, i8 %state_10_34, i8 %state_11_34, i8 %state_12_34, i8 %state_13_34, i8 %state_14_34, i8 %state_15_34)
 
 ST_82: state_0_26 [1/1] 0.00ns
@@ -2455,7 +2455,7 @@ ST_82: state_14_35 [1/1] 0.00ns
 ST_82: state_15_35 [1/1] 0.00ns
 .preheader5.preheader.0:591  %state_15_35 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret, 15
 
-ST_82: call_ret36 [9/9] 1.37ns
+ST_82: call_ret36 [9/9] 2.41ns
 .preheader5.preheader.0:592  %call_ret36 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_26, i8 %state_1_26, i8 %state_2_26, i8 %state_3_26, i8 %state_4_35, i8 %state_5_35, i8 %state_6_35, i8 %state_7_35, i8 %state_8_35, i8 %state_9_35, i8 %state_10_35, i8 %state_11_35, i8 %state_12_35, i8 %state_13_35, i8 %state_14_35, i8 %state_15_35, [176 x i8]* %w, i5 9)
 
 
@@ -2494,7 +2494,7 @@ ST_89: call_ret36 [2/9] 4.08ns
 .preheader5.preheader.0:592  %call_ret36 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_26, i8 %state_1_26, i8 %state_2_26, i8 %state_3_26, i8 %state_4_35, i8 %state_5_35, i8 %state_6_35, i8 %state_7_35, i8 %state_8_35, i8 %state_9_35, i8 %state_10_35, i8 %state_11_35, i8 %state_12_35, i8 %state_13_35, i8 %state_14_35, i8 %state_15_35, [176 x i8]* %w, i5 9)
 
 
- <State 90>: 4.08ns
+ <State 90>: 5.12ns
 ST_90: call_ret36 [1/9] 4.08ns
 .preheader5.preheader.0:592  %call_ret36 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_26, i8 %state_1_26, i8 %state_2_26, i8 %state_3_26, i8 %state_4_35, i8 %state_5_35, i8 %state_6_35, i8 %state_7_35, i8 %state_8_35, i8 %state_9_35, i8 %state_10_35, i8 %state_11_35, i8 %state_12_35, i8 %state_13_35, i8 %state_14_35, i8 %state_15_35, [176 x i8]* %w, i5 9)
 
@@ -2546,11 +2546,11 @@ ST_90: state_14_36 [1/1] 0.00ns
 ST_90: state_15_36 [1/1] 0.00ns
 .preheader5.preheader.0:608  %state_15_36 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret36, 15
 
-ST_90: call_ret37 [2/2] 0.00ns
+ST_90: call_ret37 [2/2] 1.04ns
 .preheader5.preheader.0:609  %call_ret37 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_sub_bytes(i8 %state_0_27, i8 %state_1_27, i8 %state_2_27, i8 %state_3_27, i8 %state_4_36, i8 %state_5_36, i8 %state_6_36, i8 %state_7_36, i8 %state_8_36, i8 %state_9_36, i8 %state_10_36, i8 %state_11_36, i8 %state_12_36, i8 %state_13_36, i8 %state_14_36, i8 %state_15_36)
 
 
- <State 91>: 3.76ns
+ <State 91>: 5.83ns
 ST_91: call_ret37 [1/2] 2.39ns
 .preheader5.preheader.0:609  %call_ret37 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_sub_bytes(i8 %state_0_27, i8 %state_1_27, i8 %state_2_27, i8 %state_3_27, i8 %state_4_36, i8 %state_5_36, i8 %state_6_36, i8 %state_7_36, i8 %state_8_36, i8 %state_9_36, i8 %state_10_36, i8 %state_11_36, i8 %state_12_36, i8 %state_13_36, i8 %state_14_36, i8 %state_15_36)
 
@@ -2602,7 +2602,7 @@ ST_91: state_14_37 [1/1] 0.00ns
 ST_91: state_15_37 [1/1] 0.00ns
 .preheader5.preheader.0:625  %state_15_37 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret37, 15
 
-ST_91: call_ret38 [1/1] 0.00ns
+ST_91: call_ret38 [1/1] 1.04ns
 .preheader5.preheader.0:626  %call_ret38 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_shift_rows(i8 %state_4_37, i8 %state_5_37, i8 %state_6_37, i8 %state_7_37, i8 %state_8_37, i8 %state_9_37, i8 %state_10_37, i8 %state_11_37, i8 %state_12_37, i8 %state_13_37, i8 %state_14_37, i8 %state_15_37)
 
 ST_91: state_4_38 [1/1] 0.00ns
@@ -2641,7 +2641,7 @@ ST_91: state_14_38 [1/1] 0.00ns
 ST_91: state_15_38 [1/1] 0.00ns
 .preheader5.preheader.0:638  %state_15_38 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret38, 11
 
-ST_91: call_ret39 [9/9] 1.37ns
+ST_91: call_ret39 [9/9] 2.41ns
 .preheader5.preheader.0:639  %call_ret39 = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_add_round_key(i8 %state_0_28, i8 %state_1_28, i8 %state_2_28, i8 %state_3_28, i8 %state_4_38, i8 %state_5_38, i8 %state_6_38, i8 %state_7_38, i8 %state_8_38, i8 %state_9_38, i8 %state_10_38, i8 %state_11_38, i8 %state_12_38, i8 %state_13_38, i8 %state_14_38, i8 %state_15_38, [176 x i8]* %w, i5 10)
 
 
@@ -2784,60 +2784,68 @@ ST_99: stg_868 [1/1] 0.00ns
 ============================================================
 Target clock period: 10ns, clock uncertainty: 1.25ns.
 
- <State 10>: 9.24ns
+ <State 10>: 12.4ns
 The critical path consists of the following:
 	'call' operation ('call_ret6', AES_Encryption/aes.cpp:301) to 'single_block_AES_encrypt_sub_bytes' (2.39 ns)
-	'call' operation ('call_ret8', AES_Encryption/aes.cpp:303) to 'single_block_AES_encrypt_mix_columns' (5.48 ns)
-	'call' operation ('call_ret9', AES_Encryption/aes.cpp:304) to 'single_block_AES_encrypt_add_round_key' (1.37 ns)
+	'call' operation ('call_ret7', AES_Encryption/aes.cpp:302) to 'single_block_AES_encrypt_shift_rows' (1.04 ns)
+	'call' operation ('call_ret8', AES_Encryption/aes.cpp:303) to 'single_block_AES_encrypt_mix_columns' (6.52 ns)
+	'call' operation ('call_ret9', AES_Encryption/aes.cpp:304) to 'single_block_AES_encrypt_add_round_key' (2.41 ns)
 
- <State 19>: 9.24ns
+ <State 19>: 12.4ns
 The critical path consists of the following:
 	'call' operation ('call_ret1', AES_Encryption/aes.cpp:301) to 'single_block_AES_encrypt_sub_bytes' (2.39 ns)
-	'call' operation ('call_ret3', AES_Encryption/aes.cpp:303) to 'single_block_AES_encrypt_mix_columns' (5.48 ns)
-	'call' operation ('call_ret4', AES_Encryption/aes.cpp:304) to 'single_block_AES_encrypt_add_round_key' (1.37 ns)
+	'call' operation ('call_ret2', AES_Encryption/aes.cpp:302) to 'single_block_AES_encrypt_shift_rows' (1.04 ns)
+	'call' operation ('call_ret3', AES_Encryption/aes.cpp:303) to 'single_block_AES_encrypt_mix_columns' (6.52 ns)
+	'call' operation ('call_ret4', AES_Encryption/aes.cpp:304) to 'single_block_AES_encrypt_add_round_key' (2.41 ns)
 
- <State 28>: 9.24ns
+ <State 28>: 12.4ns
 The critical path consists of the following:
 	'call' operation ('call_ret10', AES_Encryption/aes.cpp:301) to 'single_block_AES_encrypt_sub_bytes' (2.39 ns)
-	'call' operation ('call_ret12', AES_Encryption/aes.cpp:303) to 'single_block_AES_encrypt_mix_columns' (5.48 ns)
-	'call' operation ('call_ret13', AES_Encryption/aes.cpp:304) to 'single_block_AES_encrypt_add_round_key' (1.37 ns)
+	'call' operation ('call_ret11', AES_Encryption/aes.cpp:302) to 'single_block_AES_encrypt_shift_rows' (1.04 ns)
+	'call' operation ('call_ret12', AES_Encryption/aes.cpp:303) to 'single_block_AES_encrypt_mix_columns' (6.52 ns)
+	'call' operation ('call_ret13', AES_Encryption/aes.cpp:304) to 'single_block_AES_encrypt_add_round_key' (2.41 ns)
 
- <State 37>: 9.24ns
+ <State 37>: 12.4ns
 The critical path consists of the following:
 	'call' operation ('call_ret14', AES_Encryption/aes.cpp:301) to 'single_block_AES_encrypt_sub_bytes' (2.39 ns)
-	'call' operation ('call_ret15', AES_Encryption/aes.cpp:302) to 'single_block_AES_encrypt_shift_rows' (0 ns)
-	'call' operation ('call_ret16', AES_Encryption/aes.cpp:303) to 'single_block_AES_encrypt_mix_columns' (5.48 ns)
-	'call' operation ('call_ret17', AES_Encryption/aes.cpp:304) to 'single_block_AES_encrypt_add_round_key' (1.37 ns)
+	'call' operation ('call_ret15', AES_Encryption/aes.cpp:302) to 'single_block_AES_encrypt_shift_rows' (1.04 ns)
+	'call' operation ('call_ret16', AES_Encryption/aes.cpp:303) to 'single_block_AES_encrypt_mix_columns' (6.52 ns)
+	'call' operation ('call_ret17', AES_Encryption/aes.cpp:304) to 'single_block_AES_encrypt_add_round_key' (2.41 ns)
 
- <State 46>: 9.24ns
+ <State 46>: 12.4ns
 The critical path consists of the following:
 	'call' operation ('call_ret18', AES_Encryption/aes.cpp:301) to 'single_block_AES_encrypt_sub_bytes' (2.39 ns)
-	'call' operation ('call_ret20', AES_Encryption/aes.cpp:303) to 'single_block_AES_encrypt_mix_columns' (5.48 ns)
-	'call' operation ('call_ret21', AES_Encryption/aes.cpp:304) to 'single_block_AES_encrypt_add_round_key' (1.37 ns)
+	'call' operation ('call_ret19', AES_Encryption/aes.cpp:302) to 'single_block_AES_encrypt_shift_rows' (1.04 ns)
+	'call' operation ('call_ret20', AES_Encryption/aes.cpp:303) to 'single_block_AES_encrypt_mix_columns' (6.52 ns)
+	'call' operation ('call_ret21', AES_Encryption/aes.cpp:304) to 'single_block_AES_encrypt_add_round_key' (2.41 ns)
 
- <State 55>: 9.24ns
+ <State 55>: 12.4ns
 The critical path consists of the following:
 	'call' operation ('call_ret22', AES_Encryption/aes.cpp:301) to 'single_block_AES_encrypt_sub_bytes' (2.39 ns)
-	'call' operation ('call_ret24', AES_Encryption/aes.cpp:303) to 'single_block_AES_encrypt_mix_columns' (5.48 ns)
-	'call' operation ('call_ret25', AES_Encryption/aes.cpp:304) to 'single_block_AES_encrypt_add_round_key' (1.37 ns)
+	'call' operation ('call_ret23', AES_Encryption/aes.cpp:302) to 'single_block_AES_encrypt_shift_rows' (1.04 ns)
+	'call' operation ('call_ret24', AES_Encryption/aes.cpp:303) to 'single_block_AES_encrypt_mix_columns' (6.52 ns)
+	'call' operation ('call_ret25', AES_Encryption/aes.cpp:304) to 'single_block_AES_encrypt_add_round_key' (2.41 ns)
 
- <State 64>: 9.24ns
+ <State 64>: 12.4ns
 The critical path consists of the following:
 	'call' operation ('call_ret26', AES_Encryption/aes.cpp:301) to 'single_block_AES_encrypt_sub_bytes' (2.39 ns)
-	'call' operation ('call_ret28', AES_Encryption/aes.cpp:303) to 'single_block_AES_encrypt_mix_columns' (5.48 ns)
-	'call' operation ('call_ret29', AES_Encryption/aes.cpp:304) to 'single_block_AES_encrypt_add_round_key' (1.37 ns)
+	'call' operation ('call_ret27', AES_Encryption/aes.cpp:302) to 'single_block_AES_encrypt_shift_rows' (1.04 ns)
+	'call' operation ('call_ret28', AES_Encryption/aes.cpp:303) to 'single_block_AES_encrypt_mix_columns' (6.52 ns)
+	'call' operation ('call_ret29', AES_Encryption/aes.cpp:304) to 'single_block_AES_encrypt_add_round_key' (2.41 ns)
 
- <State 73>: 9.24ns
+ <State 73>: 12.4ns
 The critical path consists of the following:
 	'call' operation ('call_ret30', AES_Encryption/aes.cpp:301) to 'single_block_AES_encrypt_sub_bytes' (2.39 ns)
-	'call' operation ('call_ret32', AES_Encryption/aes.cpp:303) to 'single_block_AES_encrypt_mix_columns' (5.48 ns)
-	'call' operation ('call_ret33', AES_Encryption/aes.cpp:304) to 'single_block_AES_encrypt_add_round_key' (1.37 ns)
+	'call' operation ('call_ret31', AES_Encryption/aes.cpp:302) to 'single_block_AES_encrypt_shift_rows' (1.04 ns)
+	'call' operation ('call_ret32', AES_Encryption/aes.cpp:303) to 'single_block_AES_encrypt_mix_columns' (6.52 ns)
+	'call' operation ('call_ret33', AES_Encryption/aes.cpp:304) to 'single_block_AES_encrypt_add_round_key' (2.41 ns)
 
- <State 82>: 9.24ns
+ <State 82>: 12.4ns
 The critical path consists of the following:
 	'call' operation ('call_ret34', AES_Encryption/aes.cpp:301) to 'single_block_AES_encrypt_sub_bytes' (2.39 ns)
-	'call' operation ('call_ret', AES_Encryption/aes.cpp:303) to 'single_block_AES_encrypt_mix_columns' (5.48 ns)
-	'call' operation ('call_ret36', AES_Encryption/aes.cpp:304) to 'single_block_AES_encrypt_add_round_key' (1.37 ns)
+	'call' operation ('call_ret35', AES_Encryption/aes.cpp:302) to 'single_block_AES_encrypt_shift_rows' (1.04 ns)
+	'call' operation ('call_ret', AES_Encryption/aes.cpp:303) to 'single_block_AES_encrypt_mix_columns' (6.52 ns)
+	'call' operation ('call_ret36', AES_Encryption/aes.cpp:304) to 'single_block_AES_encrypt_add_round_key' (2.41 ns)
 
 
 ============================================================

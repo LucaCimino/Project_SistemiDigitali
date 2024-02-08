@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Feb 08 10:10:27 2024" VIVADOVERSION="2016.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Feb 08 12:14:15 2024" VIVADOVERSION="2016.2">
 
   <SYSTEMINFO ARCH="zynq" DEVICE="7z020" NAME="design_1" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -4637,7 +4637,7 @@
     <MODULE FULLNAME="/single_block_AES_encrypt_0" HWVERSION="1.0" INSTANCE="single_block_AES_encrypt_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="single_block_AES_encrypt" VLNV="xilinx.com:hls:single_block_AES_encrypt:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
-        <PARAMETER NAME="Component_Name" VALUE="design_1_single_block_AES_encrypt_0_1"/>
+        <PARAMETER NAME="Component_Name" VALUE="design_1_single_block_AES_encrypt_0_2"/>
         <PARAMETER NAME="clk_period" VALUE="10.000000"/>
         <PARAMETER NAME="machine" VALUE="64"/>
         <PARAMETER NAME="combinational" VALUE="0"/>

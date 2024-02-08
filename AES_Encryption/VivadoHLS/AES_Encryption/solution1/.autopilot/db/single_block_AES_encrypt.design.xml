@@ -5,9 +5,9 @@
 <ModuleName>single_block_AES_encrypt</ModuleName>
 <InstancesList>
 <Instance>
-<InstName>grp_single_block_AES_encrypt_aes_cipher_fu_110</InstName>
+<InstName>grp_single_block_AES_encrypt_aes_cipher_fu_112</InstName>
 <ModuleName>single_block_AES_encrypt_aes_cipher</ModuleName>
-<ID>110</ID>
+<ID>112</ID>
 <InstancesList>
 <Instance>
 <InstName>grp_single_block_AES_encrypt_mix_columns_fu_164</InstName>
@@ -302,9 +302,9 @@
 </InstancesList>
 </Instance>
 <Instance>
-<InstName>grp_single_block_AES_encrypt_aes_key_expansion_fu_133</InstName>
+<InstName>grp_single_block_AES_encrypt_aes_key_expansion_fu_135</InstName>
 <ModuleName>single_block_AES_encrypt_aes_key_expansion</ModuleName>
-<ID>133</ID>
+<ID>135</ID>
 </Instance>
 </InstancesList>
 </TopModule>
@@ -1086,7 +1086,7 @@
 <TargetClockPeriod>10.00</TargetClockPeriod>
 <ClockUncertainty>1.25</ClockUncertainty>
 <TargetInitiationInterval>1</TargetInitiationInterval>
-<EstimatedClockPeriod>2.39</EstimatedClockPeriod>
+<EstimatedClockPeriod>3.43</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <Best-caseLatency>1</Best-caseLatency>
@@ -1544,7 +1544,7 @@
 <TargetClockPeriod>10.00</TargetClockPeriod>
 <ClockUncertainty>1.25</ClockUncertainty>
 <TargetInitiationInterval>1</TargetInitiationInterval>
-<EstimatedClockPeriod>0.00</EstimatedClockPeriod>
+<EstimatedClockPeriod>1.04</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <Best-caseLatency>0</Best-caseLatency>
@@ -2016,7 +2016,7 @@
 <TargetClockPeriod>10.00</TargetClockPeriod>
 <ClockUncertainty>1.25</ClockUncertainty>
 <TargetInitiationInterval>1</TargetInitiationInterval>
-<EstimatedClockPeriod>5.48</EstimatedClockPeriod>
+<EstimatedClockPeriod>6.52</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <Best-caseLatency>0</Best-caseLatency>
@@ -2396,8 +2396,8 @@
 <SummaryOfTimingAnalysis>
 <TargetClockPeriod>10.00</TargetClockPeriod>
 <ClockUncertainty>1.25</ClockUncertainty>
-<TargetInitiationInterval>1</TargetInitiationInterval>
-<EstimatedClockPeriod>10.18</EstimatedClockPeriod>
+<TargetInitiationInterval>2</TargetInitiationInterval>
+<EstimatedClockPeriod>12.35</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <Best-caseLatency>98</Best-caseLatency>
@@ -2920,7 +2920,7 @@
 <SummaryOfTimingAnalysis>
 <TargetClockPeriod>10.00</TargetClockPeriod>
 <ClockUncertainty>1.25</ClockUncertainty>
-<EstimatedClockPeriod>10.18</EstimatedClockPeriod>
+<EstimatedClockPeriod>12.35</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <Best-caseLatency>undef</Best-caseLatency>
@@ -2932,8 +2932,8 @@
 <SummaryOfLoopLatency>
 <loop>
 <Name>loop</Name>
-<TripCount>4</TripCount>
-<Latency>426</Latency>
+<TripCount>16</TripCount>
+<Latency>1614</Latency>
 <PipelineII>99</PipelineII>
 <PipelineDepth>130</PipelineDepth>
 </loop>
@@ -2942,8 +2942,8 @@
 <AreaEstimates>
 <Resources>
 <BRAM_18K>10</BRAM_18K>
-<FF>1070</FF>
-<LUT>7385</LUT>
+<FF>1074</FF>
+<LUT>7392</LUT>
 <DSP48E>0</DSP48E>
 </Resources>
 </AreaEstimates>

@@ -842,8 +842,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Single_block_aes_encrypt</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2113418886</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2024-02-08T09:06:22Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2113419012</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2024-02-08T11:12:57Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2016.2</xilinx:xilinxVersion>

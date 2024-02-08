@@ -458,8 +458,8 @@
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="28">
-<or_exp><and_exp><literal name="tmp_12" val="1"/>
-<literal name="tmp_11" val="1"/>
+<or_exp><and_exp><literal name="tmp_11" val="1"/>
+<literal name="tmp_12" val="1"/>
 </and_exp></or_exp>
 </condition>
 

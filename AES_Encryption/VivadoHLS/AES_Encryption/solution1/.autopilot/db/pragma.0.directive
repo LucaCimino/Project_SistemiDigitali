@@ -1,27 +1,13 @@
 <AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
 <sourceFile name="">
-<directive functionLabel="" functionName="single_block_AES_encrypt" label="">
-<pragma name="INTERFACE">
-<option name="axis" positionalBoolean="mode" value=""/>
-<option name="port" positionalBoolean="4" value="i_plaintext"/>
-</pragma>
+<directive functionLabel="" functionName="aes_key_expansion" label="">
+<pragma name="UNROLL"/>
 </directive>
-<directive functionLabel="" functionName="single_block_AES_encrypt" label="">
-<pragma name="INTERFACE">
-<option name="axis" positionalBoolean="mode" value=""/>
-<option name="port" positionalBoolean="4" value="cipher"/>
-</pragma>
+<directive functionLabel="" functionName="aes_cipher" label="">
+<pragma name="UNROLL"/>
 </directive>
-<directive functionLabel="" functionName="single_block_AES_encrypt" label="">
-<pragma name="INTERFACE">
-<option name="ap_ctrl_none" positionalBoolean="mode" value=""/>
-<option name="port" positionalBoolean="4" value="return"/>
-</pragma>
-</directive>
-<directive functionLabel="" functionName="single_block_AES_encrypt" label="">
-<pragma name="PIPELINE">
-<option name="II" value="1"/>
-</pragma>
+<directive functionLabel="" functionName="aes_cipher" label="">
+<pragma name="UNROLL"/>
 </directive>
 </sourceFile>
 </AutoPilot:ProjectResources>

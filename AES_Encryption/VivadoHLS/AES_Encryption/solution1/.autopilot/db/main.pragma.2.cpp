@@ -33221,10 +33221,10 @@ _ssdm_op_SpecInterface(0, "ap_ctrl_none", 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, ""
 
 
  /* Input:
-	 *   - plaintext -> 512 bit di testo da cifrare
+	 *   - plaintext -> 2048 bit (256 Byte) di testo da cifrare
 	 *
 	 * Output:
-	 *   - cipher    -> 512 bit di testo cifrato
+	 *   - cipher    -> 2048 bit (256 Byte) di testo cifrato
 	 */
 
 
@@ -33244,9 +33244,9 @@ _ssdm_op_SpecInterface(0, "ap_ctrl_none", 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, ""
 
  aes_key_expansion(key, w);
 
- loop: for(block = 0; block < 4; block++)
+ loop: for(block = 0; block < 16; block++)
  {
-_ssdm_op_SpecPipeline(1, 1, 1, 0, "");
+_ssdm_op_SpecPipeline(2, 1, 1, 0, "");
  // Lettura del plaintext dallo stream di input
   for(i = 0; i < 16 /*bytes*/; i++) {
    tmp = i_plaintext.read();
@@ -33260,7 +33260,7 @@ _ssdm_op_SpecPipeline(1, 1, 1, 0, "");
    tmp.user = 1;
    tmp.data = out[i];
 
-   if(i == 16 /*bytes*/-1 && block == 3)
+   if(i == 16 /*bytes*/-1 && block == 15)
     tmp.last = 1;
    else
     tmp.last = 0;

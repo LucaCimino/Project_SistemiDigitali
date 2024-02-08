@@ -8,10 +8,10 @@ target triple = "x86_64-w64-mingw32"
 @llvm_global_ctors_0 = appending global [1 x i32] [i32 65535] ; [#uses=0 type=[1 x i32]*]
 @R = global [4 x i8] c"\02\00\00\00", align 1     ; [#uses=4 type=[4 x i8]*]
 @K = global i32 0, align 4                        ; [#uses=0 type=i32*]
-@p_str3 = private unnamed_addr constant [5 x i8] c"loop\00", align 1 ; [#uses=3 type=[5 x i8]*]
-@p_str2 = private unnamed_addr constant [13 x i8] c"ap_ctrl_none\00", align 1 ; [#uses=1 type=[13 x i8]*]
-@p_str1 = private unnamed_addr constant [1 x i8] zeroinitializer, align 1 ; [#uses=13 type=[1 x i8]*]
-@p_str = private unnamed_addr constant [5 x i8] c"axis\00", align 1 ; [#uses=2 type=[5 x i8]*]
+@p_str4 = private unnamed_addr constant [5 x i8] c"axis\00", align 1 ; [#uses=2 type=[5 x i8]*]
+@p_str37 = private unnamed_addr constant [5 x i8] c"loop\00", align 1 ; [#uses=3 type=[5 x i8]*]
+@p_str26 = private unnamed_addr constant [13 x i8] c"ap_ctrl_none\00", align 1 ; [#uses=1 type=[13 x i8]*]
+@p_str15 = private unnamed_addr constant [1 x i8] zeroinitializer, align 1 ; [#uses=13 type=[1 x i8]*]
 
 ; [#uses=10]
 define internal fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_sub_bytes(i8 %state_0_read, i8 %state_1_read, i8 %state_2_read, i8 %state_3_read, i8 %state_4_read, i8 %state_5_read, i8 %state_6_read, i8 %state_7_read, i8 %state_8_read, i8 %state_9_read, i8 %state_10_read, i8 %state_11_read, i8 %state_12_read, i8 %state_13_read, i8 %state_14_read, i8 %state_15_read) readnone {
@@ -163,24 +163,24 @@ define void @single_block_AES_encrypt(i8* %i_plaintext_V_data, i1* %i_plaintext_
   call void @llvm.dbg.value(metadata !{i8* %cipher_V_data}, i64 0, metadata !546), !dbg !548 ; [debug line = 8:96] [debug variable = cipher.V.data]
   call void @llvm.dbg.value(metadata !{i1* %cipher_V_user_V}, i64 0, metadata !549), !dbg !548 ; [debug line = 8:96] [debug variable = cipher.V.user.V]
   call void @llvm.dbg.value(metadata !{i1* %cipher_V_last_V}, i64 0, metadata !550), !dbg !548 ; [debug line = 8:96] [debug variable = cipher.V.last.V]
-  call void (...)* @_ssdm_op_SpecInterface(i8* %i_plaintext_V_data, i1* %i_plaintext_V_user_V, i1* %i_plaintext_V_last_V, [5 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1) nounwind, !dbg !551 ; [debug line = 10:1]
-  call void (...)* @_ssdm_op_SpecInterface(i8* %cipher_V_data, i1* %cipher_V_user_V, i1* %cipher_V_last_V, [5 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1) nounwind, !dbg !553 ; [debug line = 11:1]
-  call void (...)* @_ssdm_op_SpecInterface(i32 0, [13 x i8]* @p_str2, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1) nounwind, !dbg !554 ; [debug line = 13:1]
+  call void (...)* @_ssdm_op_SpecInterface(i8* %i_plaintext_V_data, i1* %i_plaintext_V_user_V, i1* %i_plaintext_V_last_V, [5 x i8]* @p_str4, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str15, [1 x i8]* @p_str15, [1 x i8]* @p_str15, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str15) nounwind, !dbg !551 ; [debug line = 10:1]
+  call void (...)* @_ssdm_op_SpecInterface(i8* %cipher_V_data, i1* %cipher_V_user_V, i1* %cipher_V_last_V, [5 x i8]* @p_str4, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str15, [1 x i8]* @p_str15, [1 x i8]* @p_str15, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str15) nounwind, !dbg !553 ; [debug line = 11:1]
+  call void (...)* @_ssdm_op_SpecInterface(i32 0, [13 x i8]* @p_str26, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str15, [1 x i8]* @p_str15, [1 x i8]* @p_str15, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str15) nounwind, !dbg !554 ; [debug line = 13:1]
   call void @llvm.dbg.declare(metadata !{[176 x i8]* %w}, metadata !555), !dbg !559 ; [debug line = 36:10] [debug variable = w]
   call fastcc void @single_block_AES_encrypt_aes_key_expansion([176 x i8]* %w), !dbg !560 ; [debug line = 38:2]
   br label %1, !dbg !561                          ; [debug line = 40:12]
 
 ; <label>:1                                       ; preds = %2, %0
-  %block = phi i3 [ 0, %0 ], [ %block_1, %2 ]     ; [#uses=3 type=i3]
-  %exitcond1 = icmp eq i3 %block, -4, !dbg !561   ; [#uses=1 type=i1] [debug line = 40:12]
-  %block_1 = add i3 %block, 1, !dbg !563          ; [#uses=1 type=i3] [debug line = 40:34]
+  %block = phi i5 [ 0, %0 ], [ %block_1, %2 ]     ; [#uses=3 type=i5]
+  %exitcond1 = icmp eq i5 %block, -16, !dbg !561  ; [#uses=1 type=i1] [debug line = 40:12]
+  %block_1 = add i5 %block, 1, !dbg !563          ; [#uses=1 type=i5] [debug line = 40:35]
   br i1 %exitcond1, label %3, label %2, !dbg !561 ; [debug line = 40:12]
 
 ; <label>:2                                       ; preds = %1
-  %empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4) ; [#uses=0 type=i32]
-  call void (...)* @_ssdm_op_SpecLoopName([5 x i8]* @p_str3) nounwind, !dbg !564 ; [debug line = 41:3]
-  %tmp_1 = call i32 (...)* @_ssdm_op_SpecRegionBegin([5 x i8]* @p_str3), !dbg !564 ; [#uses=1 type=i32] [debug line = 41:3]
-  call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 1, i32 1, i32 0, [1 x i8]* @p_str1) nounwind, !dbg !566 ; [debug line = 42:1]
+  %empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 16, i64 16, i64 16) ; [#uses=0 type=i32]
+  call void (...)* @_ssdm_op_SpecLoopName([5 x i8]* @p_str37) nounwind, !dbg !564 ; [debug line = 41:3]
+  %tmp_1 = call i32 (...)* @_ssdm_op_SpecRegionBegin([5 x i8]* @p_str37), !dbg !564 ; [#uses=1 type=i32] [debug line = 41:3]
+  call void (...)* @_ssdm_op_SpecPipeline(i32 2, i32 1, i32 1, i32 0, [1 x i8]* @p_str15) nounwind, !dbg !566 ; [debug line = 42:1]
   call void @llvm.dbg.value(metadata !{i8* %i_plaintext_V_data}, i64 0, metadata !567), !dbg !572 ; [debug line = 129:56@45:10] [debug variable = stream<stream_type>.V.data]
   call void @llvm.dbg.value(metadata !{i1* %i_plaintext_V_user_V}, i64 0, metadata !576), !dbg !572 ; [debug line = 129:56@45:10] [debug variable = stream<stream_type>.V.user.V]
   call void @llvm.dbg.value(metadata !{i1* %i_plaintext_V_last_V}, i64 0, metadata !578), !dbg !572 ; [debug line = 129:56@45:10] [debug variable = stream<stream_type>.V.last.V]
@@ -265,7 +265,7 @@ define void @single_block_AES_encrypt(i8* %i_plaintext_V_data, i1* %i_plaintext_
   %tmp_data_13 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret, 13, !dbg !603 ; [#uses=1 type=i8] [debug line = 49:3]
   %tmp_data_14 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret, 14, !dbg !603 ; [#uses=1 type=i8] [debug line = 49:3]
   %tmp_data_15 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret, 15, !dbg !603 ; [#uses=1 type=i8] [debug line = 49:3]
-  %tmp_last_V = icmp eq i3 %block, 3, !dbg !604   ; [#uses=1 type=i1] [debug line = 56:4]
+  %tmp_last_V = icmp eq i5 %block, 15, !dbg !604  ; [#uses=1 type=i1] [debug line = 56:4]
   call void @llvm.dbg.value(metadata !{i8* %cipher_V_data}, i64 0, metadata !607), !dbg !610 ; [debug line = 144:48@61:4] [debug variable = stream<stream_type>.V.data]
   call void @llvm.dbg.value(metadata !{i1* %cipher_V_user_V}, i64 0, metadata !612), !dbg !610 ; [debug line = 144:48@61:4] [debug variable = stream<stream_type>.V.user.V]
   call void @llvm.dbg.value(metadata !{i1* %cipher_V_last_V}, i64 0, metadata !613), !dbg !610 ; [debug line = 144:48@61:4] [debug variable = stream<stream_type>.V.last.V]
@@ -302,9 +302,9 @@ define void @single_block_AES_encrypt(i8* %i_plaintext_V_data, i1* %i_plaintext_
   call void @llvm.dbg.value(metadata !{i8 %tmp_data_15}, i64 0, metadata !614), !dbg !617 ; [debug line = 145:31@61:4] [debug variable = tmp.data]
   call void @llvm.dbg.value(metadata !{i1 %tmp_last_V}, i64 0, metadata !619), !dbg !617 ; [debug line = 145:31@61:4] [debug variable = tmp.last.V]
   call void @_ssdm_op_Write.axis.volatile.i8P.i1P.i1P(i8* %cipher_V_data, i1* %cipher_V_user_V, i1* %cipher_V_last_V, i8 %tmp_data_15, i1 true, i1 %tmp_last_V), !dbg !618 ; [debug line = 146:9@61:4]
-  %empty_23 = call i32 (...)* @_ssdm_op_SpecRegionEnd([5 x i8]* @p_str3, i32 %tmp_1), !dbg !620 ; [#uses=0 type=i32] [debug line = 63:2]
-  call void @llvm.dbg.value(metadata !{i3 %block_1}, i64 0, metadata !621), !dbg !563 ; [debug line = 40:34] [debug variable = block]
-  br label %1, !dbg !563                          ; [debug line = 40:34]
+  %empty_23 = call i32 (...)* @_ssdm_op_SpecRegionEnd([5 x i8]* @p_str37, i32 %tmp_1), !dbg !620 ; [#uses=0 type=i32] [debug line = 63:2]
+  call void @llvm.dbg.value(metadata !{i5 %block_1}, i64 0, metadata !621), !dbg !563 ; [debug line = 40:35] [debug variable = block]
+  br label %1, !dbg !563                          ; [debug line = 40:35]
 
 ; <label>:3                                       ; preds = %1
   ret void, !dbg !622                             ; [debug line = 65:2]
@@ -3299,7 +3299,7 @@ declare void @_GLOBAL__I_a() nounwind
 !560 = metadata !{i32 38, i32 2, metadata !552, null}
 !561 = metadata !{i32 40, i32 12, metadata !562, null}
 !562 = metadata !{i32 786443, metadata !552, i32 40, i32 8, metadata !95, i32 1} ; [ DW_TAG_lexical_block ]
-!563 = metadata !{i32 40, i32 34, metadata !562, null}
+!563 = metadata !{i32 40, i32 35, metadata !562, null}
 !564 = metadata !{i32 41, i32 3, metadata !565, null}
 !565 = metadata !{i32 786443, metadata !562, i32 41, i32 2, metadata !95, i32 2} ; [ DW_TAG_lexical_block ]
 !566 = metadata !{i32 42, i32 1, metadata !565, null}

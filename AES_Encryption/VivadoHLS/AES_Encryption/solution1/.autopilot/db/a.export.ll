@@ -8,10 +8,10 @@ target triple = "x86_64-w64-mingw32"
 @llvm_global_ctors_0 = appending global [1 x i32] [i32 65535]
 @R = global [4 x i8] c"\02\00\00\00", align 1
 @K = global i32 0, align 4
-@p_str3 = private unnamed_addr constant [5 x i8] c"loop\00", align 1
-@p_str2 = private unnamed_addr constant [13 x i8] c"ap_ctrl_none\00", align 1
-@p_str1 = private unnamed_addr constant [1 x i8] zeroinitializer, align 1
-@p_str = private unnamed_addr constant [5 x i8] c"axis\00", align 1
+@p_str4 = private unnamed_addr constant [5 x i8] c"axis\00", align 1
+@p_str37 = private unnamed_addr constant [5 x i8] c"loop\00", align 1
+@p_str26 = private unnamed_addr constant [13 x i8] c"ap_ctrl_none\00", align 1
+@p_str15 = private unnamed_addr constant [1 x i8] zeroinitializer, align 1
 
 define internal fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_sub_bytes(i8 %state_0_read, i8 %state_1_read, i8 %state_2_read, i8 %state_3_read, i8 %state_4_read, i8 %state_5_read, i8 %state_6_read, i8 %state_7_read, i8 %state_8_read, i8 %state_9_read, i8 %state_10_read, i8 %state_11_read, i8 %state_12_read, i8 %state_13_read, i8 %state_14_read, i8 %state_15_read) readnone {
 .preheader.preheader.0:
@@ -107,23 +107,23 @@ define void @single_block_AES_encrypt(i8* %i_plaintext_V_data, i1* %i_plaintext_
   call void (...)* @_ssdm_op_SpecBitsMap(i1* %cipher_V_last_V), !map !39
   call void (...)* @_ssdm_op_SpecTopModule([25 x i8]* @single_block_AES_encrypt_str) nounwind
   %w = alloca [176 x i8], align 16
-  call void (...)* @_ssdm_op_SpecInterface(i8* %i_plaintext_V_data, i1* %i_plaintext_V_user_V, i1* %i_plaintext_V_last_V, [5 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1) nounwind
-  call void (...)* @_ssdm_op_SpecInterface(i8* %cipher_V_data, i1* %cipher_V_user_V, i1* %cipher_V_last_V, [5 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1) nounwind
-  call void (...)* @_ssdm_op_SpecInterface(i32 0, [13 x i8]* @p_str2, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1) nounwind
+  call void (...)* @_ssdm_op_SpecInterface(i8* %i_plaintext_V_data, i1* %i_plaintext_V_user_V, i1* %i_plaintext_V_last_V, [5 x i8]* @p_str4, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str15, [1 x i8]* @p_str15, [1 x i8]* @p_str15, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str15) nounwind
+  call void (...)* @_ssdm_op_SpecInterface(i8* %cipher_V_data, i1* %cipher_V_user_V, i1* %cipher_V_last_V, [5 x i8]* @p_str4, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str15, [1 x i8]* @p_str15, [1 x i8]* @p_str15, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str15) nounwind
+  call void (...)* @_ssdm_op_SpecInterface(i32 0, [13 x i8]* @p_str26, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str15, [1 x i8]* @p_str15, [1 x i8]* @p_str15, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str15) nounwind
   call fastcc void @single_block_AES_encrypt_aes_key_expansion([176 x i8]* %w)
   br label %1
 
 ; <label>:1                                       ; preds = %2, %0
-  %block = phi i3 [ 0, %0 ], [ %block_1, %2 ]
-  %exitcond1 = icmp eq i3 %block, -4
-  %block_1 = add i3 %block, 1
+  %block = phi i5 [ 0, %0 ], [ %block_1, %2 ]
+  %exitcond1 = icmp eq i5 %block, -16
+  %block_1 = add i5 %block, 1
   br i1 %exitcond1, label %3, label %2
 
 ; <label>:2                                       ; preds = %1
-  %empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4)
-  call void (...)* @_ssdm_op_SpecLoopName([5 x i8]* @p_str3) nounwind
-  %tmp_1 = call i32 (...)* @_ssdm_op_SpecRegionBegin([5 x i8]* @p_str3)
-  call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 1, i32 1, i32 0, [1 x i8]* @p_str1) nounwind
+  %empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 16, i64 16, i64 16)
+  call void (...)* @_ssdm_op_SpecLoopName([5 x i8]* @p_str37) nounwind
+  %tmp_1 = call i32 (...)* @_ssdm_op_SpecRegionBegin([5 x i8]* @p_str37)
+  call void (...)* @_ssdm_op_SpecPipeline(i32 2, i32 1, i32 1, i32 0, [1 x i8]* @p_str15) nounwind
   %empty_7 = call { i8, i1, i1 } @_ssdm_op_Read.axis.volatile.i8P.i1P.i1P(i8* %i_plaintext_V_data, i1* %i_plaintext_V_user_V, i1* %i_plaintext_V_last_V)
   %tmp_data_16 = extractvalue { i8, i1, i1 } %empty_7, 0
   %empty_8 = call { i8, i1, i1 } @_ssdm_op_Read.axis.volatile.i8P.i1P.i1P(i8* %i_plaintext_V_data, i1* %i_plaintext_V_user_V, i1* %i_plaintext_V_last_V)
@@ -173,7 +173,7 @@ define void @single_block_AES_encrypt(i8* %i_plaintext_V_data, i1* %i_plaintext_
   %tmp_data_13 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret, 13
   %tmp_data_14 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret, 14
   %tmp_data_15 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %call_ret, 15
-  %tmp_last_V = icmp eq i3 %block, 3
+  %tmp_last_V = icmp eq i5 %block, 15
   call void @_ssdm_op_Write.axis.volatile.i8P.i1P.i1P(i8* %cipher_V_data, i1* %cipher_V_user_V, i1* %cipher_V_last_V, i8 %tmp_data, i1 true, i1 false)
   call void @_ssdm_op_Write.axis.volatile.i8P.i1P.i1P(i8* %cipher_V_data, i1* %cipher_V_user_V, i1* %cipher_V_last_V, i8 %tmp_data_2, i1 true, i1 false)
   call void @_ssdm_op_Write.axis.volatile.i8P.i1P.i1P(i8* %cipher_V_data, i1* %cipher_V_user_V, i1* %cipher_V_last_V, i8 %tmp_data_3, i1 true, i1 false)
@@ -190,7 +190,7 @@ define void @single_block_AES_encrypt(i8* %i_plaintext_V_data, i1* %i_plaintext_
   call void @_ssdm_op_Write.axis.volatile.i8P.i1P.i1P(i8* %cipher_V_data, i1* %cipher_V_user_V, i1* %cipher_V_last_V, i8 %tmp_data_13, i1 true, i1 false)
   call void @_ssdm_op_Write.axis.volatile.i8P.i1P.i1P(i8* %cipher_V_data, i1* %cipher_V_user_V, i1* %cipher_V_last_V, i8 %tmp_data_14, i1 true, i1 false)
   call void @_ssdm_op_Write.axis.volatile.i8P.i1P.i1P(i8* %cipher_V_data, i1* %cipher_V_user_V, i1* %cipher_V_last_V, i8 %tmp_data_15, i1 true, i1 %tmp_last_V)
-  %empty_23 = call i32 (...)* @_ssdm_op_SpecRegionEnd([5 x i8]* @p_str3, i32 %tmp_1)
+  %empty_23 = call i32 (...)* @_ssdm_op_SpecRegionEnd([5 x i8]* @p_str37, i32 %tmp_1)
   br label %1
 
 ; <label>:3                                       ; preds = %1

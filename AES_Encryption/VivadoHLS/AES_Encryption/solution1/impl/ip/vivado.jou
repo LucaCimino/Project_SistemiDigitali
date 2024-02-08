@@ -2,8 +2,8 @@
 # Vivado v2016.2 (64-bit)
 # SW Build 1577090 on Thu Jun  2 16:32:40 MDT 2016
 # IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
-# Start of session at: Thu Feb 08 10:06:16 2024
-# Process ID: 17068
+# Start of session at: Thu Feb 08 12:12:52 2024
+# Process ID: 8844
 # Current directory: C:/Users/lucac/VivadoHLS/AES_Encryption/solution1/impl/ip
 # Command line: vivado.exe -notrace -mode batch -source run_ippack.tcl
 # Log file: C:/Users/lucac/VivadoHLS/AES_Encryption/solution1/impl/ip/vivado.log

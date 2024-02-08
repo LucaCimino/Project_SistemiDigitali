@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'single_block_AES_encrypt_shift_rows'
 ================================================================
-* Date:           Thu Feb 08 10:03:56 2024
+* Date:           Thu Feb 08 12:12:16 2024
 
 * Version:        2016.2 (Build 1577090 on Thu Jun 02 16:59:10 MDT 2016)
 * Project:        AES_Encryption
@@ -20,7 +20,7 @@
     +--------+-------+----------+------------+
     |  Clock | Target| Estimated| Uncertainty|
     +--------+-------+----------+------------+
-    |ap_clk  |  10.00|      0.00|        1.25|
+    |ap_clk  |  10.00|      1.04|        1.25|
     +--------+-------+----------+------------+
 
 + Latency (clock cycles): 
@@ -77,41 +77,41 @@ IsGatedGlobalClock: 0
 1 --> 
 * FSM state operations: 
 
- <State 1>: 0.00ns
-ST_1: state_15_read_2 [1/1] 0.00ns
+ <State 1>: 1.04ns
+ST_1: state_15_read_2 [1/1] 1.04ns
 .preheader.preheader.0:0  %state_15_read_2 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_15_read)
 
-ST_1: state_14_read11 [1/1] 0.00ns
+ST_1: state_14_read11 [1/1] 1.04ns
 .preheader.preheader.0:1  %state_14_read11 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_14_read)
 
-ST_1: state_13_read_2 [1/1] 0.00ns
+ST_1: state_13_read_2 [1/1] 1.04ns
 .preheader.preheader.0:2  %state_13_read_2 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_13_read)
 
-ST_1: state_12_read_2 [1/1] 0.00ns
+ST_1: state_12_read_2 [1/1] 1.04ns
 .preheader.preheader.0:3  %state_12_read_2 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_12_read)
 
-ST_1: state_11_read_2 [1/1] 0.00ns
+ST_1: state_11_read_2 [1/1] 1.04ns
 .preheader.preheader.0:4  %state_11_read_2 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_11_read)
 
-ST_1: state_10_read_2 [1/1] 0.00ns
+ST_1: state_10_read_2 [1/1] 1.04ns
 .preheader.preheader.0:5  %state_10_read_2 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_10_read)
 
-ST_1: state_9_read_2 [1/1] 0.00ns
+ST_1: state_9_read_2 [1/1] 1.04ns
 .preheader.preheader.0:6  %state_9_read_2 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_9_read)
 
-ST_1: state_8_read_2 [1/1] 0.00ns
+ST_1: state_8_read_2 [1/1] 1.04ns
 .preheader.preheader.0:7  %state_8_read_2 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_8_read)
 
-ST_1: state_7_read_2 [1/1] 0.00ns
+ST_1: state_7_read_2 [1/1] 1.04ns
 .preheader.preheader.0:8  %state_7_read_2 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_7_read)
 
-ST_1: state_6_read_2 [1/1] 0.00ns
+ST_1: state_6_read_2 [1/1] 1.04ns
 .preheader.preheader.0:9  %state_6_read_2 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_6_read)
 
-ST_1: state_5_read_2 [1/1] 0.00ns
+ST_1: state_5_read_2 [1/1] 1.04ns
 .preheader.preheader.0:10  %state_5_read_2 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_5_read)
 
-ST_1: state_4_read_2 [1/1] 0.00ns
+ST_1: state_4_read_2 [1/1] 1.04ns
 .preheader.preheader.0:11  %state_4_read_2 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_4_read)
 
 ST_1: mrv [1/1] 0.00ns

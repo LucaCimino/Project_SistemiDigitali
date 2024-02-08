@@ -19,7 +19,7 @@ __SIM_DDS__ = 1
 
 ObjDir = obj
 
-HLS_SOURCES = ../../../testbench.cpp ../../../aes.cpp ../../../main.cpp
+HLS_SOURCES = ../../../testbench.cpp ../../../main.cpp ../../../aes.cpp
 
 TARGET := csim.exe
 
@@ -76,14 +76,14 @@ $(ObjDir)/testbench.o: ../../../testbench.cpp $(ObjDir)/.dir
 
 -include $(ObjDir)/testbench.d
 
-$(ObjDir)/aes.o: ../../../aes.cpp $(ObjDir)/.dir
-	$(Echo) "   Compiling ../../../aes.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
-	$(Verb)  $(CC) -c -MMD  $(IFLAG) $(DFLAG)  $< -o $@ ; \
-
--include $(ObjDir)/aes.d
-
 $(ObjDir)/main.o: ../../../main.cpp $(ObjDir)/.dir
 	$(Echo) "   Compiling ../../../main.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
 	$(Verb)  $(CC) -c -MMD  $(IFLAG) $(DFLAG)  $< -o $@ ; \
 
 -include $(ObjDir)/main.d
+
+$(ObjDir)/aes.o: ../../../aes.cpp $(ObjDir)/.dir
+	$(Echo) "   Compiling ../../../aes.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
+	$(Verb)  $(CC) -c -MMD  $(IFLAG) $(DFLAG)  $< -o $@ ; \
+
+-include $(ObjDir)/aes.d

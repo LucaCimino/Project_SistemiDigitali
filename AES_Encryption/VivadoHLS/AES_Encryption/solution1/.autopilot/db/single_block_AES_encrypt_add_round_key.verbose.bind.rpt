@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'single_block_AES_encrypt_add_round_key'
 ================================================================
-* Date:           Thu Feb 08 10:03:55 2024
+* Date:           Thu Feb 08 12:12:15 2024
 
 * Version:        2016.2 (Build 1577090 on Thu Jun 02 16:59:10 MDT 2016)
 * Project:        AES_Encryption
@@ -93,8 +93,8 @@ IsGatedGlobalClock: 0
 9 --> 
 * FSM state operations: 
 
- <State 1>: 2.71ns
-ST_1: r_read [1/1] 0.00ns
+ <State 1>: 3.75ns
+ST_1: r_read [1/1] 1.04ns
 :0  %r_read = call i5 @_ssdm_op_Read.ap_auto.i5(i5 %r)
 
 ST_1: tmp [1/1] 0.00ns
@@ -318,52 +318,52 @@ ST_7: w_load_13 [2/2] 2.71ns
 
 
  <State 8>: 4.08ns
-ST_8: state_15_read_4 [1/1] 0.00ns
+ST_8: state_15_read_4 [1/1] 1.04ns
 :1  %state_15_read_4 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_15_read)
 
-ST_8: state_14_read_3 [1/1] 0.00ns
+ST_8: state_14_read_3 [1/1] 1.04ns
 :2  %state_14_read_3 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_14_read)
 
-ST_8: state_13_read_4 [1/1] 0.00ns
+ST_8: state_13_read_4 [1/1] 1.04ns
 :3  %state_13_read_4 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_13_read)
 
-ST_8: state_12_read13 [1/1] 0.00ns
+ST_8: state_12_read13 [1/1] 1.04ns
 :4  %state_12_read13 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_12_read)
 
-ST_8: state_11_read12 [1/1] 0.00ns
+ST_8: state_11_read12 [1/1] 1.04ns
 :5  %state_11_read12 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_11_read)
 
-ST_8: state_10_read11 [1/1] 0.00ns
+ST_8: state_10_read11 [1/1] 1.04ns
 :6  %state_10_read11 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_10_read)
 
-ST_8: state_9_read_4 [1/1] 0.00ns
+ST_8: state_9_read_4 [1/1] 1.04ns
 :7  %state_9_read_4 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_9_read)
 
-ST_8: state_8_read_4 [1/1] 0.00ns
+ST_8: state_8_read_4 [1/1] 1.04ns
 :8  %state_8_read_4 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_8_read)
 
-ST_8: state_7_read_4 [1/1] 0.00ns
+ST_8: state_7_read_4 [1/1] 1.04ns
 :9  %state_7_read_4 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_7_read)
 
-ST_8: state_6_read_4 [1/1] 0.00ns
+ST_8: state_6_read_4 [1/1] 1.04ns
 :10  %state_6_read_4 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_6_read)
 
-ST_8: state_5_read_4 [1/1] 0.00ns
+ST_8: state_5_read_4 [1/1] 1.04ns
 :11  %state_5_read_4 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_5_read)
 
-ST_8: state_4_read_4 [1/1] 0.00ns
+ST_8: state_4_read_4 [1/1] 1.04ns
 :12  %state_4_read_4 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_4_read)
 
-ST_8: state_3_read_3 [1/1] 0.00ns
+ST_8: state_3_read_3 [1/1] 1.04ns
 :13  %state_3_read_3 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_3_read)
 
-ST_8: state_2_read_3 [1/1] 0.00ns
+ST_8: state_2_read_3 [1/1] 1.04ns
 :14  %state_2_read_3 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_2_read)
 
-ST_8: state_1_read_3 [1/1] 0.00ns
+ST_8: state_1_read_3 [1/1] 1.04ns
 :15  %state_1_read_3 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_1_read)
 
-ST_8: state_0_read_3 [1/1] 0.00ns
+ST_8: state_0_read_3 [1/1] 1.04ns
 :16  %state_0_read_3 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_0_read)
 
 ST_8: state_0_write_assign [1/1] 1.37ns

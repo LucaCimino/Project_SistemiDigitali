@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'single_block_AES_encrypt'
 ================================================================
-* Date:           Thu Feb 08 10:04:00 2024
+* Date:           Thu Feb 08 12:12:20 2024
 
 * Version:        2016.2 (Build 1577090 on Thu Jun 02 16:59:10 MDT 2016)
 * Project:        AES_Encryption
@@ -20,7 +20,7 @@
     +--------+-------+----------+------------+
     |  Clock | Target| Estimated| Uncertainty|
     +--------+-------+----------+------------+
-    |ap_clk  |  10.00|     10.18|        1.25|
+    |ap_clk  |  10.00|     12.35|        1.25|
     +--------+-------+----------+------------+
 
 + Latency (clock cycles): 
@@ -37,12 +37,12 @@
         N/A
 
         * Loop: 
-        +----------+-----+-----+----------+-----------+-----------+------+----------+
-        |          |  Latency  | Iteration|  Initiation Interval  | Trip |          |
-        | Loop Name| min | max |  Latency |  achieved |   target  | Count| Pipelined|
-        +----------+-----+-----+----------+-----------+-----------+------+----------+
-        |- loop    |  426|  426|       130|         99|          1|     4|    yes   |
-        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        +----------+------+------+----------+-----------+-----------+------+----------+
+        |          |   Latency   | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name|  min |  max |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+------+------+----------+-----------+-----------+------+----------+
+        |- loop    |  1614|  1614|       130|         99|          2|    16|    yes   |
+        +----------+------+------+----------+-----------+-----------+------+----------+
 
 ============================================================
 + Verbose Summary: Synthesis Manager
@@ -378,13 +378,13 @@ ST_2: stg_142 [1/1] 0.00ns
 :6  call void (...)* @_ssdm_op_SpecTopModule([25 x i8]* @single_block_AES_encrypt_str) nounwind
 
 ST_2: stg_143 [1/1] 0.00ns
-:8  call void (...)* @_ssdm_op_SpecInterface(i8* %i_plaintext_V_data, i1* %i_plaintext_V_user_V, i1* %i_plaintext_V_last_V, [5 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1) nounwind
+:8  call void (...)* @_ssdm_op_SpecInterface(i8* %i_plaintext_V_data, i1* %i_plaintext_V_user_V, i1* %i_plaintext_V_last_V, [5 x i8]* @p_str4, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str15, [1 x i8]* @p_str15, [1 x i8]* @p_str15, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str15) nounwind
 
 ST_2: stg_144 [1/1] 0.00ns
-:9  call void (...)* @_ssdm_op_SpecInterface(i8* %cipher_V_data, i1* %cipher_V_user_V, i1* %cipher_V_last_V, [5 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1) nounwind
+:9  call void (...)* @_ssdm_op_SpecInterface(i8* %cipher_V_data, i1* %cipher_V_user_V, i1* %cipher_V_last_V, [5 x i8]* @p_str4, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str15, [1 x i8]* @p_str15, [1 x i8]* @p_str15, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str15) nounwind
 
 ST_2: stg_145 [1/1] 0.00ns
-:10  call void (...)* @_ssdm_op_SpecInterface(i32 0, [13 x i8]* @p_str2, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1) nounwind
+:10  call void (...)* @_ssdm_op_SpecInterface(i32 0, [13 x i8]* @p_str26, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str15, [1 x i8]* @p_str15, [1 x i8]* @p_str15, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str15) nounwind
 
 ST_2: stg_146 [1/2] 0.00ns
 :11  call fastcc void @single_block_AES_encrypt_aes_key_expansion([176 x i8]* %w)
@@ -393,21 +393,21 @@ ST_2: stg_147 [1/1] 1.57ns
 :12  br label %1
 
 
- <State 3>: 2.99ns
+ <State 3>: 3.28ns
 ST_3: block [1/1] 0.00ns
-:0  %block = phi i3 [ 0, %0 ], [ %block_1, %2 ]
+:0  %block = phi i5 [ 0, %0 ], [ %block_1, %2 ]
 
-ST_3: exitcond1 [1/1] 1.62ns
-:1  %exitcond1 = icmp eq i3 %block, -4
+ST_3: exitcond1 [1/1] 1.91ns
+:1  %exitcond1 = icmp eq i5 %block, -16
 
-ST_3: block_1 [1/1] 0.80ns
-:2  %block_1 = add i3 %block, 1
+ST_3: block_1 [1/1] 1.72ns
+:2  %block_1 = add i5 %block, 1
 
 ST_3: stg_151 [1/1] 0.00ns
 :3  br i1 %exitcond1, label %3, label %2
 
-ST_3: tmp_last_V [1/1] 1.62ns
-:53  %tmp_last_V = icmp eq i3 %block, 3
+ST_3: tmp_last_V [1/1] 1.91ns
+:53  %tmp_last_V = icmp eq i5 %block, 15
 
 
  <State 4>: 0.00ns
@@ -541,488 +541,488 @@ ST_19: call_ret [99/99] 0.00ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 20>: 10.18ns
-ST_20: call_ret [98/99] 10.18ns
+ <State 20>: 12.35ns
+ST_20: call_ret [98/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 21>: 10.18ns
-ST_21: call_ret [97/99] 10.18ns
+ <State 21>: 12.35ns
+ST_21: call_ret [97/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 22>: 10.18ns
-ST_22: call_ret [96/99] 10.18ns
+ <State 22>: 12.35ns
+ST_22: call_ret [96/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 23>: 10.18ns
-ST_23: call_ret [95/99] 10.18ns
+ <State 23>: 12.35ns
+ST_23: call_ret [95/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 24>: 10.18ns
-ST_24: call_ret [94/99] 10.18ns
+ <State 24>: 12.35ns
+ST_24: call_ret [94/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 25>: 10.18ns
-ST_25: call_ret [93/99] 10.18ns
+ <State 25>: 12.35ns
+ST_25: call_ret [93/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 26>: 10.18ns
-ST_26: call_ret [92/99] 10.18ns
+ <State 26>: 12.35ns
+ST_26: call_ret [92/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 27>: 10.18ns
-ST_27: call_ret [91/99] 10.18ns
+ <State 27>: 12.35ns
+ST_27: call_ret [91/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 28>: 10.18ns
-ST_28: call_ret [90/99] 10.18ns
+ <State 28>: 12.35ns
+ST_28: call_ret [90/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 29>: 10.18ns
-ST_29: call_ret [89/99] 10.18ns
+ <State 29>: 12.35ns
+ST_29: call_ret [89/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 30>: 10.18ns
-ST_30: call_ret [88/99] 10.18ns
+ <State 30>: 12.35ns
+ST_30: call_ret [88/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 31>: 10.18ns
-ST_31: call_ret [87/99] 10.18ns
+ <State 31>: 12.35ns
+ST_31: call_ret [87/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 32>: 10.18ns
-ST_32: call_ret [86/99] 10.18ns
+ <State 32>: 12.35ns
+ST_32: call_ret [86/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 33>: 10.18ns
-ST_33: call_ret [85/99] 10.18ns
+ <State 33>: 12.35ns
+ST_33: call_ret [85/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 34>: 10.18ns
-ST_34: call_ret [84/99] 10.18ns
+ <State 34>: 12.35ns
+ST_34: call_ret [84/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 35>: 10.18ns
-ST_35: call_ret [83/99] 10.18ns
+ <State 35>: 12.35ns
+ST_35: call_ret [83/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 36>: 10.18ns
-ST_36: call_ret [82/99] 10.18ns
+ <State 36>: 12.35ns
+ST_36: call_ret [82/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 37>: 10.18ns
-ST_37: call_ret [81/99] 10.18ns
+ <State 37>: 12.35ns
+ST_37: call_ret [81/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 38>: 10.18ns
-ST_38: call_ret [80/99] 10.18ns
+ <State 38>: 12.35ns
+ST_38: call_ret [80/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 39>: 10.18ns
-ST_39: call_ret [79/99] 10.18ns
+ <State 39>: 12.35ns
+ST_39: call_ret [79/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 40>: 10.18ns
-ST_40: call_ret [78/99] 10.18ns
+ <State 40>: 12.35ns
+ST_40: call_ret [78/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 41>: 10.18ns
-ST_41: call_ret [77/99] 10.18ns
+ <State 41>: 12.35ns
+ST_41: call_ret [77/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 42>: 10.18ns
-ST_42: call_ret [76/99] 10.18ns
+ <State 42>: 12.35ns
+ST_42: call_ret [76/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 43>: 10.18ns
-ST_43: call_ret [75/99] 10.18ns
+ <State 43>: 12.35ns
+ST_43: call_ret [75/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 44>: 10.18ns
-ST_44: call_ret [74/99] 10.18ns
+ <State 44>: 12.35ns
+ST_44: call_ret [74/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 45>: 10.18ns
-ST_45: call_ret [73/99] 10.18ns
+ <State 45>: 12.35ns
+ST_45: call_ret [73/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 46>: 10.18ns
-ST_46: call_ret [72/99] 10.18ns
+ <State 46>: 12.35ns
+ST_46: call_ret [72/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 47>: 10.18ns
-ST_47: call_ret [71/99] 10.18ns
+ <State 47>: 12.35ns
+ST_47: call_ret [71/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 48>: 10.18ns
-ST_48: call_ret [70/99] 10.18ns
+ <State 48>: 12.35ns
+ST_48: call_ret [70/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 49>: 10.18ns
-ST_49: call_ret [69/99] 10.18ns
+ <State 49>: 12.35ns
+ST_49: call_ret [69/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 50>: 10.18ns
-ST_50: call_ret [68/99] 10.18ns
+ <State 50>: 12.35ns
+ST_50: call_ret [68/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 51>: 10.18ns
-ST_51: call_ret [67/99] 10.18ns
+ <State 51>: 12.35ns
+ST_51: call_ret [67/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 52>: 10.18ns
-ST_52: call_ret [66/99] 10.18ns
+ <State 52>: 12.35ns
+ST_52: call_ret [66/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 53>: 10.18ns
-ST_53: call_ret [65/99] 10.18ns
+ <State 53>: 12.35ns
+ST_53: call_ret [65/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 54>: 10.18ns
-ST_54: call_ret [64/99] 10.18ns
+ <State 54>: 12.35ns
+ST_54: call_ret [64/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 55>: 10.18ns
-ST_55: call_ret [63/99] 10.18ns
+ <State 55>: 12.35ns
+ST_55: call_ret [63/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 56>: 10.18ns
-ST_56: call_ret [62/99] 10.18ns
+ <State 56>: 12.35ns
+ST_56: call_ret [62/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 57>: 10.18ns
-ST_57: call_ret [61/99] 10.18ns
+ <State 57>: 12.35ns
+ST_57: call_ret [61/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 58>: 10.18ns
-ST_58: call_ret [60/99] 10.18ns
+ <State 58>: 12.35ns
+ST_58: call_ret [60/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 59>: 10.18ns
-ST_59: call_ret [59/99] 10.18ns
+ <State 59>: 12.35ns
+ST_59: call_ret [59/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 60>: 10.18ns
-ST_60: call_ret [58/99] 10.18ns
+ <State 60>: 12.35ns
+ST_60: call_ret [58/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 61>: 10.18ns
-ST_61: call_ret [57/99] 10.18ns
+ <State 61>: 12.35ns
+ST_61: call_ret [57/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 62>: 10.18ns
-ST_62: call_ret [56/99] 10.18ns
+ <State 62>: 12.35ns
+ST_62: call_ret [56/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 63>: 10.18ns
-ST_63: call_ret [55/99] 10.18ns
+ <State 63>: 12.35ns
+ST_63: call_ret [55/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 64>: 10.18ns
-ST_64: call_ret [54/99] 10.18ns
+ <State 64>: 12.35ns
+ST_64: call_ret [54/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 65>: 10.18ns
-ST_65: call_ret [53/99] 10.18ns
+ <State 65>: 12.35ns
+ST_65: call_ret [53/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 66>: 10.18ns
-ST_66: call_ret [52/99] 10.18ns
+ <State 66>: 12.35ns
+ST_66: call_ret [52/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 67>: 10.18ns
-ST_67: call_ret [51/99] 10.18ns
+ <State 67>: 12.35ns
+ST_67: call_ret [51/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 68>: 10.18ns
-ST_68: call_ret [50/99] 10.18ns
+ <State 68>: 12.35ns
+ST_68: call_ret [50/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 69>: 10.18ns
-ST_69: call_ret [49/99] 10.18ns
+ <State 69>: 12.35ns
+ST_69: call_ret [49/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 70>: 10.18ns
-ST_70: call_ret [48/99] 10.18ns
+ <State 70>: 12.35ns
+ST_70: call_ret [48/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 71>: 10.18ns
-ST_71: call_ret [47/99] 10.18ns
+ <State 71>: 12.35ns
+ST_71: call_ret [47/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 72>: 10.18ns
-ST_72: call_ret [46/99] 10.18ns
+ <State 72>: 12.35ns
+ST_72: call_ret [46/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 73>: 10.18ns
-ST_73: call_ret [45/99] 10.18ns
+ <State 73>: 12.35ns
+ST_73: call_ret [45/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 74>: 10.18ns
-ST_74: call_ret [44/99] 10.18ns
+ <State 74>: 12.35ns
+ST_74: call_ret [44/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 75>: 10.18ns
-ST_75: call_ret [43/99] 10.18ns
+ <State 75>: 12.35ns
+ST_75: call_ret [43/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 76>: 10.18ns
-ST_76: call_ret [42/99] 10.18ns
+ <State 76>: 12.35ns
+ST_76: call_ret [42/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 77>: 10.18ns
-ST_77: call_ret [41/99] 10.18ns
+ <State 77>: 12.35ns
+ST_77: call_ret [41/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 78>: 10.18ns
-ST_78: call_ret [40/99] 10.18ns
+ <State 78>: 12.35ns
+ST_78: call_ret [40/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 79>: 10.18ns
-ST_79: call_ret [39/99] 10.18ns
+ <State 79>: 12.35ns
+ST_79: call_ret [39/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 80>: 10.18ns
-ST_80: call_ret [38/99] 10.18ns
+ <State 80>: 12.35ns
+ST_80: call_ret [38/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 81>: 10.18ns
-ST_81: call_ret [37/99] 10.18ns
+ <State 81>: 12.35ns
+ST_81: call_ret [37/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 82>: 10.18ns
-ST_82: call_ret [36/99] 10.18ns
+ <State 82>: 12.35ns
+ST_82: call_ret [36/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 83>: 10.18ns
-ST_83: call_ret [35/99] 10.18ns
+ <State 83>: 12.35ns
+ST_83: call_ret [35/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 84>: 10.18ns
-ST_84: call_ret [34/99] 10.18ns
+ <State 84>: 12.35ns
+ST_84: call_ret [34/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 85>: 10.18ns
-ST_85: call_ret [33/99] 10.18ns
+ <State 85>: 12.35ns
+ST_85: call_ret [33/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 86>: 10.18ns
-ST_86: call_ret [32/99] 10.18ns
+ <State 86>: 12.35ns
+ST_86: call_ret [32/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 87>: 10.18ns
-ST_87: call_ret [31/99] 10.18ns
+ <State 87>: 12.35ns
+ST_87: call_ret [31/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 88>: 10.18ns
-ST_88: call_ret [30/99] 10.18ns
+ <State 88>: 12.35ns
+ST_88: call_ret [30/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 89>: 10.18ns
-ST_89: call_ret [29/99] 10.18ns
+ <State 89>: 12.35ns
+ST_89: call_ret [29/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 90>: 10.18ns
-ST_90: call_ret [28/99] 10.18ns
+ <State 90>: 12.35ns
+ST_90: call_ret [28/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 91>: 10.18ns
-ST_91: call_ret [27/99] 10.18ns
+ <State 91>: 12.35ns
+ST_91: call_ret [27/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 92>: 10.18ns
-ST_92: call_ret [26/99] 10.18ns
+ <State 92>: 12.35ns
+ST_92: call_ret [26/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 93>: 10.18ns
-ST_93: call_ret [25/99] 10.18ns
+ <State 93>: 12.35ns
+ST_93: call_ret [25/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 94>: 10.18ns
-ST_94: call_ret [24/99] 10.18ns
+ <State 94>: 12.35ns
+ST_94: call_ret [24/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 95>: 10.18ns
-ST_95: call_ret [23/99] 10.18ns
+ <State 95>: 12.35ns
+ST_95: call_ret [23/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 96>: 10.18ns
-ST_96: call_ret [22/99] 10.18ns
+ <State 96>: 12.35ns
+ST_96: call_ret [22/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 97>: 10.18ns
-ST_97: call_ret [21/99] 10.18ns
+ <State 97>: 12.35ns
+ST_97: call_ret [21/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 98>: 10.18ns
-ST_98: call_ret [20/99] 10.18ns
+ <State 98>: 12.35ns
+ST_98: call_ret [20/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 99>: 10.18ns
-ST_99: call_ret [19/99] 10.18ns
+ <State 99>: 12.35ns
+ST_99: call_ret [19/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 100>: 10.18ns
-ST_100: call_ret [18/99] 10.18ns
+ <State 100>: 12.35ns
+ST_100: call_ret [18/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 101>: 10.18ns
-ST_101: call_ret [17/99] 10.18ns
+ <State 101>: 12.35ns
+ST_101: call_ret [17/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 102>: 10.18ns
-ST_102: call_ret [16/99] 10.18ns
+ <State 102>: 12.35ns
+ST_102: call_ret [16/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 103>: 10.18ns
-ST_103: call_ret [15/99] 10.18ns
+ <State 103>: 12.35ns
+ST_103: call_ret [15/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 104>: 10.18ns
-ST_104: call_ret [14/99] 10.18ns
+ <State 104>: 12.35ns
+ST_104: call_ret [14/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 105>: 10.18ns
-ST_105: call_ret [13/99] 10.18ns
+ <State 105>: 12.35ns
+ST_105: call_ret [13/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 106>: 10.18ns
-ST_106: call_ret [12/99] 10.18ns
+ <State 106>: 12.35ns
+ST_106: call_ret [12/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 107>: 10.18ns
-ST_107: call_ret [11/99] 10.18ns
+ <State 107>: 12.35ns
+ST_107: call_ret [11/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 108>: 10.18ns
-ST_108: call_ret [10/99] 10.18ns
+ <State 108>: 12.35ns
+ST_108: call_ret [10/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 109>: 10.18ns
-ST_109: call_ret [9/99] 10.18ns
+ <State 109>: 12.35ns
+ST_109: call_ret [9/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 110>: 10.18ns
-ST_110: call_ret [8/99] 10.18ns
+ <State 110>: 12.35ns
+ST_110: call_ret [8/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 111>: 10.18ns
-ST_111: call_ret [7/99] 10.18ns
+ <State 111>: 12.35ns
+ST_111: call_ret [7/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 112>: 10.18ns
-ST_112: call_ret [6/99] 10.18ns
+ <State 112>: 12.35ns
+ST_112: call_ret [6/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 113>: 10.18ns
-ST_113: call_ret [5/99] 10.18ns
+ <State 113>: 12.35ns
+ST_113: call_ret [5/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 114>: 10.18ns
-ST_114: call_ret [4/99] 10.18ns
+ <State 114>: 12.35ns
+ST_114: call_ret [4/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 115>: 10.18ns
-ST_115: call_ret [3/99] 10.18ns
+ <State 115>: 12.35ns
+ST_115: call_ret [3/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
- <State 116>: 10.18ns
-ST_116: call_ret [2/99] 10.18ns
+ <State 116>: 12.35ns
+ST_116: call_ret [2/99] 12.35ns
 :36  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @single_block_AES_encrypt_aes_cipher(i8 %tmp_data_16, i8 %tmp_data_17, i8 %tmp_data_18, i8 %tmp_data_19, i8 %tmp_data_20, i8 %tmp_data_21, i8 %tmp_data_22, i8 %tmp_data_23, i8 %tmp_data_24, i8 %tmp_data_25, i8 %tmp_data_26, i8 %tmp_data_27, i8 %tmp_data_28, i8 %tmp_data_29, i8 %tmp_data_30, i8 %tmp_data_31, [176 x i8]* %w)
 
 
@@ -1154,22 +1154,22 @@ ST_131: stg_314 [1/1] 0.00ns
 
  <State 132>: 0.00ns
 ST_132: empty [1/1] 0.00ns
-:0  %empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4)
+:0  %empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 16, i64 16, i64 16)
 
 ST_132: stg_316 [1/1] 0.00ns
-:1  call void (...)* @_ssdm_op_SpecLoopName([5 x i8]* @p_str3) nounwind
+:1  call void (...)* @_ssdm_op_SpecLoopName([5 x i8]* @p_str37) nounwind
 
 ST_132: tmp_1 [1/1] 0.00ns
-:2  %tmp_1 = call i32 (...)* @_ssdm_op_SpecRegionBegin([5 x i8]* @p_str3)
+:2  %tmp_1 = call i32 (...)* @_ssdm_op_SpecRegionBegin([5 x i8]* @p_str37)
 
 ST_132: stg_318 [1/1] 0.00ns
-:3  call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 1, i32 1, i32 0, [1 x i8]* @p_str1) nounwind
+:3  call void (...)* @_ssdm_op_SpecPipeline(i32 2, i32 1, i32 1, i32 0, [1 x i8]* @p_str15) nounwind
 
 ST_132: stg_319 [1/1] 0.00ns
 :69  call void @_ssdm_op_Write.axis.volatile.i8P.i1P.i1P(i8* %cipher_V_data, i1* %cipher_V_user_V, i1* %cipher_V_last_V, i8 %tmp_data_15, i1 true, i1 %tmp_last_V)
 
 ST_132: empty_23 [1/1] 0.00ns
-:70  %empty_23 = call i32 (...)* @_ssdm_op_SpecRegionEnd([5 x i8]* @p_str3, i32 %tmp_1)
+:70  %empty_23 = call i32 (...)* @_ssdm_op_SpecRegionEnd([5 x i8]* @p_str37, i32 %tmp_1)
 
 ST_132: stg_321 [1/1] 0.00ns
 :71  br label %1
@@ -1186,393 +1186,393 @@ ST_133: stg_322 [1/1] 0.00ns
 ============================================================
 Target clock period: 10ns, clock uncertainty: 1.25ns.
 
- <State 20>: 10.2ns
+ <State 20>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 21>: 10.2ns
+ <State 21>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 22>: 10.2ns
+ <State 22>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 23>: 10.2ns
+ <State 23>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 24>: 10.2ns
+ <State 24>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 25>: 10.2ns
+ <State 25>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 26>: 10.2ns
+ <State 26>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 27>: 10.2ns
+ <State 27>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 28>: 10.2ns
+ <State 28>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 29>: 10.2ns
+ <State 29>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 30>: 10.2ns
+ <State 30>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 31>: 10.2ns
+ <State 31>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 32>: 10.2ns
+ <State 32>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 33>: 10.2ns
+ <State 33>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 34>: 10.2ns
+ <State 34>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 35>: 10.2ns
+ <State 35>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 36>: 10.2ns
+ <State 36>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 37>: 10.2ns
+ <State 37>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 38>: 10.2ns
+ <State 38>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 39>: 10.2ns
+ <State 39>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 40>: 10.2ns
+ <State 40>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 41>: 10.2ns
+ <State 41>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 42>: 10.2ns
+ <State 42>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 43>: 10.2ns
+ <State 43>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 44>: 10.2ns
+ <State 44>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 45>: 10.2ns
+ <State 45>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 46>: 10.2ns
+ <State 46>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 47>: 10.2ns
+ <State 47>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 48>: 10.2ns
+ <State 48>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 49>: 10.2ns
+ <State 49>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 50>: 10.2ns
+ <State 50>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 51>: 10.2ns
+ <State 51>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 52>: 10.2ns
+ <State 52>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 53>: 10.2ns
+ <State 53>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 54>: 10.2ns
+ <State 54>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 55>: 10.2ns
+ <State 55>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 56>: 10.2ns
+ <State 56>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 57>: 10.2ns
+ <State 57>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 58>: 10.2ns
+ <State 58>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 59>: 10.2ns
+ <State 59>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 60>: 10.2ns
+ <State 60>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 61>: 10.2ns
+ <State 61>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 62>: 10.2ns
+ <State 62>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 63>: 10.2ns
+ <State 63>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 64>: 10.2ns
+ <State 64>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 65>: 10.2ns
+ <State 65>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 66>: 10.2ns
+ <State 66>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 67>: 10.2ns
+ <State 67>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 68>: 10.2ns
+ <State 68>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 69>: 10.2ns
+ <State 69>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 70>: 10.2ns
+ <State 70>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 71>: 10.2ns
+ <State 71>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 72>: 10.2ns
+ <State 72>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 73>: 10.2ns
+ <State 73>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 74>: 10.2ns
+ <State 74>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 75>: 10.2ns
+ <State 75>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 76>: 10.2ns
+ <State 76>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 77>: 10.2ns
+ <State 77>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 78>: 10.2ns
+ <State 78>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 79>: 10.2ns
+ <State 79>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 80>: 10.2ns
+ <State 80>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 81>: 10.2ns
+ <State 81>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 82>: 10.2ns
+ <State 82>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 83>: 10.2ns
+ <State 83>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 84>: 10.2ns
+ <State 84>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 85>: 10.2ns
+ <State 85>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 86>: 10.2ns
+ <State 86>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 87>: 10.2ns
+ <State 87>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 88>: 10.2ns
+ <State 88>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 89>: 10.2ns
+ <State 89>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 90>: 10.2ns
+ <State 90>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 91>: 10.2ns
+ <State 91>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 92>: 10.2ns
+ <State 92>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 93>: 10.2ns
+ <State 93>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 94>: 10.2ns
+ <State 94>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 95>: 10.2ns
+ <State 95>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 96>: 10.2ns
+ <State 96>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 97>: 10.2ns
+ <State 97>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 98>: 10.2ns
+ <State 98>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 99>: 10.2ns
+ <State 99>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 100>: 10.2ns
+ <State 100>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 101>: 10.2ns
+ <State 101>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 102>: 10.2ns
+ <State 102>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 103>: 10.2ns
+ <State 103>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 104>: 10.2ns
+ <State 104>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 105>: 10.2ns
+ <State 105>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 106>: 10.2ns
+ <State 106>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 107>: 10.2ns
+ <State 107>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 108>: 10.2ns
+ <State 108>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 109>: 10.2ns
+ <State 109>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 110>: 10.2ns
+ <State 110>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 111>: 10.2ns
+ <State 111>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 112>: 10.2ns
+ <State 112>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 113>: 10.2ns
+ <State 113>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 114>: 10.2ns
+ <State 114>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 115>: 10.2ns
+ <State 115>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
- <State 116>: 10.2ns
+ <State 116>: 12.4ns
 The critical path consists of the following:
-	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (10.2 ns)
+	'call' operation ('call_ret', AES_Encryption/main.cpp:49) to 'single_block_AES_encrypt_aes_cipher' (12.4 ns)
 
 
 ============================================================

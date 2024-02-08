@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'single_block_AES_encrypt'" level="0">
-<item name = "Date">Thu Feb 08 10:04:09 2024
+<item name = "Date">Thu Feb 08 12:12:27 2024
 </item>
 <item name = "Version">2016.2 (Build 1577090 on Thu Jun 02 16:59:10 MDT 2016)</item>
 <item name = "Project">AES_Encryption</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">10.00, 10.18, 1.25</column>
+<column name="ap_clk">10.00, 12.35, 1.25</column>
 </table>
 </item>
 </section>
@@ -31,13 +31,13 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="7">Instance, Module, min, max, min, max, Type</keys>
-<column name="grp_single_block_AES_encrypt_aes_cipher_fu_110">single_block_AES_encrypt_aes_cipher, 98, 98, 99, 99, function</column>
-<column name="grp_single_block_AES_encrypt_aes_key_expansion_fu_133">single_block_AES_encrypt_aes_key_expansion, ?, ?, ?, ?, none</column>
+<column name="grp_single_block_AES_encrypt_aes_cipher_fu_112">single_block_AES_encrypt_aes_cipher, 98, 98, 99, 99, function</column>
+<column name="grp_single_block_AES_encrypt_aes_key_expansion_fu_135">single_block_AES_encrypt_aes_key_expansion, ?, ?, ?, ?, none</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- loop">426, 426, 130, 99, 1, 4, yes</column>
+<column name="- loop">1614, 1614, 130, 99, 2, 16, yes</column>
 </table>
 </item>
 </section>
@@ -50,12 +50,12 @@
 <item name = "Summary"><table name="" hasTotal="1">
 <keys size="5">Name, BRAM_18K, DSP48E, FF, LUT</keys>
 <column name="DSP">-, -, -, -</column>
-<column name="Expression">-, -, 0, 11</column>
+<column name="Expression">-, -, 0, 14</column>
 <column name="FIFO">-, -, -, -</column>
 <column name="Instance">9, -, 713, 7082</column>
 <column name="Memory">1, -, 0, 0</column>
-<column name="Multiplexer">-, -, -, 292</column>
-<column name="Register">-, -, 357, -</column>
+<column name="Multiplexer">-, -, -, 296</column>
+<column name="Register">-, -, 361, -</column>
 <specialColumn name="Available">280, 220, 106400, 53200</specialColumn>
 <specialColumn name="Utilization (%)">3, 0, 1, 13</specialColumn>
 </table>
@@ -64,8 +64,8 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="6">Instance, Module, BRAM_18K, DSP48E, FF, LUT</keys>
-<column name="grp_single_block_AES_encrypt_aes_cipher_fu_110">single_block_AES_encrypt_aes_cipher, 8, 0, 469, 6526</column>
-<column name="grp_single_block_AES_encrypt_aes_key_expansion_fu_133">single_block_AES_encrypt_aes_key_expansion, 1, 0, 244, 556</column>
+<column name="grp_single_block_AES_encrypt_aes_cipher_fu_112">single_block_AES_encrypt_aes_cipher, 8, 0, 469, 6526</column>
+<column name="grp_single_block_AES_encrypt_aes_key_expansion_fu_135">single_block_AES_encrypt_aes_key_expansion, 1, 0, 244, 556</column>
 </table>
 </item>
 <item name = "DSP48"><table name="" hasTotal="0">
@@ -83,21 +83,21 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="block_1_fu_154_p2">+, 0, 0, 3, 3, 1</column>
+<column name="block_1_fu_156_p2">+, 0, 0, 5, 5, 1</column>
 <column name="ap_sig_2493">and, 0, 0, 1, 1, 1</column>
 <column name="ap_sig_2494">and, 0, 0, 1, 1, 1</column>
 <column name="ap_sig_2496">and, 0, 0, 1, 1, 1</column>
 <column name="ap_sig_462">and, 0, 0, 1, 1, 1</column>
-<column name="exitcond1_fu_148_p2">icmp, 0, 0, 2, 3, 4</column>
-<column name="tmp_last_V_fu_160_p2">icmp, 0, 0, 2, 3, 2</column>
+<column name="exitcond1_fu_150_p2">icmp, 0, 0, 3, 5, 6</column>
+<column name="tmp_last_V_fu_162_p2">icmp, 0, 0, 2, 5, 4</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
 <column name="ap_NS_fsm">224, 103, 1, 103</column>
 <column name="ap_sig_ioackin_cipher_TREADY">1, 2, 1, 2</column>
-<column name="block_phi_fu_103_p4">3, 2, 3, 6</column>
-<column name="block_reg_99">3, 2, 3, 6</column>
+<column name="block_phi_fu_105_p4">5, 2, 5, 10</column>
+<column name="block_reg_101">5, 2, 5, 10</column>
 <column name="cipher_TDATA">40, 17, 8, 136</column>
 <column name="cipher_TDATA_blk_n">1, 2, 1, 2</column>
 <column name="cipher_TLAST">1, 3, 1, 3</column>
@@ -111,47 +111,47 @@
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
 <column name="ap_CS_fsm">102, 0, 102, 0</column>
-<column name="ap_reg_grp_single_block_AES_encrypt_aes_cipher_fu_110_ap_start">1, 0, 1, 0</column>
-<column name="ap_reg_grp_single_block_AES_encrypt_aes_key_expansion_fu_133_ap_start">1, 0, 1, 0</column>
+<column name="ap_reg_grp_single_block_AES_encrypt_aes_cipher_fu_112_ap_start">1, 0, 1, 0</column>
+<column name="ap_reg_grp_single_block_AES_encrypt_aes_key_expansion_fu_135_ap_start">1, 0, 1, 0</column>
 <column name="ap_reg_ioackin_cipher_TREADY">1, 0, 1, 0</column>
 <column name="ap_reg_ppiten_pp0_it0">1, 0, 1, 0</column>
 <column name="ap_reg_ppiten_pp0_it1">1, 0, 1, 0</column>
-<column name="ap_reg_ppstg_exitcond1_reg_231_pp0_iter1">1, 0, 1, 0</column>
-<column name="ap_reg_ppstg_tmp_last_V_reg_240_pp0_iter1">1, 0, 1, 0</column>
-<column name="block_1_reg_235">3, 0, 3, 0</column>
-<column name="block_reg_99">3, 0, 3, 0</column>
-<column name="exitcond1_reg_231">1, 0, 1, 0</column>
-<column name="tmp_data_10_reg_365">8, 0, 8, 0</column>
-<column name="tmp_data_11_reg_370">8, 0, 8, 0</column>
-<column name="tmp_data_12_reg_375">8, 0, 8, 0</column>
-<column name="tmp_data_13_reg_380">8, 0, 8, 0</column>
-<column name="tmp_data_14_reg_385">8, 0, 8, 0</column>
-<column name="tmp_data_15_reg_390">8, 0, 8, 0</column>
-<column name="tmp_data_16_reg_245">8, 0, 8, 0</column>
-<column name="tmp_data_17_reg_250">8, 0, 8, 0</column>
-<column name="tmp_data_18_reg_255">8, 0, 8, 0</column>
-<column name="tmp_data_19_reg_260">8, 0, 8, 0</column>
-<column name="tmp_data_1_reg_360">8, 0, 8, 0</column>
-<column name="tmp_data_20_reg_265">8, 0, 8, 0</column>
-<column name="tmp_data_21_reg_270">8, 0, 8, 0</column>
-<column name="tmp_data_22_reg_275">8, 0, 8, 0</column>
-<column name="tmp_data_23_reg_280">8, 0, 8, 0</column>
-<column name="tmp_data_24_reg_285">8, 0, 8, 0</column>
-<column name="tmp_data_25_reg_290">8, 0, 8, 0</column>
-<column name="tmp_data_26_reg_295">8, 0, 8, 0</column>
-<column name="tmp_data_27_reg_300">8, 0, 8, 0</column>
-<column name="tmp_data_28_reg_305">8, 0, 8, 0</column>
-<column name="tmp_data_29_reg_310">8, 0, 8, 0</column>
-<column name="tmp_data_2_reg_320">8, 0, 8, 0</column>
-<column name="tmp_data_30_reg_315">8, 0, 8, 0</column>
-<column name="tmp_data_3_reg_325">8, 0, 8, 0</column>
-<column name="tmp_data_4_reg_330">8, 0, 8, 0</column>
-<column name="tmp_data_5_reg_335">8, 0, 8, 0</column>
-<column name="tmp_data_6_reg_340">8, 0, 8, 0</column>
-<column name="tmp_data_7_reg_345">8, 0, 8, 0</column>
-<column name="tmp_data_8_reg_350">8, 0, 8, 0</column>
-<column name="tmp_data_9_reg_355">8, 0, 8, 0</column>
-<column name="tmp_last_V_reg_240">1, 0, 1, 0</column>
+<column name="ap_reg_ppstg_exitcond1_reg_233_pp0_iter1">1, 0, 1, 0</column>
+<column name="ap_reg_ppstg_tmp_last_V_reg_242_pp0_iter1">1, 0, 1, 0</column>
+<column name="block_1_reg_237">5, 0, 5, 0</column>
+<column name="block_reg_101">5, 0, 5, 0</column>
+<column name="exitcond1_reg_233">1, 0, 1, 0</column>
+<column name="tmp_data_10_reg_367">8, 0, 8, 0</column>
+<column name="tmp_data_11_reg_372">8, 0, 8, 0</column>
+<column name="tmp_data_12_reg_377">8, 0, 8, 0</column>
+<column name="tmp_data_13_reg_382">8, 0, 8, 0</column>
+<column name="tmp_data_14_reg_387">8, 0, 8, 0</column>
+<column name="tmp_data_15_reg_392">8, 0, 8, 0</column>
+<column name="tmp_data_16_reg_247">8, 0, 8, 0</column>
+<column name="tmp_data_17_reg_252">8, 0, 8, 0</column>
+<column name="tmp_data_18_reg_257">8, 0, 8, 0</column>
+<column name="tmp_data_19_reg_262">8, 0, 8, 0</column>
+<column name="tmp_data_1_reg_362">8, 0, 8, 0</column>
+<column name="tmp_data_20_reg_267">8, 0, 8, 0</column>
+<column name="tmp_data_21_reg_272">8, 0, 8, 0</column>
+<column name="tmp_data_22_reg_277">8, 0, 8, 0</column>
+<column name="tmp_data_23_reg_282">8, 0, 8, 0</column>
+<column name="tmp_data_24_reg_287">8, 0, 8, 0</column>
+<column name="tmp_data_25_reg_292">8, 0, 8, 0</column>
+<column name="tmp_data_26_reg_297">8, 0, 8, 0</column>
+<column name="tmp_data_27_reg_302">8, 0, 8, 0</column>
+<column name="tmp_data_28_reg_307">8, 0, 8, 0</column>
+<column name="tmp_data_29_reg_312">8, 0, 8, 0</column>
+<column name="tmp_data_2_reg_322">8, 0, 8, 0</column>
+<column name="tmp_data_30_reg_317">8, 0, 8, 0</column>
+<column name="tmp_data_3_reg_327">8, 0, 8, 0</column>
+<column name="tmp_data_4_reg_332">8, 0, 8, 0</column>
+<column name="tmp_data_5_reg_337">8, 0, 8, 0</column>
+<column name="tmp_data_6_reg_342">8, 0, 8, 0</column>
+<column name="tmp_data_7_reg_347">8, 0, 8, 0</column>
+<column name="tmp_data_8_reg_352">8, 0, 8, 0</column>
+<column name="tmp_data_9_reg_357">8, 0, 8, 0</column>
+<column name="tmp_last_V_reg_242">1, 0, 1, 0</column>
 </table>
 </item>
 </section>
