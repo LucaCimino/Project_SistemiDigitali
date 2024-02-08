@@ -1,6 +1,6 @@
 set_property SRC_FILE_INFO {cfile:c:/Users/lucac/Vivado/AES_Encryption_Pynq/AES_Encryption_Pynq.srcs/sources_1/bd/design_1/ip/design_1_processing_system7_0_3/design_1_processing_system7_0_3.xdc rfile:../../../AES_Encryption_Pynq.srcs/sources_1/bd/design_1/ip/design_1_processing_system7_0_3/design_1_processing_system7_0_3.xdc id:1 order:EARLY scoped_inst:design_1_i/processing_system7_0/inst} [current_design]
 set_property src_info {type:SCOPED_XDC file:1 line:21 export:INPUT save:INPUT read:READ} [current_design]
-set_input_jitter clk_fpga_0 0.6
+set_input_jitter clk_fpga_0 0.3
 set_property src_info {type:SCOPED_XDC file:1 line:30 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN "H5" [get_ports "DDR_VRP"]
 set_property src_info {type:SCOPED_XDC file:1 line:34 export:INPUT save:INPUT read:READ} [current_design]

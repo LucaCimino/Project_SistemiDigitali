@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'single_block_AES_encrypt_sub_bytes'
 ================================================================
-* Date:           Tue Feb 06 11:53:18 2024
+* Date:           Thu Feb 08 10:03:55 2024
 
 * Version:        2016.2 (Build 1577090 on Thu Jun 02 16:59:10 MDT 2016)
 * Project:        AES_Encryption
@@ -20,30 +20,24 @@
     +--------+-------+----------+------------+
     |  Clock | Target| Estimated| Uncertainty|
     +--------+-------+----------+------------+
-    |ap_clk  |  10.00|      4.78|        1.25|
+    |ap_clk  |  10.00|      2.39|        1.25|
     +--------+-------+----------+------------+
 
 + Latency (clock cycles): 
     * Summary: 
-    +-----+-----+-----+-----+---------+
-    |  Latency  |  Interval | Pipeline|
-    | min | max | min | max |   Type  |
-    +-----+-----+-----+-----+---------+
-    |   57|   57|   57|   57|   none  |
-    +-----+-----+-----+-----+---------+
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    1|    1|    1|    1| function |
+    +-----+-----+-----+-----+----------+
 
     + Detail: 
         * Instance: 
         N/A
 
         * Loop: 
-        +-------------+-----+-----+----------+-----------+-----------+------+----------+
-        |             |  Latency  | Iteration|  Initiation Interval  | Trip |          |
-        |  Loop Name  | min | max |  Latency |  achieved |   target  | Count| Pipelined|
-        +-------------+-----+-----+----------+-----------+-----------+------+----------+
-        |- Loop 1     |   56|   56|        14|          -|          -|     4|    no    |
-        | + Loop 1.1  |   12|   12|         3|          -|          -|     4|    no    |
-        +-------------+-----+-----+----------+-----------+-----------+------+----------+
+        N/A
 
 ============================================================
 + Verbose Summary: Synthesis Manager
@@ -58,126 +52,326 @@ ResetActiveHigh: 1
 IsCombinational: 0
 IsDatapathOnly: 0
 HasWiredReturn: 1
-HasMFsm: 0
-HasVarLatency: 1
-IsPipeline: 0
-IsRtlPipelined: 0
+HasMFsm: 2
+HasVarLatency: 0
+IsPipeline: 1
+IsRtlPipelined: 1
 IsInstanceOverlapped: 0
 IsDontTouch: 0
 HasImplIP: 0
 IsGatedGlobalClock: 0
 
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 2
+
 
 ============================================================
 + Verbose Summary: Schedule
 ============================================================
-* Number of FSM states: 5
-* Pipeline: 0
+* Number of FSM states: 2
+* Pipeline: 1
+  Pipeline-0: II = 1, D = 2, States = { 1 2 }
 * Dataflow Pipeline: 0
 
 * FSM state transitions: 
 1 --> 
 	2  / true
 2 --> 
-	3  / (!exitcond1)
-3 --> 
-	2  / (exitcond)
-	4  / (!exitcond)
-4 --> 
-	5  / true
-5 --> 
-	3  / true
 * FSM state operations: 
 
- <State 1>: 1.57ns
-ST_1: stg_6 [1/1] 1.57ns
-:0  br label %.loopexit
+ <State 1>: 2.39ns
+ST_1: state_15_read_1 [1/1] 0.00ns
+.preheader.preheader.0:0  %state_15_read_1 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_15_read)
+
+ST_1: state_14_read_1 [1/1] 0.00ns
+.preheader.preheader.0:1  %state_14_read_1 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_14_read)
+
+ST_1: state_13_read_1 [1/1] 0.00ns
+.preheader.preheader.0:2  %state_13_read_1 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_13_read)
+
+ST_1: state_12_read_1 [1/1] 0.00ns
+.preheader.preheader.0:3  %state_12_read_1 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_12_read)
+
+ST_1: state_11_read_1 [1/1] 0.00ns
+.preheader.preheader.0:4  %state_11_read_1 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_11_read)
+
+ST_1: state_10_read_1 [1/1] 0.00ns
+.preheader.preheader.0:5  %state_10_read_1 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_10_read)
+
+ST_1: state_9_read_1 [1/1] 0.00ns
+.preheader.preheader.0:6  %state_9_read_1 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_9_read)
+
+ST_1: state_8_read_1 [1/1] 0.00ns
+.preheader.preheader.0:7  %state_8_read_1 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_8_read)
+
+ST_1: state_7_read_1 [1/1] 0.00ns
+.preheader.preheader.0:8  %state_7_read_1 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_7_read)
+
+ST_1: state_6_read_1 [1/1] 0.00ns
+.preheader.preheader.0:9  %state_6_read_1 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_6_read)
+
+ST_1: state_5_read_1 [1/1] 0.00ns
+.preheader.preheader.0:10  %state_5_read_1 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_5_read)
+
+ST_1: state_4_read_1 [1/1] 0.00ns
+.preheader.preheader.0:11  %state_4_read_1 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_4_read)
+
+ST_1: state_3_read_1 [1/1] 0.00ns
+.preheader.preheader.0:12  %state_3_read_1 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_3_read)
+
+ST_1: state_2_read_1 [1/1] 0.00ns
+.preheader.preheader.0:13  %state_2_read_1 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_2_read)
+
+ST_1: state_1_read_1 [1/1] 0.00ns
+.preheader.preheader.0:14  %state_1_read_1 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_1_read)
+
+ST_1: state_0_read_1 [1/1] 0.00ns
+.preheader.preheader.0:15  %state_0_read_1 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_0_read)
+
+ST_1: tmp_8 [1/1] 0.00ns
+.preheader.preheader.0:16  %tmp_8 = zext i8 %state_0_read_1 to i64
+
+ST_1: s_box_addr [1/1] 0.00ns
+.preheader.preheader.0:17  %s_box_addr = getelementptr inbounds [256 x i8]* @s_box, i64 0, i64 %tmp_8
+
+ST_1: s_box_load [2/2] 2.39ns
+.preheader.preheader.0:18  %s_box_load = load i8* %s_box_addr, align 1
+
+ST_1: tmp_8_0_1 [1/1] 0.00ns
+.preheader.preheader.0:19  %tmp_8_0_1 = zext i8 %state_1_read_1 to i64
+
+ST_1: s_box_addr_1 [1/1] 0.00ns
+.preheader.preheader.0:20  %s_box_addr_1 = getelementptr inbounds [256 x i8]* @s_box, i64 0, i64 %tmp_8_0_1
+
+ST_1: s_box_load_1 [2/2] 2.39ns
+.preheader.preheader.0:21  %s_box_load_1 = load i8* %s_box_addr_1, align 1
+
+ST_1: tmp_8_0_2 [1/1] 0.00ns
+.preheader.preheader.0:22  %tmp_8_0_2 = zext i8 %state_2_read_1 to i64
+
+ST_1: s_box_addr_2 [1/1] 0.00ns
+.preheader.preheader.0:23  %s_box_addr_2 = getelementptr inbounds [256 x i8]* @s_box, i64 0, i64 %tmp_8_0_2
+
+ST_1: s_box_load_2 [2/2] 2.39ns
+.preheader.preheader.0:24  %s_box_load_2 = load i8* %s_box_addr_2, align 1
+
+ST_1: tmp_8_0_3 [1/1] 0.00ns
+.preheader.preheader.0:25  %tmp_8_0_3 = zext i8 %state_3_read_1 to i64
+
+ST_1: s_box_addr_3 [1/1] 0.00ns
+.preheader.preheader.0:26  %s_box_addr_3 = getelementptr inbounds [256 x i8]* @s_box, i64 0, i64 %tmp_8_0_3
+
+ST_1: s_box_load_3 [2/2] 2.39ns
+.preheader.preheader.0:27  %s_box_load_3 = load i8* %s_box_addr_3, align 1
+
+ST_1: tmp_8_1 [1/1] 0.00ns
+.preheader.preheader.0:28  %tmp_8_1 = zext i8 %state_4_read_1 to i64
+
+ST_1: s_box_addr_4 [1/1] 0.00ns
+.preheader.preheader.0:29  %s_box_addr_4 = getelementptr inbounds [256 x i8]* @s_box, i64 0, i64 %tmp_8_1
+
+ST_1: s_box_load_4 [2/2] 2.39ns
+.preheader.preheader.0:30  %s_box_load_4 = load i8* %s_box_addr_4, align 1
+
+ST_1: tmp_8_1_1 [1/1] 0.00ns
+.preheader.preheader.0:31  %tmp_8_1_1 = zext i8 %state_5_read_1 to i64
+
+ST_1: s_box_addr_5 [1/1] 0.00ns
+.preheader.preheader.0:32  %s_box_addr_5 = getelementptr inbounds [256 x i8]* @s_box, i64 0, i64 %tmp_8_1_1
+
+ST_1: s_box_load_5 [2/2] 2.39ns
+.preheader.preheader.0:33  %s_box_load_5 = load i8* %s_box_addr_5, align 1
+
+ST_1: tmp_8_1_2 [1/1] 0.00ns
+.preheader.preheader.0:34  %tmp_8_1_2 = zext i8 %state_6_read_1 to i64
+
+ST_1: s_box_addr_6 [1/1] 0.00ns
+.preheader.preheader.0:35  %s_box_addr_6 = getelementptr inbounds [256 x i8]* @s_box, i64 0, i64 %tmp_8_1_2
+
+ST_1: s_box_load_6 [2/2] 2.39ns
+.preheader.preheader.0:36  %s_box_load_6 = load i8* %s_box_addr_6, align 1
+
+ST_1: tmp_8_1_3 [1/1] 0.00ns
+.preheader.preheader.0:37  %tmp_8_1_3 = zext i8 %state_7_read_1 to i64
+
+ST_1: s_box_addr_7 [1/1] 0.00ns
+.preheader.preheader.0:38  %s_box_addr_7 = getelementptr inbounds [256 x i8]* @s_box, i64 0, i64 %tmp_8_1_3
+
+ST_1: s_box_load_7 [2/2] 2.39ns
+.preheader.preheader.0:39  %s_box_load_7 = load i8* %s_box_addr_7, align 1
+
+ST_1: tmp_8_2 [1/1] 0.00ns
+.preheader.preheader.0:40  %tmp_8_2 = zext i8 %state_8_read_1 to i64
+
+ST_1: s_box_addr_8 [1/1] 0.00ns
+.preheader.preheader.0:41  %s_box_addr_8 = getelementptr inbounds [256 x i8]* @s_box, i64 0, i64 %tmp_8_2
+
+ST_1: s_box_load_8 [2/2] 2.39ns
+.preheader.preheader.0:42  %s_box_load_8 = load i8* %s_box_addr_8, align 1
+
+ST_1: tmp_8_2_1 [1/1] 0.00ns
+.preheader.preheader.0:43  %tmp_8_2_1 = zext i8 %state_9_read_1 to i64
+
+ST_1: s_box_addr_9 [1/1] 0.00ns
+.preheader.preheader.0:44  %s_box_addr_9 = getelementptr inbounds [256 x i8]* @s_box, i64 0, i64 %tmp_8_2_1
+
+ST_1: s_box_load_9 [2/2] 2.39ns
+.preheader.preheader.0:45  %s_box_load_9 = load i8* %s_box_addr_9, align 1
+
+ST_1: tmp_8_2_2 [1/1] 0.00ns
+.preheader.preheader.0:46  %tmp_8_2_2 = zext i8 %state_10_read_1 to i64
+
+ST_1: s_box_addr_10 [1/1] 0.00ns
+.preheader.preheader.0:47  %s_box_addr_10 = getelementptr inbounds [256 x i8]* @s_box, i64 0, i64 %tmp_8_2_2
+
+ST_1: s_box_load_10 [2/2] 2.39ns
+.preheader.preheader.0:48  %s_box_load_10 = load i8* %s_box_addr_10, align 1
+
+ST_1: tmp_8_2_3 [1/1] 0.00ns
+.preheader.preheader.0:49  %tmp_8_2_3 = zext i8 %state_11_read_1 to i64
+
+ST_1: s_box_addr_11 [1/1] 0.00ns
+.preheader.preheader.0:50  %s_box_addr_11 = getelementptr inbounds [256 x i8]* @s_box, i64 0, i64 %tmp_8_2_3
+
+ST_1: s_box_load_11 [2/2] 2.39ns
+.preheader.preheader.0:51  %s_box_load_11 = load i8* %s_box_addr_11, align 1
+
+ST_1: tmp_8_3 [1/1] 0.00ns
+.preheader.preheader.0:52  %tmp_8_3 = zext i8 %state_12_read_1 to i64
+
+ST_1: s_box_addr_12 [1/1] 0.00ns
+.preheader.preheader.0:53  %s_box_addr_12 = getelementptr inbounds [256 x i8]* @s_box, i64 0, i64 %tmp_8_3
+
+ST_1: s_box_load_12 [2/2] 2.39ns
+.preheader.preheader.0:54  %s_box_load_12 = load i8* %s_box_addr_12, align 1
+
+ST_1: tmp_8_3_1 [1/1] 0.00ns
+.preheader.preheader.0:55  %tmp_8_3_1 = zext i8 %state_13_read_1 to i64
+
+ST_1: s_box_addr_13 [1/1] 0.00ns
+.preheader.preheader.0:56  %s_box_addr_13 = getelementptr inbounds [256 x i8]* @s_box, i64 0, i64 %tmp_8_3_1
+
+ST_1: s_box_load_13 [2/2] 2.39ns
+.preheader.preheader.0:57  %s_box_load_13 = load i8* %s_box_addr_13, align 1
+
+ST_1: tmp_8_3_2 [1/1] 0.00ns
+.preheader.preheader.0:58  %tmp_8_3_2 = zext i8 %state_14_read_1 to i64
+
+ST_1: s_box_addr_14 [1/1] 0.00ns
+.preheader.preheader.0:59  %s_box_addr_14 = getelementptr inbounds [256 x i8]* @s_box, i64 0, i64 %tmp_8_3_2
+
+ST_1: s_box_load_14 [2/2] 2.39ns
+.preheader.preheader.0:60  %s_box_load_14 = load i8* %s_box_addr_14, align 1
+
+ST_1: tmp_8_3_3 [1/1] 0.00ns
+.preheader.preheader.0:61  %tmp_8_3_3 = zext i8 %state_15_read_1 to i64
+
+ST_1: s_box_addr_15 [1/1] 0.00ns
+.preheader.preheader.0:62  %s_box_addr_15 = getelementptr inbounds [256 x i8]* @s_box, i64 0, i64 %tmp_8_3_3
+
+ST_1: s_box_load_15 [2/2] 2.39ns
+.preheader.preheader.0:63  %s_box_load_15 = load i8* %s_box_addr_15, align 1
 
 
- <State 2>: 1.62ns
-ST_2: i [1/1] 0.00ns
-.loopexit:0  %i = phi i3 [ 0, %0 ], [ %i_1, %.preheader ]
+ <State 2>: 2.39ns
+ST_2: s_box_load [1/2] 2.39ns
+.preheader.preheader.0:18  %s_box_load = load i8* %s_box_addr, align 1
 
-ST_2: exitcond1 [1/1] 1.62ns
-.loopexit:1  %exitcond1 = icmp eq i3 %i, -4
+ST_2: s_box_load_1 [1/2] 2.39ns
+.preheader.preheader.0:21  %s_box_load_1 = load i8* %s_box_addr_1, align 1
 
-ST_2: empty [1/1] 0.00ns
-.loopexit:2  %empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4)
+ST_2: s_box_load_2 [1/2] 2.39ns
+.preheader.preheader.0:24  %s_box_load_2 = load i8* %s_box_addr_2, align 1
 
-ST_2: i_1 [1/1] 0.80ns
-.loopexit:3  %i_1 = add i3 %i, 1
+ST_2: s_box_load_3 [1/2] 2.39ns
+.preheader.preheader.0:27  %s_box_load_3 = load i8* %s_box_addr_3, align 1
 
-ST_2: stg_11 [1/1] 0.00ns
-.loopexit:4  br i1 %exitcond1, label %2, label %.preheader.preheader
+ST_2: s_box_load_4 [1/2] 2.39ns
+.preheader.preheader.0:30  %s_box_load_4 = load i8* %s_box_addr_4, align 1
 
-ST_2: tmp [1/1] 0.00ns
-.preheader.preheader:0  %tmp = trunc i3 %i to i2
+ST_2: s_box_load_5 [1/2] 2.39ns
+.preheader.preheader.0:33  %s_box_load_5 = load i8* %s_box_addr_5, align 1
 
-ST_2: tmp_3 [1/1] 0.00ns
-.preheader.preheader:1  %tmp_3 = call i4 @_ssdm_op_BitConcatenate.i4.i2.i2(i2 %tmp, i2 0)
+ST_2: s_box_load_6 [1/2] 2.39ns
+.preheader.preheader.0:36  %s_box_load_6 = load i8* %s_box_addr_6, align 1
 
-ST_2: stg_14 [1/1] 1.57ns
-.preheader.preheader:2  br label %.preheader
+ST_2: s_box_load_7 [1/2] 2.39ns
+.preheader.preheader.0:39  %s_box_load_7 = load i8* %s_box_addr_7, align 1
 
-ST_2: stg_15 [1/1] 0.00ns
-:0  ret void
+ST_2: s_box_load_8 [1/2] 2.39ns
+.preheader.preheader.0:42  %s_box_load_8 = load i8* %s_box_addr_8, align 1
 
+ST_2: s_box_load_9 [1/2] 2.39ns
+.preheader.preheader.0:45  %s_box_load_9 = load i8* %s_box_addr_9, align 1
 
- <State 3>: 3.19ns
-ST_3: j [1/1] 0.00ns
-.preheader:0  %j = phi i3 [ %j_1, %1 ], [ 0, %.preheader.preheader ]
+ST_2: s_box_load_10 [1/2] 2.39ns
+.preheader.preheader.0:48  %s_box_load_10 = load i8* %s_box_addr_10, align 1
 
-ST_3: exitcond [1/1] 1.62ns
-.preheader:1  %exitcond = icmp eq i3 %j, -4
+ST_2: s_box_load_11 [1/2] 2.39ns
+.preheader.preheader.0:51  %s_box_load_11 = load i8* %s_box_addr_11, align 1
 
-ST_3: empty_9 [1/1] 0.00ns
-.preheader:2  %empty_9 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4)
+ST_2: s_box_load_12 [1/2] 2.39ns
+.preheader.preheader.0:54  %s_box_load_12 = load i8* %s_box_addr_12, align 1
 
-ST_3: j_1 [1/1] 0.80ns
-.preheader:3  %j_1 = add i3 %j, 1
+ST_2: s_box_load_13 [1/2] 2.39ns
+.preheader.preheader.0:57  %s_box_load_13 = load i8* %s_box_addr_13, align 1
 
-ST_3: stg_20 [1/1] 0.00ns
-.preheader:4  br i1 %exitcond, label %.loopexit, label %1
+ST_2: s_box_load_14 [1/2] 2.39ns
+.preheader.preheader.0:60  %s_box_load_14 = load i8* %s_box_addr_14, align 1
 
-ST_3: tmp_5_cast [1/1] 0.00ns
-:0  %tmp_5_cast = zext i3 %j to i4
+ST_2: s_box_load_15 [1/2] 2.39ns
+.preheader.preheader.0:63  %s_box_load_15 = load i8* %s_box_addr_15, align 1
 
-ST_3: tmp_6 [1/1] 0.80ns
-:1  %tmp_6 = add i4 %tmp_3, %tmp_5_cast
+ST_2: mrv [1/1] 0.00ns
+.preheader.preheader.0:64  %mrv = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } undef, i8 %s_box_load, 0
 
-ST_3: tmp_7 [1/1] 0.00ns
-:2  %tmp_7 = zext i4 %tmp_6 to i64
+ST_2: mrv_1 [1/1] 0.00ns
+.preheader.preheader.0:65  %mrv_1 = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv, i8 %s_box_load_1, 1
 
-ST_3: state_addr [1/1] 0.00ns
-:3  %state_addr = getelementptr [16 x i8]* %state, i64 0, i64 %tmp_7
+ST_2: mrv_2 [1/1] 0.00ns
+.preheader.preheader.0:66  %mrv_2 = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv_1, i8 %s_box_load_2, 2
 
-ST_3: state_load [2/2] 2.39ns
-:4  %state_load = load i8* %state_addr, align 1
+ST_2: mrv_3 [1/1] 0.00ns
+.preheader.preheader.0:67  %mrv_3 = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv_2, i8 %s_box_load_3, 3
 
+ST_2: mrv_4 [1/1] 0.00ns
+.preheader.preheader.0:68  %mrv_4 = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv_3, i8 %s_box_load_4, 4
 
- <State 4>: 4.78ns
-ST_4: state_load [1/2] 2.39ns
-:4  %state_load = load i8* %state_addr, align 1
+ST_2: mrv_5 [1/1] 0.00ns
+.preheader.preheader.0:69  %mrv_5 = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv_4, i8 %s_box_load_5, 5
 
-ST_4: tmp_8 [1/1] 0.00ns
-:5  %tmp_8 = zext i8 %state_load to i64
+ST_2: mrv_6 [1/1] 0.00ns
+.preheader.preheader.0:70  %mrv_6 = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv_5, i8 %s_box_load_6, 6
 
-ST_4: s_box_addr [1/1] 0.00ns
-:6  %s_box_addr = getelementptr inbounds [256 x i8]* @s_box, i64 0, i64 %tmp_8
+ST_2: mrv_7 [1/1] 0.00ns
+.preheader.preheader.0:71  %mrv_7 = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv_6, i8 %s_box_load_7, 7
 
-ST_4: s_box_load [2/2] 2.39ns
-:7  %s_box_load = load i8* %s_box_addr, align 1
+ST_2: mrv_8 [1/1] 0.00ns
+.preheader.preheader.0:72  %mrv_8 = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv_7, i8 %s_box_load_8, 8
 
+ST_2: mrv_9 [1/1] 0.00ns
+.preheader.preheader.0:73  %mrv_9 = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv_8, i8 %s_box_load_9, 9
 
- <State 5>: 4.78ns
-ST_5: s_box_load [1/2] 2.39ns
-:7  %s_box_load = load i8* %s_box_addr, align 1
+ST_2: mrv_s [1/1] 0.00ns
+.preheader.preheader.0:74  %mrv_s = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv_9, i8 %s_box_load_10, 10
 
-ST_5: stg_31 [1/1] 2.39ns
-:8  store i8 %s_box_load, i8* %state_addr, align 1
+ST_2: mrv_10 [1/1] 0.00ns
+.preheader.preheader.0:75  %mrv_10 = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv_s, i8 %s_box_load_11, 11
 
-ST_5: stg_32 [1/1] 0.00ns
-:9  br label %.preheader
+ST_2: mrv_11 [1/1] 0.00ns
+.preheader.preheader.0:76  %mrv_11 = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv_10, i8 %s_box_load_12, 12
+
+ST_2: mrv_12 [1/1] 0.00ns
+.preheader.preheader.0:77  %mrv_12 = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv_11, i8 %s_box_load_13, 13
+
+ST_2: mrv_13 [1/1] 0.00ns
+.preheader.preheader.0:78  %mrv_13 = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv_12, i8 %s_box_load_14, 14
+
+ST_2: mrv_14 [1/1] 0.00ns
+.preheader.preheader.0:79  %mrv_14 = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv_13, i8 %s_box_load_15, 15
+
+ST_2: stg_99 [1/1] 0.00ns
+.preheader.preheader.0:80  ret { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv_14
 
 
 
@@ -199,9 +393,6 @@ N/A
   - Chain level:
 	State 1
 	State 2
-	State 3
-	State 4
-	State 5
 
 
 ============================================================

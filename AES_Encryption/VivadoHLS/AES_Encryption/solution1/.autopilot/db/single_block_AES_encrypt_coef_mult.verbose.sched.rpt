@@ -1,0 +1,204 @@
+
+
+================================================================
+== Vivado HLS Report for 'single_block_AES_encrypt_coef_mult'
+================================================================
+* Date:           Thu Feb 08 10:03:56 2024
+
+* Version:        2016.2 (Build 1577090 on Thu Jun 02 16:59:10 MDT 2016)
+* Project:        AES_Encryption
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      5.48|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    0|    0|    1|    1| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 0
+IsPipeline: 1
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 1
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 1
+* Pipeline: 1
+  Pipeline-0: II = 1, D = 1, States = { 1 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+* FSM state operations: 
+
+ <State 1>: 5.48ns
+ST_1: b_3_read_1 [1/1] 0.00ns
+:0  %b_3_read_1 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %b_3_read)
+
+ST_1: b_2_read_1 [1/1] 0.00ns
+:1  %b_2_read_1 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %b_2_read)
+
+ST_1: b_1_read_1 [1/1] 0.00ns
+:2  %b_1_read_1 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %b_1_read)
+
+ST_1: b_0_read_1 [1/1] 0.00ns
+:3  %b_0_read_1 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %b_0_read)
+
+ST_1: tmp [1/1] 4.11ns
+:4  %tmp = call fastcc zeroext i8 @single_block_AES_encrypt_gmult(i4 zeroext 2, i8 zeroext %b_0_read_1)
+
+ST_1: tmp_s [1/1] 4.11ns
+:5  %tmp_s = call fastcc zeroext i8 @single_block_AES_encrypt_gmult(i4 zeroext 3, i8 zeroext %b_1_read_1)
+
+ST_1: tmp_1 [1/1] 4.11ns
+:6  %tmp_1 = call fastcc zeroext i8 @single_block_AES_encrypt_gmult(i4 zeroext 1, i8 zeroext %b_2_read_1)
+
+ST_1: tmp_2 [1/1] 4.11ns
+:7  %tmp_2 = call fastcc zeroext i8 @single_block_AES_encrypt_gmult(i4 zeroext 1, i8 zeroext %b_3_read_1)
+
+ST_1: tmp1 [1/1] 0.00ns (grouped into LUT with out node d_0_write_assign)
+:8  %tmp1 = xor i8 %tmp_s, %tmp
+
+ST_1: tmp2 [1/1] 0.00ns (grouped into LUT with out node d_0_write_assign)
+:9  %tmp2 = xor i8 %tmp_1, %tmp_2
+
+ST_1: d_0_write_assign [1/1] 1.37ns (out node of the LUT)
+:10  %d_0_write_assign = xor i8 %tmp2, %tmp1
+
+ST_1: tmp_5 [1/1] 4.11ns
+:11  %tmp_5 = call fastcc zeroext i8 @single_block_AES_encrypt_gmult(i4 zeroext 1, i8 zeroext %b_0_read_1)
+
+ST_1: tmp_6 [1/1] 4.11ns
+:12  %tmp_6 = call fastcc zeroext i8 @single_block_AES_encrypt_gmult(i4 zeroext 2, i8 zeroext %b_1_read_1)
+
+ST_1: tmp_7 [1/1] 4.11ns
+:13  %tmp_7 = call fastcc zeroext i8 @single_block_AES_encrypt_gmult(i4 zeroext 3, i8 zeroext %b_2_read_1)
+
+ST_1: tmp3 [1/1] 0.00ns (grouped into LUT with out node d_1_write_assign)
+:14  %tmp3 = xor i8 %tmp_6, %tmp_5
+
+ST_1: tmp4 [1/1] 0.00ns (grouped into LUT with out node d_1_write_assign)
+:15  %tmp4 = xor i8 %tmp_7, %tmp_2
+
+ST_1: d_1_write_assign [1/1] 1.37ns (out node of the LUT)
+:16  %d_1_write_assign = xor i8 %tmp4, %tmp3
+
+ST_1: tmp_3 [1/1] 4.11ns
+:17  %tmp_3 = call fastcc zeroext i8 @single_block_AES_encrypt_gmult(i4 zeroext 1, i8 zeroext %b_1_read_1)
+
+ST_1: tmp_4 [1/1] 4.11ns
+:18  %tmp_4 = call fastcc zeroext i8 @single_block_AES_encrypt_gmult(i4 zeroext 2, i8 zeroext %b_2_read_1)
+
+ST_1: tmp_8 [1/1] 4.11ns
+:19  %tmp_8 = call fastcc zeroext i8 @single_block_AES_encrypt_gmult(i4 zeroext 3, i8 zeroext %b_3_read_1)
+
+ST_1: tmp5 [1/1] 0.00ns (grouped into LUT with out node d_2_write_assign)
+:20  %tmp5 = xor i8 %tmp_3, %tmp_5
+
+ST_1: tmp6 [1/1] 0.00ns (grouped into LUT with out node d_2_write_assign)
+:21  %tmp6 = xor i8 %tmp_4, %tmp_8
+
+ST_1: d_2_write_assign [1/1] 1.37ns (out node of the LUT)
+:22  %d_2_write_assign = xor i8 %tmp6, %tmp5
+
+ST_1: tmp_9 [1/1] 4.11ns
+:23  %tmp_9 = call fastcc zeroext i8 @single_block_AES_encrypt_gmult(i4 zeroext 3, i8 zeroext %b_0_read_1)
+
+ST_1: tmp_10 [1/1] 4.11ns
+:24  %tmp_10 = call fastcc zeroext i8 @single_block_AES_encrypt_gmult(i4 zeroext 2, i8 zeroext %b_3_read_1)
+
+ST_1: tmp7 [1/1] 0.00ns (grouped into LUT with out node d_3_write_assign)
+:25  %tmp7 = xor i8 %tmp_3, %tmp_9
+
+ST_1: tmp8 [1/1] 0.00ns (grouped into LUT with out node d_3_write_assign)
+:26  %tmp8 = xor i8 %tmp_1, %tmp_10
+
+ST_1: d_3_write_assign [1/1] 1.37ns (out node of the LUT)
+:27  %d_3_write_assign = xor i8 %tmp8, %tmp7
+
+ST_1: mrv [1/1] 0.00ns
+:28  %mrv = insertvalue { i8, i8, i8, i8 } undef, i8 %d_0_write_assign, 0
+
+ST_1: mrv_1 [1/1] 0.00ns
+:29  %mrv_1 = insertvalue { i8, i8, i8, i8 } %mrv, i8 %d_1_write_assign, 1
+
+ST_1: mrv_2 [1/1] 0.00ns
+:30  %mrv_2 = insertvalue { i8, i8, i8, i8 } %mrv_1, i8 %d_2_write_assign, 2
+
+ST_1: mrv_3 [1/1] 0.00ns
+:31  %mrv_3 = insertvalue { i8, i8, i8, i8 } %mrv_2, i8 %d_3_write_assign, 3
+
+ST_1: stg_34 [1/1] 0.00ns
+:32  ret { i8, i8, i8, i8 } %mrv_3
+
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ No timing violations. 
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

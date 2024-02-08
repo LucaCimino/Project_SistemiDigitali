@@ -165,7 +165,10 @@ CONFIG.c_include_mm2s_dre {1} \
 CONFIG.c_include_s2mm_dre {1} \
 CONFIG.c_include_sg {0} \
 CONFIG.c_m_axis_mm2s_tdata_width {8} \
+CONFIG.c_mm2s_burst_size {256} \
+CONFIG.c_s2mm_burst_size {256} \
 CONFIG.c_sg_include_stscntrl_strm {0} \
+CONFIG.c_sg_length_width {23} \
  ] $axi_dma_0
 
   # Create instance: axi_mem_intercon, and set properties
@@ -182,7 +185,7 @@ CONFIG.PCW_ACT_CAN_PERIPHERAL_FREQMHZ {10.000000} \
 CONFIG.PCW_ACT_DCI_PERIPHERAL_FREQMHZ {10.158730} \
 CONFIG.PCW_ACT_ENET0_PERIPHERAL_FREQMHZ {10.000000} \
 CONFIG.PCW_ACT_ENET1_PERIPHERAL_FREQMHZ {10.000000} \
-CONFIG.PCW_ACT_FPGA0_PERIPHERAL_FREQMHZ {50.000000} \
+CONFIG.PCW_ACT_FPGA0_PERIPHERAL_FREQMHZ {100.000000} \
 CONFIG.PCW_ACT_FPGA1_PERIPHERAL_FREQMHZ {10.000000} \
 CONFIG.PCW_ACT_FPGA2_PERIPHERAL_FREQMHZ {10.000000} \
 CONFIG.PCW_ACT_FPGA3_PERIPHERAL_FREQMHZ {10.000000} \
@@ -210,6 +213,7 @@ CONFIG.PCW_CAN_PERIPHERAL_CLKSRC {IO PLL} \
 CONFIG.PCW_CAN_PERIPHERAL_DIVISOR0 {1} \
 CONFIG.PCW_CAN_PERIPHERAL_DIVISOR1 {1} \
 CONFIG.PCW_CAN_PERIPHERAL_FREQMHZ {100} \
+CONFIG.PCW_CLK0_FREQ {100000000} \
 CONFIG.PCW_CLK1_FREQ {10000000} \
 CONFIG.PCW_CLK2_FREQ {10000000} \
 CONFIG.PCW_CLK3_FREQ {10000000} \
@@ -269,7 +273,7 @@ CONFIG.PCW_ENET_RESET_SELECT {<Select>} \
 CONFIG.PCW_EN_4K_TIMER {0} \
 CONFIG.PCW_EN_GPIO {0} \
 CONFIG.PCW_FCLK0_PERIPHERAL_CLKSRC {IO PLL} \
-CONFIG.PCW_FCLK0_PERIPHERAL_DIVISOR0 {8} \
+CONFIG.PCW_FCLK0_PERIPHERAL_DIVISOR0 {4} \
 CONFIG.PCW_FCLK0_PERIPHERAL_DIVISOR1 {4} \
 CONFIG.PCW_FCLK1_PERIPHERAL_CLKSRC {IO PLL} \
 CONFIG.PCW_FCLK1_PERIPHERAL_DIVISOR0 {1} \
@@ -281,7 +285,7 @@ CONFIG.PCW_FCLK3_PERIPHERAL_CLKSRC {IO PLL} \
 CONFIG.PCW_FCLK3_PERIPHERAL_DIVISOR0 {1} \
 CONFIG.PCW_FCLK3_PERIPHERAL_DIVISOR1 {1} \
 CONFIG.PCW_FCLK_CLK0_BUF {true} \
-CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ {50} \
+CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ {100} \
 CONFIG.PCW_FPGA1_PERIPHERAL_FREQMHZ {50} \
 CONFIG.PCW_FPGA2_PERIPHERAL_FREQMHZ {50} \
 CONFIG.PCW_FPGA3_PERIPHERAL_FREQMHZ {50} \
@@ -837,6 +841,7 @@ CONFIG.PCW_CAN_PERIPHERAL_CLKSRC.VALUE_SRC {DEFAULT} \
 CONFIG.PCW_CAN_PERIPHERAL_DIVISOR0.VALUE_SRC {DEFAULT} \
 CONFIG.PCW_CAN_PERIPHERAL_DIVISOR1.VALUE_SRC {DEFAULT} \
 CONFIG.PCW_CAN_PERIPHERAL_FREQMHZ.VALUE_SRC {DEFAULT} \
+CONFIG.PCW_CLK0_FREQ.VALUE_SRC {DEFAULT} \
 CONFIG.PCW_CLK1_FREQ.VALUE_SRC {DEFAULT} \
 CONFIG.PCW_CLK2_FREQ.VALUE_SRC {DEFAULT} \
 CONFIG.PCW_CLK3_FREQ.VALUE_SRC {DEFAULT} \
@@ -908,7 +913,6 @@ CONFIG.PCW_FCLK3_PERIPHERAL_CLKSRC.VALUE_SRC {DEFAULT} \
 CONFIG.PCW_FCLK3_PERIPHERAL_DIVISOR0.VALUE_SRC {DEFAULT} \
 CONFIG.PCW_FCLK3_PERIPHERAL_DIVISOR1.VALUE_SRC {DEFAULT} \
 CONFIG.PCW_FCLK_CLK0_BUF.VALUE_SRC {DEFAULT} \
-CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ.VALUE_SRC {DEFAULT} \
 CONFIG.PCW_FPGA1_PERIPHERAL_FREQMHZ.VALUE_SRC {DEFAULT} \
 CONFIG.PCW_FPGA2_PERIPHERAL_FREQMHZ.VALUE_SRC {DEFAULT} \
 CONFIG.PCW_FPGA3_PERIPHERAL_FREQMHZ.VALUE_SRC {DEFAULT} \
@@ -1476,27 +1480,27 @@ preplace port FIXED_IO -pg 1 -y 10 -defaultsOSRD
 preplace inst axi_dma_0 -pg 1 -lvl 2 -y 350 -defaultsOSRD
 preplace inst xlconcat_0 -pg 1 -lvl 1 -y 70 -defaultsOSRD
 preplace inst rst_processing_system7_0_50M -pg 1 -lvl 3 -y 230 -defaultsOSRD
-preplace inst single_block_AES_encrypt_0 -pg 1 -lvl 2 -y 540 -defaultsOSRD
+preplace inst single_block_AES_encrypt_0 -pg 1 -lvl 2 -y 570 -defaultsOSRD
 preplace inst axi_mem_intercon -pg 1 -lvl 4 -y 220 -defaultsOSRD
 preplace inst processing_system7_0_axi_periph -pg 1 -lvl 4 -y 550 -defaultsOSRD
 preplace inst processing_system7_0 -pg 1 -lvl 2 -y 30 -defaultsOSRD
 preplace netloc processing_system7_0_DDR 1 2 3 NJ -10 NJ -10 NJ
-preplace netloc processing_system7_0_axi_periph_M00_AXI 1 1 4 20 460 NJ 430 NJ 430 1450
-preplace netloc rst_processing_system7_0_50M_interconnect_aresetn 1 3 1 1150
-preplace netloc processing_system7_0_M_AXI_GP0 1 2 2 NJ 30 1130
-preplace netloc processing_system7_0_FCLK_RESET0_N 1 2 1 520
-preplace netloc axi_mem_intercon_M00_AXI 1 1 4 -10 -60 NJ -60 NJ -60 1450
-preplace netloc rst_processing_system7_0_50M_peripheral_aresetn 1 1 3 10 470 NJ 470 1140
-preplace netloc axi_dma_0_s2mm_introut 1 0 3 -230 130 NJ 130 500
-preplace netloc axi_dma_0_M_AXI_MM2S 1 2 2 510 120 NJ
+preplace netloc processing_system7_0_axi_periph_M00_AXI 1 1 4 10 460 NJ 430 NJ 430 1430
+preplace netloc rst_processing_system7_0_50M_interconnect_aresetn 1 3 1 1120
+preplace netloc processing_system7_0_M_AXI_GP0 1 2 2 NJ 30 1110
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 2 1 500
+preplace netloc axi_mem_intercon_M00_AXI 1 1 4 20 -60 NJ -60 NJ -60 1430
+preplace netloc rst_processing_system7_0_50M_peripheral_aresetn 1 1 3 0 500 NJ 500 1100
+preplace netloc axi_dma_0_s2mm_introut 1 0 3 -230 -80 NJ -80 470
+preplace netloc axi_dma_0_M_AXI_MM2S 1 2 2 490 120 NJ
 preplace netloc xlconcat_0_dout 1 1 1 N
 preplace netloc processing_system7_0_FIXED_IO 1 2 3 NJ 10 NJ 10 NJ
-preplace netloc axi_dma_0_mm2s_introut 1 0 3 -240 140 NJ 140 480
-preplace netloc single_block_AES_encrypt_0_cipher 1 1 2 10 220 490
-preplace netloc axi_dma_0_M_AXI_S2MM 1 2 2 520 320 NJ
-preplace netloc processing_system7_0_FCLK_CLK0 1 1 3 -10 120 490 140 1110
-preplace netloc axi_dma_0_M_AXIS_MM2S 1 1 2 0 240 470
-levelinfo -pg 1 -260 -100 270 950 1300 1470 -top -70 -bot 740
+preplace netloc axi_dma_0_mm2s_introut 1 0 3 -240 -90 NJ -90 480
+preplace netloc single_block_AES_encrypt_0_cipher 1 1 2 20 470 450
+preplace netloc axi_dma_0_M_AXI_S2MM 1 2 2 510 140 NJ
+preplace netloc processing_system7_0_FCLK_CLK0 1 1 3 -10 -70 520 100 1090
+preplace netloc axi_dma_0_M_AXIS_MM2S 1 1 2 20 480 460
+levelinfo -pg 1 -260 -100 250 930 1280 1450 -top -100 -bot 670
 ",
 }
 

@@ -1,7 +1,7 @@
 //Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2016.2 (win64) Build 1577090 Thu Jun  2 16:32:40 MDT 2016
-//Date        : Tue Feb 06 12:03:36 2024
+//Date        : Thu Feb 08 10:10:06 2024
 //Host        : DESKTOP-DJ9UMHB running 64-bit major release  (build 9200)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -551,7 +551,7 @@ module design_1
         .mb_debug_sys_rst(1'b0),
         .peripheral_aresetn(rst_processing_system7_0_50M_peripheral_aresetn),
         .slowest_sync_clk(processing_system7_0_FCLK_CLK0));
-  design_1_single_block_AES_encrypt_0_0 single_block_AES_encrypt_0
+  design_1_single_block_AES_encrypt_0_1 single_block_AES_encrypt_0
        (.ap_clk(processing_system7_0_FCLK_CLK0),
         .ap_rst_n(rst_processing_system7_0_50M_peripheral_aresetn),
         .cipher_TDATA(single_block_AES_encrypt_0_cipher_TDATA),

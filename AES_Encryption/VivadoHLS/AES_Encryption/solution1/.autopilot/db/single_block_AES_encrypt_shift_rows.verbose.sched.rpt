@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'single_block_AES_encrypt_shift_rows'
 ================================================================
-* Date:           Tue Feb 06 11:53:18 2024
+* Date:           Thu Feb 08 10:03:56 2024
 
 * Version:        2016.2 (Build 1577090 on Thu Jun 02 16:59:10 MDT 2016)
 * Project:        AES_Encryption
@@ -20,31 +20,24 @@
     +--------+-------+----------+------------+
     |  Clock | Target| Estimated| Uncertainty|
     +--------+-------+----------+------------+
-    |ap_clk  |  10.00|      4.78|        1.25|
+    |ap_clk  |  10.00|      0.00|        1.25|
     +--------+-------+----------+------------+
 
 + Latency (clock cycles): 
     * Summary: 
-    +-----+-----+-----+-----+---------+
-    |  Latency  |  Interval | Pipeline|
-    | min | max | min | max |   Type  |
-    +-----+-----+-----+-----+---------+
-    |   34|   88|   34|   88|   none  |
-    +-----+-----+-----+-----+---------+
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    0|    0|    1|    1| function |
+    +-----+-----+-----+-----+----------+
 
     + Detail: 
         * Instance: 
         N/A
 
         * Loop: 
-        +-----------------+-----+-----+----------+-----------+-----------+-------+----------+
-        |                 |  Latency  | Iteration|  Initiation Interval  |  Trip |          |
-        |    Loop Name    | min | max |  Latency |  achieved |   target  | Count | Pipelined|
-        +-----------------+-----+-----+----------+-----------+-----------+-------+----------+
-        |- Loop 1         |   33|   87|  11 ~ 29 |          -|          -|      3|    no    |
-        | + Loop 1.1      |    9|   27|         9|          -|          -| 1 ~ 3 |    no    |
-        |  ++ Loop 1.1.1  |    6|    6|         2|          -|          -|      3|    no    |
-        +-----------------+-----+-----+----------+-----------+-----------+-------+----------+
+        N/A
 
 ============================================================
 + Verbose Summary: Synthesis Manager
@@ -59,188 +52,106 @@ ResetActiveHigh: 1
 IsCombinational: 0
 IsDatapathOnly: 0
 HasWiredReturn: 1
-HasMFsm: 0
-HasVarLatency: 1
-IsPipeline: 0
+HasMFsm: 2
+HasVarLatency: 0
+IsPipeline: 1
 IsRtlPipelined: 0
 IsInstanceOverlapped: 0
 IsDontTouch: 0
 HasImplIP: 0
 IsGatedGlobalClock: 0
 
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 1
+
 
 ============================================================
 + Verbose Summary: Schedule
 ============================================================
-* Number of FSM states: 6
-* Pipeline: 0
+* Number of FSM states: 1
+* Pipeline: 1
+  Pipeline-0: II = 1, D = 1, States = { 1 }
 * Dataflow Pipeline: 0
 
 * FSM state transitions: 
 1 --> 
-	2  / true
-2 --> 
-	3  / (!exitcond2)
-3 --> 
-	4  / (!exitcond1)
-	2  / (exitcond1)
-4 --> 
-	5  / true
-5 --> 
-	6  / (!exitcond)
-	3  / (exitcond)
-6 --> 
-	5  / true
 * FSM state operations: 
 
- <State 1>: 1.57ns
-ST_1: stg_7 [1/1] 1.57ns
-:0  br label %1
+ <State 1>: 0.00ns
+ST_1: state_15_read_2 [1/1] 0.00ns
+.preheader.preheader.0:0  %state_15_read_2 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_15_read)
 
+ST_1: state_14_read11 [1/1] 0.00ns
+.preheader.preheader.0:1  %state_14_read11 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_14_read)
 
- <State 2>: 1.62ns
-ST_2: indvars_iv [1/1] 0.00ns
-:0  %indvars_iv = phi i3 [ %i, %6 ], [ 1, %0 ]
+ST_1: state_13_read_2 [1/1] 0.00ns
+.preheader.preheader.0:2  %state_13_read_2 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_13_read)
 
-ST_2: indvars_iv_cast [1/1] 0.00ns
-:1  %indvars_iv_cast = zext i3 %indvars_iv to i4
+ST_1: state_12_read_2 [1/1] 0.00ns
+.preheader.preheader.0:3  %state_12_read_2 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_12_read)
 
-ST_2: exitcond2 [1/1] 1.62ns
-:2  %exitcond2 = icmp eq i3 %indvars_iv, -4
+ST_1: state_11_read_2 [1/1] 0.00ns
+.preheader.preheader.0:4  %state_11_read_2 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_11_read)
 
-ST_2: empty [1/1] 0.00ns
-:3  %empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 3, i64 3, i64 3)
+ST_1: state_10_read_2 [1/1] 0.00ns
+.preheader.preheader.0:5  %state_10_read_2 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_10_read)
 
-ST_2: stg_12 [1/1] 0.00ns
-:4  br i1 %exitcond2, label %7, label %.preheader.preheader
+ST_1: state_9_read_2 [1/1] 0.00ns
+.preheader.preheader.0:6  %state_9_read_2 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_9_read)
 
-ST_2: tmp_1 [1/1] 0.00ns
-.preheader.preheader:0  %tmp_1 = trunc i3 %indvars_iv to i2
+ST_1: state_8_read_2 [1/1] 0.00ns
+.preheader.preheader.0:7  %state_8_read_2 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_8_read)
 
-ST_2: tmp_s [1/1] 0.00ns
-.preheader.preheader:1  %tmp_s = call i4 @_ssdm_op_BitConcatenate.i4.i2.i2(i2 %tmp_1, i2 0)
+ST_1: state_7_read_2 [1/1] 0.00ns
+.preheader.preheader.0:8  %state_7_read_2 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_7_read)
 
-ST_2: tmp_2 [1/1] 0.00ns
-.preheader.preheader:2  %tmp_2 = zext i4 %tmp_s to i64
+ST_1: state_6_read_2 [1/1] 0.00ns
+.preheader.preheader.0:9  %state_6_read_2 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_6_read)
 
-ST_2: state_addr [1/1] 0.00ns
-.preheader.preheader:3  %state_addr = getelementptr [16 x i8]* %state, i64 0, i64 %tmp_2
+ST_1: state_5_read_2 [1/1] 0.00ns
+.preheader.preheader.0:10  %state_5_read_2 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_5_read)
 
-ST_2: tmp_3 [1/1] 0.00ns
-.preheader.preheader:4  %tmp_3 = or i4 %tmp_s, 3
+ST_1: state_4_read_2 [1/1] 0.00ns
+.preheader.preheader.0:11  %state_4_read_2 = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %state_4_read)
 
-ST_2: tmp_4 [1/1] 0.00ns
-.preheader.preheader:5  %tmp_4 = zext i4 %tmp_3 to i64
+ST_1: mrv [1/1] 0.00ns
+.preheader.preheader.0:12  %mrv = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } undef, i8 %state_5_read_2, 0
 
-ST_2: state_addr_1 [1/1] 0.00ns
-.preheader.preheader:6  %state_addr_1 = getelementptr [16 x i8]* %state, i64 0, i64 %tmp_4
+ST_1: mrv_1 [1/1] 0.00ns
+.preheader.preheader.0:13  %mrv_1 = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv, i8 %state_6_read_2, 1
 
-ST_2: stg_20 [1/1] 1.57ns
-.preheader.preheader:7  br label %.preheader
+ST_1: mrv_2 [1/1] 0.00ns
+.preheader.preheader.0:14  %mrv_2 = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv_1, i8 %state_7_read_2, 2
 
-ST_2: stg_21 [1/1] 0.00ns
-:0  ret void
+ST_1: mrv_3 [1/1] 0.00ns
+.preheader.preheader.0:15  %mrv_3 = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv_2, i8 %state_4_read_2, 3
 
+ST_1: mrv_4 [1/1] 0.00ns
+.preheader.preheader.0:16  %mrv_4 = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv_3, i8 %state_10_read_2, 4
 
- <State 3>: 2.39ns
-ST_3: s [1/1] 0.00ns
-.preheader:0  %s = phi i2 [ %s_1, %5 ], [ 0, %.preheader.preheader ]
+ST_1: mrv_5 [1/1] 0.00ns
+.preheader.preheader.0:17  %mrv_5 = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv_4, i8 %state_11_read_2, 5
 
-ST_3: s_cast [1/1] 0.00ns
-.preheader:1  %s_cast = zext i2 %s to i4
+ST_1: mrv_6 [1/1] 0.00ns
+.preheader.preheader.0:18  %mrv_6 = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv_5, i8 %state_8_read_2, 6
 
-ST_3: exitcond1 [1/1] 1.62ns
-.preheader:2  %exitcond1 = icmp eq i4 %s_cast, %indvars_iv_cast
+ST_1: mrv_7 [1/1] 0.00ns
+.preheader.preheader.0:19  %mrv_7 = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv_6, i8 %state_9_read_2, 7
 
-ST_3: empty_12 [1/1] 0.00ns
-.preheader:3  %empty_12 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 1, i64 3, i64 0)
+ST_1: mrv_8 [1/1] 0.00ns
+.preheader.preheader.0:20  %mrv_8 = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv_7, i8 %state_15_read_2, 8
 
-ST_3: s_1 [1/1] 0.80ns
-.preheader:4  %s_1 = add i2 %s, 1
+ST_1: mrv_9 [1/1] 0.00ns
+.preheader.preheader.0:21  %mrv_9 = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv_8, i8 %state_12_read_2, 9
 
-ST_3: stg_27 [1/1] 0.00ns
-.preheader:5  br i1 %exitcond1, label %6, label %2
+ST_1: mrv_10 [1/1] 0.00ns
+.preheader.preheader.0:22  %mrv_10 = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv_9, i8 %state_13_read_2, 10
 
-ST_3: tmp [2/2] 2.39ns
-:0  %tmp = load i8* %state_addr, align 1
+ST_1: mrv_11 [1/1] 0.00ns
+.preheader.preheader.0:23  %mrv_11 = insertvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv_10, i8 %state_14_read11, 11
 
-ST_3: i [1/1] 0.80ns
-:0  %i = add i3 %indvars_iv, 1
-
-ST_3: stg_30 [1/1] 0.00ns
-:1  br label %1
-
-
- <State 4>: 2.39ns
-ST_4: tmp [1/2] 2.39ns
-:0  %tmp = load i8* %state_addr, align 1
-
-ST_4: stg_32 [1/1] 1.57ns
-:1  br label %3
-
-
- <State 5>: 3.19ns
-ST_5: k [1/1] 0.00ns
-:0  %k = phi i3 [ 1, %2 ], [ %k_1, %4 ]
-
-ST_5: exitcond [1/1] 1.62ns
-:1  %exitcond = icmp eq i3 %k, -4
-
-ST_5: empty_13 [1/1] 0.00ns
-:2  %empty_13 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 3, i64 3, i64 3)
-
-ST_5: stg_36 [1/1] 0.00ns
-:3  br i1 %exitcond, label %5, label %4
-
-ST_5: tmp_8 [1/1] 0.00ns
-:0  %tmp_8 = trunc i3 %k to i2
-
-ST_5: tmp_5_cast [1/1] 0.00ns
-:1  %tmp_5_cast = zext i3 %k to i4
-
-ST_5: tmp_6 [1/1] 0.80ns
-:2  %tmp_6 = add i4 %tmp_5_cast, %tmp_s
-
-ST_5: tmp_7 [1/1] 0.00ns
-:3  %tmp_7 = zext i4 %tmp_6 to i64
-
-ST_5: state_addr_2 [1/1] 0.00ns
-:4  %state_addr_2 = getelementptr [16 x i8]* %state, i64 0, i64 %tmp_7
-
-ST_5: state_load [2/2] 2.39ns
-:5  %state_load = load i8* %state_addr_2, align 1
-
-ST_5: k_1 [1/1] 0.80ns
-:11  %k_1 = add i3 1, %k
-
-ST_5: stg_44 [1/1] 2.39ns
-:0  store i8 %tmp, i8* %state_addr_1, align 1
-
-ST_5: stg_45 [1/1] 0.00ns
-:1  br label %.preheader
-
-
- <State 6>: 4.78ns
-ST_6: state_load [1/2] 2.39ns
-:5  %state_load = load i8* %state_addr_2, align 1
-
-ST_6: tmp1 [1/1] 0.80ns
-:6  %tmp1 = add i2 -1, %tmp_8
-
-ST_6: tmp_9 [1/1] 0.00ns
-:7  %tmp_9 = call i4 @_ssdm_op_BitConcatenate.i4.i2.i2(i2 %tmp_1, i2 %tmp1)
-
-ST_6: tmp_5 [1/1] 0.00ns
-:8  %tmp_5 = zext i4 %tmp_9 to i64
-
-ST_6: state_addr_3 [1/1] 0.00ns
-:9  %state_addr_3 = getelementptr [16 x i8]* %state, i64 0, i64 %tmp_5
-
-ST_6: stg_51 [1/1] 2.39ns
-:10  store i8 %state_load, i8* %state_addr_3, align 1
-
-ST_6: stg_52 [1/1] 0.00ns
-:12  br label %3
+ST_1: stg_26 [1/1] 0.00ns
+.preheader.preheader.0:24  ret { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %mrv_11
 
 
 
@@ -261,11 +172,6 @@ N/A
  - Input state : 
   - Chain level:
 	State 1
-	State 2
-	State 3
-	State 4
-	State 5
-	State 6
 
 
 ============================================================

@@ -51,15 +51,13 @@ set NewPortList {[
  	{ "name": "w_q1", "direction": "in", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "w", "role": "q1" }}  ]}
 
 set RtlHierarchyInfo {[
-	{"Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2", "3", "4"], "CDFG" : "single_block_AES_encrypt_aes_key_expansion", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
+	{"Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2", "3"], "CDFG" : "single_block_AES_encrypt_aes_key_expansion", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
 		"Port" : [
 		{"Name" : "w", "Type" : "Memory", "Direction" : "IO", "BlockSignal" : [], "SubConnect" : []}, 
-		{"Name" : "key", "Type" : "Memory", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
 		{"Name" : "s_box", "Type" : "Memory", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
 		{"Name" : "R", "Type" : "Memory", "Direction" : "IO", "BlockSignal" : [], "SubConnect" : []}],
 		"WaitState" : [],
 		"SubBlockPort" : []},
-	{"Level" : "1", "Path" : "`AUTOTB_DUT_INST.key_U", "Parent" : "0", "Child" : []},
 	{"Level" : "1", "Path" : "`AUTOTB_DUT_INST.s_box_U", "Parent" : "0", "Child" : []},
 	{"Level" : "1", "Path" : "`AUTOTB_DUT_INST.R_U", "Parent" : "0", "Child" : []},
 	{"Level" : "1", "Path" : "`AUTOTB_DUT_INST.single_block_AES_encrypt_mux_4to1_sel2_8_1_U0", "Parent" : "0", "Child" : []}]}

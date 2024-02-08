@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'single_block_AES_encrypt'" level="0">
-<item name = "Date">Tue Feb 06 11:53:23 2024
+<item name = "Date">Thu Feb 08 10:04:09 2024
 </item>
 <item name = "Version">2016.2 (Build 1577090 on Thu Jun 02 16:59:10 MDT 2016)</item>
 <item name = "Project">AES_Encryption</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Target clock period (ns)">10.00</item>
 <item name = "Clock uncertainty (ns)">1.25</item>
-<item name = "Estimated clock period (ns)">6.47</item>
+<item name = "Estimated clock period (ns)">10.18</item>
 </section>
 </item>
 <item name = "Latency (clock cycles)">
@@ -29,14 +29,13 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="7">Instance, Module, min, max, min, max, Type</keys>
-<column name="grp_single_block_AES_encrypt_aes_cipher_fu_141">single_block_AES_encrypt_aes_cipher, 2167, 2707, 2167, 2707, none</column>
-<column name="grp_single_block_AES_encrypt_aes_key_expansion_fu_150">single_block_AES_encrypt_aes_key_expansion, ?, ?, ?, ?, none</column>
+<column name="grp_single_block_AES_encrypt_aes_cipher_fu_110">single_block_AES_encrypt_aes_cipher, 98, 98, 99, 99, function</column>
+<column name="grp_single_block_AES_encrypt_aes_key_expansion_fu_133">single_block_AES_encrypt_aes_key_expansion, ?, ?, ?, ?, none</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- Loop 1">16, 16, 1, -, -, 16, no</column>
-<column name="- Loop 2">32, 32, 2, -, -, 16, no</column>
+<column name="- loop">426, 426, 130, 99, 1, 4, yes</column>
 </table>
 </item>
 </section>
@@ -49,22 +48,22 @@
 <item name = "Summary"><table name="" hasTotal="1">
 <keys size="5">Name, BRAM_18K, DSP48E, FF, LUT</keys>
 <column name="DSP">-, -, -, -</column>
-<column name="Expression">-, -, 0, 19</column>
+<column name="Expression">-, -, 0, 11</column>
 <column name="FIFO">-, -, -, -</column>
-<column name="Instance">3, -, 1044, 1973</column>
-<column name="Memory">1, -, 32, 4</column>
-<column name="Multiplexer">-, -, -, 43</column>
-<column name="Register">-, -, 26, -</column>
+<column name="Instance">9, -, 713, 7082</column>
+<column name="Memory">1, -, 0, 0</column>
+<column name="Multiplexer">-, -, -, 292</column>
+<column name="Register">-, -, 357, -</column>
 <specialColumn name="Available">280, 220, 106400, 53200</specialColumn>
-<specialColumn name="Utilization (%)">1, 0, 1, 3</specialColumn>
+<specialColumn name="Utilization (%)">3, 0, 1, 13</specialColumn>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="6">Instance, Module, BRAM_18K, DSP48E, FF, LUT</keys>
-<column name="grp_single_block_AES_encrypt_aes_cipher_fu_141">single_block_AES_encrypt_aes_cipher, 2, 0, 741, 1369</column>
-<column name="grp_single_block_AES_encrypt_aes_key_expansion_fu_150">single_block_AES_encrypt_aes_key_expansion, 1, 0, 303, 604</column>
+<column name="grp_single_block_AES_encrypt_aes_cipher_fu_110">single_block_AES_encrypt_aes_cipher, 8, 0, 469, 6526</column>
+<column name="grp_single_block_AES_encrypt_aes_key_expansion_fu_133">single_block_AES_encrypt_aes_key_expansion, 1, 0, 244, 556</column>
 </table>
 </item>
 <item name = "DSP48"><table name="" hasTotal="0">
@@ -73,8 +72,6 @@
 </item>
 <item name = "Memory"><table name="" hasTotal="1">
 <keys size="9">Memory, Module, BRAM_18K, FF, LUT, Words, Bits, Banks, W*Bits*Banks</keys>
-<column name="plaintext_U">single_block_AES_encrypt_plaintext, 0, 16, 2, 16, 8, 1, 128</column>
-<column name="out_U">single_block_AES_encrypt_plaintext, 0, 16, 2, 16, 8, 1, 128</column>
 <column name="w_U">single_block_AES_encrypt_w, 1, 0, 0, 176, 8, 1, 1408</column>
 </table>
 </item>
@@ -84,26 +81,25 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="i_2_fu_167_p2">+, 0, 0, 5, 5, 1</column>
-<column name="i_3_fu_189_p2">+, 0, 0, 5, 5, 1</column>
-<column name="ap_sig_52">and, 0, 0, 1, 1, 1</column>
-<column name="exitcond1_fu_161_p2">icmp, 0, 0, 3, 5, 6</column>
-<column name="exitcond_fu_183_p2">icmp, 0, 0, 3, 5, 6</column>
-<column name="tmp_last_V_fu_200_p2">icmp, 0, 0, 2, 5, 4</column>
+<column name="block_1_fu_154_p2">+, 0, 0, 3, 3, 1</column>
+<column name="ap_sig_2493">and, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_2494">and, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_2496">and, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_462">and, 0, 0, 1, 1, 1</column>
+<column name="exitcond1_fu_148_p2">icmp, 0, 0, 2, 3, 4</column>
+<column name="tmp_last_V_fu_160_p2">icmp, 0, 0, 2, 3, 2</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
-<column name="ap_NS_fsm">2, 8, 1, 8</column>
+<column name="ap_NS_fsm">224, 103, 1, 103</column>
 <column name="ap_sig_ioackin_cipher_TREADY">1, 2, 1, 2</column>
+<column name="block_phi_fu_103_p4">3, 2, 3, 6</column>
+<column name="block_reg_99">3, 2, 3, 6</column>
+<column name="cipher_TDATA">40, 17, 8, 136</column>
 <column name="cipher_TDATA_blk_n">1, 2, 1, 2</column>
-<column name="i_1_reg_130">5, 2, 5, 10</column>
+<column name="cipher_TLAST">1, 3, 1, 3</column>
 <column name="i_plaintext_TDATA_blk_n">1, 2, 1, 2</column>
-<column name="i_reg_119">5, 2, 5, 10</column>
-<column name="out_address0">4, 3, 4, 12</column>
-<column name="out_ce0">1, 3, 1, 3</column>
-<column name="plaintext_address0">4, 3, 4, 12</column>
-<column name="plaintext_ce0">1, 3, 1, 3</column>
 <column name="w_address0">8, 3, 8, 24</column>
 <column name="w_address1">8, 3, 8, 24</column>
 <column name="w_ce0">1, 3, 1, 3</column>
@@ -112,14 +108,48 @@
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
-<column name="ap_CS_fsm">7, 0, 7, 0</column>
-<column name="ap_reg_grp_single_block_AES_encrypt_aes_cipher_fu_141_ap_start">1, 0, 1, 0</column>
-<column name="ap_reg_grp_single_block_AES_encrypt_aes_key_expansion_fu_150_ap_start">1, 0, 1, 0</column>
+<column name="ap_CS_fsm">102, 0, 102, 0</column>
+<column name="ap_reg_grp_single_block_AES_encrypt_aes_cipher_fu_110_ap_start">1, 0, 1, 0</column>
+<column name="ap_reg_grp_single_block_AES_encrypt_aes_key_expansion_fu_133_ap_start">1, 0, 1, 0</column>
 <column name="ap_reg_ioackin_cipher_TREADY">1, 0, 1, 0</column>
-<column name="i_1_reg_130">5, 0, 5, 0</column>
-<column name="i_3_reg_217">5, 0, 5, 0</column>
-<column name="i_reg_119">5, 0, 5, 0</column>
-<column name="tmp_last_V_reg_227">1, 0, 1, 0</column>
+<column name="ap_reg_ppiten_pp0_it0">1, 0, 1, 0</column>
+<column name="ap_reg_ppiten_pp0_it1">1, 0, 1, 0</column>
+<column name="ap_reg_ppstg_exitcond1_reg_231_pp0_iter1">1, 0, 1, 0</column>
+<column name="ap_reg_ppstg_tmp_last_V_reg_240_pp0_iter1">1, 0, 1, 0</column>
+<column name="block_1_reg_235">3, 0, 3, 0</column>
+<column name="block_reg_99">3, 0, 3, 0</column>
+<column name="exitcond1_reg_231">1, 0, 1, 0</column>
+<column name="tmp_data_10_reg_365">8, 0, 8, 0</column>
+<column name="tmp_data_11_reg_370">8, 0, 8, 0</column>
+<column name="tmp_data_12_reg_375">8, 0, 8, 0</column>
+<column name="tmp_data_13_reg_380">8, 0, 8, 0</column>
+<column name="tmp_data_14_reg_385">8, 0, 8, 0</column>
+<column name="tmp_data_15_reg_390">8, 0, 8, 0</column>
+<column name="tmp_data_16_reg_245">8, 0, 8, 0</column>
+<column name="tmp_data_17_reg_250">8, 0, 8, 0</column>
+<column name="tmp_data_18_reg_255">8, 0, 8, 0</column>
+<column name="tmp_data_19_reg_260">8, 0, 8, 0</column>
+<column name="tmp_data_1_reg_360">8, 0, 8, 0</column>
+<column name="tmp_data_20_reg_265">8, 0, 8, 0</column>
+<column name="tmp_data_21_reg_270">8, 0, 8, 0</column>
+<column name="tmp_data_22_reg_275">8, 0, 8, 0</column>
+<column name="tmp_data_23_reg_280">8, 0, 8, 0</column>
+<column name="tmp_data_24_reg_285">8, 0, 8, 0</column>
+<column name="tmp_data_25_reg_290">8, 0, 8, 0</column>
+<column name="tmp_data_26_reg_295">8, 0, 8, 0</column>
+<column name="tmp_data_27_reg_300">8, 0, 8, 0</column>
+<column name="tmp_data_28_reg_305">8, 0, 8, 0</column>
+<column name="tmp_data_29_reg_310">8, 0, 8, 0</column>
+<column name="tmp_data_2_reg_320">8, 0, 8, 0</column>
+<column name="tmp_data_30_reg_315">8, 0, 8, 0</column>
+<column name="tmp_data_3_reg_325">8, 0, 8, 0</column>
+<column name="tmp_data_4_reg_330">8, 0, 8, 0</column>
+<column name="tmp_data_5_reg_335">8, 0, 8, 0</column>
+<column name="tmp_data_6_reg_340">8, 0, 8, 0</column>
+<column name="tmp_data_7_reg_345">8, 0, 8, 0</column>
+<column name="tmp_data_8_reg_350">8, 0, 8, 0</column>
+<column name="tmp_data_9_reg_355">8, 0, 8, 0</column>
+<column name="tmp_last_V_reg_240">1, 0, 1, 0</column>
 </table>
 </item>
 </section>
@@ -146,10 +176,10 @@
 </section>
 
 <section name = "Critical Path" level="0">
-<item name = "Max Delay">2.71</item>
+<item name = "Max Delay">10.18</item>
 <item name = "Critical Path Table"><table name="Critical Path Table" hasTotal="0">
 <keys size="15">Name, Operator, Delay, Accumulated Delay, Store Source, Resource, Core, Interface, Type, Port, Array, Scope, Pointer, Callee, Phi Node</keys>
-<column name="'w', AES_Encryption/main.cpp:42">alloca, 2.71, 2.71, -, -, -, -, -, -, -, -, -, -, -</column>
+<column name="'call_ret', AES_Encryption/main.cpp:49">call, 10.18, 10.18, -, -, -, -, -, -, -, -, -, single_block_AES_encrypt_aes_cipher, -</column>
 </table>
 </item>
 </section>

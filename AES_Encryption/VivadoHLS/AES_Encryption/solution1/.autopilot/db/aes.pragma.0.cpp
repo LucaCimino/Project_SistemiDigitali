@@ -1548,7 +1548,8 @@ void aes_key_expansion(uint8_t *key, uint8_t *w) {
  uint8_t len = 4*(10 +1);
 
  for (i = 0; i < 4; i++) {
-  w[4*i+0] = key[4*i+0];
+#pragma HLS unroll
+ w[4*i+0] = key[4*i+0];
   w[4*i+1] = key[4*i+1];
   w[4*i+2] = key[4*i+2];
   w[4*i+3] = key[4*i+3];
@@ -1590,7 +1591,8 @@ void aes_cipher(uint8_t *in, uint8_t *out, uint8_t *w) {
 
  for (i = 0; i < 4; i++) {
   for (j = 0; j < 4; j++) {
-   state[4*i+j] = in[i+4*j];
+#pragma HLS unroll
+ state[4*i+j] = in[i+4*j];
   }
  }
 
@@ -1609,7 +1611,8 @@ void aes_cipher(uint8_t *in, uint8_t *out, uint8_t *w) {
 
  for (i = 0; i < 4; i++) {
   for (j = 0; j < 4; j++) {
-   out[i+4*j] = state[4*i+j];
+#pragma HLS unroll
+ out[i+4*j] = state[4*i+j];
   }
  }
 }

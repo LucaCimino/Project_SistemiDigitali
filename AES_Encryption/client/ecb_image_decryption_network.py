@@ -12,7 +12,7 @@ UDP_IP = "192.168.2.1"
 UDP_PORT = 5555
 
 IMG_WIDTH = 40
-IMG_HEIGTH = 30
+IMG_HEIGTH = 32     
 
 ##########################
 

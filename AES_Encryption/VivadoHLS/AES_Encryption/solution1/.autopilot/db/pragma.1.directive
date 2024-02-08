@@ -1,3 +1,13 @@
 <AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
-<sourceFile name=""/>
+<sourceFile name="">
+<directive functionLabel="" functionName="aes_key_expansion" label="">
+<pragma name="UNROLL"/>
+</directive>
+<directive functionLabel="" functionName="aes_cipher" label="">
+<pragma name="UNROLL"/>
+</directive>
+<directive functionLabel="" functionName="aes_cipher" label="">
+<pragma name="UNROLL"/>
+</directive>
+</sourceFile>
 </AutoPilot:ProjectResources>

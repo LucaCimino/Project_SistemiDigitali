@@ -147,6 +147,7 @@ La top function `void single_block_AES_encrypt(hls::stream<stream_type> &i_plain
 - La moltiplicazione su campo finito di Galois viene fatta mediante algoritmo (chiamata a funzione) e non lookup table perché saturava la RAM
 
 
+HLS Loop unrool -> https://docs.xilinx.com/r/en-US/ug1399-vitis-hls/pragma-HLS-unroll
 
 # Pynq Execution
 
@@ -161,5 +162,5 @@ La top function `void single_block_AES_encrypt(hls::stream<stream_type> &i_plain
 
 ### Test
 
-- Cifratura immagine 40x30 pixel RGB in 0.16717195510864258 s
-
+- Cifratura immagine 40x30 pixel RGB in 0.167 s [Con IP Core sequenziale]
+- Cifratura immagine 40x32 pixel RGB in 0.054 s [Con IP Core pipelined x 4 blocchi, ovvero 64 bytes per trasferimento]

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
   <source>
-    <originFiles name="main.cpp" path="C:\Users\lucac\VivadoHLS\AES_Encryption\main.cpp"/>
-    <originFiles name="main.h" path="C:\Users\lucac\VivadoHLS\AES_Encryption\main.h"/>
     <originFiles name="aes.cpp" path="C:\Users\lucac\VivadoHLS\AES_Encryption\aes.cpp"/>
     <originFiles name="aes.h" path="C:\Users\lucac\VivadoHLS\AES_Encryption\aes.h"/>
+    <originFiles name="main.cpp" path="C:\Users\lucac\VivadoHLS\AES_Encryption\main.cpp"/>
+    <originFiles name="main.h" path="C:\Users\lucac\VivadoHLS\AES_Encryption\main.h"/>
   </source>
   <testbench>
     <originFiles name="testbench.cpp" path="C:\Users\lucac\VivadoHLS\AES_Encryption\testbench.cpp"/>

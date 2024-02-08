@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'single_block_AES_encrypt_mix_columns'" level="0">
-<item name = "Date">Tue Feb 06 11:53:18 2024
+<item name = "Date">Thu Feb 08 10:03:57 2024
 </item>
 <item name = "Version">2016.2 (Build 1577090 on Thu Jun 02 16:59:10 MDT 2016)</item>
 <item name = "Project">AES_Encryption</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">10.00, 4.10, 1.25</column>
+<column name="ap_clk">10.00, 5.48, 1.25</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">, min, max, min, max, Type</keys>
-<column name="">101, 101, 101, 101, none</column>
+<column name="">0, 0, 1, 1, function</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,9 +35,6 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- Loop 1">100, 100, 25, -, -, 4, no</column>
-<column name=" + Loop 1.1">8, 8, 2, -, -, 4, no</column>
-<column name=" + Loop 1.2">4, 4, 1, -, -, 4, no</column>
 </table>
 </item>
 </section>

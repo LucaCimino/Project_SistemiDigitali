@@ -33211,10 +33211,10 @@ void single_block_AES_encrypt(hls::stream<stream_type> &i_plaintext, hls::stream
 
 
  /* Input:
-	 *   - plaintext -> 128 bit di testo da cifrare
+	 *   - plaintext -> 512 bit di testo da cifrare
 	 *
 	 * Output:
-	 *   - cipher    -> 128 bit di testo cifrato
+	 *   - cipher    -> 512 bit di testo cifrato
 	 */
 
 
@@ -33227,32 +33227,36 @@ void single_block_AES_encrypt(hls::stream<stream_type> &i_plaintext, hls::stream
 
  uint8_t plaintext[16 /*bytes*/]; // 128 bit di input
  uint8_t out[16 /*bytes*/]; // 128 bit di output
- int i;
+ int i, block;
  stream_type tmp;
-
- // Lettura del plaintext dallo stream di input
- for(i = 0; i < 16 /*bytes*/; i++) {
-  tmp = i_plaintext.read();
-  plaintext[i] = tmp.data;
- }
 
  uint8_t w[176]; // [Nb*(Nr+1)*4] expanded key
 
  aes_key_expansion(key, w);
 
- aes_cipher(plaintext, out, w);
+ loop: for(block = 0; block < 4; block++)
+ {
+#pragma HLS PIPELINE II=1
+ // Lettura del plaintext dallo stream di input
+  for(i = 0; i < 16 /*bytes*/; i++) {
+   tmp = i_plaintext.read();
+   plaintext[i] = tmp.data;
+  }
 
- // Scrittura sull'interfaccia AXI-Stream di output
- for(i = 0; i < 16 /*bytes*/; i++) {
-  tmp.user = 1;
-  tmp.data = out[i];
+  aes_cipher(plaintext, out, w);
 
-  if(i == 16 /*bytes*/-1)
-   tmp.last = 1;
-  else
-   tmp.last = 0;
+  // Scrittura sull'interfaccia AXI-Stream di output
+  for(i = 0; i < 16 /*bytes*/; i++) {
+   tmp.user = 1;
+   tmp.data = out[i];
 
-  cipher.write(tmp);
+   if(i == 16 /*bytes*/-1 && block == 3)
+    tmp.last = 1;
+   else
+    tmp.last = 0;
+
+   cipher.write(tmp);
+  }
  }
 
  return;

@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'single_block_AES_encrypt_shift_rows'
 ================================================================
-* Date:           Tue Feb 06 11:53:21 2024
+* Date:           Thu Feb 08 10:04:04 2024
 
 * Version:        2016.2 (Build 1577090 on Thu Jun 02 16:59:10 MDT 2016)
 * Project:        AES_Encryption
@@ -20,31 +20,24 @@
     +--------+-------+----------+------------+
     |  Clock | Target| Estimated| Uncertainty|
     +--------+-------+----------+------------+
-    |ap_clk  |  10.00|      4.78|        1.25|
+    |ap_clk  |  10.00|      0.00|        1.25|
     +--------+-------+----------+------------+
 
 + Latency (clock cycles): 
     * Summary: 
-    +-----+-----+-----+-----+---------+
-    |  Latency  |  Interval | Pipeline|
-    | min | max | min | max |   Type  |
-    +-----+-----+-----+-----+---------+
-    |   34|   88|   34|   88|   none  |
-    +-----+-----+-----+-----+---------+
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    0|    0|    1|    1| function |
+    +-----+-----+-----+-----+----------+
 
     + Detail: 
         * Instance: 
         N/A
 
         * Loop: 
-        +-----------------+-----+-----+----------+-----------+-----------+-------+----------+
-        |                 |  Latency  | Iteration|  Initiation Interval  |  Trip |          |
-        |    Loop Name    | min | max |  Latency |  achieved |   target  | Count | Pipelined|
-        +-----------------+-----+-----+----------+-----------+-----------+-------+----------+
-        |- Loop 1         |   33|   87|  11 ~ 29 |          -|          -|      3|    no    |
-        | + Loop 1.1      |    9|   27|         9|          -|          -| 1 ~ 3 |    no    |
-        |  ++ Loop 1.1.1  |    6|    6|         2|          -|          -|      3|    no    |
-        +-----------------+-----+-----+----------+-----------+-----------+-------+----------+
+        N/A
 
 
 
@@ -56,18 +49,18 @@
 |       Name      | BRAM_18K| DSP48E|   FF   |  LUT  |
 +-----------------+---------+-------+--------+-------+
 |DSP              |        -|      -|       -|      -|
-|Expression       |        -|      -|       0|     27|
+|Expression       |        -|      -|       -|      -|
 |FIFO             |        -|      -|       -|      -|
 |Instance         |        -|      -|       -|      -|
 |Memory           |        -|      -|       -|      -|
-|Multiplexer      |        -|      -|       -|     21|
-|Register         |        -|      -|      40|      -|
+|Multiplexer      |        -|      -|       -|      -|
+|Register         |        -|      -|       -|      -|
 +-----------------+---------+-------+--------+-------+
-|Total            |        0|      0|      40|     48|
+|Total            |        0|      0|       0|      0|
 +-----------------+---------+-------+--------+-------+
 |Available        |      280|    220|  106400|  53200|
 +-----------------+---------+-------+--------+-------+
-|Utilization (%)  |        0|      0|   ~0   |   ~0  |
+|Utilization (%)  |        0|      0|       0|      0|
 +-----------------+---------+-------+--------+-------+
 
 + Detail: 
@@ -84,56 +77,13 @@
     N/A
 
     * Expression: 
-    +---------------------+----------+-------+---+----+------------+------------+
-    |    Variable Name    | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
-    +---------------------+----------+-------+---+----+------------+------------+
-    |i_fu_146_p2          |     +    |      0|  0|   3|           3|           1|
-    |k_1_fu_176_p2        |     +    |      0|  0|   3|           1|           3|
-    |s_1_fu_140_p2        |     +    |      0|  0|   2|           2|           1|
-    |tmp1_fu_182_p2       |     +    |      0|  0|   2|           2|           2|
-    |tmp_6_fu_166_p2      |     +    |      0|  0|   4|           4|           4|
-    |exitcond1_fu_135_p2  |   icmp   |      0|  0|   2|           4|           4|
-    |exitcond2_fu_97_p2   |   icmp   |      0|  0|   2|           3|           4|
-    |exitcond_fu_152_p2   |   icmp   |      0|  0|   2|           3|           4|
-    |tmp_3_fu_120_p2      |    or    |      0|  0|   7|           4|           2|
-    +---------------------+----------+-------+---+----+------------+------------+
-    |Total                |          |      0|  0|  27|          26|          25|
-    +---------------------+----------+-------+---+----+------------+------------+
+    N/A
 
     * Multiplexer: 
-    +-------------------+----+-----------+-----+-----------+
-    |        Name       | LUT| Input Size| Bits| Total Bits|
-    +-------------------+----+-----------+-----+-----------+
-    |ap_NS_fsm          |   1|          7|    1|          7|
-    |indvars_iv_reg_59  |   3|          2|    3|          6|
-    |k_reg_82           |   3|          2|    3|          6|
-    |s_reg_71           |   2|          2|    2|          4|
-    |state_address0     |   4|          5|    4|         20|
-    |state_d0           |   8|          3|    8|         24|
-    +-------------------+----+-----------+-----+-----------+
-    |Total              |  21|         21|   21|         67|
-    +-------------------+----+-----------+-----+-----------+
+    N/A
 
     * Register: 
-    +-------------------------+---+----+-----+-----------+
-    |           Name          | FF| LUT| Bits| Const Bits|
-    +-------------------------+---+----+-----+-----------+
-    |ap_CS_fsm                |  6|   0|    6|          0|
-    |indvars_iv_cast_reg_199  |  3|   0|    4|          1|
-    |indvars_iv_reg_59        |  3|   0|    3|          0|
-    |k_1_reg_258              |  3|   0|    3|          0|
-    |k_reg_82                 |  3|   0|    3|          0|
-    |s_1_reg_230              |  2|   0|    2|          0|
-    |s_reg_71                 |  2|   0|    2|          0|
-    |state_addr_1_reg_222     |  2|   0|    4|          2|
-    |state_addr_reg_217       |  2|   0|    4|          2|
-    |tmp_1_reg_207            |  2|   0|    2|          0|
-    |tmp_8_reg_248            |  2|   0|    2|          0|
-    |tmp_reg_240              |  8|   0|    8|          0|
-    |tmp_s_reg_212            |  2|   0|    4|          2|
-    +-------------------------+---+----+-----+-----------+
-    |Total                    | 40|   0|   47|          7|
-    +-------------------------+---+----+-----+-----------+
+    N/A
 
 
 
@@ -141,19 +91,32 @@
 == Interface
 ================================================================
 * Summary: 
-+----------------+-----+-----+------------+-------------------------------------+--------------+
-|    RTL Ports   | Dir | Bits|  Protocol  |            Source Object            |    C Type    |
-+----------------+-----+-----+------------+-------------------------------------+--------------+
-|ap_clk          |  in |    1| ap_ctrl_hs | single_block_AES_encrypt_shift_rows | return value |
-|ap_rst          |  in |    1| ap_ctrl_hs | single_block_AES_encrypt_shift_rows | return value |
-|ap_start        |  in |    1| ap_ctrl_hs | single_block_AES_encrypt_shift_rows | return value |
-|ap_done         | out |    1| ap_ctrl_hs | single_block_AES_encrypt_shift_rows | return value |
-|ap_idle         | out |    1| ap_ctrl_hs | single_block_AES_encrypt_shift_rows | return value |
-|ap_ready        | out |    1| ap_ctrl_hs | single_block_AES_encrypt_shift_rows | return value |
-|state_address0  | out |    4|  ap_memory |                state                |     array    |
-|state_ce0       | out |    1|  ap_memory |                state                |     array    |
-|state_we0       | out |    1|  ap_memory |                state                |     array    |
-|state_d0        | out |    8|  ap_memory |                state                |     array    |
-|state_q0        |  in |    8|  ap_memory |                state                |     array    |
-+----------------+-----+-----+------------+-------------------------------------+--------------+
++---------------+-----+-----+------------+-------------------------------------+--------------+
+|   RTL Ports   | Dir | Bits|  Protocol  |            Source Object            |    C Type    |
++---------------+-----+-----+------------+-------------------------------------+--------------+
+|state_4_read   |  in |    8|   ap_none  |             state_4_read            |    scalar    |
+|state_5_read   |  in |    8|   ap_none  |             state_5_read            |    scalar    |
+|state_6_read   |  in |    8|   ap_none  |             state_6_read            |    scalar    |
+|state_7_read   |  in |    8|   ap_none  |             state_7_read            |    scalar    |
+|state_8_read   |  in |    8|   ap_none  |             state_8_read            |    scalar    |
+|state_9_read   |  in |    8|   ap_none  |             state_9_read            |    scalar    |
+|state_10_read  |  in |    8|   ap_none  |            state_10_read            |    scalar    |
+|state_11_read  |  in |    8|   ap_none  |            state_11_read            |    scalar    |
+|state_12_read  |  in |    8|   ap_none  |            state_12_read            |    scalar    |
+|state_13_read  |  in |    8|   ap_none  |            state_13_read            |    scalar    |
+|state_14_read  |  in |    8|   ap_none  |            state_14_read            |    scalar    |
+|state_15_read  |  in |    8|   ap_none  |            state_15_read            |    scalar    |
+|ap_return_0    | out |    8| ap_ctrl_hs | single_block_AES_encrypt_shift_rows | return value |
+|ap_return_1    | out |    8| ap_ctrl_hs | single_block_AES_encrypt_shift_rows | return value |
+|ap_return_2    | out |    8| ap_ctrl_hs | single_block_AES_encrypt_shift_rows | return value |
+|ap_return_3    | out |    8| ap_ctrl_hs | single_block_AES_encrypt_shift_rows | return value |
+|ap_return_4    | out |    8| ap_ctrl_hs | single_block_AES_encrypt_shift_rows | return value |
+|ap_return_5    | out |    8| ap_ctrl_hs | single_block_AES_encrypt_shift_rows | return value |
+|ap_return_6    | out |    8| ap_ctrl_hs | single_block_AES_encrypt_shift_rows | return value |
+|ap_return_7    | out |    8| ap_ctrl_hs | single_block_AES_encrypt_shift_rows | return value |
+|ap_return_8    | out |    8| ap_ctrl_hs | single_block_AES_encrypt_shift_rows | return value |
+|ap_return_9    | out |    8| ap_ctrl_hs | single_block_AES_encrypt_shift_rows | return value |
+|ap_return_10   | out |    8| ap_ctrl_hs | single_block_AES_encrypt_shift_rows | return value |
+|ap_return_11   | out |    8| ap_ctrl_hs | single_block_AES_encrypt_shift_rows | return value |
++---------------+-----+-----+------------+-------------------------------------+--------------+
 
