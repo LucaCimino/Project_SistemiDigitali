@@ -3,6 +3,8 @@ import socket
 import sys
 import numpy as np
 import time
+import os
+import signal
 from multiprocessing import Process
 
 if len(sys.argv) != 3:
@@ -47,45 +49,56 @@ while True:
         print("Timeout sulla ricezione della conferma. Riprovare.")
 
 # si attiva il processo che esegue in background per dare un feedback al server.
-p = Process(target=feedback())
-p.start()
+# Chiamata a os.fork()
+pid = os.fork()
 
-# Configurazione della finestra per la visualizzazione dei frame
-# cv2.namedWindow("Received Frame", cv2.WINDOW_NORMAL)
-window_name = "Received Frame"
-prev_frame_received = False
+if pid == 0:
+    # Questo è il processo figlio
+    print("Sono il processo figlio")
+    feedback()
+else:
+    # Questo è il processo padre
+    print("Sono il processo padre")
 
-while True:
-    try:
-        # Ricezione del frame dal server
-        data, server_address = client_socket.recvfrom(64800)  # Dimensione massima del pacchetto UDP
-        print('ricevuti 64800B')
-        frame = np.frombuffer(data, dtype=np.uint8).reshape((270, 240))
 
-        # Conversione YUV -> RGB
-        frame_rgb = cv2.cvtColor(frame, cv2.COLOR_YUV2BGR_I420)
-        print('dimensione prima del resize', frame_rgb.shape)
-        frame_rgb = cv2.resize(frame_rgb, (640, 480))
-        print('dimensione dopo il resize', frame_rgb.shape)
+    # Configurazione della finestra per la visualizzazione dei frame
+    # cv2.namedWindow("Received Frame", cv2.WINDOW_NORMAL)
+    window_name = "Received Frame"
+    prev_frame_received = False
 
-        # Visualizzazione del frame
-        cv2.imshow(window_name, frame_rgb)
-        prev_frame_received = True
+    while True:
+        try:
+            # Ricezione del frame dal server
+            data, server_address = client_socket.recvfrom(64800)  # Dimensione massima del pacchetto UDP
+            print('ricevuti 64800B')
+            frame = np.frombuffer(data, dtype=np.uint8).reshape((270, 240))
 
-        # Interruzione del loop se viene premuto il tasto 'q'
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
+            # Conversione YUV -> RGB
+            frame_rgb = cv2.cvtColor(frame, cv2.COLOR_YUV2BGR_I420)
+            print('dimensione prima del resize', frame_rgb.shape)
+            frame_rgb = cv2.resize(frame_rgb, (640, 480))
+            print('dimensione dopo il resize', frame_rgb.shape)
 
-    except socket.timeout:
-        # Gestione del timeout
-        print('Timeout, nessun frame ricevuto')
-        if prev_frame_received:
-            cv2.destroyWindow(window_name)
-            prev_frame_received = False
-        cv2.waitKey(1)
-        continue
-        # print("Timeout sulla ricezione della conferma. Riprovare.")
+            # Visualizzazione del frame
+            cv2.imshow(window_name, frame_rgb)
+            prev_frame_received = True
 
-# Chiusura della finestra e della socket
-cv2.destroyAllWindows()
-client_socket.close()
+            # Interruzione del loop se viene premuto il tasto 'q'
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+
+        except socket.timeout:
+            # Gestione del timeout
+            print('Timeout, nessun frame ricevuto')
+
+            if prev_frame_received:
+                cv2.destroyWindow(window_name)
+                prev_frame_received = False
+            cv2.waitKey(1)
+            continue
+            # print("Timeout sulla ricezione della conferma. Riprovare.")
+
+    # Chiusura della finestra e della socket
+    cv2.destroyAllWindows()
+    os.kill(pid, signal.SIGTERM)
+    client_socket.close()
