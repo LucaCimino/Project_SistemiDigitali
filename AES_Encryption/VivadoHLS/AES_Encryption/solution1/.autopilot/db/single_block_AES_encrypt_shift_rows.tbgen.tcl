@@ -1,128 +1,57 @@
 set moduleName single_block_AES_encrypt_shift_rows
-set isCombinational 1
+set isCombinational 0
 set isDatapathOnly 0
 set isPipelined 0
-set pipeline_type function
+set pipeline_type none
 set FunctionProtocol ap_ctrl_hs
 set isOneStateSeq 0
 set C_modelName {single_block_AES_encrypt_shift_rows}
-set C_modelType { int 96 }
+set C_modelType { void 0 }
 set C_modelArgList {
-	{ state_4_read int 8 regular  }
-	{ state_5_read int 8 regular  }
-	{ state_6_read int 8 regular  }
-	{ state_7_read int 8 regular  }
-	{ state_8_read int 8 regular  }
-	{ state_9_read int 8 regular  }
-	{ state_10_read int 8 regular  }
-	{ state_11_read int 8 regular  }
-	{ state_12_read int 8 regular  }
-	{ state_13_read int 8 regular  }
-	{ state_14_read int 8 regular  }
-	{ state_15_read int 8 regular  }
+	{ state int 8 regular {array 16 { 2 3 } 1 1 }  }
 }
 set C_modelArgMapList {[ 
-	{ "Name" : "state_4_read", "interface" : "wire", "bitwidth" : 8, "direction" : "READONLY"} , 
- 	{ "Name" : "state_5_read", "interface" : "wire", "bitwidth" : 8, "direction" : "READONLY"} , 
- 	{ "Name" : "state_6_read", "interface" : "wire", "bitwidth" : 8, "direction" : "READONLY"} , 
- 	{ "Name" : "state_7_read", "interface" : "wire", "bitwidth" : 8, "direction" : "READONLY"} , 
- 	{ "Name" : "state_8_read", "interface" : "wire", "bitwidth" : 8, "direction" : "READONLY"} , 
- 	{ "Name" : "state_9_read", "interface" : "wire", "bitwidth" : 8, "direction" : "READONLY"} , 
- 	{ "Name" : "state_10_read", "interface" : "wire", "bitwidth" : 8, "direction" : "READONLY"} , 
- 	{ "Name" : "state_11_read", "interface" : "wire", "bitwidth" : 8, "direction" : "READONLY"} , 
- 	{ "Name" : "state_12_read", "interface" : "wire", "bitwidth" : 8, "direction" : "READONLY"} , 
- 	{ "Name" : "state_13_read", "interface" : "wire", "bitwidth" : 8, "direction" : "READONLY"} , 
- 	{ "Name" : "state_14_read", "interface" : "wire", "bitwidth" : 8, "direction" : "READONLY"} , 
- 	{ "Name" : "state_15_read", "interface" : "wire", "bitwidth" : 8, "direction" : "READONLY"} , 
- 	{ "Name" : "ap_return", "interface" : "wire", "bitwidth" : 96} ]}
+	{ "Name" : "state", "interface" : "memory", "bitwidth" : 8, "direction" : "READWRITE"} ]}
 # RTL Port declarations: 
-set portNum 24
+set portNum 11
 set portList { 
-	{ state_4_read sc_in sc_lv 8 signal 0 } 
-	{ state_5_read sc_in sc_lv 8 signal 1 } 
-	{ state_6_read sc_in sc_lv 8 signal 2 } 
-	{ state_7_read sc_in sc_lv 8 signal 3 } 
-	{ state_8_read sc_in sc_lv 8 signal 4 } 
-	{ state_9_read sc_in sc_lv 8 signal 5 } 
-	{ state_10_read sc_in sc_lv 8 signal 6 } 
-	{ state_11_read sc_in sc_lv 8 signal 7 } 
-	{ state_12_read sc_in sc_lv 8 signal 8 } 
-	{ state_13_read sc_in sc_lv 8 signal 9 } 
-	{ state_14_read sc_in sc_lv 8 signal 10 } 
-	{ state_15_read sc_in sc_lv 8 signal 11 } 
-	{ ap_return_0 sc_out sc_lv 8 signal -1 } 
-	{ ap_return_1 sc_out sc_lv 8 signal -1 } 
-	{ ap_return_2 sc_out sc_lv 8 signal -1 } 
-	{ ap_return_3 sc_out sc_lv 8 signal -1 } 
-	{ ap_return_4 sc_out sc_lv 8 signal -1 } 
-	{ ap_return_5 sc_out sc_lv 8 signal -1 } 
-	{ ap_return_6 sc_out sc_lv 8 signal -1 } 
-	{ ap_return_7 sc_out sc_lv 8 signal -1 } 
-	{ ap_return_8 sc_out sc_lv 8 signal -1 } 
-	{ ap_return_9 sc_out sc_lv 8 signal -1 } 
-	{ ap_return_10 sc_out sc_lv 8 signal -1 } 
-	{ ap_return_11 sc_out sc_lv 8 signal -1 } 
+	{ ap_clk sc_in sc_logic 1 clock -1 } 
+	{ ap_rst sc_in sc_logic 1 reset -1 active_high_sync } 
+	{ ap_start sc_in sc_logic 1 start -1 } 
+	{ ap_done sc_out sc_logic 1 predone -1 } 
+	{ ap_idle sc_out sc_logic 1 done -1 } 
+	{ ap_ready sc_out sc_logic 1 ready -1 } 
+	{ state_address0 sc_out sc_lv 4 signal 0 } 
+	{ state_ce0 sc_out sc_logic 1 signal 0 } 
+	{ state_we0 sc_out sc_logic 1 signal 0 } 
+	{ state_d0 sc_out sc_lv 8 signal 0 } 
+	{ state_q0 sc_in sc_lv 8 signal 0 } 
 }
 set NewPortList {[ 
-	{ "name": "state_4_read", "direction": "in", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "state_4_read", "role": "default" }} , 
- 	{ "name": "state_5_read", "direction": "in", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "state_5_read", "role": "default" }} , 
- 	{ "name": "state_6_read", "direction": "in", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "state_6_read", "role": "default" }} , 
- 	{ "name": "state_7_read", "direction": "in", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "state_7_read", "role": "default" }} , 
- 	{ "name": "state_8_read", "direction": "in", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "state_8_read", "role": "default" }} , 
- 	{ "name": "state_9_read", "direction": "in", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "state_9_read", "role": "default" }} , 
- 	{ "name": "state_10_read", "direction": "in", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "state_10_read", "role": "default" }} , 
- 	{ "name": "state_11_read", "direction": "in", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "state_11_read", "role": "default" }} , 
- 	{ "name": "state_12_read", "direction": "in", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "state_12_read", "role": "default" }} , 
- 	{ "name": "state_13_read", "direction": "in", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "state_13_read", "role": "default" }} , 
- 	{ "name": "state_14_read", "direction": "in", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "state_14_read", "role": "default" }} , 
- 	{ "name": "state_15_read", "direction": "in", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "state_15_read", "role": "default" }} , 
- 	{ "name": "ap_return_0", "direction": "out", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "ap_return_0", "role": "default" }} , 
- 	{ "name": "ap_return_1", "direction": "out", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "ap_return_1", "role": "default" }} , 
- 	{ "name": "ap_return_2", "direction": "out", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "ap_return_2", "role": "default" }} , 
- 	{ "name": "ap_return_3", "direction": "out", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "ap_return_3", "role": "default" }} , 
- 	{ "name": "ap_return_4", "direction": "out", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "ap_return_4", "role": "default" }} , 
- 	{ "name": "ap_return_5", "direction": "out", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "ap_return_5", "role": "default" }} , 
- 	{ "name": "ap_return_6", "direction": "out", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "ap_return_6", "role": "default" }} , 
- 	{ "name": "ap_return_7", "direction": "out", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "ap_return_7", "role": "default" }} , 
- 	{ "name": "ap_return_8", "direction": "out", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "ap_return_8", "role": "default" }} , 
- 	{ "name": "ap_return_9", "direction": "out", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "ap_return_9", "role": "default" }} , 
- 	{ "name": "ap_return_10", "direction": "out", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "ap_return_10", "role": "default" }} , 
- 	{ "name": "ap_return_11", "direction": "out", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "ap_return_11", "role": "default" }}  ]}
+	{ "name": "ap_clk", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "clock", "bundle":{"name": "ap_clk", "role": "default" }} , 
+ 	{ "name": "ap_rst", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "reset", "bundle":{"name": "ap_rst", "role": "default" }} , 
+ 	{ "name": "ap_start", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "start", "bundle":{"name": "ap_start", "role": "default" }} , 
+ 	{ "name": "ap_done", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "predone", "bundle":{"name": "ap_done", "role": "default" }} , 
+ 	{ "name": "ap_idle", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "done", "bundle":{"name": "ap_idle", "role": "default" }} , 
+ 	{ "name": "ap_ready", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "ready", "bundle":{"name": "ap_ready", "role": "default" }} , 
+ 	{ "name": "state_address0", "direction": "out", "datatype": "sc_lv", "bitwidth":4, "type": "signal", "bundle":{"name": "state", "role": "address0" }} , 
+ 	{ "name": "state_ce0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "state", "role": "ce0" }} , 
+ 	{ "name": "state_we0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "state", "role": "we0" }} , 
+ 	{ "name": "state_d0", "direction": "out", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "state", "role": "d0" }} , 
+ 	{ "name": "state_q0", "direction": "in", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "state", "role": "q0" }}  ]}
 
 set RtlHierarchyInfo {[
-	{"Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : [], "CDFG" : "single_block_AES_encrypt_shift_rows", "VariableLatency" : "0", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "1", "ControlExist" : "0",
+	{"Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : [], "CDFG" : "single_block_AES_encrypt_shift_rows", "VariableLatency" : "1", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "ProcessNetwork" : "0", "Combinational" : "0", "ControlExist" : "1",
 		"Port" : [
-		{"Name" : "state_4_read", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
-		{"Name" : "state_5_read", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
-		{"Name" : "state_6_read", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
-		{"Name" : "state_7_read", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
-		{"Name" : "state_8_read", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
-		{"Name" : "state_9_read", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
-		{"Name" : "state_10_read", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
-		{"Name" : "state_11_read", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
-		{"Name" : "state_12_read", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
-		{"Name" : "state_13_read", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
-		{"Name" : "state_14_read", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}, 
-		{"Name" : "state_15_read", "Type" : "None", "Direction" : "I", "BlockSignal" : [], "SubConnect" : []}],
+		{"Name" : "state", "Type" : "Memory", "Direction" : "IO", "BlockSignal" : [], "SubConnect" : []}],
 		"WaitState" : [],
 		"SubBlockPort" : []}]}
 
 set PerformanceInfo {[
-	{"Name" : "Latency", "Min" : "0", "Max" : "0"}
-	, {"Name" : "Interval", "Min" : "1", "Max" : "1"}
+	{"Name" : "Latency", "Min" : "34", "Max" : "88"}
+	, {"Name" : "Interval", "Min" : "34", "Max" : "88"}
 ]}
 
 set Spec2ImplPortList { 
-	state_4_read { ap_none {  { state_4_read in_data 0 8 } } }
-	state_5_read { ap_none {  { state_5_read in_data 0 8 } } }
-	state_6_read { ap_none {  { state_6_read in_data 0 8 } } }
-	state_7_read { ap_none {  { state_7_read in_data 0 8 } } }
-	state_8_read { ap_none {  { state_8_read in_data 0 8 } } }
-	state_9_read { ap_none {  { state_9_read in_data 0 8 } } }
-	state_10_read { ap_none {  { state_10_read in_data 0 8 } } }
-	state_11_read { ap_none {  { state_11_read in_data 0 8 } } }
-	state_12_read { ap_none {  { state_12_read in_data 0 8 } } }
-	state_13_read { ap_none {  { state_13_read in_data 0 8 } } }
-	state_14_read { ap_none {  { state_14_read in_data 0 8 } } }
-	state_15_read { ap_none {  { state_15_read in_data 0 8 } } }
+	state { ap_memory {  { state_address0 mem_address 1 4 }  { state_ce0 mem_ce 1 1 }  { state_we0 mem_we 1 1 }  { state_d0 mem_din 1 8 }  { state_q0 mem_dout 0 8 } } }
 }

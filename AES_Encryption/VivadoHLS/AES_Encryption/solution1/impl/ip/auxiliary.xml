@@ -7,5 +7,5 @@
   <xd:arg xd:name="cipher.user" xd:originalName="cipher" xd:direction="out" xd:interfaceRef="cipher" xd:busTypeRef="axis" xd:dataWidth="1"/>
   <xd:arg xd:name="cipher.last" xd:originalName="cipher" xd:direction="out" xd:interfaceRef="cipher" xd:busTypeRef="axis" xd:dataWidth="1"/>
   <xd:latencyEstimates xd:best-case="undef" xd:worst-case="undef" xd:average-case="undef"/>
-  <xd:resourceEstimates xd:LUT="7392" xd:FF="1074" xd:BRAM="10" xd:DSP="0"/>
+  <xd:resourceEstimates xd:LUT="13335" xd:FF="5882" xd:BRAM="5" xd:DSP="0"/>
 </xd:acceleratorMap>

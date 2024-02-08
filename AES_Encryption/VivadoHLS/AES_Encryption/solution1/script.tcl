@@ -5,10 +5,10 @@
 ############################################################
 open_project AES_Encryption
 set_top single_block_AES_encrypt
-add_files AES_Encryption/main.h
-add_files AES_Encryption/main.cpp
-add_files AES_Encryption/aes.h
 add_files AES_Encryption/aes.cpp
+add_files AES_Encryption/aes.h
+add_files AES_Encryption/main.cpp
+add_files AES_Encryption/main.h
 add_files -tb AES_Encryption/testbench.cpp
 open_solution "solution1"
 set_part {xc7z020clg400-1} -tool vivado

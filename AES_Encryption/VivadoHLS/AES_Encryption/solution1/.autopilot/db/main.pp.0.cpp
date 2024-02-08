@@ -33195,10 +33195,10 @@ void single_block_AES_encrypt(hls::stream<stream_type> &i_plaintext, hls::stream
 
 
  /* Input:
-	 *   - plaintext -> 2048 bit (256 Byte) di testo da cifrare
+	 *   - plaintext -> 4096 Byte di testo da cifrare
 	 *
 	 * Output:
-	 *   - cipher    -> 2048 bit (256 Byte) di testo cifrato
+	 *   - cipher    -> 4096 Byte di testo cifrato
 	 */
 
 
@@ -33218,9 +33218,9 @@ void single_block_AES_encrypt(hls::stream<stream_type> &i_plaintext, hls::stream
 
  aes_key_expansion(key, w);
 
- loop: for(block = 0; block < 16; block++)
+ loop: for(block = 0; block < 256; block++)
  {
-#pragma HLS PIPELINE II=2
+#pragma HLS unroll
  // Lettura del plaintext dallo stream di input
   for(i = 0; i < 16 /*bytes*/; i++) {
    tmp = i_plaintext.read();
@@ -33234,7 +33234,7 @@ void single_block_AES_encrypt(hls::stream<stream_type> &i_plaintext, hls::stream
    tmp.user = 1;
    tmp.data = out[i];
 
-   if(i == 16 /*bytes*/-1 && block == 15)
+   if(i == 16 /*bytes*/-1 && block == 255)
     tmp.last = 1;
    else
     tmp.last = 0;

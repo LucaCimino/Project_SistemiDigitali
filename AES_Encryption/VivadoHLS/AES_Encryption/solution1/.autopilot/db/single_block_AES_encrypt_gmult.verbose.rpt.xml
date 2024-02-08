@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'single_block_AES_encrypt_gmult'" level="0">
-<item name = "Date">Thu Feb 08 12:12:23 2024
+<item name = "Date">Thu Feb 08 15:39:31 2024
 </item>
 <item name = "Version">2016.2 (Build 1577090 on Thu Jun 02 16:59:10 MDT 2016)</item>
 <item name = "Project">AES_Encryption</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">10.00, 4.11, 1.25</column>
+<column name="ap_clk">10.00, 3.05, 1.25</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">, min, max, min, max, Type</keys>
-<column name="">0, 0, 1, 1, function</column>
+<column name="">9, 9, 9, 9, none</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,6 +35,7 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- Loop 1">8, 8, 1, -, -, 8, no</column>
 </table>
 </item>
 </section>
@@ -47,14 +48,14 @@
 <item name = "Summary"><table name="" hasTotal="1">
 <keys size="5">Name, BRAM_18K, DSP48E, FF, LUT</keys>
 <column name="DSP">-, -, -, -</column>
-<column name="Expression">-, -, 0, 110</column>
+<column name="Expression">-, -, 0, 38</column>
 <column name="FIFO">-, -, -, -</column>
 <column name="Instance">-, -, -, -</column>
 <column name="Memory">-, -, -, -</column>
-<column name="Multiplexer">-, -, -, -</column>
-<column name="Register">-, -, -, -</column>
+<column name="Multiplexer">-, -, -, 37</column>
+<column name="Register">-, -, 38, -</column>
 <specialColumn name="Available">280, 220, 106400, 53200</specialColumn>
-<specialColumn name="Utilization (%)">0, 0, 0, ~0</specialColumn>
+<specialColumn name="Utilization (%)">0, 0, ~0, ~0</specialColumn>
 </table>
 </item>
 <item name = "Detail">
@@ -77,31 +78,32 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="a_assign_1_s_fu_260_p2">or, 0, 0, 8, 8, 5</column>
-<column name="a_assign_2_6_fu_266_p3">select, 0, 0, 8, 1, 8</column>
-<column name="tmp_24_1_fu_106_p3">select, 0, 0, 3, 1, 3</column>
-<column name="tmp_24_2_fu_128_p3">select, 0, 0, 4, 1, 4</column>
-<column name="tmp_24_3_fu_156_p3">select, 0, 0, 5, 1, 5</column>
-<column name="tmp_24_4_fu_180_p3">select, 0, 0, 6, 1, 6</column>
-<column name="tmp_24_5_fu_208_p3">select, 0, 0, 7, 1, 7</column>
-<column name="tmp_24_6_fu_232_p3">select, 0, 0, 8, 1, 8</column>
-<column name="tmp_24_7_fu_282_p3">select, 0, 0, 8, 1, 8</column>
-<column name="tmp_7_fu_78_p3">select, 0, 0, 2, 1, 2</column>
-<column name="ap_return">xor, 0, 0, 8, 8, 8</column>
-<column name="tmp2_fu_306_p2">xor, 0, 0, 7, 5, 5</column>
-<column name="tmp3_fu_290_p2">xor, 0, 0, 5, 3, 3</column>
-<column name="tmp4_fu_300_p2">xor, 0, 0, 7, 5, 5</column>
-<column name="tmp5_fu_332_p2">xor, 0, 0, 8, 8, 8</column>
-<column name="tmp6_fu_316_p2">xor, 0, 0, 8, 7, 7</column>
-<column name="tmp7_fu_326_p2">xor, 0, 0, 8, 8, 8</column>
+<column name="i_4_fu_94_p2">+, 0, 0, 4, 4, 1</column>
+<column name="exitcond_fu_88_p2">icmp, 0, 0, 2, 4, 5</column>
+<column name="a_assign_2_fu_138_p3">select, 0, 0, 8, 1, 8</column>
+<column name="tmp_10_fu_104_p3">select, 0, 0, 8, 1, 8</column>
+<column name="a_assign_1_fu_132_p2">xor, 0, 0, 8, 8, 5</column>
+<column name="p_0_s_fu_112_p2">xor, 0, 0, 8, 8, 8</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="ap_NS_fsm">1, 3, 1, 3</column>
+<column name="ap_return">8, 2, 8, 16</column>
+<column name="i_reg_44">4, 2, 4, 8</column>
+<column name="p_0_reg_75">8, 2, 8, 16</column>
+<column name="p_reg_55">8, 2, 8, 16</column>
+<column name="p_s_reg_66">8, 2, 8, 16</column>
 </table>
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="ap_CS_fsm">2, 0, 2, 0</column>
+<column name="ap_return_preg">8, 0, 8, 0</column>
+<column name="i_reg_44">4, 0, 4, 0</column>
+<column name="p_0_reg_75">8, 0, 8, 0</column>
+<column name="p_reg_55">8, 0, 8, 0</column>
+<column name="p_s_reg_66">8, 0, 8, 0</column>
 </table>
 </item>
 </section>
@@ -111,9 +113,15 @@
 <section name = "Interface" level="0">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="ap_clk">in, 1, ap_ctrl_hs, single_block_AES_encrypt_gmult, return value</column>
+<column name="ap_rst">in, 1, ap_ctrl_hs, single_block_AES_encrypt_gmult, return value</column>
+<column name="ap_start">in, 1, ap_ctrl_hs, single_block_AES_encrypt_gmult, return value</column>
+<column name="ap_done">out, 1, ap_ctrl_hs, single_block_AES_encrypt_gmult, return value</column>
+<column name="ap_idle">out, 1, ap_ctrl_hs, single_block_AES_encrypt_gmult, return value</column>
+<column name="ap_ready">out, 1, ap_ctrl_hs, single_block_AES_encrypt_gmult, return value</column>
+<column name="ap_return">out, 8, ap_ctrl_hs, single_block_AES_encrypt_gmult, return value</column>
 <column name="a">in, 4, ap_none, a, scalar</column>
 <column name="b">in, 8, ap_none, b, scalar</column>
-<column name="ap_return">out, 8, ap_ctrl_hs, single_block_AES_encrypt_gmult, return value</column>
 </table>
 </item>
 </section>

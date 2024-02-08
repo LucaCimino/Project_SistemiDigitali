@@ -14,256 +14,80 @@ module single_block_AES_encrypt_aes_cipher (
         ap_done,
         ap_idle,
         ap_ready,
-        in_0_read,
-        in_1_read,
-        in_2_read,
-        in_3_read,
-        in_4_read,
-        in_5_read,
-        in_6_read,
-        in_7_read,
-        in_8_read,
-        in_9_read,
-        in_10_read,
-        in_11_read,
-        in_12_read,
-        in_13_read,
-        in_14_read,
-        in_15_read,
+        in_r_address0,
+        in_r_ce0,
+        in_r_q0,
+        in_r_address1,
+        in_r_ce1,
+        in_r_q1,
+        out_r_address0,
+        out_r_ce0,
+        out_r_we0,
+        out_r_d0,
+        out_r_address1,
+        out_r_ce1,
+        out_r_we1,
+        out_r_d1,
         w_address0,
         w_ce0,
         w_q0,
         w_address1,
         w_ce1,
-        w_q1,
-        ap_return_0,
-        ap_return_1,
-        ap_return_2,
-        ap_return_3,
-        ap_return_4,
-        ap_return_5,
-        ap_return_6,
-        ap_return_7,
-        ap_return_8,
-        ap_return_9,
-        ap_return_10,
-        ap_return_11,
-        ap_return_12,
-        ap_return_13,
-        ap_return_14,
-        ap_return_15,
-        ap_ce
+        w_q1
 );
 
-parameter    ap_ST_st1_fsm_0 = 99'b1;
-parameter    ap_ST_st2_fsm_1 = 99'b10;
-parameter    ap_ST_st3_fsm_2 = 99'b100;
-parameter    ap_ST_st4_fsm_3 = 99'b1000;
-parameter    ap_ST_st5_fsm_4 = 99'b10000;
-parameter    ap_ST_st6_fsm_5 = 99'b100000;
-parameter    ap_ST_st7_fsm_6 = 99'b1000000;
-parameter    ap_ST_st8_fsm_7 = 99'b10000000;
-parameter    ap_ST_st9_fsm_8 = 99'b100000000;
-parameter    ap_ST_st10_fsm_9 = 99'b1000000000;
-parameter    ap_ST_st11_fsm_10 = 99'b10000000000;
-parameter    ap_ST_st12_fsm_11 = 99'b100000000000;
-parameter    ap_ST_st13_fsm_12 = 99'b1000000000000;
-parameter    ap_ST_st14_fsm_13 = 99'b10000000000000;
-parameter    ap_ST_st15_fsm_14 = 99'b100000000000000;
-parameter    ap_ST_st16_fsm_15 = 99'b1000000000000000;
-parameter    ap_ST_st17_fsm_16 = 99'b10000000000000000;
-parameter    ap_ST_st18_fsm_17 = 99'b100000000000000000;
-parameter    ap_ST_st19_fsm_18 = 99'b1000000000000000000;
-parameter    ap_ST_st20_fsm_19 = 99'b10000000000000000000;
-parameter    ap_ST_st21_fsm_20 = 99'b100000000000000000000;
-parameter    ap_ST_st22_fsm_21 = 99'b1000000000000000000000;
-parameter    ap_ST_st23_fsm_22 = 99'b10000000000000000000000;
-parameter    ap_ST_st24_fsm_23 = 99'b100000000000000000000000;
-parameter    ap_ST_st25_fsm_24 = 99'b1000000000000000000000000;
-parameter    ap_ST_st26_fsm_25 = 99'b10000000000000000000000000;
-parameter    ap_ST_st27_fsm_26 = 99'b100000000000000000000000000;
-parameter    ap_ST_st28_fsm_27 = 99'b1000000000000000000000000000;
-parameter    ap_ST_st29_fsm_28 = 99'b10000000000000000000000000000;
-parameter    ap_ST_st30_fsm_29 = 99'b100000000000000000000000000000;
-parameter    ap_ST_st31_fsm_30 = 99'b1000000000000000000000000000000;
-parameter    ap_ST_st32_fsm_31 = 99'b10000000000000000000000000000000;
-parameter    ap_ST_st33_fsm_32 = 99'b100000000000000000000000000000000;
-parameter    ap_ST_st34_fsm_33 = 99'b1000000000000000000000000000000000;
-parameter    ap_ST_st35_fsm_34 = 99'b10000000000000000000000000000000000;
-parameter    ap_ST_st36_fsm_35 = 99'b100000000000000000000000000000000000;
-parameter    ap_ST_st37_fsm_36 = 99'b1000000000000000000000000000000000000;
-parameter    ap_ST_st38_fsm_37 = 99'b10000000000000000000000000000000000000;
-parameter    ap_ST_st39_fsm_38 = 99'b100000000000000000000000000000000000000;
-parameter    ap_ST_st40_fsm_39 = 99'b1000000000000000000000000000000000000000;
-parameter    ap_ST_st41_fsm_40 = 99'b10000000000000000000000000000000000000000;
-parameter    ap_ST_st42_fsm_41 = 99'b100000000000000000000000000000000000000000;
-parameter    ap_ST_st43_fsm_42 = 99'b1000000000000000000000000000000000000000000;
-parameter    ap_ST_st44_fsm_43 = 99'b10000000000000000000000000000000000000000000;
-parameter    ap_ST_st45_fsm_44 = 99'b100000000000000000000000000000000000000000000;
-parameter    ap_ST_st46_fsm_45 = 99'b1000000000000000000000000000000000000000000000;
-parameter    ap_ST_st47_fsm_46 = 99'b10000000000000000000000000000000000000000000000;
-parameter    ap_ST_st48_fsm_47 = 99'b100000000000000000000000000000000000000000000000;
-parameter    ap_ST_st49_fsm_48 = 99'b1000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st50_fsm_49 = 99'b10000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st51_fsm_50 = 99'b100000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st52_fsm_51 = 99'b1000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st53_fsm_52 = 99'b10000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st54_fsm_53 = 99'b100000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st55_fsm_54 = 99'b1000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st56_fsm_55 = 99'b10000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st57_fsm_56 = 99'b100000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st58_fsm_57 = 99'b1000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st59_fsm_58 = 99'b10000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st60_fsm_59 = 99'b100000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st61_fsm_60 = 99'b1000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st62_fsm_61 = 99'b10000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st63_fsm_62 = 99'b100000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st64_fsm_63 = 99'b1000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st65_fsm_64 = 99'b10000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st66_fsm_65 = 99'b100000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st67_fsm_66 = 99'b1000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st68_fsm_67 = 99'b10000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st69_fsm_68 = 99'b100000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st70_fsm_69 = 99'b1000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st71_fsm_70 = 99'b10000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st72_fsm_71 = 99'b100000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st73_fsm_72 = 99'b1000000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st74_fsm_73 = 99'b10000000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st75_fsm_74 = 99'b100000000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st76_fsm_75 = 99'b1000000000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st77_fsm_76 = 99'b10000000000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st78_fsm_77 = 99'b100000000000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st79_fsm_78 = 99'b1000000000000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st80_fsm_79 = 99'b10000000000000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st81_fsm_80 = 99'b100000000000000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st82_fsm_81 = 99'b1000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st83_fsm_82 = 99'b10000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st84_fsm_83 = 99'b100000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st85_fsm_84 = 99'b1000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st86_fsm_85 = 99'b10000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st87_fsm_86 = 99'b100000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st88_fsm_87 = 99'b1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st89_fsm_88 = 99'b10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st90_fsm_89 = 99'b100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st91_fsm_90 = 99'b1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st92_fsm_91 = 99'b10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st93_fsm_92 = 99'b100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st94_fsm_93 = 99'b1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st95_fsm_94 = 99'b10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st96_fsm_95 = 99'b100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st97_fsm_96 = 99'b1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st98_fsm_97 = 99'b10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-parameter    ap_ST_st99_fsm_98 = 99'b100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
+parameter    ap_ST_st1_fsm_0 = 21'b1;
+parameter    ap_ST_st2_fsm_1 = 21'b10;
+parameter    ap_ST_st3_fsm_2 = 21'b100;
+parameter    ap_ST_st4_fsm_3 = 21'b1000;
+parameter    ap_ST_st5_fsm_4 = 21'b10000;
+parameter    ap_ST_st6_fsm_5 = 21'b100000;
+parameter    ap_ST_st7_fsm_6 = 21'b1000000;
+parameter    ap_ST_st8_fsm_7 = 21'b10000000;
+parameter    ap_ST_st9_fsm_8 = 21'b100000000;
+parameter    ap_ST_st10_fsm_9 = 21'b1000000000;
+parameter    ap_ST_st11_fsm_10 = 21'b10000000000;
+parameter    ap_ST_st12_fsm_11 = 21'b100000000000;
+parameter    ap_ST_st13_fsm_12 = 21'b1000000000000;
+parameter    ap_ST_st14_fsm_13 = 21'b10000000000000;
+parameter    ap_ST_st15_fsm_14 = 21'b100000000000000;
+parameter    ap_ST_st16_fsm_15 = 21'b1000000000000000;
+parameter    ap_ST_st17_fsm_16 = 21'b10000000000000000;
+parameter    ap_ST_st18_fsm_17 = 21'b100000000000000000;
+parameter    ap_ST_st19_fsm_18 = 21'b1000000000000000000;
+parameter    ap_ST_st20_fsm_19 = 21'b10000000000000000000;
+parameter    ap_ST_st21_fsm_20 = 21'b100000000000000000000;
 parameter    ap_const_lv32_0 = 32'b00000000000000000000000000000000;
-parameter    ap_const_lv32_9 = 32'b1001;
-parameter    ap_const_lv32_12 = 32'b10010;
-parameter    ap_const_lv32_1B = 32'b11011;
-parameter    ap_const_lv32_24 = 32'b100100;
-parameter    ap_const_lv32_2D = 32'b101101;
-parameter    ap_const_lv32_36 = 32'b110110;
-parameter    ap_const_lv32_3F = 32'b111111;
-parameter    ap_const_lv32_48 = 32'b1001000;
-parameter    ap_const_lv32_51 = 32'b1010001;
-parameter    ap_const_lv32_5A = 32'b1011010;
 parameter    ap_const_lv32_1 = 32'b1;
 parameter    ap_const_lv32_2 = 32'b10;
+parameter    ap_const_lv32_B = 32'b1011;
+parameter    ap_const_lv32_12 = 32'b10010;
+parameter    ap_const_lv32_13 = 32'b10011;
+parameter    ap_const_lv3_0 = 3'b000;
 parameter    ap_const_lv32_3 = 32'b11;
+parameter    ap_const_lv4_1 = 4'b1;
 parameter    ap_const_lv32_4 = 32'b100;
+parameter    ap_const_lv32_C = 32'b1100;
+parameter    ap_const_lv32_11 = 32'b10001;
+parameter    ap_const_lv32_14 = 32'b10100;
+parameter    ap_const_lv32_9 = 32'b1001;
+parameter    ap_const_lv32_A = 32'b1010;
+parameter    ap_const_lv32_10 = 32'b10000;
+parameter    ap_const_lv6_0 = 6'b000000;
+parameter    ap_const_lv6_A = 6'b1010;
+parameter    ap_const_lv32_7 = 32'b111;
+parameter    ap_const_lv32_E = 32'b1110;
+parameter    ap_const_lv32_8 = 32'b1000;
+parameter    ap_const_lv32_F = 32'b1111;
 parameter    ap_const_lv32_5 = 32'b101;
 parameter    ap_const_lv32_6 = 32'b110;
-parameter    ap_const_lv32_7 = 32'b111;
-parameter    ap_const_lv32_8 = 32'b1000;
-parameter    ap_const_lv32_A = 32'b1010;
-parameter    ap_const_lv32_B = 32'b1011;
-parameter    ap_const_lv32_C = 32'b1100;
 parameter    ap_const_lv32_D = 32'b1101;
-parameter    ap_const_lv32_E = 32'b1110;
-parameter    ap_const_lv32_F = 32'b1111;
-parameter    ap_const_lv32_10 = 32'b10000;
-parameter    ap_const_lv32_11 = 32'b10001;
-parameter    ap_const_lv32_13 = 32'b10011;
-parameter    ap_const_lv32_14 = 32'b10100;
-parameter    ap_const_lv32_15 = 32'b10101;
-parameter    ap_const_lv32_16 = 32'b10110;
-parameter    ap_const_lv32_17 = 32'b10111;
-parameter    ap_const_lv32_18 = 32'b11000;
-parameter    ap_const_lv32_19 = 32'b11001;
-parameter    ap_const_lv32_1A = 32'b11010;
-parameter    ap_const_lv32_1C = 32'b11100;
-parameter    ap_const_lv32_1D = 32'b11101;
-parameter    ap_const_lv32_1E = 32'b11110;
-parameter    ap_const_lv32_1F = 32'b11111;
-parameter    ap_const_lv32_20 = 32'b100000;
-parameter    ap_const_lv32_21 = 32'b100001;
-parameter    ap_const_lv32_22 = 32'b100010;
-parameter    ap_const_lv32_23 = 32'b100011;
-parameter    ap_const_lv32_25 = 32'b100101;
-parameter    ap_const_lv32_26 = 32'b100110;
-parameter    ap_const_lv32_27 = 32'b100111;
-parameter    ap_const_lv32_28 = 32'b101000;
-parameter    ap_const_lv32_29 = 32'b101001;
-parameter    ap_const_lv32_2A = 32'b101010;
-parameter    ap_const_lv32_2B = 32'b101011;
-parameter    ap_const_lv32_2C = 32'b101100;
-parameter    ap_const_lv32_2E = 32'b101110;
-parameter    ap_const_lv32_2F = 32'b101111;
-parameter    ap_const_lv32_30 = 32'b110000;
-parameter    ap_const_lv32_31 = 32'b110001;
-parameter    ap_const_lv32_32 = 32'b110010;
-parameter    ap_const_lv32_33 = 32'b110011;
-parameter    ap_const_lv32_34 = 32'b110100;
-parameter    ap_const_lv32_35 = 32'b110101;
-parameter    ap_const_lv32_37 = 32'b110111;
-parameter    ap_const_lv32_38 = 32'b111000;
-parameter    ap_const_lv32_39 = 32'b111001;
-parameter    ap_const_lv32_3A = 32'b111010;
-parameter    ap_const_lv32_3B = 32'b111011;
-parameter    ap_const_lv32_3C = 32'b111100;
-parameter    ap_const_lv32_3D = 32'b111101;
-parameter    ap_const_lv32_3E = 32'b111110;
-parameter    ap_const_lv32_40 = 32'b1000000;
-parameter    ap_const_lv32_41 = 32'b1000001;
-parameter    ap_const_lv32_42 = 32'b1000010;
-parameter    ap_const_lv32_43 = 32'b1000011;
-parameter    ap_const_lv32_44 = 32'b1000100;
-parameter    ap_const_lv32_45 = 32'b1000101;
-parameter    ap_const_lv32_46 = 32'b1000110;
-parameter    ap_const_lv32_47 = 32'b1000111;
-parameter    ap_const_lv32_49 = 32'b1001001;
-parameter    ap_const_lv32_4A = 32'b1001010;
-parameter    ap_const_lv32_4B = 32'b1001011;
-parameter    ap_const_lv32_4C = 32'b1001100;
-parameter    ap_const_lv32_4D = 32'b1001101;
-parameter    ap_const_lv32_4E = 32'b1001110;
-parameter    ap_const_lv32_4F = 32'b1001111;
-parameter    ap_const_lv32_50 = 32'b1010000;
-parameter    ap_const_lv32_52 = 32'b1010010;
-parameter    ap_const_lv32_53 = 32'b1010011;
-parameter    ap_const_lv32_54 = 32'b1010100;
-parameter    ap_const_lv32_55 = 32'b1010101;
-parameter    ap_const_lv32_56 = 32'b1010110;
-parameter    ap_const_lv32_57 = 32'b1010111;
-parameter    ap_const_lv32_58 = 32'b1011000;
-parameter    ap_const_lv32_59 = 32'b1011001;
-parameter    ap_const_lv32_5B = 32'b1011011;
-parameter    ap_const_lv32_5C = 32'b1011100;
-parameter    ap_const_lv32_5D = 32'b1011101;
-parameter    ap_const_lv32_5E = 32'b1011110;
-parameter    ap_const_lv32_5F = 32'b1011111;
-parameter    ap_const_lv32_60 = 32'b1100000;
-parameter    ap_const_lv32_61 = 32'b1100001;
-parameter    ap_const_lv32_62 = 32'b1100010;
-parameter    ap_const_lv5_0 = 5'b00000;
-parameter    ap_const_lv5_1 = 5'b1;
-parameter    ap_const_lv5_2 = 5'b10;
-parameter    ap_const_lv5_3 = 5'b11;
-parameter    ap_const_lv5_4 = 5'b100;
-parameter    ap_const_lv5_5 = 5'b101;
-parameter    ap_const_lv5_6 = 5'b110;
-parameter    ap_const_lv5_7 = 5'b111;
-parameter    ap_const_lv5_8 = 5'b1000;
-parameter    ap_const_lv5_9 = 5'b1001;
-parameter    ap_const_lv5_A = 5'b1010;
+parameter    ap_const_lv3_4 = 3'b100;
+parameter    ap_const_lv3_1 = 3'b1;
+parameter    ap_const_lv2_0 = 2'b00;
+parameter    ap_const_lv4_2 = 4'b10;
+parameter    ap_const_lv4_3 = 4'b11;
+parameter    ap_const_lv4_A = 4'b1010;
 
 input   ap_clk;
 input   ap_rst;
@@ -271,671 +95,285 @@ input   ap_start;
 output   ap_done;
 output   ap_idle;
 output   ap_ready;
-input  [7:0] in_0_read;
-input  [7:0] in_1_read;
-input  [7:0] in_2_read;
-input  [7:0] in_3_read;
-input  [7:0] in_4_read;
-input  [7:0] in_5_read;
-input  [7:0] in_6_read;
-input  [7:0] in_7_read;
-input  [7:0] in_8_read;
-input  [7:0] in_9_read;
-input  [7:0] in_10_read;
-input  [7:0] in_11_read;
-input  [7:0] in_12_read;
-input  [7:0] in_13_read;
-input  [7:0] in_14_read;
-input  [7:0] in_15_read;
+output  [3:0] in_r_address0;
+output   in_r_ce0;
+input  [7:0] in_r_q0;
+output  [3:0] in_r_address1;
+output   in_r_ce1;
+input  [7:0] in_r_q1;
+output  [3:0] out_r_address0;
+output   out_r_ce0;
+output   out_r_we0;
+output  [7:0] out_r_d0;
+output  [3:0] out_r_address1;
+output   out_r_ce1;
+output   out_r_we1;
+output  [7:0] out_r_d1;
 output  [7:0] w_address0;
 output   w_ce0;
 input  [7:0] w_q0;
 output  [7:0] w_address1;
 output   w_ce1;
 input  [7:0] w_q1;
-output  [7:0] ap_return_0;
-output  [7:0] ap_return_1;
-output  [7:0] ap_return_2;
-output  [7:0] ap_return_3;
-output  [7:0] ap_return_4;
-output  [7:0] ap_return_5;
-output  [7:0] ap_return_6;
-output  [7:0] ap_return_7;
-output  [7:0] ap_return_8;
-output  [7:0] ap_return_9;
-output  [7:0] ap_return_10;
-output  [7:0] ap_return_11;
-output  [7:0] ap_return_12;
-output  [7:0] ap_return_13;
-output  [7:0] ap_return_14;
-output  [7:0] ap_return_15;
-input   ap_ce;
 
 reg ap_done;
 reg ap_idle;
 reg ap_ready;
+reg[3:0] in_r_address0;
+reg in_r_ce0;
+reg[3:0] in_r_address1;
+reg in_r_ce1;
+reg[3:0] out_r_address0;
+reg out_r_ce0;
+reg out_r_we0;
+reg[3:0] out_r_address1;
+reg out_r_ce1;
+reg out_r_we1;
 
-(* fsm_encoding = "none" *) reg   [98:0] ap_CS_fsm;
+(* fsm_encoding = "none" *) reg   [20:0] ap_CS_fsm;
 reg    ap_sig_cseq_ST_st1_fsm_0;
-reg    ap_sig_116;
-reg    ap_sig_cseq_ST_st10_fsm_9;
-reg    ap_sig_172;
-reg    ap_sig_cseq_ST_st19_fsm_18;
-reg    ap_sig_181;
-reg    ap_sig_cseq_ST_st28_fsm_27;
-reg    ap_sig_190;
-reg    ap_sig_cseq_ST_st37_fsm_36;
-reg    ap_sig_199;
-reg    ap_sig_cseq_ST_st46_fsm_45;
-reg    ap_sig_208;
-reg    ap_sig_cseq_ST_st55_fsm_54;
-reg    ap_sig_217;
-reg    ap_sig_cseq_ST_st64_fsm_63;
-reg    ap_sig_226;
-reg    ap_sig_cseq_ST_st73_fsm_72;
-reg    ap_sig_235;
-reg    ap_sig_cseq_ST_st82_fsm_81;
-reg    ap_sig_244;
-reg    ap_sig_cseq_ST_st91_fsm_90;
-reg    ap_sig_321;
-reg   [7:0] grp_single_block_AES_encrypt_mix_columns_fu_164_state_4_read;
-wire   [7:0] grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_0;
-wire   [7:0] grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_1;
-wire   [7:0] grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_2;
-wire   [7:0] grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_3;
-wire   [7:0] grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_4;
-wire   [7:0] grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_5;
-wire   [7:0] grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_6;
-wire   [7:0] grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_7;
-wire   [7:0] grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_8;
-wire   [7:0] grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_9;
-wire   [7:0] grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_10;
-wire   [7:0] grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_11;
-wire   [7:0] grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_12;
-wire   [7:0] grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_13;
-wire   [7:0] grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_14;
-wire   [7:0] grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_15;
-reg    grp_single_block_AES_encrypt_add_round_key_fu_184_ap_start;
-wire    grp_single_block_AES_encrypt_add_round_key_fu_184_ap_done;
-wire    grp_single_block_AES_encrypt_add_round_key_fu_184_ap_idle;
-wire    grp_single_block_AES_encrypt_add_round_key_fu_184_ap_ready;
-reg    grp_single_block_AES_encrypt_add_round_key_fu_184_ap_ce;
-reg   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_state_0_read;
-reg   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_state_1_read;
-reg   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_state_2_read;
-reg   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_state_3_read;
-reg   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_state_4_read;
-reg   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_state_5_read;
-reg   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_state_6_read;
-reg   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_state_7_read;
-reg   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_state_8_read;
-reg   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_state_9_read;
-reg   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_state_10_read;
-reg   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_state_11_read;
-reg   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_state_12_read;
-reg   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_state_13_read;
-reg   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_state_14_read;
-reg   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_state_15_read;
-wire   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_w_address0;
-wire    grp_single_block_AES_encrypt_add_round_key_fu_184_w_ce0;
-wire   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_w_address1;
-wire    grp_single_block_AES_encrypt_add_round_key_fu_184_w_ce1;
-reg   [4:0] grp_single_block_AES_encrypt_add_round_key_fu_184_r;
-wire   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_0;
-wire   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_1;
-wire   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_2;
-wire   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_3;
-wire   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_4;
-wire   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_5;
-wire   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_6;
-wire   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_7;
-wire   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_8;
-wire   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_9;
-wire   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_10;
-wire   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_11;
-wire   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_12;
-wire   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_13;
-wire   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_14;
-wire   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_15;
+reg    ap_sig_38;
+wire   [2:0] i_7_fu_270_p2;
+reg   [2:0] i_7_reg_478;
 reg    ap_sig_cseq_ST_st2_fsm_1;
-reg    ap_sig_440;
+reg    ap_sig_79;
+wire   [0:0] exitcond4_fu_264_p2;
+wire   [2:0] tmp_99_1_fu_281_p2;
+reg   [2:0] tmp_99_1_reg_488;
+wire   [3:0] tmp_s_fu_296_p3;
+reg   [3:0] tmp_s_reg_498;
 reg    ap_sig_cseq_ST_st3_fsm_2;
-reg    ap_sig_447;
-reg    ap_sig_cseq_ST_st4_fsm_3;
-reg    ap_sig_454;
-reg    ap_sig_cseq_ST_st5_fsm_4;
-reg    ap_sig_461;
-reg    ap_sig_cseq_ST_st6_fsm_5;
-reg    ap_sig_468;
-reg    ap_sig_cseq_ST_st7_fsm_6;
-reg    ap_sig_475;
-reg    ap_sig_cseq_ST_st8_fsm_7;
-reg    ap_sig_482;
-reg    ap_sig_cseq_ST_st9_fsm_8;
-reg    ap_sig_489;
-reg    ap_sig_cseq_ST_st11_fsm_10;
-reg    ap_sig_496;
+reg    ap_sig_98;
+wire   [5:0] r_cast3_cast_fu_367_p1;
+reg   [5:0] r_cast3_cast_reg_517;
 reg    ap_sig_cseq_ST_st12_fsm_11;
-reg    ap_sig_503;
-reg    ap_sig_cseq_ST_st13_fsm_12;
-reg    ap_sig_510;
-reg    ap_sig_cseq_ST_st14_fsm_13;
-reg    ap_sig_517;
-reg    ap_sig_cseq_ST_st15_fsm_14;
-reg    ap_sig_524;
-reg    ap_sig_cseq_ST_st16_fsm_15;
-reg    ap_sig_531;
-reg    ap_sig_cseq_ST_st17_fsm_16;
-reg    ap_sig_538;
-reg    ap_sig_cseq_ST_st18_fsm_17;
-reg    ap_sig_545;
+reg    ap_sig_111;
+wire   [3:0] r_1_fu_372_p2;
+reg   [3:0] r_1_reg_522;
+wire   [2:0] i_8_fu_384_p2;
+reg   [2:0] i_8_reg_530;
+reg    ap_sig_cseq_ST_st19_fsm_18;
+reg    ap_sig_122;
+wire   [3:0] tmp_66_fu_394_p3;
+reg   [3:0] tmp_66_reg_535;
+wire   [0:0] exitcond1_fu_378_p2;
+wire   [2:0] tmp_109_1_fu_423_p2;
+reg   [2:0] tmp_109_1_reg_551;
 reg    ap_sig_cseq_ST_st20_fsm_19;
-reg    ap_sig_552;
+reg    ap_sig_140;
+reg   [3:0] state_address0;
+reg    state_ce0;
+reg    state_we0;
+reg   [7:0] state_d0;
+wire   [7:0] state_q0;
+reg   [3:0] state_address1;
+reg    state_ce1;
+reg    state_we1;
+reg   [7:0] state_d1;
+wire   [7:0] state_q1;
+wire    grp_single_block_AES_encrypt_mix_columns_fu_237_ap_start;
+wire    grp_single_block_AES_encrypt_mix_columns_fu_237_ap_done;
+wire    grp_single_block_AES_encrypt_mix_columns_fu_237_ap_idle;
+wire    grp_single_block_AES_encrypt_mix_columns_fu_237_ap_ready;
+wire   [3:0] grp_single_block_AES_encrypt_mix_columns_fu_237_state_address0;
+wire    grp_single_block_AES_encrypt_mix_columns_fu_237_state_ce0;
+wire    grp_single_block_AES_encrypt_mix_columns_fu_237_state_we0;
+wire   [7:0] grp_single_block_AES_encrypt_mix_columns_fu_237_state_d0;
+wire    grp_single_block_AES_encrypt_add_round_key_fu_242_ap_start;
+wire    grp_single_block_AES_encrypt_add_round_key_fu_242_ap_done;
+wire    grp_single_block_AES_encrypt_add_round_key_fu_242_ap_idle;
+wire    grp_single_block_AES_encrypt_add_round_key_fu_242_ap_ready;
+wire   [3:0] grp_single_block_AES_encrypt_add_round_key_fu_242_state_address0;
+wire    grp_single_block_AES_encrypt_add_round_key_fu_242_state_ce0;
+wire    grp_single_block_AES_encrypt_add_round_key_fu_242_state_we0;
+wire   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_242_state_d0;
+wire   [3:0] grp_single_block_AES_encrypt_add_round_key_fu_242_state_address1;
+wire    grp_single_block_AES_encrypt_add_round_key_fu_242_state_ce1;
+wire    grp_single_block_AES_encrypt_add_round_key_fu_242_state_we1;
+wire   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_242_state_d1;
+wire   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_242_w_address0;
+wire    grp_single_block_AES_encrypt_add_round_key_fu_242_w_ce0;
+wire   [7:0] grp_single_block_AES_encrypt_add_round_key_fu_242_w_address1;
+wire    grp_single_block_AES_encrypt_add_round_key_fu_242_w_ce1;
+reg   [5:0] grp_single_block_AES_encrypt_add_round_key_fu_242_r;
+wire    grp_single_block_AES_encrypt_shift_rows_fu_252_ap_start;
+wire    grp_single_block_AES_encrypt_shift_rows_fu_252_ap_done;
+wire    grp_single_block_AES_encrypt_shift_rows_fu_252_ap_idle;
+wire    grp_single_block_AES_encrypt_shift_rows_fu_252_ap_ready;
+wire   [3:0] grp_single_block_AES_encrypt_shift_rows_fu_252_state_address0;
+wire    grp_single_block_AES_encrypt_shift_rows_fu_252_state_ce0;
+wire    grp_single_block_AES_encrypt_shift_rows_fu_252_state_we0;
+wire   [7:0] grp_single_block_AES_encrypt_shift_rows_fu_252_state_d0;
+wire    grp_single_block_AES_encrypt_sub_bytes_fu_257_ap_start;
+wire    grp_single_block_AES_encrypt_sub_bytes_fu_257_ap_done;
+wire    grp_single_block_AES_encrypt_sub_bytes_fu_257_ap_idle;
+wire    grp_single_block_AES_encrypt_sub_bytes_fu_257_ap_ready;
+wire   [3:0] grp_single_block_AES_encrypt_sub_bytes_fu_257_state_address0;
+wire    grp_single_block_AES_encrypt_sub_bytes_fu_257_state_ce0;
+wire    grp_single_block_AES_encrypt_sub_bytes_fu_257_state_we0;
+wire   [7:0] grp_single_block_AES_encrypt_sub_bytes_fu_257_state_d0;
+reg   [2:0] i_reg_201;
+reg    ap_sig_cseq_ST_st4_fsm_3;
+reg    ap_sig_228;
+reg   [3:0] r_reg_213;
+reg    ap_sig_cseq_ST_st5_fsm_4;
+reg    ap_sig_238;
+reg    ap_sig_cseq_ST_st13_fsm_12;
+reg    ap_sig_248;
+reg   [2:0] i_1_reg_225;
+reg    ap_sig_cseq_ST_st18_fsm_17;
+reg    ap_sig_258;
 reg    ap_sig_cseq_ST_st21_fsm_20;
-reg    ap_sig_559;
-reg    ap_sig_cseq_ST_st22_fsm_21;
-reg    ap_sig_566;
-reg    ap_sig_cseq_ST_st23_fsm_22;
-reg    ap_sig_573;
-reg    ap_sig_cseq_ST_st24_fsm_23;
-reg    ap_sig_580;
-reg    ap_sig_cseq_ST_st25_fsm_24;
-reg    ap_sig_587;
-reg    ap_sig_cseq_ST_st26_fsm_25;
-reg    ap_sig_594;
-reg    ap_sig_cseq_ST_st27_fsm_26;
-reg    ap_sig_601;
-reg    ap_sig_cseq_ST_st29_fsm_28;
-reg    ap_sig_608;
-reg    ap_sig_cseq_ST_st30_fsm_29;
-reg    ap_sig_615;
-reg    ap_sig_cseq_ST_st31_fsm_30;
-reg    ap_sig_622;
-reg    ap_sig_cseq_ST_st32_fsm_31;
-reg    ap_sig_629;
-reg    ap_sig_cseq_ST_st33_fsm_32;
-reg    ap_sig_636;
-reg    ap_sig_cseq_ST_st34_fsm_33;
-reg    ap_sig_643;
-reg    ap_sig_cseq_ST_st35_fsm_34;
-reg    ap_sig_650;
-reg    ap_sig_cseq_ST_st36_fsm_35;
-reg    ap_sig_657;
-reg    ap_sig_cseq_ST_st38_fsm_37;
-reg    ap_sig_664;
-reg    ap_sig_cseq_ST_st39_fsm_38;
-reg    ap_sig_671;
-reg    ap_sig_cseq_ST_st40_fsm_39;
-reg    ap_sig_678;
-reg    ap_sig_cseq_ST_st41_fsm_40;
-reg    ap_sig_685;
-reg    ap_sig_cseq_ST_st42_fsm_41;
-reg    ap_sig_692;
-reg    ap_sig_cseq_ST_st43_fsm_42;
-reg    ap_sig_699;
-reg    ap_sig_cseq_ST_st44_fsm_43;
-reg    ap_sig_706;
-reg    ap_sig_cseq_ST_st45_fsm_44;
-reg    ap_sig_713;
-reg    ap_sig_cseq_ST_st47_fsm_46;
-reg    ap_sig_720;
-reg    ap_sig_cseq_ST_st48_fsm_47;
-reg    ap_sig_727;
-reg    ap_sig_cseq_ST_st49_fsm_48;
-reg    ap_sig_734;
-reg    ap_sig_cseq_ST_st50_fsm_49;
-reg    ap_sig_741;
-reg    ap_sig_cseq_ST_st51_fsm_50;
-reg    ap_sig_748;
-reg    ap_sig_cseq_ST_st52_fsm_51;
-reg    ap_sig_755;
-reg    ap_sig_cseq_ST_st53_fsm_52;
-reg    ap_sig_762;
-reg    ap_sig_cseq_ST_st54_fsm_53;
-reg    ap_sig_769;
-reg    ap_sig_cseq_ST_st56_fsm_55;
-reg    ap_sig_776;
-reg    ap_sig_cseq_ST_st57_fsm_56;
-reg    ap_sig_783;
-reg    ap_sig_cseq_ST_st58_fsm_57;
-reg    ap_sig_790;
-reg    ap_sig_cseq_ST_st59_fsm_58;
-reg    ap_sig_797;
-reg    ap_sig_cseq_ST_st60_fsm_59;
-reg    ap_sig_804;
-reg    ap_sig_cseq_ST_st61_fsm_60;
-reg    ap_sig_811;
-reg    ap_sig_cseq_ST_st62_fsm_61;
-reg    ap_sig_818;
-reg    ap_sig_cseq_ST_st63_fsm_62;
-reg    ap_sig_825;
-reg    ap_sig_cseq_ST_st65_fsm_64;
-reg    ap_sig_832;
-reg    ap_sig_cseq_ST_st66_fsm_65;
-reg    ap_sig_839;
-reg    ap_sig_cseq_ST_st67_fsm_66;
-reg    ap_sig_846;
-reg    ap_sig_cseq_ST_st68_fsm_67;
-reg    ap_sig_853;
-reg    ap_sig_cseq_ST_st69_fsm_68;
-reg    ap_sig_860;
-reg    ap_sig_cseq_ST_st70_fsm_69;
-reg    ap_sig_867;
-reg    ap_sig_cseq_ST_st71_fsm_70;
-reg    ap_sig_874;
-reg    ap_sig_cseq_ST_st72_fsm_71;
-reg    ap_sig_881;
-reg    ap_sig_cseq_ST_st74_fsm_73;
-reg    ap_sig_888;
-reg    ap_sig_cseq_ST_st75_fsm_74;
-reg    ap_sig_895;
-reg    ap_sig_cseq_ST_st76_fsm_75;
-reg    ap_sig_902;
-reg    ap_sig_cseq_ST_st77_fsm_76;
-reg    ap_sig_909;
-reg    ap_sig_cseq_ST_st78_fsm_77;
-reg    ap_sig_916;
-reg    ap_sig_cseq_ST_st79_fsm_78;
-reg    ap_sig_923;
-reg    ap_sig_cseq_ST_st80_fsm_79;
-reg    ap_sig_930;
-reg    ap_sig_cseq_ST_st81_fsm_80;
-reg    ap_sig_937;
-reg    ap_sig_cseq_ST_st83_fsm_82;
-reg    ap_sig_944;
-reg    ap_sig_cseq_ST_st84_fsm_83;
-reg    ap_sig_951;
-reg    ap_sig_cseq_ST_st85_fsm_84;
-reg    ap_sig_958;
-reg    ap_sig_cseq_ST_st86_fsm_85;
-reg    ap_sig_965;
-reg    ap_sig_cseq_ST_st87_fsm_86;
-reg    ap_sig_972;
-reg    ap_sig_cseq_ST_st88_fsm_87;
-reg    ap_sig_979;
-reg    ap_sig_cseq_ST_st89_fsm_88;
-reg    ap_sig_986;
-reg    ap_sig_cseq_ST_st90_fsm_89;
-reg    ap_sig_993;
-reg    ap_sig_cseq_ST_st92_fsm_91;
-reg    ap_sig_1000;
-reg    ap_sig_cseq_ST_st93_fsm_92;
-reg    ap_sig_1007;
-reg    ap_sig_cseq_ST_st94_fsm_93;
-reg    ap_sig_1014;
-reg    ap_sig_cseq_ST_st95_fsm_94;
-reg    ap_sig_1021;
-reg    ap_sig_cseq_ST_st96_fsm_95;
-reg    ap_sig_1028;
-reg    ap_sig_cseq_ST_st97_fsm_96;
-reg    ap_sig_1035;
-reg    ap_sig_cseq_ST_st98_fsm_97;
-reg    ap_sig_1042;
-reg    ap_sig_cseq_ST_st99_fsm_98;
-reg    ap_sig_1049;
-wire    grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_start;
-wire    grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_done;
-wire    grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_idle;
-wire    grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_ready;
-reg    grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_ce;
-wire   [7:0] grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_0;
-wire   [7:0] grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_1;
-wire   [7:0] grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_2;
-wire   [7:0] grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_3;
-wire   [7:0] grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_4;
-wire   [7:0] grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_5;
-wire   [7:0] grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_6;
-wire   [7:0] grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_7;
-wire   [7:0] grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_8;
-wire   [7:0] grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_9;
-wire   [7:0] grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_10;
-wire   [7:0] grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_11;
-wire   [7:0] grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_12;
-wire   [7:0] grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_13;
-wire   [7:0] grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_14;
-wire   [7:0] grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_15;
-reg   [7:0] grp_single_block_AES_encrypt_shift_rows_fu_256_state_4_read;
-reg   [7:0] grp_single_block_AES_encrypt_shift_rows_fu_256_state_5_read;
-reg   [7:0] grp_single_block_AES_encrypt_shift_rows_fu_256_state_6_read;
-reg   [7:0] grp_single_block_AES_encrypt_shift_rows_fu_256_state_7_read;
-reg   [7:0] grp_single_block_AES_encrypt_shift_rows_fu_256_state_8_read;
-reg   [7:0] grp_single_block_AES_encrypt_shift_rows_fu_256_state_9_read;
-reg   [7:0] grp_single_block_AES_encrypt_shift_rows_fu_256_state_10_read;
-reg   [7:0] grp_single_block_AES_encrypt_shift_rows_fu_256_state_11_read;
-reg   [7:0] grp_single_block_AES_encrypt_shift_rows_fu_256_state_12_read;
-reg   [7:0] grp_single_block_AES_encrypt_shift_rows_fu_256_state_13_read;
-reg   [7:0] grp_single_block_AES_encrypt_shift_rows_fu_256_state_14_read;
-reg   [7:0] grp_single_block_AES_encrypt_shift_rows_fu_256_state_15_read;
-wire   [7:0] grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_0;
-wire   [7:0] grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_1;
-wire   [7:0] grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_2;
-wire   [7:0] grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_3;
-wire   [7:0] grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_4;
-wire   [7:0] grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_5;
-wire   [7:0] grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_6;
-wire   [7:0] grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_7;
-wire   [7:0] grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_8;
-wire   [7:0] grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_9;
-wire   [7:0] grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_10;
-wire   [7:0] grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_11;
-wire   [7:0] state_4_6_fu_981_p1;
-wire   [7:0] state_4_10_fu_986_p1;
-wire   [7:0] state_4_14_fu_991_p1;
-wire   [7:0] state_4_18_fu_996_p1;
-wire   [7:0] state_4_22_fu_1001_p1;
-wire   [7:0] state_4_26_fu_1006_p1;
-wire   [7:0] state_4_30_fu_1011_p1;
-wire   [7:0] state_4_34_fu_1016_p1;
-reg    ap_reg_grp_single_block_AES_encrypt_add_round_key_fu_184_ap_start;
-reg   [98:0] ap_NS_fsm;
-reg    ap_sig_nseq_ST_st10_fsm_9;
-reg    ap_sig_1169;
-reg    ap_sig_nseq_ST_st19_fsm_18;
-reg    ap_sig_1176;
-reg    ap_sig_nseq_ST_st28_fsm_27;
-reg    ap_sig_1184;
-reg    ap_sig_nseq_ST_st37_fsm_36;
-reg    ap_sig_1192;
-reg    ap_sig_nseq_ST_st46_fsm_45;
-reg    ap_sig_1200;
-reg    ap_sig_nseq_ST_st55_fsm_54;
-reg    ap_sig_1208;
-reg    ap_sig_nseq_ST_st64_fsm_63;
-reg    ap_sig_1216;
-reg    ap_sig_nseq_ST_st73_fsm_72;
-reg    ap_sig_1224;
-reg    ap_sig_nseq_ST_st82_fsm_81;
-reg    ap_sig_1232;
-reg    ap_sig_nseq_ST_st91_fsm_90;
-reg    ap_sig_1240;
-reg    ap_reg_grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_start;
-reg    ap_sig_nseq_ST_st9_fsm_8;
-reg    ap_sig_1545;
-reg    ap_sig_nseq_ST_st18_fsm_17;
-reg    ap_sig_1552;
-reg    ap_sig_nseq_ST_st27_fsm_26;
-reg    ap_sig_1560;
-reg    ap_sig_nseq_ST_st36_fsm_35;
-reg    ap_sig_1568;
-reg    ap_sig_nseq_ST_st45_fsm_44;
-reg    ap_sig_1576;
-reg    ap_sig_nseq_ST_st54_fsm_53;
-reg    ap_sig_1584;
-reg    ap_sig_nseq_ST_st63_fsm_62;
-reg    ap_sig_1592;
-reg    ap_sig_nseq_ST_st72_fsm_71;
-reg    ap_sig_1600;
-reg    ap_sig_nseq_ST_st81_fsm_80;
-reg    ap_sig_1608;
-reg    ap_sig_nseq_ST_st90_fsm_89;
-reg    ap_sig_1616;
-wire   [7:0] state_4_5_fu_381_p1;
-wire   [7:0] state_4_9_fu_386_p1;
-wire   [7:0] state_4_13_fu_391_p1;
-wire   [7:0] state_4_17_fu_396_p1;
-wire   [7:0] state_4_21_fu_401_p1;
-wire   [7:0] state_4_25_fu_406_p1;
-wire   [7:0] state_4_29_fu_411_p1;
-wire   [7:0] state_4_33_fu_416_p1;
-wire   [7:0] state_4_37_fu_421_p1;
-wire   [7:0] state_5_5_fu_431_p1;
-wire   [7:0] state_5_9_fu_436_p1;
-wire   [7:0] state_5_13_fu_441_p1;
-wire   [7:0] state_5_17_fu_446_p1;
-wire   [7:0] state_5_21_fu_451_p1;
-wire   [7:0] state_5_25_fu_456_p1;
-wire   [7:0] state_5_29_fu_461_p1;
-wire   [7:0] state_5_33_fu_466_p1;
-wire   [7:0] state_5_37_fu_471_p1;
-wire   [7:0] state_6_5_fu_481_p1;
-wire   [7:0] state_6_9_fu_486_p1;
-wire   [7:0] state_6_13_fu_491_p1;
-wire   [7:0] state_6_17_fu_496_p1;
-wire   [7:0] state_6_21_fu_501_p1;
-wire   [7:0] state_6_25_fu_506_p1;
-wire   [7:0] state_6_29_fu_511_p1;
-wire   [7:0] state_6_33_fu_516_p1;
-wire   [7:0] state_6_37_fu_521_p1;
-wire   [7:0] state_7_5_fu_531_p1;
-wire   [7:0] state_7_9_fu_536_p1;
-wire   [7:0] state_7_13_fu_541_p1;
-wire   [7:0] state_7_17_fu_546_p1;
-wire   [7:0] state_7_21_fu_551_p1;
-wire   [7:0] state_7_25_fu_556_p1;
-wire   [7:0] state_7_29_fu_561_p1;
-wire   [7:0] state_7_33_fu_566_p1;
-wire   [7:0] state_7_37_fu_571_p1;
-wire   [7:0] state_8_5_fu_581_p1;
-wire   [7:0] state_8_9_fu_586_p1;
-wire   [7:0] state_8_13_fu_591_p1;
-wire   [7:0] state_8_17_fu_596_p1;
-wire   [7:0] state_8_21_fu_601_p1;
-wire   [7:0] state_8_25_fu_606_p1;
-wire   [7:0] state_8_29_fu_611_p1;
-wire   [7:0] state_8_33_fu_616_p1;
-wire   [7:0] state_8_37_fu_621_p1;
-wire   [7:0] state_9_5_fu_631_p1;
-wire   [7:0] state_9_9_fu_636_p1;
-wire   [7:0] state_9_13_fu_641_p1;
-wire   [7:0] state_9_17_fu_646_p1;
-wire   [7:0] state_9_21_fu_651_p1;
-wire   [7:0] state_9_25_fu_656_p1;
-wire   [7:0] state_9_29_fu_661_p1;
-wire   [7:0] state_9_33_fu_666_p1;
-wire   [7:0] state_9_37_fu_671_p1;
-wire   [7:0] state_10_5_fu_681_p1;
-wire   [7:0] state_10_9_fu_686_p1;
-wire   [7:0] state_10_13_fu_691_p1;
-wire   [7:0] state_10_17_fu_696_p1;
-wire   [7:0] state_10_21_fu_701_p1;
-wire   [7:0] state_10_25_fu_706_p1;
-wire   [7:0] state_10_29_fu_711_p1;
-wire   [7:0] state_10_33_fu_716_p1;
-wire   [7:0] state_10_37_fu_721_p1;
-wire   [7:0] state_11_5_fu_731_p1;
-wire   [7:0] state_11_9_fu_736_p1;
-wire   [7:0] state_11_13_fu_741_p1;
-wire   [7:0] state_11_17_fu_746_p1;
-wire   [7:0] state_11_21_fu_751_p1;
-wire   [7:0] state_11_25_fu_756_p1;
-wire   [7:0] state_11_29_fu_761_p1;
-wire   [7:0] state_11_33_fu_766_p1;
-wire   [7:0] state_11_37_fu_771_p1;
-wire   [7:0] state_12_5_fu_781_p1;
-wire   [7:0] state_12_9_fu_786_p1;
-wire   [7:0] state_12_13_fu_791_p1;
-wire   [7:0] state_12_17_fu_796_p1;
-wire   [7:0] state_12_21_fu_801_p1;
-wire   [7:0] state_12_25_fu_806_p1;
-wire   [7:0] state_12_29_fu_811_p1;
-wire   [7:0] state_12_33_fu_816_p1;
-wire   [7:0] state_12_37_fu_821_p1;
-wire   [7:0] state_13_5_fu_831_p1;
-wire   [7:0] state_13_9_fu_836_p1;
-wire   [7:0] state_13_13_fu_841_p1;
-wire   [7:0] state_13_17_fu_846_p1;
-wire   [7:0] state_13_21_fu_851_p1;
-wire   [7:0] state_13_25_fu_856_p1;
-wire   [7:0] state_13_29_fu_861_p1;
-wire   [7:0] state_13_33_fu_866_p1;
-wire   [7:0] state_13_37_fu_871_p1;
-wire   [7:0] state_14_5_fu_881_p1;
-wire   [7:0] state_14_9_fu_886_p1;
-wire   [7:0] state_14_13_fu_891_p1;
-wire   [7:0] state_14_17_fu_896_p1;
-wire   [7:0] state_14_21_fu_901_p1;
-wire   [7:0] state_14_25_fu_906_p1;
-wire   [7:0] state_14_29_fu_911_p1;
-wire   [7:0] state_14_33_fu_916_p1;
-wire   [7:0] state_14_37_fu_921_p1;
-wire   [7:0] state_15_5_fu_931_p1;
-wire   [7:0] state_15_9_fu_936_p1;
-wire   [7:0] state_15_13_fu_941_p1;
-wire   [7:0] state_15_17_fu_946_p1;
-wire   [7:0] state_15_21_fu_951_p1;
-wire   [7:0] state_15_25_fu_956_p1;
-wire   [7:0] state_15_29_fu_961_p1;
-wire   [7:0] state_15_33_fu_966_p1;
-wire   [7:0] state_15_37_fu_971_p1;
+reg    ap_sig_266;
+reg    ap_reg_grp_single_block_AES_encrypt_mix_columns_fu_237_ap_start;
+reg    ap_sig_cseq_ST_st10_fsm_9;
+reg    ap_sig_275;
+reg    ap_sig_cseq_ST_st11_fsm_10;
+reg    ap_sig_282;
+reg    ap_reg_grp_single_block_AES_encrypt_add_round_key_fu_242_ap_start;
+reg    ap_sig_cseq_ST_st17_fsm_16;
+reg    ap_sig_294;
+reg    ap_reg_grp_single_block_AES_encrypt_shift_rows_fu_252_ap_start;
+reg    ap_sig_cseq_ST_st8_fsm_7;
+reg    ap_sig_308;
+reg    ap_sig_cseq_ST_st15_fsm_14;
+reg    ap_sig_315;
+reg    ap_sig_cseq_ST_st9_fsm_8;
+reg    ap_sig_323;
+reg    ap_sig_cseq_ST_st16_fsm_15;
+reg    ap_sig_330;
+reg    ap_reg_grp_single_block_AES_encrypt_sub_bytes_fu_257_ap_start;
+reg    ap_sig_cseq_ST_st6_fsm_5;
+reg    ap_sig_340;
+wire   [0:0] exitcond2_fu_361_p2;
+reg    ap_sig_cseq_ST_st7_fsm_6;
+reg    ap_sig_353;
+reg    ap_sig_cseq_ST_st14_fsm_13;
+reg    ap_sig_360;
+wire   [63:0] tmp_100_fu_276_p1;
+wire   [63:0] tmp_100_1_fu_287_p1;
+wire   [63:0] tmp_102_fu_304_p1;
+wire   [63:0] tmp_102_1_fu_315_p1;
+wire   [63:0] tmp_100_2_fu_328_p1;
+wire   [63:0] tmp_100_3_fu_336_p1;
+wire   [63:0] tmp_102_2_fu_346_p1;
+wire   [63:0] tmp_102_3_fu_356_p1;
+wire   [63:0] tmp_107_fu_402_p1;
+wire   [63:0] tmp_107_1_fu_413_p1;
+wire   [63:0] tmp_110_fu_418_p1;
+wire   [63:0] tmp_110_1_fu_429_p1;
+wire   [63:0] tmp_107_2_fu_439_p1;
+wire   [63:0] tmp_107_3_fu_449_p1;
+wire   [63:0] tmp_110_2_fu_462_p1;
+wire   [63:0] tmp_110_3_fu_470_p1;
+wire   [1:0] tmp_fu_292_p1;
+wire   [3:0] tmp_101_s_fu_309_p2;
+wire   [3:0] tmp_99_s_fu_320_p3;
+wire  signed [3:0] tmp_99_3_cast7_fu_333_p1;
+wire   [3:0] tmp_101_1_fu_341_p2;
+wire   [3:0] tmp_101_2_fu_351_p2;
+wire   [1:0] tmp_30_fu_390_p1;
+wire   [3:0] tmp_106_s_fu_407_p2;
+wire   [3:0] tmp_106_1_fu_434_p2;
+wire   [3:0] tmp_106_2_fu_444_p2;
+wire   [3:0] tmp_109_s_fu_454_p3;
+wire  signed [3:0] tmp_109_3_cast6_fu_467_p1;
+reg   [20:0] ap_NS_fsm;
 
 // power-on initialization
 initial begin
-#0 ap_CS_fsm = 99'b1;
-#0 ap_reg_grp_single_block_AES_encrypt_add_round_key_fu_184_ap_start = 1'b0;
-#0 ap_reg_grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_start = 1'b0;
+#0 ap_CS_fsm = 21'b1;
+#0 ap_reg_grp_single_block_AES_encrypt_mix_columns_fu_237_ap_start = 1'b0;
+#0 ap_reg_grp_single_block_AES_encrypt_add_round_key_fu_242_ap_start = 1'b0;
+#0 ap_reg_grp_single_block_AES_encrypt_shift_rows_fu_252_ap_start = 1'b0;
+#0 ap_reg_grp_single_block_AES_encrypt_sub_bytes_fu_257_ap_start = 1'b0;
 end
 
-single_block_AES_encrypt_mix_columns grp_single_block_AES_encrypt_mix_columns_fu_164(
-    .state_0_read(grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_0),
-    .state_1_read(grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_1),
-    .state_2_read(grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_2),
-    .state_3_read(grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_3),
-    .state_4_read(grp_single_block_AES_encrypt_mix_columns_fu_164_state_4_read),
-    .state_5_read(grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_1),
-    .state_6_read(grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_2),
-    .state_7_read(grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_3),
-    .state_8_read(grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_4),
-    .state_9_read(grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_5),
-    .state_10_read(grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_6),
-    .state_11_read(grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_7),
-    .state_12_read(grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_8),
-    .state_13_read(grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_9),
-    .state_14_read(grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_10),
-    .state_15_read(grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_11),
-    .ap_return_0(grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_0),
-    .ap_return_1(grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_1),
-    .ap_return_2(grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_2),
-    .ap_return_3(grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_3),
-    .ap_return_4(grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_4),
-    .ap_return_5(grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_5),
-    .ap_return_6(grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_6),
-    .ap_return_7(grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_7),
-    .ap_return_8(grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_8),
-    .ap_return_9(grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_9),
-    .ap_return_10(grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_10),
-    .ap_return_11(grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_11),
-    .ap_return_12(grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_12),
-    .ap_return_13(grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_13),
-    .ap_return_14(grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_14),
-    .ap_return_15(grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_15)
+single_block_AES_encrypt_aes_cipher_state #(
+    .DataWidth( 8 ),
+    .AddressRange( 16 ),
+    .AddressWidth( 4 ))
+state_U(
+    .clk(ap_clk),
+    .reset(ap_rst),
+    .address0(state_address0),
+    .ce0(state_ce0),
+    .we0(state_we0),
+    .d0(state_d0),
+    .q0(state_q0),
+    .address1(state_address1),
+    .ce1(state_ce1),
+    .we1(state_we1),
+    .d1(state_d1),
+    .q1(state_q1)
 );
 
-single_block_AES_encrypt_add_round_key grp_single_block_AES_encrypt_add_round_key_fu_184(
+single_block_AES_encrypt_mix_columns grp_single_block_AES_encrypt_mix_columns_fu_237(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_start),
-    .ap_done(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_done),
-    .ap_idle(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_idle),
-    .ap_ready(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_ready),
-    .ap_ce(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_ce),
-    .state_0_read(grp_single_block_AES_encrypt_add_round_key_fu_184_state_0_read),
-    .state_1_read(grp_single_block_AES_encrypt_add_round_key_fu_184_state_1_read),
-    .state_2_read(grp_single_block_AES_encrypt_add_round_key_fu_184_state_2_read),
-    .state_3_read(grp_single_block_AES_encrypt_add_round_key_fu_184_state_3_read),
-    .state_4_read(grp_single_block_AES_encrypt_add_round_key_fu_184_state_4_read),
-    .state_5_read(grp_single_block_AES_encrypt_add_round_key_fu_184_state_5_read),
-    .state_6_read(grp_single_block_AES_encrypt_add_round_key_fu_184_state_6_read),
-    .state_7_read(grp_single_block_AES_encrypt_add_round_key_fu_184_state_7_read),
-    .state_8_read(grp_single_block_AES_encrypt_add_round_key_fu_184_state_8_read),
-    .state_9_read(grp_single_block_AES_encrypt_add_round_key_fu_184_state_9_read),
-    .state_10_read(grp_single_block_AES_encrypt_add_round_key_fu_184_state_10_read),
-    .state_11_read(grp_single_block_AES_encrypt_add_round_key_fu_184_state_11_read),
-    .state_12_read(grp_single_block_AES_encrypt_add_round_key_fu_184_state_12_read),
-    .state_13_read(grp_single_block_AES_encrypt_add_round_key_fu_184_state_13_read),
-    .state_14_read(grp_single_block_AES_encrypt_add_round_key_fu_184_state_14_read),
-    .state_15_read(grp_single_block_AES_encrypt_add_round_key_fu_184_state_15_read),
-    .w_address0(grp_single_block_AES_encrypt_add_round_key_fu_184_w_address0),
-    .w_ce0(grp_single_block_AES_encrypt_add_round_key_fu_184_w_ce0),
+    .ap_start(grp_single_block_AES_encrypt_mix_columns_fu_237_ap_start),
+    .ap_done(grp_single_block_AES_encrypt_mix_columns_fu_237_ap_done),
+    .ap_idle(grp_single_block_AES_encrypt_mix_columns_fu_237_ap_idle),
+    .ap_ready(grp_single_block_AES_encrypt_mix_columns_fu_237_ap_ready),
+    .state_address0(grp_single_block_AES_encrypt_mix_columns_fu_237_state_address0),
+    .state_ce0(grp_single_block_AES_encrypt_mix_columns_fu_237_state_ce0),
+    .state_we0(grp_single_block_AES_encrypt_mix_columns_fu_237_state_we0),
+    .state_d0(grp_single_block_AES_encrypt_mix_columns_fu_237_state_d0),
+    .state_q0(state_q0)
+);
+
+single_block_AES_encrypt_add_round_key grp_single_block_AES_encrypt_add_round_key_fu_242(
+    .ap_clk(ap_clk),
+    .ap_rst(ap_rst),
+    .ap_start(grp_single_block_AES_encrypt_add_round_key_fu_242_ap_start),
+    .ap_done(grp_single_block_AES_encrypt_add_round_key_fu_242_ap_done),
+    .ap_idle(grp_single_block_AES_encrypt_add_round_key_fu_242_ap_idle),
+    .ap_ready(grp_single_block_AES_encrypt_add_round_key_fu_242_ap_ready),
+    .state_address0(grp_single_block_AES_encrypt_add_round_key_fu_242_state_address0),
+    .state_ce0(grp_single_block_AES_encrypt_add_round_key_fu_242_state_ce0),
+    .state_we0(grp_single_block_AES_encrypt_add_round_key_fu_242_state_we0),
+    .state_d0(grp_single_block_AES_encrypt_add_round_key_fu_242_state_d0),
+    .state_q0(state_q0),
+    .state_address1(grp_single_block_AES_encrypt_add_round_key_fu_242_state_address1),
+    .state_ce1(grp_single_block_AES_encrypt_add_round_key_fu_242_state_ce1),
+    .state_we1(grp_single_block_AES_encrypt_add_round_key_fu_242_state_we1),
+    .state_d1(grp_single_block_AES_encrypt_add_round_key_fu_242_state_d1),
+    .state_q1(state_q1),
+    .w_address0(grp_single_block_AES_encrypt_add_round_key_fu_242_w_address0),
+    .w_ce0(grp_single_block_AES_encrypt_add_round_key_fu_242_w_ce0),
     .w_q0(w_q0),
-    .w_address1(grp_single_block_AES_encrypt_add_round_key_fu_184_w_address1),
-    .w_ce1(grp_single_block_AES_encrypt_add_round_key_fu_184_w_ce1),
+    .w_address1(grp_single_block_AES_encrypt_add_round_key_fu_242_w_address1),
+    .w_ce1(grp_single_block_AES_encrypt_add_round_key_fu_242_w_ce1),
     .w_q1(w_q1),
-    .r(grp_single_block_AES_encrypt_add_round_key_fu_184_r),
-    .ap_return_0(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_0),
-    .ap_return_1(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_1),
-    .ap_return_2(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_2),
-    .ap_return_3(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_3),
-    .ap_return_4(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_4),
-    .ap_return_5(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_5),
-    .ap_return_6(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_6),
-    .ap_return_7(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_7),
-    .ap_return_8(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_8),
-    .ap_return_9(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_9),
-    .ap_return_10(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_10),
-    .ap_return_11(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_11),
-    .ap_return_12(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_12),
-    .ap_return_13(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_13),
-    .ap_return_14(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_14),
-    .ap_return_15(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_15)
+    .r(grp_single_block_AES_encrypt_add_round_key_fu_242_r)
 );
 
-single_block_AES_encrypt_sub_bytes grp_single_block_AES_encrypt_sub_bytes_fu_234(
+single_block_AES_encrypt_shift_rows grp_single_block_AES_encrypt_shift_rows_fu_252(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_start),
-    .ap_done(grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_done),
-    .ap_idle(grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_idle),
-    .ap_ready(grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_ready),
-    .ap_ce(grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_ce),
-    .state_0_read(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_0),
-    .state_1_read(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_1),
-    .state_2_read(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_2),
-    .state_3_read(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_3),
-    .state_4_read(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_4),
-    .state_5_read(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_5),
-    .state_6_read(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_6),
-    .state_7_read(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_7),
-    .state_8_read(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_8),
-    .state_9_read(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_9),
-    .state_10_read(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_10),
-    .state_11_read(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_11),
-    .state_12_read(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_12),
-    .state_13_read(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_13),
-    .state_14_read(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_14),
-    .state_15_read(grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_15),
-    .ap_return_0(grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_0),
-    .ap_return_1(grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_1),
-    .ap_return_2(grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_2),
-    .ap_return_3(grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_3),
-    .ap_return_4(grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_4),
-    .ap_return_5(grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_5),
-    .ap_return_6(grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_6),
-    .ap_return_7(grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_7),
-    .ap_return_8(grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_8),
-    .ap_return_9(grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_9),
-    .ap_return_10(grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_10),
-    .ap_return_11(grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_11),
-    .ap_return_12(grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_12),
-    .ap_return_13(grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_13),
-    .ap_return_14(grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_14),
-    .ap_return_15(grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_15)
+    .ap_start(grp_single_block_AES_encrypt_shift_rows_fu_252_ap_start),
+    .ap_done(grp_single_block_AES_encrypt_shift_rows_fu_252_ap_done),
+    .ap_idle(grp_single_block_AES_encrypt_shift_rows_fu_252_ap_idle),
+    .ap_ready(grp_single_block_AES_encrypt_shift_rows_fu_252_ap_ready),
+    .state_address0(grp_single_block_AES_encrypt_shift_rows_fu_252_state_address0),
+    .state_ce0(grp_single_block_AES_encrypt_shift_rows_fu_252_state_ce0),
+    .state_we0(grp_single_block_AES_encrypt_shift_rows_fu_252_state_we0),
+    .state_d0(grp_single_block_AES_encrypt_shift_rows_fu_252_state_d0),
+    .state_q0(state_q0)
 );
 
-single_block_AES_encrypt_shift_rows grp_single_block_AES_encrypt_shift_rows_fu_256(
-    .state_4_read(grp_single_block_AES_encrypt_shift_rows_fu_256_state_4_read),
-    .state_5_read(grp_single_block_AES_encrypt_shift_rows_fu_256_state_5_read),
-    .state_6_read(grp_single_block_AES_encrypt_shift_rows_fu_256_state_6_read),
-    .state_7_read(grp_single_block_AES_encrypt_shift_rows_fu_256_state_7_read),
-    .state_8_read(grp_single_block_AES_encrypt_shift_rows_fu_256_state_8_read),
-    .state_9_read(grp_single_block_AES_encrypt_shift_rows_fu_256_state_9_read),
-    .state_10_read(grp_single_block_AES_encrypt_shift_rows_fu_256_state_10_read),
-    .state_11_read(grp_single_block_AES_encrypt_shift_rows_fu_256_state_11_read),
-    .state_12_read(grp_single_block_AES_encrypt_shift_rows_fu_256_state_12_read),
-    .state_13_read(grp_single_block_AES_encrypt_shift_rows_fu_256_state_13_read),
-    .state_14_read(grp_single_block_AES_encrypt_shift_rows_fu_256_state_14_read),
-    .state_15_read(grp_single_block_AES_encrypt_shift_rows_fu_256_state_15_read),
-    .ap_return_0(grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_0),
-    .ap_return_1(grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_1),
-    .ap_return_2(grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_2),
-    .ap_return_3(grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_3),
-    .ap_return_4(grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_4),
-    .ap_return_5(grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_5),
-    .ap_return_6(grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_6),
-    .ap_return_7(grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_7),
-    .ap_return_8(grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_8),
-    .ap_return_9(grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_9),
-    .ap_return_10(grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_10),
-    .ap_return_11(grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_11)
+single_block_AES_encrypt_sub_bytes grp_single_block_AES_encrypt_sub_bytes_fu_257(
+    .ap_clk(ap_clk),
+    .ap_rst(ap_rst),
+    .ap_start(grp_single_block_AES_encrypt_sub_bytes_fu_257_ap_start),
+    .ap_done(grp_single_block_AES_encrypt_sub_bytes_fu_257_ap_done),
+    .ap_idle(grp_single_block_AES_encrypt_sub_bytes_fu_257_ap_idle),
+    .ap_ready(grp_single_block_AES_encrypt_sub_bytes_fu_257_ap_ready),
+    .state_address0(grp_single_block_AES_encrypt_sub_bytes_fu_257_state_address0),
+    .state_ce0(grp_single_block_AES_encrypt_sub_bytes_fu_257_state_ce0),
+    .state_we0(grp_single_block_AES_encrypt_sub_bytes_fu_257_state_we0),
+    .state_d0(grp_single_block_AES_encrypt_sub_bytes_fu_257_state_d0),
+    .state_q0(state_q0)
 );
 
 always @ (posedge ap_clk) begin
@@ -948,30 +386,123 @@ end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        ap_reg_grp_single_block_AES_encrypt_add_round_key_fu_184_ap_start <= 1'b0;
+        ap_reg_grp_single_block_AES_encrypt_add_round_key_fu_242_ap_start <= 1'b0;
     end else begin
-        if ((((1'b1 == ap_sig_cseq_ST_st9_fsm_8) & (1'b1 == ap_sig_nseq_ST_st10_fsm_9)) | ((1'b1 == ap_sig_cseq_ST_st18_fsm_17) & (1'b1 == ap_sig_nseq_ST_st19_fsm_18)) | ((1'b1 == ap_sig_cseq_ST_st27_fsm_26) & (1'b1 == ap_sig_nseq_ST_st28_fsm_27)) | ((1'b1 == ap_sig_cseq_ST_st36_fsm_35) & (1'b1 == ap_sig_nseq_ST_st37_fsm_36)) | ((1'b1 == ap_sig_cseq_ST_st45_fsm_44) & (1'b1 == ap_sig_nseq_ST_st46_fsm_45)) | ((1'b1 == ap_sig_cseq_ST_st54_fsm_53) & (1'b1 == ap_sig_nseq_ST_st55_fsm_54)) | ((1'b1 == ap_sig_cseq_ST_st63_fsm_62) & (1'b1 == ap_sig_nseq_ST_st64_fsm_63)) | ((1'b1 == ap_sig_cseq_ST_st72_fsm_71) & (1'b1 == ap_sig_nseq_ST_st73_fsm_72)) | ((1'b1 == ap_sig_cseq_ST_st81_fsm_80) & (1'b1 == ap_sig_nseq_ST_st82_fsm_81)) | ((1'b1 == ap_sig_cseq_ST_st90_fsm_89) & (1'b1 == ap_sig_nseq_ST_st91_fsm_90)))) begin
-            ap_reg_grp_single_block_AES_encrypt_add_round_key_fu_184_ap_start <= 1'b1;
-        end else if ((1'b1 == grp_single_block_AES_encrypt_add_round_key_fu_184_ap_ready)) begin
-            ap_reg_grp_single_block_AES_encrypt_add_round_key_fu_184_ap_start <= 1'b0;
+        if (((1'b1 == ap_sig_cseq_ST_st12_fsm_11) | ((1'b1 == ap_sig_cseq_ST_st2_fsm_1) & ~(exitcond4_fu_264_p2 == 1'b0)) | (1'b1 == ap_sig_cseq_ST_st17_fsm_16))) begin
+            ap_reg_grp_single_block_AES_encrypt_add_round_key_fu_242_ap_start <= 1'b1;
+        end else if ((1'b1 == grp_single_block_AES_encrypt_add_round_key_fu_242_ap_ready)) begin
+            ap_reg_grp_single_block_AES_encrypt_add_round_key_fu_242_ap_start <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        ap_reg_grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_start <= 1'b0;
+        ap_reg_grp_single_block_AES_encrypt_mix_columns_fu_237_ap_start <= 1'b0;
     end else begin
-        if ((((1'b1 == ap_sig_cseq_ST_st8_fsm_7) & (1'b1 == ap_sig_nseq_ST_st9_fsm_8)) | ((1'b1 == ap_sig_cseq_ST_st17_fsm_16) & (1'b1 == ap_sig_nseq_ST_st18_fsm_17)) | ((1'b1 == ap_sig_cseq_ST_st26_fsm_25) & (1'b1 == ap_sig_nseq_ST_st27_fsm_26)) | ((1'b1 == ap_sig_cseq_ST_st35_fsm_34) & (1'b1 == ap_sig_nseq_ST_st36_fsm_35)) | ((1'b1 == ap_sig_cseq_ST_st44_fsm_43) & (1'b1 == ap_sig_nseq_ST_st45_fsm_44)) | ((1'b1 == ap_sig_cseq_ST_st53_fsm_52) & (1'b1 == ap_sig_nseq_ST_st54_fsm_53)) | ((1'b1 == ap_sig_cseq_ST_st62_fsm_61) & (1'b1 == ap_sig_nseq_ST_st63_fsm_62)) | ((1'b1 == ap_sig_cseq_ST_st71_fsm_70) & (1'b1 == ap_sig_nseq_ST_st72_fsm_71)) | ((1'b1 == ap_sig_cseq_ST_st80_fsm_79) & (1'b1 == ap_sig_nseq_ST_st81_fsm_80)) | ((1'b1 == ap_sig_cseq_ST_st89_fsm_88) & (1'b1 == ap_sig_nseq_ST_st90_fsm_89)))) begin
-            ap_reg_grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_start <= 1'b1;
-        end else if ((1'b1 == grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_ready)) begin
-            ap_reg_grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_start <= 1'b0;
+        if ((1'b1 == ap_sig_cseq_ST_st10_fsm_9)) begin
+            ap_reg_grp_single_block_AES_encrypt_mix_columns_fu_237_ap_start <= 1'b1;
+        end else if ((1'b1 == grp_single_block_AES_encrypt_mix_columns_fu_237_ap_ready)) begin
+            ap_reg_grp_single_block_AES_encrypt_mix_columns_fu_237_ap_start <= 1'b0;
         end
     end
 end
 
+always @ (posedge ap_clk) begin
+    if (ap_rst == 1'b1) begin
+        ap_reg_grp_single_block_AES_encrypt_shift_rows_fu_252_ap_start <= 1'b0;
+    end else begin
+        if (((1'b1 == ap_sig_cseq_ST_st8_fsm_7) | (1'b1 == ap_sig_cseq_ST_st15_fsm_14))) begin
+            ap_reg_grp_single_block_AES_encrypt_shift_rows_fu_252_ap_start <= 1'b1;
+        end else if ((1'b1 == grp_single_block_AES_encrypt_shift_rows_fu_252_ap_ready)) begin
+            ap_reg_grp_single_block_AES_encrypt_shift_rows_fu_252_ap_start <= 1'b0;
+        end
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (ap_rst == 1'b1) begin
+        ap_reg_grp_single_block_AES_encrypt_sub_bytes_fu_257_ap_start <= 1'b0;
+    end else begin
+        if ((((1'b1 == ap_sig_cseq_ST_st6_fsm_5) & (1'b0 == exitcond2_fu_361_p2)) | ((1'b1 == ap_sig_cseq_ST_st6_fsm_5) & ~(1'b0 == exitcond2_fu_361_p2)))) begin
+            ap_reg_grp_single_block_AES_encrypt_sub_bytes_fu_257_ap_start <= 1'b1;
+        end else if ((1'b1 == grp_single_block_AES_encrypt_sub_bytes_fu_257_ap_ready)) begin
+            ap_reg_grp_single_block_AES_encrypt_sub_bytes_fu_257_ap_start <= 1'b0;
+        end
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_sig_cseq_ST_st21_fsm_20)) begin
+        i_1_reg_225 <= i_8_reg_530;
+    end else if ((~(1'b0 == grp_single_block_AES_encrypt_add_round_key_fu_242_ap_done) & (1'b1 == ap_sig_cseq_ST_st18_fsm_17))) begin
+        i_1_reg_225 <= ap_const_lv3_0;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_sig_cseq_ST_st4_fsm_3)) begin
+        i_reg_201 <= i_7_reg_478;
+    end else if (((1'b1 == ap_sig_cseq_ST_st1_fsm_0) & ~(ap_start == 1'b0))) begin
+        i_reg_201 <= ap_const_lv3_0;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (~(1'b0 == grp_single_block_AES_encrypt_add_round_key_fu_242_ap_done)) begin
+        if ((1'b1 == ap_sig_cseq_ST_st13_fsm_12)) begin
+            r_reg_213 <= r_1_reg_522;
+        end else if ((1'b1 == ap_sig_cseq_ST_st5_fsm_4)) begin
+            r_reg_213 <= ap_const_lv4_1;
+        end
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_sig_cseq_ST_st2_fsm_1)) begin
+        i_7_reg_478 <= i_7_fu_270_p2;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_sig_cseq_ST_st19_fsm_18)) begin
+        i_8_reg_530 <= i_8_fu_384_p2;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_sig_cseq_ST_st12_fsm_11)) begin
+        r_1_reg_522 <= r_1_fu_372_p2;
+        r_cast3_cast_reg_517[3 : 0] <= r_cast3_cast_fu_367_p1[3 : 0];
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_sig_cseq_ST_st20_fsm_19)) begin
+        tmp_109_1_reg_551 <= tmp_109_1_fu_423_p2;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((1'b1 == ap_sig_cseq_ST_st19_fsm_18) & (1'b0 == exitcond1_fu_378_p2))) begin
+        tmp_66_reg_535[3 : 2] <= tmp_66_fu_394_p3[3 : 2];
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((1'b1 == ap_sig_cseq_ST_st2_fsm_1) & (exitcond4_fu_264_p2 == 1'b0))) begin
+        tmp_99_1_reg_488 <= tmp_99_1_fu_281_p2;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_sig_cseq_ST_st3_fsm_2)) begin
+        tmp_s_reg_498[3 : 2] <= tmp_s_fu_296_p3[3 : 2];
+    end
+end
+
 always @ (*) begin
-    if ((((1'b0 == ap_start) & (1'b1 == ap_sig_cseq_ST_st1_fsm_0)) | ((1'b1 == ap_ce) & (1'b1 == ap_sig_cseq_ST_st99_fsm_98)))) begin
+    if ((((1'b0 == ap_start) & (1'b1 == ap_sig_cseq_ST_st1_fsm_0)) | ((1'b1 == ap_sig_cseq_ST_st19_fsm_18) & ~(1'b0 == exitcond1_fu_378_p2)))) begin
         ap_done = 1'b1;
     end else begin
         ap_done = 1'b0;
@@ -987,7 +518,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_ce) & (1'b1 == ap_sig_cseq_ST_st99_fsm_98))) begin
+    if (((1'b1 == ap_sig_cseq_ST_st19_fsm_18) & ~(1'b0 == exitcond1_fu_378_p2))) begin
         ap_ready = 1'b1;
     end else begin
         ap_ready = 1'b0;
@@ -995,7 +526,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_172) begin
+    if (ap_sig_275) begin
         ap_sig_cseq_ST_st10_fsm_9 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st10_fsm_9 = 1'b0;
@@ -1003,7 +534,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_496) begin
+    if (ap_sig_282) begin
         ap_sig_cseq_ST_st11_fsm_10 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st11_fsm_10 = 1'b0;
@@ -1011,7 +542,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_503) begin
+    if (ap_sig_111) begin
         ap_sig_cseq_ST_st12_fsm_11 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st12_fsm_11 = 1'b0;
@@ -1019,7 +550,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_510) begin
+    if (ap_sig_248) begin
         ap_sig_cseq_ST_st13_fsm_12 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st13_fsm_12 = 1'b0;
@@ -1027,7 +558,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_517) begin
+    if (ap_sig_360) begin
         ap_sig_cseq_ST_st14_fsm_13 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st14_fsm_13 = 1'b0;
@@ -1035,7 +566,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_524) begin
+    if (ap_sig_315) begin
         ap_sig_cseq_ST_st15_fsm_14 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st15_fsm_14 = 1'b0;
@@ -1043,7 +574,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_531) begin
+    if (ap_sig_330) begin
         ap_sig_cseq_ST_st16_fsm_15 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st16_fsm_15 = 1'b0;
@@ -1051,7 +582,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_538) begin
+    if (ap_sig_294) begin
         ap_sig_cseq_ST_st17_fsm_16 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st17_fsm_16 = 1'b0;
@@ -1059,7 +590,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_545) begin
+    if (ap_sig_258) begin
         ap_sig_cseq_ST_st18_fsm_17 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st18_fsm_17 = 1'b0;
@@ -1067,7 +598,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_181) begin
+    if (ap_sig_122) begin
         ap_sig_cseq_ST_st19_fsm_18 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st19_fsm_18 = 1'b0;
@@ -1075,7 +606,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_116) begin
+    if (ap_sig_38) begin
         ap_sig_cseq_ST_st1_fsm_0 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st1_fsm_0 = 1'b0;
@@ -1083,7 +614,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_552) begin
+    if (ap_sig_140) begin
         ap_sig_cseq_ST_st20_fsm_19 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st20_fsm_19 = 1'b0;
@@ -1091,7 +622,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_559) begin
+    if (ap_sig_266) begin
         ap_sig_cseq_ST_st21_fsm_20 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st21_fsm_20 = 1'b0;
@@ -1099,71 +630,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_566) begin
-        ap_sig_cseq_ST_st22_fsm_21 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st22_fsm_21 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_573) begin
-        ap_sig_cseq_ST_st23_fsm_22 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st23_fsm_22 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_580) begin
-        ap_sig_cseq_ST_st24_fsm_23 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st24_fsm_23 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_587) begin
-        ap_sig_cseq_ST_st25_fsm_24 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st25_fsm_24 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_594) begin
-        ap_sig_cseq_ST_st26_fsm_25 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st26_fsm_25 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_601) begin
-        ap_sig_cseq_ST_st27_fsm_26 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st27_fsm_26 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_190) begin
-        ap_sig_cseq_ST_st28_fsm_27 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st28_fsm_27 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_608) begin
-        ap_sig_cseq_ST_st29_fsm_28 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st29_fsm_28 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_440) begin
+    if (ap_sig_79) begin
         ap_sig_cseq_ST_st2_fsm_1 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st2_fsm_1 = 1'b0;
@@ -1171,87 +638,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_615) begin
-        ap_sig_cseq_ST_st30_fsm_29 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st30_fsm_29 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_622) begin
-        ap_sig_cseq_ST_st31_fsm_30 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st31_fsm_30 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_629) begin
-        ap_sig_cseq_ST_st32_fsm_31 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st32_fsm_31 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_636) begin
-        ap_sig_cseq_ST_st33_fsm_32 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st33_fsm_32 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_643) begin
-        ap_sig_cseq_ST_st34_fsm_33 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st34_fsm_33 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_650) begin
-        ap_sig_cseq_ST_st35_fsm_34 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st35_fsm_34 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_657) begin
-        ap_sig_cseq_ST_st36_fsm_35 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st36_fsm_35 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_199) begin
-        ap_sig_cseq_ST_st37_fsm_36 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st37_fsm_36 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_664) begin
-        ap_sig_cseq_ST_st38_fsm_37 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st38_fsm_37 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_671) begin
-        ap_sig_cseq_ST_st39_fsm_38 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st39_fsm_38 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_447) begin
+    if (ap_sig_98) begin
         ap_sig_cseq_ST_st3_fsm_2 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st3_fsm_2 = 1'b0;
@@ -1259,87 +646,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_678) begin
-        ap_sig_cseq_ST_st40_fsm_39 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st40_fsm_39 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_685) begin
-        ap_sig_cseq_ST_st41_fsm_40 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st41_fsm_40 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_692) begin
-        ap_sig_cseq_ST_st42_fsm_41 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st42_fsm_41 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_699) begin
-        ap_sig_cseq_ST_st43_fsm_42 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st43_fsm_42 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_706) begin
-        ap_sig_cseq_ST_st44_fsm_43 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st44_fsm_43 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_713) begin
-        ap_sig_cseq_ST_st45_fsm_44 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st45_fsm_44 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_208) begin
-        ap_sig_cseq_ST_st46_fsm_45 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st46_fsm_45 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_720) begin
-        ap_sig_cseq_ST_st47_fsm_46 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st47_fsm_46 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_727) begin
-        ap_sig_cseq_ST_st48_fsm_47 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st48_fsm_47 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_734) begin
-        ap_sig_cseq_ST_st49_fsm_48 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st49_fsm_48 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_454) begin
+    if (ap_sig_228) begin
         ap_sig_cseq_ST_st4_fsm_3 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st4_fsm_3 = 1'b0;
@@ -1347,87 +654,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_741) begin
-        ap_sig_cseq_ST_st50_fsm_49 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st50_fsm_49 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_748) begin
-        ap_sig_cseq_ST_st51_fsm_50 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st51_fsm_50 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_755) begin
-        ap_sig_cseq_ST_st52_fsm_51 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st52_fsm_51 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_762) begin
-        ap_sig_cseq_ST_st53_fsm_52 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st53_fsm_52 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_769) begin
-        ap_sig_cseq_ST_st54_fsm_53 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st54_fsm_53 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_217) begin
-        ap_sig_cseq_ST_st55_fsm_54 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st55_fsm_54 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_776) begin
-        ap_sig_cseq_ST_st56_fsm_55 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st56_fsm_55 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_783) begin
-        ap_sig_cseq_ST_st57_fsm_56 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st57_fsm_56 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_790) begin
-        ap_sig_cseq_ST_st58_fsm_57 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st58_fsm_57 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_797) begin
-        ap_sig_cseq_ST_st59_fsm_58 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st59_fsm_58 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_461) begin
+    if (ap_sig_238) begin
         ap_sig_cseq_ST_st5_fsm_4 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st5_fsm_4 = 1'b0;
@@ -1435,87 +662,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_804) begin
-        ap_sig_cseq_ST_st60_fsm_59 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st60_fsm_59 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_811) begin
-        ap_sig_cseq_ST_st61_fsm_60 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st61_fsm_60 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_818) begin
-        ap_sig_cseq_ST_st62_fsm_61 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st62_fsm_61 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_825) begin
-        ap_sig_cseq_ST_st63_fsm_62 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st63_fsm_62 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_226) begin
-        ap_sig_cseq_ST_st64_fsm_63 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st64_fsm_63 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_832) begin
-        ap_sig_cseq_ST_st65_fsm_64 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st65_fsm_64 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_839) begin
-        ap_sig_cseq_ST_st66_fsm_65 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st66_fsm_65 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_846) begin
-        ap_sig_cseq_ST_st67_fsm_66 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st67_fsm_66 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_853) begin
-        ap_sig_cseq_ST_st68_fsm_67 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st68_fsm_67 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_860) begin
-        ap_sig_cseq_ST_st69_fsm_68 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st69_fsm_68 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_468) begin
+    if (ap_sig_340) begin
         ap_sig_cseq_ST_st6_fsm_5 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st6_fsm_5 = 1'b0;
@@ -1523,87 +670,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_867) begin
-        ap_sig_cseq_ST_st70_fsm_69 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st70_fsm_69 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_874) begin
-        ap_sig_cseq_ST_st71_fsm_70 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st71_fsm_70 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_881) begin
-        ap_sig_cseq_ST_st72_fsm_71 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st72_fsm_71 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_235) begin
-        ap_sig_cseq_ST_st73_fsm_72 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st73_fsm_72 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_888) begin
-        ap_sig_cseq_ST_st74_fsm_73 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st74_fsm_73 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_895) begin
-        ap_sig_cseq_ST_st75_fsm_74 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st75_fsm_74 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_902) begin
-        ap_sig_cseq_ST_st76_fsm_75 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st76_fsm_75 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_909) begin
-        ap_sig_cseq_ST_st77_fsm_76 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st77_fsm_76 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_916) begin
-        ap_sig_cseq_ST_st78_fsm_77 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st78_fsm_77 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_923) begin
-        ap_sig_cseq_ST_st79_fsm_78 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st79_fsm_78 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_475) begin
+    if (ap_sig_353) begin
         ap_sig_cseq_ST_st7_fsm_6 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st7_fsm_6 = 1'b0;
@@ -1611,87 +678,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_930) begin
-        ap_sig_cseq_ST_st80_fsm_79 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st80_fsm_79 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_937) begin
-        ap_sig_cseq_ST_st81_fsm_80 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st81_fsm_80 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_244) begin
-        ap_sig_cseq_ST_st82_fsm_81 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st82_fsm_81 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_944) begin
-        ap_sig_cseq_ST_st83_fsm_82 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st83_fsm_82 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_951) begin
-        ap_sig_cseq_ST_st84_fsm_83 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st84_fsm_83 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_958) begin
-        ap_sig_cseq_ST_st85_fsm_84 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st85_fsm_84 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_965) begin
-        ap_sig_cseq_ST_st86_fsm_85 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st86_fsm_85 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_972) begin
-        ap_sig_cseq_ST_st87_fsm_86 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st87_fsm_86 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_979) begin
-        ap_sig_cseq_ST_st88_fsm_87 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st88_fsm_87 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_986) begin
-        ap_sig_cseq_ST_st89_fsm_88 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st89_fsm_88 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_482) begin
+    if (ap_sig_308) begin
         ap_sig_cseq_ST_st8_fsm_7 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st8_fsm_7 = 1'b0;
@@ -1699,87 +686,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_993) begin
-        ap_sig_cseq_ST_st90_fsm_89 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st90_fsm_89 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_321) begin
-        ap_sig_cseq_ST_st91_fsm_90 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st91_fsm_90 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_1000) begin
-        ap_sig_cseq_ST_st92_fsm_91 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st92_fsm_91 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_1007) begin
-        ap_sig_cseq_ST_st93_fsm_92 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st93_fsm_92 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_1014) begin
-        ap_sig_cseq_ST_st94_fsm_93 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st94_fsm_93 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_1021) begin
-        ap_sig_cseq_ST_st95_fsm_94 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st95_fsm_94 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_1028) begin
-        ap_sig_cseq_ST_st96_fsm_95 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st96_fsm_95 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_1035) begin
-        ap_sig_cseq_ST_st97_fsm_96 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st97_fsm_96 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_1042) begin
-        ap_sig_cseq_ST_st98_fsm_97 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st98_fsm_97 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_1049) begin
-        ap_sig_cseq_ST_st99_fsm_98 = 1'b1;
-    end else begin
-        ap_sig_cseq_ST_st99_fsm_98 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_489) begin
+    if (ap_sig_323) begin
         ap_sig_cseq_ST_st9_fsm_8 = 1'b1;
     end else begin
         ap_sig_cseq_ST_st9_fsm_8 = 1'b0;
@@ -1787,1439 +694,333 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (ap_sig_1169) begin
-        ap_sig_nseq_ST_st10_fsm_9 = 1'b1;
+    if ((1'b1 == ap_sig_cseq_ST_st18_fsm_17)) begin
+        grp_single_block_AES_encrypt_add_round_key_fu_242_r = ap_const_lv6_A;
+    end else if ((1'b1 == ap_sig_cseq_ST_st13_fsm_12)) begin
+        grp_single_block_AES_encrypt_add_round_key_fu_242_r = r_cast3_cast_reg_517;
+    end else if ((1'b1 == ap_sig_cseq_ST_st5_fsm_4)) begin
+        grp_single_block_AES_encrypt_add_round_key_fu_242_r = ap_const_lv6_0;
     end else begin
-        ap_sig_nseq_ST_st10_fsm_9 = 1'b0;
+        grp_single_block_AES_encrypt_add_round_key_fu_242_r = 'bx;
     end
 end
 
 always @ (*) begin
-    if (ap_sig_1552) begin
-        ap_sig_nseq_ST_st18_fsm_17 = 1'b1;
+    if ((1'b1 == ap_sig_cseq_ST_st3_fsm_2)) begin
+        in_r_address0 = tmp_100_2_fu_328_p1;
+    end else if ((1'b1 == ap_sig_cseq_ST_st2_fsm_1)) begin
+        in_r_address0 = tmp_100_fu_276_p1;
     end else begin
-        ap_sig_nseq_ST_st18_fsm_17 = 1'b0;
+        in_r_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if (ap_sig_1176) begin
-        ap_sig_nseq_ST_st19_fsm_18 = 1'b1;
+    if ((1'b1 == ap_sig_cseq_ST_st3_fsm_2)) begin
+        in_r_address1 = tmp_100_3_fu_336_p1;
+    end else if ((1'b1 == ap_sig_cseq_ST_st2_fsm_1)) begin
+        in_r_address1 = tmp_100_1_fu_287_p1;
     end else begin
-        ap_sig_nseq_ST_st19_fsm_18 = 1'b0;
+        in_r_address1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if (ap_sig_1560) begin
-        ap_sig_nseq_ST_st27_fsm_26 = 1'b1;
+    if (((1'b1 == ap_sig_cseq_ST_st2_fsm_1) | (1'b1 == ap_sig_cseq_ST_st3_fsm_2))) begin
+        in_r_ce0 = 1'b1;
     end else begin
-        ap_sig_nseq_ST_st27_fsm_26 = 1'b0;
+        in_r_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if (ap_sig_1184) begin
-        ap_sig_nseq_ST_st28_fsm_27 = 1'b1;
+    if (((1'b1 == ap_sig_cseq_ST_st2_fsm_1) | (1'b1 == ap_sig_cseq_ST_st3_fsm_2))) begin
+        in_r_ce1 = 1'b1;
     end else begin
-        ap_sig_nseq_ST_st28_fsm_27 = 1'b0;
+        in_r_ce1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if (ap_sig_1568) begin
-        ap_sig_nseq_ST_st36_fsm_35 = 1'b1;
+    if ((1'b1 == ap_sig_cseq_ST_st21_fsm_20)) begin
+        out_r_address0 = tmp_110_2_fu_462_p1;
+    end else if ((1'b1 == ap_sig_cseq_ST_st20_fsm_19)) begin
+        out_r_address0 = tmp_110_fu_418_p1;
     end else begin
-        ap_sig_nseq_ST_st36_fsm_35 = 1'b0;
+        out_r_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if (ap_sig_1192) begin
-        ap_sig_nseq_ST_st37_fsm_36 = 1'b1;
+    if ((1'b1 == ap_sig_cseq_ST_st21_fsm_20)) begin
+        out_r_address1 = tmp_110_3_fu_470_p1;
+    end else if ((1'b1 == ap_sig_cseq_ST_st20_fsm_19)) begin
+        out_r_address1 = tmp_110_1_fu_429_p1;
     end else begin
-        ap_sig_nseq_ST_st37_fsm_36 = 1'b0;
+        out_r_address1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if (ap_sig_1576) begin
-        ap_sig_nseq_ST_st45_fsm_44 = 1'b1;
+    if (((1'b1 == ap_sig_cseq_ST_st20_fsm_19) | (1'b1 == ap_sig_cseq_ST_st21_fsm_20))) begin
+        out_r_ce0 = 1'b1;
     end else begin
-        ap_sig_nseq_ST_st45_fsm_44 = 1'b0;
+        out_r_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if (ap_sig_1200) begin
-        ap_sig_nseq_ST_st46_fsm_45 = 1'b1;
+    if (((1'b1 == ap_sig_cseq_ST_st20_fsm_19) | (1'b1 == ap_sig_cseq_ST_st21_fsm_20))) begin
+        out_r_ce1 = 1'b1;
     end else begin
-        ap_sig_nseq_ST_st46_fsm_45 = 1'b0;
+        out_r_ce1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if (ap_sig_1584) begin
-        ap_sig_nseq_ST_st54_fsm_53 = 1'b1;
+    if (((1'b1 == ap_sig_cseq_ST_st20_fsm_19) | (1'b1 == ap_sig_cseq_ST_st21_fsm_20))) begin
+        out_r_we0 = 1'b1;
     end else begin
-        ap_sig_nseq_ST_st54_fsm_53 = 1'b0;
+        out_r_we0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if (ap_sig_1208) begin
-        ap_sig_nseq_ST_st55_fsm_54 = 1'b1;
+    if (((1'b1 == ap_sig_cseq_ST_st20_fsm_19) | (1'b1 == ap_sig_cseq_ST_st21_fsm_20))) begin
+        out_r_we1 = 1'b1;
     end else begin
-        ap_sig_nseq_ST_st55_fsm_54 = 1'b0;
+        out_r_we1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if (ap_sig_1592) begin
-        ap_sig_nseq_ST_st63_fsm_62 = 1'b1;
-    end else begin
-        ap_sig_nseq_ST_st63_fsm_62 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_1216) begin
-        ap_sig_nseq_ST_st64_fsm_63 = 1'b1;
-    end else begin
-        ap_sig_nseq_ST_st64_fsm_63 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_1600) begin
-        ap_sig_nseq_ST_st72_fsm_71 = 1'b1;
-    end else begin
-        ap_sig_nseq_ST_st72_fsm_71 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_1224) begin
-        ap_sig_nseq_ST_st73_fsm_72 = 1'b1;
-    end else begin
-        ap_sig_nseq_ST_st73_fsm_72 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_1608) begin
-        ap_sig_nseq_ST_st81_fsm_80 = 1'b1;
-    end else begin
-        ap_sig_nseq_ST_st81_fsm_80 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_1232) begin
-        ap_sig_nseq_ST_st82_fsm_81 = 1'b1;
-    end else begin
-        ap_sig_nseq_ST_st82_fsm_81 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_1616) begin
-        ap_sig_nseq_ST_st90_fsm_89 = 1'b1;
-    end else begin
-        ap_sig_nseq_ST_st90_fsm_89 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_1240) begin
-        ap_sig_nseq_ST_st91_fsm_90 = 1'b1;
-    end else begin
-        ap_sig_nseq_ST_st91_fsm_90 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (ap_sig_1545) begin
-        ap_sig_nseq_ST_st9_fsm_8 = 1'b1;
-    end else begin
-        ap_sig_nseq_ST_st9_fsm_8 = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if ((~(1'b1 == ap_ce) | ((1'b1 == ap_sig_cseq_ST_st1_fsm_0) & (ap_start == 1'b0)))) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_ap_ce = 1'b0;
-    end else begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_ap_ce = 1'b1;
-    end
-end
-
-always @ (*) begin
-    if (((1'b1 == ap_sig_cseq_ST_st1_fsm_0) & (1'b1 == ap_ce) & ~(ap_start == 1'b0))) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_ap_start = 1'b1;
-    end else begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_ap_start = ap_reg_grp_single_block_AES_encrypt_add_round_key_fu_184_ap_start;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_r = ap_const_lv5_A;
-    end else if ((1'b1 == ap_sig_cseq_ST_st82_fsm_81)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_r = ap_const_lv5_9;
-    end else if ((1'b1 == ap_sig_cseq_ST_st73_fsm_72)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_r = ap_const_lv5_8;
-    end else if ((1'b1 == ap_sig_cseq_ST_st64_fsm_63)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_r = ap_const_lv5_7;
-    end else if ((1'b1 == ap_sig_cseq_ST_st55_fsm_54)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_r = ap_const_lv5_6;
-    end else if ((1'b1 == ap_sig_cseq_ST_st46_fsm_45)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_r = ap_const_lv5_5;
-    end else if ((1'b1 == ap_sig_cseq_ST_st37_fsm_36)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_r = ap_const_lv5_4;
-    end else if ((1'b1 == ap_sig_cseq_ST_st28_fsm_27)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_r = ap_const_lv5_3;
+    if ((1'b1 == ap_sig_cseq_ST_st4_fsm_3)) begin
+        state_address0 = tmp_102_2_fu_346_p1;
+    end else if ((1'b1 == ap_sig_cseq_ST_st3_fsm_2)) begin
+        state_address0 = tmp_102_fu_304_p1;
+    end else if ((1'b1 == ap_sig_cseq_ST_st20_fsm_19)) begin
+        state_address0 = tmp_107_2_fu_439_p1;
     end else if ((1'b1 == ap_sig_cseq_ST_st19_fsm_18)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_r = ap_const_lv5_2;
-    end else if ((1'b1 == ap_sig_cseq_ST_st10_fsm_9)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_r = ap_const_lv5_1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st1_fsm_0)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_r = ap_const_lv5_0;
+        state_address0 = tmp_107_fu_402_p1;
+    end else if (((1'b1 == ap_sig_cseq_ST_st7_fsm_6) | (1'b1 == ap_sig_cseq_ST_st14_fsm_13))) begin
+        state_address0 = grp_single_block_AES_encrypt_sub_bytes_fu_257_state_address0;
+    end else if (((1'b1 == ap_sig_cseq_ST_st9_fsm_8) | (1'b1 == ap_sig_cseq_ST_st16_fsm_15))) begin
+        state_address0 = grp_single_block_AES_encrypt_shift_rows_fu_252_state_address0;
+    end else if (((1'b1 == ap_sig_cseq_ST_st5_fsm_4) | (1'b1 == ap_sig_cseq_ST_st13_fsm_12) | (1'b1 == ap_sig_cseq_ST_st18_fsm_17))) begin
+        state_address0 = grp_single_block_AES_encrypt_add_round_key_fu_242_state_address0;
+    end else if ((1'b1 == ap_sig_cseq_ST_st11_fsm_10)) begin
+        state_address0 = grp_single_block_AES_encrypt_mix_columns_fu_237_state_address0;
     end else begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_r = 'bx;
+        state_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_0_read = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_0;
-    end else if (((1'b1 == ap_sig_cseq_ST_st10_fsm_9) | (1'b1 == ap_sig_cseq_ST_st19_fsm_18) | (1'b1 == ap_sig_cseq_ST_st28_fsm_27) | (1'b1 == ap_sig_cseq_ST_st37_fsm_36) | (1'b1 == ap_sig_cseq_ST_st46_fsm_45) | (1'b1 == ap_sig_cseq_ST_st55_fsm_54) | (1'b1 == ap_sig_cseq_ST_st64_fsm_63) | (1'b1 == ap_sig_cseq_ST_st73_fsm_72) | (1'b1 == ap_sig_cseq_ST_st82_fsm_81))) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_0_read = grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_0;
-    end else if ((1'b1 == ap_sig_cseq_ST_st1_fsm_0)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_0_read = in_0_read;
-    end else begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_0_read = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_10_read = grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_6;
-    end else if (((1'b1 == ap_sig_cseq_ST_st10_fsm_9) | (1'b1 == ap_sig_cseq_ST_st19_fsm_18) | (1'b1 == ap_sig_cseq_ST_st28_fsm_27) | (1'b1 == ap_sig_cseq_ST_st37_fsm_36) | (1'b1 == ap_sig_cseq_ST_st46_fsm_45) | (1'b1 == ap_sig_cseq_ST_st55_fsm_54) | (1'b1 == ap_sig_cseq_ST_st64_fsm_63) | (1'b1 == ap_sig_cseq_ST_st73_fsm_72) | (1'b1 == ap_sig_cseq_ST_st82_fsm_81))) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_10_read = grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_10;
-    end else if ((1'b1 == ap_sig_cseq_ST_st1_fsm_0)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_10_read = in_10_read;
-    end else begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_10_read = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_11_read = grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_7;
-    end else if (((1'b1 == ap_sig_cseq_ST_st10_fsm_9) | (1'b1 == ap_sig_cseq_ST_st19_fsm_18) | (1'b1 == ap_sig_cseq_ST_st28_fsm_27) | (1'b1 == ap_sig_cseq_ST_st37_fsm_36) | (1'b1 == ap_sig_cseq_ST_st46_fsm_45) | (1'b1 == ap_sig_cseq_ST_st55_fsm_54) | (1'b1 == ap_sig_cseq_ST_st64_fsm_63) | (1'b1 == ap_sig_cseq_ST_st73_fsm_72) | (1'b1 == ap_sig_cseq_ST_st82_fsm_81))) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_11_read = grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_11;
-    end else if ((1'b1 == ap_sig_cseq_ST_st1_fsm_0)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_11_read = in_14_read;
-    end else begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_11_read = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_12_read = grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_8;
-    end else if (((1'b1 == ap_sig_cseq_ST_st10_fsm_9) | (1'b1 == ap_sig_cseq_ST_st19_fsm_18) | (1'b1 == ap_sig_cseq_ST_st28_fsm_27) | (1'b1 == ap_sig_cseq_ST_st37_fsm_36) | (1'b1 == ap_sig_cseq_ST_st46_fsm_45) | (1'b1 == ap_sig_cseq_ST_st55_fsm_54) | (1'b1 == ap_sig_cseq_ST_st64_fsm_63) | (1'b1 == ap_sig_cseq_ST_st73_fsm_72) | (1'b1 == ap_sig_cseq_ST_st82_fsm_81))) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_12_read = grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_12;
-    end else if ((1'b1 == ap_sig_cseq_ST_st1_fsm_0)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_12_read = in_3_read;
-    end else begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_12_read = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_13_read = grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_9;
-    end else if (((1'b1 == ap_sig_cseq_ST_st10_fsm_9) | (1'b1 == ap_sig_cseq_ST_st19_fsm_18) | (1'b1 == ap_sig_cseq_ST_st28_fsm_27) | (1'b1 == ap_sig_cseq_ST_st37_fsm_36) | (1'b1 == ap_sig_cseq_ST_st46_fsm_45) | (1'b1 == ap_sig_cseq_ST_st55_fsm_54) | (1'b1 == ap_sig_cseq_ST_st64_fsm_63) | (1'b1 == ap_sig_cseq_ST_st73_fsm_72) | (1'b1 == ap_sig_cseq_ST_st82_fsm_81))) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_13_read = grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_13;
-    end else if ((1'b1 == ap_sig_cseq_ST_st1_fsm_0)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_13_read = in_7_read;
-    end else begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_13_read = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_14_read = grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_10;
-    end else if (((1'b1 == ap_sig_cseq_ST_st10_fsm_9) | (1'b1 == ap_sig_cseq_ST_st19_fsm_18) | (1'b1 == ap_sig_cseq_ST_st28_fsm_27) | (1'b1 == ap_sig_cseq_ST_st37_fsm_36) | (1'b1 == ap_sig_cseq_ST_st46_fsm_45) | (1'b1 == ap_sig_cseq_ST_st55_fsm_54) | (1'b1 == ap_sig_cseq_ST_st64_fsm_63) | (1'b1 == ap_sig_cseq_ST_st73_fsm_72) | (1'b1 == ap_sig_cseq_ST_st82_fsm_81))) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_14_read = grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_14;
-    end else if ((1'b1 == ap_sig_cseq_ST_st1_fsm_0)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_14_read = in_11_read;
-    end else begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_14_read = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_15_read = grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_11;
-    end else if (((1'b1 == ap_sig_cseq_ST_st10_fsm_9) | (1'b1 == ap_sig_cseq_ST_st19_fsm_18) | (1'b1 == ap_sig_cseq_ST_st28_fsm_27) | (1'b1 == ap_sig_cseq_ST_st37_fsm_36) | (1'b1 == ap_sig_cseq_ST_st46_fsm_45) | (1'b1 == ap_sig_cseq_ST_st55_fsm_54) | (1'b1 == ap_sig_cseq_ST_st64_fsm_63) | (1'b1 == ap_sig_cseq_ST_st73_fsm_72) | (1'b1 == ap_sig_cseq_ST_st82_fsm_81))) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_15_read = grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_15;
-    end else if ((1'b1 == ap_sig_cseq_ST_st1_fsm_0)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_15_read = in_15_read;
-    end else begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_15_read = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_1_read = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_1;
-    end else if (((1'b1 == ap_sig_cseq_ST_st10_fsm_9) | (1'b1 == ap_sig_cseq_ST_st19_fsm_18) | (1'b1 == ap_sig_cseq_ST_st28_fsm_27) | (1'b1 == ap_sig_cseq_ST_st37_fsm_36) | (1'b1 == ap_sig_cseq_ST_st46_fsm_45) | (1'b1 == ap_sig_cseq_ST_st55_fsm_54) | (1'b1 == ap_sig_cseq_ST_st64_fsm_63) | (1'b1 == ap_sig_cseq_ST_st73_fsm_72) | (1'b1 == ap_sig_cseq_ST_st82_fsm_81))) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_1_read = grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st1_fsm_0)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_1_read = in_4_read;
-    end else begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_1_read = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_2_read = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_2;
-    end else if (((1'b1 == ap_sig_cseq_ST_st10_fsm_9) | (1'b1 == ap_sig_cseq_ST_st19_fsm_18) | (1'b1 == ap_sig_cseq_ST_st28_fsm_27) | (1'b1 == ap_sig_cseq_ST_st37_fsm_36) | (1'b1 == ap_sig_cseq_ST_st46_fsm_45) | (1'b1 == ap_sig_cseq_ST_st55_fsm_54) | (1'b1 == ap_sig_cseq_ST_st64_fsm_63) | (1'b1 == ap_sig_cseq_ST_st73_fsm_72) | (1'b1 == ap_sig_cseq_ST_st82_fsm_81))) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_2_read = grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_2;
-    end else if ((1'b1 == ap_sig_cseq_ST_st1_fsm_0)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_2_read = in_8_read;
-    end else begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_2_read = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_3_read = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_3;
-    end else if (((1'b1 == ap_sig_cseq_ST_st10_fsm_9) | (1'b1 == ap_sig_cseq_ST_st19_fsm_18) | (1'b1 == ap_sig_cseq_ST_st28_fsm_27) | (1'b1 == ap_sig_cseq_ST_st37_fsm_36) | (1'b1 == ap_sig_cseq_ST_st46_fsm_45) | (1'b1 == ap_sig_cseq_ST_st55_fsm_54) | (1'b1 == ap_sig_cseq_ST_st64_fsm_63) | (1'b1 == ap_sig_cseq_ST_st73_fsm_72) | (1'b1 == ap_sig_cseq_ST_st82_fsm_81))) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_3_read = grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_3;
-    end else if ((1'b1 == ap_sig_cseq_ST_st1_fsm_0)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_3_read = in_12_read;
-    end else begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_3_read = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_4_read = grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_0;
-    end else if (((1'b1 == ap_sig_cseq_ST_st10_fsm_9) | (1'b1 == ap_sig_cseq_ST_st19_fsm_18) | (1'b1 == ap_sig_cseq_ST_st28_fsm_27) | (1'b1 == ap_sig_cseq_ST_st37_fsm_36) | (1'b1 == ap_sig_cseq_ST_st46_fsm_45) | (1'b1 == ap_sig_cseq_ST_st55_fsm_54) | (1'b1 == ap_sig_cseq_ST_st64_fsm_63) | (1'b1 == ap_sig_cseq_ST_st73_fsm_72) | (1'b1 == ap_sig_cseq_ST_st82_fsm_81))) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_4_read = grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_4;
-    end else if ((1'b1 == ap_sig_cseq_ST_st1_fsm_0)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_4_read = in_1_read;
-    end else begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_4_read = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_5_read = grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_1;
-    end else if (((1'b1 == ap_sig_cseq_ST_st10_fsm_9) | (1'b1 == ap_sig_cseq_ST_st19_fsm_18) | (1'b1 == ap_sig_cseq_ST_st28_fsm_27) | (1'b1 == ap_sig_cseq_ST_st37_fsm_36) | (1'b1 == ap_sig_cseq_ST_st46_fsm_45) | (1'b1 == ap_sig_cseq_ST_st55_fsm_54) | (1'b1 == ap_sig_cseq_ST_st64_fsm_63) | (1'b1 == ap_sig_cseq_ST_st73_fsm_72) | (1'b1 == ap_sig_cseq_ST_st82_fsm_81))) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_5_read = grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_5;
-    end else if ((1'b1 == ap_sig_cseq_ST_st1_fsm_0)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_5_read = in_5_read;
-    end else begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_5_read = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_6_read = grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_2;
-    end else if (((1'b1 == ap_sig_cseq_ST_st10_fsm_9) | (1'b1 == ap_sig_cseq_ST_st19_fsm_18) | (1'b1 == ap_sig_cseq_ST_st28_fsm_27) | (1'b1 == ap_sig_cseq_ST_st37_fsm_36) | (1'b1 == ap_sig_cseq_ST_st46_fsm_45) | (1'b1 == ap_sig_cseq_ST_st55_fsm_54) | (1'b1 == ap_sig_cseq_ST_st64_fsm_63) | (1'b1 == ap_sig_cseq_ST_st73_fsm_72) | (1'b1 == ap_sig_cseq_ST_st82_fsm_81))) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_6_read = grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_6;
-    end else if ((1'b1 == ap_sig_cseq_ST_st1_fsm_0)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_6_read = in_9_read;
-    end else begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_6_read = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_7_read = grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_3;
-    end else if (((1'b1 == ap_sig_cseq_ST_st10_fsm_9) | (1'b1 == ap_sig_cseq_ST_st19_fsm_18) | (1'b1 == ap_sig_cseq_ST_st28_fsm_27) | (1'b1 == ap_sig_cseq_ST_st37_fsm_36) | (1'b1 == ap_sig_cseq_ST_st46_fsm_45) | (1'b1 == ap_sig_cseq_ST_st55_fsm_54) | (1'b1 == ap_sig_cseq_ST_st64_fsm_63) | (1'b1 == ap_sig_cseq_ST_st73_fsm_72) | (1'b1 == ap_sig_cseq_ST_st82_fsm_81))) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_7_read = grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_7;
-    end else if ((1'b1 == ap_sig_cseq_ST_st1_fsm_0)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_7_read = in_13_read;
-    end else begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_7_read = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_8_read = grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_4;
-    end else if (((1'b1 == ap_sig_cseq_ST_st10_fsm_9) | (1'b1 == ap_sig_cseq_ST_st19_fsm_18) | (1'b1 == ap_sig_cseq_ST_st28_fsm_27) | (1'b1 == ap_sig_cseq_ST_st37_fsm_36) | (1'b1 == ap_sig_cseq_ST_st46_fsm_45) | (1'b1 == ap_sig_cseq_ST_st55_fsm_54) | (1'b1 == ap_sig_cseq_ST_st64_fsm_63) | (1'b1 == ap_sig_cseq_ST_st73_fsm_72) | (1'b1 == ap_sig_cseq_ST_st82_fsm_81))) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_8_read = grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_8;
-    end else if ((1'b1 == ap_sig_cseq_ST_st1_fsm_0)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_8_read = in_2_read;
-    end else begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_8_read = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_9_read = grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_5;
-    end else if (((1'b1 == ap_sig_cseq_ST_st10_fsm_9) | (1'b1 == ap_sig_cseq_ST_st19_fsm_18) | (1'b1 == ap_sig_cseq_ST_st28_fsm_27) | (1'b1 == ap_sig_cseq_ST_st37_fsm_36) | (1'b1 == ap_sig_cseq_ST_st46_fsm_45) | (1'b1 == ap_sig_cseq_ST_st55_fsm_54) | (1'b1 == ap_sig_cseq_ST_st64_fsm_63) | (1'b1 == ap_sig_cseq_ST_st73_fsm_72) | (1'b1 == ap_sig_cseq_ST_st82_fsm_81))) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_9_read = grp_single_block_AES_encrypt_mix_columns_fu_164_ap_return_9;
-    end else if ((1'b1 == ap_sig_cseq_ST_st1_fsm_0)) begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_9_read = in_6_read;
-    end else begin
-        grp_single_block_AES_encrypt_add_round_key_fu_184_state_9_read = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st82_fsm_81)) begin
-        grp_single_block_AES_encrypt_mix_columns_fu_164_state_4_read = state_4_34_fu_1016_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st73_fsm_72)) begin
-        grp_single_block_AES_encrypt_mix_columns_fu_164_state_4_read = state_4_30_fu_1011_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st64_fsm_63)) begin
-        grp_single_block_AES_encrypt_mix_columns_fu_164_state_4_read = state_4_26_fu_1006_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st55_fsm_54)) begin
-        grp_single_block_AES_encrypt_mix_columns_fu_164_state_4_read = state_4_22_fu_1001_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st46_fsm_45)) begin
-        grp_single_block_AES_encrypt_mix_columns_fu_164_state_4_read = state_4_18_fu_996_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st37_fsm_36)) begin
-        grp_single_block_AES_encrypt_mix_columns_fu_164_state_4_read = state_4_14_fu_991_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st28_fsm_27)) begin
-        grp_single_block_AES_encrypt_mix_columns_fu_164_state_4_read = state_4_10_fu_986_p1;
+    if ((1'b1 == ap_sig_cseq_ST_st4_fsm_3)) begin
+        state_address1 = tmp_102_3_fu_356_p1;
+    end else if ((1'b1 == ap_sig_cseq_ST_st3_fsm_2)) begin
+        state_address1 = tmp_102_1_fu_315_p1;
+    end else if ((1'b1 == ap_sig_cseq_ST_st20_fsm_19)) begin
+        state_address1 = tmp_107_3_fu_449_p1;
     end else if ((1'b1 == ap_sig_cseq_ST_st19_fsm_18)) begin
-        grp_single_block_AES_encrypt_mix_columns_fu_164_state_4_read = state_4_6_fu_981_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st10_fsm_9)) begin
-        grp_single_block_AES_encrypt_mix_columns_fu_164_state_4_read = grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_0;
+        state_address1 = tmp_107_1_fu_413_p1;
+    end else if (((1'b1 == ap_sig_cseq_ST_st5_fsm_4) | (1'b1 == ap_sig_cseq_ST_st13_fsm_12) | (1'b1 == ap_sig_cseq_ST_st18_fsm_17))) begin
+        state_address1 = grp_single_block_AES_encrypt_add_round_key_fu_242_state_address1;
     end else begin
-        grp_single_block_AES_encrypt_mix_columns_fu_164_state_4_read = 'bx;
+        state_address1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_10_read = state_10_37_fu_721_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st82_fsm_81)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_10_read = state_10_33_fu_716_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st73_fsm_72)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_10_read = state_10_29_fu_711_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st64_fsm_63)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_10_read = state_10_25_fu_706_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st55_fsm_54)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_10_read = state_10_21_fu_701_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st46_fsm_45)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_10_read = state_10_17_fu_696_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st37_fsm_36)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_10_read = state_10_13_fu_691_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st28_fsm_27)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_10_read = state_10_9_fu_686_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st19_fsm_18)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_10_read = state_10_5_fu_681_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st10_fsm_9)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_10_read = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_10;
+    if (((1'b1 == ap_sig_cseq_ST_st3_fsm_2) | (1'b1 == ap_sig_cseq_ST_st19_fsm_18) | (1'b1 == ap_sig_cseq_ST_st20_fsm_19) | (1'b1 == ap_sig_cseq_ST_st4_fsm_3))) begin
+        state_ce0 = 1'b1;
+    end else if (((1'b1 == ap_sig_cseq_ST_st7_fsm_6) | (1'b1 == ap_sig_cseq_ST_st14_fsm_13))) begin
+        state_ce0 = grp_single_block_AES_encrypt_sub_bytes_fu_257_state_ce0;
+    end else if (((1'b1 == ap_sig_cseq_ST_st9_fsm_8) | (1'b1 == ap_sig_cseq_ST_st16_fsm_15))) begin
+        state_ce0 = grp_single_block_AES_encrypt_shift_rows_fu_252_state_ce0;
+    end else if (((1'b1 == ap_sig_cseq_ST_st5_fsm_4) | (1'b1 == ap_sig_cseq_ST_st13_fsm_12) | (1'b1 == ap_sig_cseq_ST_st18_fsm_17))) begin
+        state_ce0 = grp_single_block_AES_encrypt_add_round_key_fu_242_state_ce0;
+    end else if ((1'b1 == ap_sig_cseq_ST_st11_fsm_10)) begin
+        state_ce0 = grp_single_block_AES_encrypt_mix_columns_fu_237_state_ce0;
     end else begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_10_read = 'bx;
+        state_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_11_read = state_11_37_fu_771_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st82_fsm_81)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_11_read = state_11_33_fu_766_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st73_fsm_72)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_11_read = state_11_29_fu_761_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st64_fsm_63)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_11_read = state_11_25_fu_756_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st55_fsm_54)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_11_read = state_11_21_fu_751_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st46_fsm_45)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_11_read = state_11_17_fu_746_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st37_fsm_36)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_11_read = state_11_13_fu_741_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st28_fsm_27)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_11_read = state_11_9_fu_736_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st19_fsm_18)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_11_read = state_11_5_fu_731_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st10_fsm_9)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_11_read = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_11;
+    if (((1'b1 == ap_sig_cseq_ST_st3_fsm_2) | (1'b1 == ap_sig_cseq_ST_st19_fsm_18) | (1'b1 == ap_sig_cseq_ST_st20_fsm_19) | (1'b1 == ap_sig_cseq_ST_st4_fsm_3))) begin
+        state_ce1 = 1'b1;
+    end else if (((1'b1 == ap_sig_cseq_ST_st5_fsm_4) | (1'b1 == ap_sig_cseq_ST_st13_fsm_12) | (1'b1 == ap_sig_cseq_ST_st18_fsm_17))) begin
+        state_ce1 = grp_single_block_AES_encrypt_add_round_key_fu_242_state_ce1;
     end else begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_11_read = 'bx;
+        state_ce1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_12_read = state_12_37_fu_821_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st82_fsm_81)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_12_read = state_12_33_fu_816_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st73_fsm_72)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_12_read = state_12_29_fu_811_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st64_fsm_63)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_12_read = state_12_25_fu_806_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st55_fsm_54)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_12_read = state_12_21_fu_801_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st46_fsm_45)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_12_read = state_12_17_fu_796_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st37_fsm_36)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_12_read = state_12_13_fu_791_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st28_fsm_27)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_12_read = state_12_9_fu_786_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st19_fsm_18)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_12_read = state_12_5_fu_781_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st10_fsm_9)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_12_read = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_12;
+    if (((1'b1 == ap_sig_cseq_ST_st3_fsm_2) | (1'b1 == ap_sig_cseq_ST_st4_fsm_3))) begin
+        state_d0 = in_r_q0;
+    end else if (((1'b1 == ap_sig_cseq_ST_st7_fsm_6) | (1'b1 == ap_sig_cseq_ST_st14_fsm_13))) begin
+        state_d0 = grp_single_block_AES_encrypt_sub_bytes_fu_257_state_d0;
+    end else if (((1'b1 == ap_sig_cseq_ST_st9_fsm_8) | (1'b1 == ap_sig_cseq_ST_st16_fsm_15))) begin
+        state_d0 = grp_single_block_AES_encrypt_shift_rows_fu_252_state_d0;
+    end else if (((1'b1 == ap_sig_cseq_ST_st5_fsm_4) | (1'b1 == ap_sig_cseq_ST_st13_fsm_12) | (1'b1 == ap_sig_cseq_ST_st18_fsm_17))) begin
+        state_d0 = grp_single_block_AES_encrypt_add_round_key_fu_242_state_d0;
+    end else if ((1'b1 == ap_sig_cseq_ST_st11_fsm_10)) begin
+        state_d0 = grp_single_block_AES_encrypt_mix_columns_fu_237_state_d0;
     end else begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_12_read = 'bx;
+        state_d0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_13_read = state_13_37_fu_871_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st82_fsm_81)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_13_read = state_13_33_fu_866_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st73_fsm_72)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_13_read = state_13_29_fu_861_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st64_fsm_63)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_13_read = state_13_25_fu_856_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st55_fsm_54)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_13_read = state_13_21_fu_851_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st46_fsm_45)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_13_read = state_13_17_fu_846_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st37_fsm_36)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_13_read = state_13_13_fu_841_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st28_fsm_27)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_13_read = state_13_9_fu_836_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st19_fsm_18)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_13_read = state_13_5_fu_831_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st10_fsm_9)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_13_read = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_13;
+    if (((1'b1 == ap_sig_cseq_ST_st3_fsm_2) | (1'b1 == ap_sig_cseq_ST_st4_fsm_3))) begin
+        state_d1 = in_r_q1;
+    end else if (((1'b1 == ap_sig_cseq_ST_st5_fsm_4) | (1'b1 == ap_sig_cseq_ST_st13_fsm_12) | (1'b1 == ap_sig_cseq_ST_st18_fsm_17))) begin
+        state_d1 = grp_single_block_AES_encrypt_add_round_key_fu_242_state_d1;
     end else begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_13_read = 'bx;
+        state_d1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_14_read = state_14_37_fu_921_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st82_fsm_81)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_14_read = state_14_33_fu_916_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st73_fsm_72)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_14_read = state_14_29_fu_911_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st64_fsm_63)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_14_read = state_14_25_fu_906_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st55_fsm_54)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_14_read = state_14_21_fu_901_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st46_fsm_45)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_14_read = state_14_17_fu_896_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st37_fsm_36)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_14_read = state_14_13_fu_891_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st28_fsm_27)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_14_read = state_14_9_fu_886_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st19_fsm_18)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_14_read = state_14_5_fu_881_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st10_fsm_9)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_14_read = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_14;
+    if (((1'b1 == ap_sig_cseq_ST_st3_fsm_2) | (1'b1 == ap_sig_cseq_ST_st4_fsm_3))) begin
+        state_we0 = 1'b1;
+    end else if (((1'b1 == ap_sig_cseq_ST_st7_fsm_6) | (1'b1 == ap_sig_cseq_ST_st14_fsm_13))) begin
+        state_we0 = grp_single_block_AES_encrypt_sub_bytes_fu_257_state_we0;
+    end else if (((1'b1 == ap_sig_cseq_ST_st9_fsm_8) | (1'b1 == ap_sig_cseq_ST_st16_fsm_15))) begin
+        state_we0 = grp_single_block_AES_encrypt_shift_rows_fu_252_state_we0;
+    end else if (((1'b1 == ap_sig_cseq_ST_st5_fsm_4) | (1'b1 == ap_sig_cseq_ST_st13_fsm_12) | (1'b1 == ap_sig_cseq_ST_st18_fsm_17))) begin
+        state_we0 = grp_single_block_AES_encrypt_add_round_key_fu_242_state_we0;
+    end else if ((1'b1 == ap_sig_cseq_ST_st11_fsm_10)) begin
+        state_we0 = grp_single_block_AES_encrypt_mix_columns_fu_237_state_we0;
     end else begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_14_read = 'bx;
+        state_we0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_15_read = state_15_37_fu_971_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st82_fsm_81)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_15_read = state_15_33_fu_966_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st73_fsm_72)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_15_read = state_15_29_fu_961_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st64_fsm_63)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_15_read = state_15_25_fu_956_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st55_fsm_54)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_15_read = state_15_21_fu_951_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st46_fsm_45)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_15_read = state_15_17_fu_946_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st37_fsm_36)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_15_read = state_15_13_fu_941_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st28_fsm_27)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_15_read = state_15_9_fu_936_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st19_fsm_18)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_15_read = state_15_5_fu_931_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st10_fsm_9)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_15_read = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_15;
+    if (((1'b1 == ap_sig_cseq_ST_st3_fsm_2) | (1'b1 == ap_sig_cseq_ST_st4_fsm_3))) begin
+        state_we1 = 1'b1;
+    end else if (((1'b1 == ap_sig_cseq_ST_st5_fsm_4) | (1'b1 == ap_sig_cseq_ST_st13_fsm_12) | (1'b1 == ap_sig_cseq_ST_st18_fsm_17))) begin
+        state_we1 = grp_single_block_AES_encrypt_add_round_key_fu_242_state_we1;
     end else begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_15_read = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_4_read = state_4_37_fu_421_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st82_fsm_81)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_4_read = state_4_33_fu_416_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st73_fsm_72)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_4_read = state_4_29_fu_411_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st64_fsm_63)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_4_read = state_4_25_fu_406_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st55_fsm_54)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_4_read = state_4_21_fu_401_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st46_fsm_45)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_4_read = state_4_17_fu_396_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st37_fsm_36)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_4_read = state_4_13_fu_391_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st28_fsm_27)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_4_read = state_4_9_fu_386_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st19_fsm_18)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_4_read = state_4_5_fu_381_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st10_fsm_9)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_4_read = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_4;
-    end else begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_4_read = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_5_read = state_5_37_fu_471_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st82_fsm_81)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_5_read = state_5_33_fu_466_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st73_fsm_72)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_5_read = state_5_29_fu_461_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st64_fsm_63)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_5_read = state_5_25_fu_456_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st55_fsm_54)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_5_read = state_5_21_fu_451_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st46_fsm_45)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_5_read = state_5_17_fu_446_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st37_fsm_36)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_5_read = state_5_13_fu_441_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st28_fsm_27)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_5_read = state_5_9_fu_436_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st19_fsm_18)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_5_read = state_5_5_fu_431_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st10_fsm_9)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_5_read = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_5;
-    end else begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_5_read = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_6_read = state_6_37_fu_521_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st82_fsm_81)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_6_read = state_6_33_fu_516_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st73_fsm_72)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_6_read = state_6_29_fu_511_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st64_fsm_63)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_6_read = state_6_25_fu_506_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st55_fsm_54)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_6_read = state_6_21_fu_501_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st46_fsm_45)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_6_read = state_6_17_fu_496_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st37_fsm_36)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_6_read = state_6_13_fu_491_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st28_fsm_27)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_6_read = state_6_9_fu_486_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st19_fsm_18)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_6_read = state_6_5_fu_481_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st10_fsm_9)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_6_read = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_6;
-    end else begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_6_read = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_7_read = state_7_37_fu_571_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st82_fsm_81)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_7_read = state_7_33_fu_566_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st73_fsm_72)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_7_read = state_7_29_fu_561_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st64_fsm_63)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_7_read = state_7_25_fu_556_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st55_fsm_54)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_7_read = state_7_21_fu_551_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st46_fsm_45)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_7_read = state_7_17_fu_546_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st37_fsm_36)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_7_read = state_7_13_fu_541_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st28_fsm_27)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_7_read = state_7_9_fu_536_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st19_fsm_18)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_7_read = state_7_5_fu_531_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st10_fsm_9)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_7_read = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_7;
-    end else begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_7_read = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_8_read = state_8_37_fu_621_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st82_fsm_81)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_8_read = state_8_33_fu_616_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st73_fsm_72)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_8_read = state_8_29_fu_611_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st64_fsm_63)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_8_read = state_8_25_fu_606_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st55_fsm_54)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_8_read = state_8_21_fu_601_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st46_fsm_45)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_8_read = state_8_17_fu_596_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st37_fsm_36)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_8_read = state_8_13_fu_591_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st28_fsm_27)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_8_read = state_8_9_fu_586_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st19_fsm_18)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_8_read = state_8_5_fu_581_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st10_fsm_9)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_8_read = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_8;
-    end else begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_8_read = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_sig_cseq_ST_st91_fsm_90)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_9_read = state_9_37_fu_671_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st82_fsm_81)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_9_read = state_9_33_fu_666_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st73_fsm_72)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_9_read = state_9_29_fu_661_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st64_fsm_63)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_9_read = state_9_25_fu_656_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st55_fsm_54)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_9_read = state_9_21_fu_651_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st46_fsm_45)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_9_read = state_9_17_fu_646_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st37_fsm_36)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_9_read = state_9_13_fu_641_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st28_fsm_27)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_9_read = state_9_9_fu_636_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st19_fsm_18)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_9_read = state_9_5_fu_631_p1;
-    end else if ((1'b1 == ap_sig_cseq_ST_st10_fsm_9)) begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_9_read = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_9;
-    end else begin
-        grp_single_block_AES_encrypt_shift_rows_fu_256_state_9_read = 'bx;
-    end
-end
-
-always @ (*) begin
-    if (((1'b1 == ap_ce) & ((1'b1 == ap_sig_cseq_ST_st10_fsm_9) | (1'b1 == ap_sig_cseq_ST_st19_fsm_18) | (1'b1 == ap_sig_cseq_ST_st28_fsm_27) | (1'b1 == ap_sig_cseq_ST_st37_fsm_36) | (1'b1 == ap_sig_cseq_ST_st46_fsm_45) | (1'b1 == ap_sig_cseq_ST_st55_fsm_54) | (1'b1 == ap_sig_cseq_ST_st64_fsm_63) | (1'b1 == ap_sig_cseq_ST_st73_fsm_72) | (1'b1 == ap_sig_cseq_ST_st82_fsm_81) | (1'b1 == ap_sig_cseq_ST_st91_fsm_90) | (1'b1 == ap_sig_cseq_ST_st9_fsm_8) | (1'b1 == ap_sig_cseq_ST_st18_fsm_17) | (1'b1 == ap_sig_cseq_ST_st27_fsm_26) | (1'b1 == ap_sig_cseq_ST_st36_fsm_35) | (1'b1 == ap_sig_cseq_ST_st45_fsm_44) | (1'b1 == ap_sig_cseq_ST_st54_fsm_53) | (1'b1 == ap_sig_cseq_ST_st63_fsm_62) | (1'b1 == ap_sig_cseq_ST_st72_fsm_71) | (1'b1 == ap_sig_cseq_ST_st81_fsm_80) | (1'b1 == ap_sig_cseq_ST_st90_fsm_89)))) begin
-        grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_ce = 1'b1;
-    end else begin
-        grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_ce = 1'b0;
+        state_we1 = 1'b0;
     end
 end
 
 always @ (*) begin
     case (ap_CS_fsm)
         ap_ST_st1_fsm_0 : begin
-            if (((1'b1 == ap_ce) & ~(ap_start == 1'b0))) begin
+            if (~(ap_start == 1'b0)) begin
                 ap_NS_fsm = ap_ST_st2_fsm_1;
             end else begin
                 ap_NS_fsm = ap_ST_st1_fsm_0;
             end
         end
         ap_ST_st2_fsm_1 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st3_fsm_2;
+            if (~(exitcond4_fu_264_p2 == 1'b0)) begin
+                ap_NS_fsm = ap_ST_st5_fsm_4;
             end else begin
-                ap_NS_fsm = ap_ST_st2_fsm_1;
+                ap_NS_fsm = ap_ST_st3_fsm_2;
             end
         end
         ap_ST_st3_fsm_2 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st4_fsm_3;
-            end else begin
-                ap_NS_fsm = ap_ST_st3_fsm_2;
-            end
+            ap_NS_fsm = ap_ST_st4_fsm_3;
         end
         ap_ST_st4_fsm_3 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st5_fsm_4;
-            end else begin
-                ap_NS_fsm = ap_ST_st4_fsm_3;
-            end
+            ap_NS_fsm = ap_ST_st2_fsm_1;
         end
         ap_ST_st5_fsm_4 : begin
-            if ((1'b1 == ap_ce)) begin
+            if (~(1'b0 == grp_single_block_AES_encrypt_add_round_key_fu_242_ap_done)) begin
                 ap_NS_fsm = ap_ST_st6_fsm_5;
             end else begin
                 ap_NS_fsm = ap_ST_st5_fsm_4;
             end
         end
         ap_ST_st6_fsm_5 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st7_fsm_6;
+            if (~(1'b0 == exitcond2_fu_361_p2)) begin
+                ap_NS_fsm = ap_ST_st14_fsm_13;
             end else begin
-                ap_NS_fsm = ap_ST_st6_fsm_5;
+                ap_NS_fsm = ap_ST_st7_fsm_6;
             end
         end
         ap_ST_st7_fsm_6 : begin
-            if ((1'b1 == ap_ce)) begin
+            if (~(1'b0 == grp_single_block_AES_encrypt_sub_bytes_fu_257_ap_done)) begin
                 ap_NS_fsm = ap_ST_st8_fsm_7;
             end else begin
                 ap_NS_fsm = ap_ST_st7_fsm_6;
             end
         end
         ap_ST_st8_fsm_7 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st9_fsm_8;
-            end else begin
-                ap_NS_fsm = ap_ST_st8_fsm_7;
-            end
+            ap_NS_fsm = ap_ST_st9_fsm_8;
         end
         ap_ST_st9_fsm_8 : begin
-            if ((1'b1 == ap_ce)) begin
+            if (~(1'b0 == grp_single_block_AES_encrypt_shift_rows_fu_252_ap_done)) begin
                 ap_NS_fsm = ap_ST_st10_fsm_9;
             end else begin
                 ap_NS_fsm = ap_ST_st9_fsm_8;
             end
         end
         ap_ST_st10_fsm_9 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st11_fsm_10;
-            end else begin
-                ap_NS_fsm = ap_ST_st10_fsm_9;
-            end
+            ap_NS_fsm = ap_ST_st11_fsm_10;
         end
         ap_ST_st11_fsm_10 : begin
-            if ((1'b1 == ap_ce)) begin
+            if (~(1'b0 == grp_single_block_AES_encrypt_mix_columns_fu_237_ap_done)) begin
                 ap_NS_fsm = ap_ST_st12_fsm_11;
             end else begin
                 ap_NS_fsm = ap_ST_st11_fsm_10;
             end
         end
         ap_ST_st12_fsm_11 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st13_fsm_12;
-            end else begin
-                ap_NS_fsm = ap_ST_st12_fsm_11;
-            end
+            ap_NS_fsm = ap_ST_st13_fsm_12;
         end
         ap_ST_st13_fsm_12 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st14_fsm_13;
+            if (~(1'b0 == grp_single_block_AES_encrypt_add_round_key_fu_242_ap_done)) begin
+                ap_NS_fsm = ap_ST_st6_fsm_5;
             end else begin
                 ap_NS_fsm = ap_ST_st13_fsm_12;
             end
         end
         ap_ST_st14_fsm_13 : begin
-            if ((1'b1 == ap_ce)) begin
+            if (~(1'b0 == grp_single_block_AES_encrypt_sub_bytes_fu_257_ap_done)) begin
                 ap_NS_fsm = ap_ST_st15_fsm_14;
             end else begin
                 ap_NS_fsm = ap_ST_st14_fsm_13;
             end
         end
         ap_ST_st15_fsm_14 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st16_fsm_15;
-            end else begin
-                ap_NS_fsm = ap_ST_st15_fsm_14;
-            end
+            ap_NS_fsm = ap_ST_st16_fsm_15;
         end
         ap_ST_st16_fsm_15 : begin
-            if ((1'b1 == ap_ce)) begin
+            if (~(1'b0 == grp_single_block_AES_encrypt_shift_rows_fu_252_ap_done)) begin
                 ap_NS_fsm = ap_ST_st17_fsm_16;
             end else begin
                 ap_NS_fsm = ap_ST_st16_fsm_15;
             end
         end
         ap_ST_st17_fsm_16 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st18_fsm_17;
-            end else begin
-                ap_NS_fsm = ap_ST_st17_fsm_16;
-            end
+            ap_NS_fsm = ap_ST_st18_fsm_17;
         end
         ap_ST_st18_fsm_17 : begin
-            if ((1'b1 == ap_ce)) begin
+            if (~(1'b0 == grp_single_block_AES_encrypt_add_round_key_fu_242_ap_done)) begin
                 ap_NS_fsm = ap_ST_st19_fsm_18;
             end else begin
                 ap_NS_fsm = ap_ST_st18_fsm_17;
             end
         end
         ap_ST_st19_fsm_18 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st20_fsm_19;
+            if (~(1'b0 == exitcond1_fu_378_p2)) begin
+                ap_NS_fsm = ap_ST_st1_fsm_0;
             end else begin
-                ap_NS_fsm = ap_ST_st19_fsm_18;
+                ap_NS_fsm = ap_ST_st20_fsm_19;
             end
         end
         ap_ST_st20_fsm_19 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st21_fsm_20;
-            end else begin
-                ap_NS_fsm = ap_ST_st20_fsm_19;
-            end
+            ap_NS_fsm = ap_ST_st21_fsm_20;
         end
         ap_ST_st21_fsm_20 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st22_fsm_21;
-            end else begin
-                ap_NS_fsm = ap_ST_st21_fsm_20;
-            end
-        end
-        ap_ST_st22_fsm_21 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st23_fsm_22;
-            end else begin
-                ap_NS_fsm = ap_ST_st22_fsm_21;
-            end
-        end
-        ap_ST_st23_fsm_22 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st24_fsm_23;
-            end else begin
-                ap_NS_fsm = ap_ST_st23_fsm_22;
-            end
-        end
-        ap_ST_st24_fsm_23 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st25_fsm_24;
-            end else begin
-                ap_NS_fsm = ap_ST_st24_fsm_23;
-            end
-        end
-        ap_ST_st25_fsm_24 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st26_fsm_25;
-            end else begin
-                ap_NS_fsm = ap_ST_st25_fsm_24;
-            end
-        end
-        ap_ST_st26_fsm_25 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st27_fsm_26;
-            end else begin
-                ap_NS_fsm = ap_ST_st26_fsm_25;
-            end
-        end
-        ap_ST_st27_fsm_26 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st28_fsm_27;
-            end else begin
-                ap_NS_fsm = ap_ST_st27_fsm_26;
-            end
-        end
-        ap_ST_st28_fsm_27 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st29_fsm_28;
-            end else begin
-                ap_NS_fsm = ap_ST_st28_fsm_27;
-            end
-        end
-        ap_ST_st29_fsm_28 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st30_fsm_29;
-            end else begin
-                ap_NS_fsm = ap_ST_st29_fsm_28;
-            end
-        end
-        ap_ST_st30_fsm_29 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st31_fsm_30;
-            end else begin
-                ap_NS_fsm = ap_ST_st30_fsm_29;
-            end
-        end
-        ap_ST_st31_fsm_30 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st32_fsm_31;
-            end else begin
-                ap_NS_fsm = ap_ST_st31_fsm_30;
-            end
-        end
-        ap_ST_st32_fsm_31 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st33_fsm_32;
-            end else begin
-                ap_NS_fsm = ap_ST_st32_fsm_31;
-            end
-        end
-        ap_ST_st33_fsm_32 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st34_fsm_33;
-            end else begin
-                ap_NS_fsm = ap_ST_st33_fsm_32;
-            end
-        end
-        ap_ST_st34_fsm_33 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st35_fsm_34;
-            end else begin
-                ap_NS_fsm = ap_ST_st34_fsm_33;
-            end
-        end
-        ap_ST_st35_fsm_34 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st36_fsm_35;
-            end else begin
-                ap_NS_fsm = ap_ST_st35_fsm_34;
-            end
-        end
-        ap_ST_st36_fsm_35 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st37_fsm_36;
-            end else begin
-                ap_NS_fsm = ap_ST_st36_fsm_35;
-            end
-        end
-        ap_ST_st37_fsm_36 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st38_fsm_37;
-            end else begin
-                ap_NS_fsm = ap_ST_st37_fsm_36;
-            end
-        end
-        ap_ST_st38_fsm_37 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st39_fsm_38;
-            end else begin
-                ap_NS_fsm = ap_ST_st38_fsm_37;
-            end
-        end
-        ap_ST_st39_fsm_38 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st40_fsm_39;
-            end else begin
-                ap_NS_fsm = ap_ST_st39_fsm_38;
-            end
-        end
-        ap_ST_st40_fsm_39 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st41_fsm_40;
-            end else begin
-                ap_NS_fsm = ap_ST_st40_fsm_39;
-            end
-        end
-        ap_ST_st41_fsm_40 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st42_fsm_41;
-            end else begin
-                ap_NS_fsm = ap_ST_st41_fsm_40;
-            end
-        end
-        ap_ST_st42_fsm_41 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st43_fsm_42;
-            end else begin
-                ap_NS_fsm = ap_ST_st42_fsm_41;
-            end
-        end
-        ap_ST_st43_fsm_42 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st44_fsm_43;
-            end else begin
-                ap_NS_fsm = ap_ST_st43_fsm_42;
-            end
-        end
-        ap_ST_st44_fsm_43 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st45_fsm_44;
-            end else begin
-                ap_NS_fsm = ap_ST_st44_fsm_43;
-            end
-        end
-        ap_ST_st45_fsm_44 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st46_fsm_45;
-            end else begin
-                ap_NS_fsm = ap_ST_st45_fsm_44;
-            end
-        end
-        ap_ST_st46_fsm_45 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st47_fsm_46;
-            end else begin
-                ap_NS_fsm = ap_ST_st46_fsm_45;
-            end
-        end
-        ap_ST_st47_fsm_46 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st48_fsm_47;
-            end else begin
-                ap_NS_fsm = ap_ST_st47_fsm_46;
-            end
-        end
-        ap_ST_st48_fsm_47 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st49_fsm_48;
-            end else begin
-                ap_NS_fsm = ap_ST_st48_fsm_47;
-            end
-        end
-        ap_ST_st49_fsm_48 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st50_fsm_49;
-            end else begin
-                ap_NS_fsm = ap_ST_st49_fsm_48;
-            end
-        end
-        ap_ST_st50_fsm_49 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st51_fsm_50;
-            end else begin
-                ap_NS_fsm = ap_ST_st50_fsm_49;
-            end
-        end
-        ap_ST_st51_fsm_50 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st52_fsm_51;
-            end else begin
-                ap_NS_fsm = ap_ST_st51_fsm_50;
-            end
-        end
-        ap_ST_st52_fsm_51 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st53_fsm_52;
-            end else begin
-                ap_NS_fsm = ap_ST_st52_fsm_51;
-            end
-        end
-        ap_ST_st53_fsm_52 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st54_fsm_53;
-            end else begin
-                ap_NS_fsm = ap_ST_st53_fsm_52;
-            end
-        end
-        ap_ST_st54_fsm_53 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st55_fsm_54;
-            end else begin
-                ap_NS_fsm = ap_ST_st54_fsm_53;
-            end
-        end
-        ap_ST_st55_fsm_54 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st56_fsm_55;
-            end else begin
-                ap_NS_fsm = ap_ST_st55_fsm_54;
-            end
-        end
-        ap_ST_st56_fsm_55 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st57_fsm_56;
-            end else begin
-                ap_NS_fsm = ap_ST_st56_fsm_55;
-            end
-        end
-        ap_ST_st57_fsm_56 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st58_fsm_57;
-            end else begin
-                ap_NS_fsm = ap_ST_st57_fsm_56;
-            end
-        end
-        ap_ST_st58_fsm_57 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st59_fsm_58;
-            end else begin
-                ap_NS_fsm = ap_ST_st58_fsm_57;
-            end
-        end
-        ap_ST_st59_fsm_58 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st60_fsm_59;
-            end else begin
-                ap_NS_fsm = ap_ST_st59_fsm_58;
-            end
-        end
-        ap_ST_st60_fsm_59 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st61_fsm_60;
-            end else begin
-                ap_NS_fsm = ap_ST_st60_fsm_59;
-            end
-        end
-        ap_ST_st61_fsm_60 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st62_fsm_61;
-            end else begin
-                ap_NS_fsm = ap_ST_st61_fsm_60;
-            end
-        end
-        ap_ST_st62_fsm_61 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st63_fsm_62;
-            end else begin
-                ap_NS_fsm = ap_ST_st62_fsm_61;
-            end
-        end
-        ap_ST_st63_fsm_62 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st64_fsm_63;
-            end else begin
-                ap_NS_fsm = ap_ST_st63_fsm_62;
-            end
-        end
-        ap_ST_st64_fsm_63 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st65_fsm_64;
-            end else begin
-                ap_NS_fsm = ap_ST_st64_fsm_63;
-            end
-        end
-        ap_ST_st65_fsm_64 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st66_fsm_65;
-            end else begin
-                ap_NS_fsm = ap_ST_st65_fsm_64;
-            end
-        end
-        ap_ST_st66_fsm_65 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st67_fsm_66;
-            end else begin
-                ap_NS_fsm = ap_ST_st66_fsm_65;
-            end
-        end
-        ap_ST_st67_fsm_66 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st68_fsm_67;
-            end else begin
-                ap_NS_fsm = ap_ST_st67_fsm_66;
-            end
-        end
-        ap_ST_st68_fsm_67 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st69_fsm_68;
-            end else begin
-                ap_NS_fsm = ap_ST_st68_fsm_67;
-            end
-        end
-        ap_ST_st69_fsm_68 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st70_fsm_69;
-            end else begin
-                ap_NS_fsm = ap_ST_st69_fsm_68;
-            end
-        end
-        ap_ST_st70_fsm_69 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st71_fsm_70;
-            end else begin
-                ap_NS_fsm = ap_ST_st70_fsm_69;
-            end
-        end
-        ap_ST_st71_fsm_70 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st72_fsm_71;
-            end else begin
-                ap_NS_fsm = ap_ST_st71_fsm_70;
-            end
-        end
-        ap_ST_st72_fsm_71 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st73_fsm_72;
-            end else begin
-                ap_NS_fsm = ap_ST_st72_fsm_71;
-            end
-        end
-        ap_ST_st73_fsm_72 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st74_fsm_73;
-            end else begin
-                ap_NS_fsm = ap_ST_st73_fsm_72;
-            end
-        end
-        ap_ST_st74_fsm_73 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st75_fsm_74;
-            end else begin
-                ap_NS_fsm = ap_ST_st74_fsm_73;
-            end
-        end
-        ap_ST_st75_fsm_74 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st76_fsm_75;
-            end else begin
-                ap_NS_fsm = ap_ST_st75_fsm_74;
-            end
-        end
-        ap_ST_st76_fsm_75 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st77_fsm_76;
-            end else begin
-                ap_NS_fsm = ap_ST_st76_fsm_75;
-            end
-        end
-        ap_ST_st77_fsm_76 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st78_fsm_77;
-            end else begin
-                ap_NS_fsm = ap_ST_st77_fsm_76;
-            end
-        end
-        ap_ST_st78_fsm_77 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st79_fsm_78;
-            end else begin
-                ap_NS_fsm = ap_ST_st78_fsm_77;
-            end
-        end
-        ap_ST_st79_fsm_78 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st80_fsm_79;
-            end else begin
-                ap_NS_fsm = ap_ST_st79_fsm_78;
-            end
-        end
-        ap_ST_st80_fsm_79 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st81_fsm_80;
-            end else begin
-                ap_NS_fsm = ap_ST_st80_fsm_79;
-            end
-        end
-        ap_ST_st81_fsm_80 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st82_fsm_81;
-            end else begin
-                ap_NS_fsm = ap_ST_st81_fsm_80;
-            end
-        end
-        ap_ST_st82_fsm_81 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st83_fsm_82;
-            end else begin
-                ap_NS_fsm = ap_ST_st82_fsm_81;
-            end
-        end
-        ap_ST_st83_fsm_82 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st84_fsm_83;
-            end else begin
-                ap_NS_fsm = ap_ST_st83_fsm_82;
-            end
-        end
-        ap_ST_st84_fsm_83 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st85_fsm_84;
-            end else begin
-                ap_NS_fsm = ap_ST_st84_fsm_83;
-            end
-        end
-        ap_ST_st85_fsm_84 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st86_fsm_85;
-            end else begin
-                ap_NS_fsm = ap_ST_st85_fsm_84;
-            end
-        end
-        ap_ST_st86_fsm_85 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st87_fsm_86;
-            end else begin
-                ap_NS_fsm = ap_ST_st86_fsm_85;
-            end
-        end
-        ap_ST_st87_fsm_86 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st88_fsm_87;
-            end else begin
-                ap_NS_fsm = ap_ST_st87_fsm_86;
-            end
-        end
-        ap_ST_st88_fsm_87 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st89_fsm_88;
-            end else begin
-                ap_NS_fsm = ap_ST_st88_fsm_87;
-            end
-        end
-        ap_ST_st89_fsm_88 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st90_fsm_89;
-            end else begin
-                ap_NS_fsm = ap_ST_st89_fsm_88;
-            end
-        end
-        ap_ST_st90_fsm_89 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st91_fsm_90;
-            end else begin
-                ap_NS_fsm = ap_ST_st90_fsm_89;
-            end
-        end
-        ap_ST_st91_fsm_90 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st92_fsm_91;
-            end else begin
-                ap_NS_fsm = ap_ST_st91_fsm_90;
-            end
-        end
-        ap_ST_st92_fsm_91 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st93_fsm_92;
-            end else begin
-                ap_NS_fsm = ap_ST_st92_fsm_91;
-            end
-        end
-        ap_ST_st93_fsm_92 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st94_fsm_93;
-            end else begin
-                ap_NS_fsm = ap_ST_st93_fsm_92;
-            end
-        end
-        ap_ST_st94_fsm_93 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st95_fsm_94;
-            end else begin
-                ap_NS_fsm = ap_ST_st94_fsm_93;
-            end
-        end
-        ap_ST_st95_fsm_94 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st96_fsm_95;
-            end else begin
-                ap_NS_fsm = ap_ST_st95_fsm_94;
-            end
-        end
-        ap_ST_st96_fsm_95 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st97_fsm_96;
-            end else begin
-                ap_NS_fsm = ap_ST_st96_fsm_95;
-            end
-        end
-        ap_ST_st97_fsm_96 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st98_fsm_97;
-            end else begin
-                ap_NS_fsm = ap_ST_st97_fsm_96;
-            end
-        end
-        ap_ST_st98_fsm_97 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st99_fsm_98;
-            end else begin
-                ap_NS_fsm = ap_ST_st98_fsm_97;
-            end
-        end
-        ap_ST_st99_fsm_98 : begin
-            if ((1'b1 == ap_ce)) begin
-                ap_NS_fsm = ap_ST_st1_fsm_0;
-            end else begin
-                ap_NS_fsm = ap_ST_st99_fsm_98;
-            end
+            ap_NS_fsm = ap_ST_st19_fsm_18;
         end
         default : begin
             ap_NS_fsm = 'bx;
@@ -3227,754 +1028,192 @@ always @ (*) begin
     endcase
 end
 
-assign ap_return_0 = grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_0;
-
-assign ap_return_1 = grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_4;
-
-assign ap_return_10 = grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_10;
-
-assign ap_return_11 = grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_14;
-
-assign ap_return_12 = grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_3;
-
-assign ap_return_13 = grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_7;
-
-assign ap_return_14 = grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_11;
-
-assign ap_return_15 = grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_15;
-
-assign ap_return_2 = grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_8;
-
-assign ap_return_3 = grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_12;
-
-assign ap_return_4 = grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_1;
-
-assign ap_return_5 = grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_5;
-
-assign ap_return_6 = grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_9;
-
-assign ap_return_7 = grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_13;
-
-assign ap_return_8 = grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_2;
-
-assign ap_return_9 = grp_single_block_AES_encrypt_add_round_key_fu_184_ap_return_6;
-
-always @ (*) begin
-    ap_sig_1000 = (1'b1 == ap_CS_fsm[ap_const_lv32_5B]);
-end
-
-always @ (*) begin
-    ap_sig_1007 = (1'b1 == ap_CS_fsm[ap_const_lv32_5C]);
-end
-
-always @ (*) begin
-    ap_sig_1014 = (1'b1 == ap_CS_fsm[ap_const_lv32_5D]);
-end
-
-always @ (*) begin
-    ap_sig_1021 = (1'b1 == ap_CS_fsm[ap_const_lv32_5E]);
-end
-
-always @ (*) begin
-    ap_sig_1028 = (1'b1 == ap_CS_fsm[ap_const_lv32_5F]);
-end
-
-always @ (*) begin
-    ap_sig_1035 = (1'b1 == ap_CS_fsm[ap_const_lv32_60]);
-end
-
-always @ (*) begin
-    ap_sig_1042 = (1'b1 == ap_CS_fsm[ap_const_lv32_61]);
-end
-
-always @ (*) begin
-    ap_sig_1049 = (1'b1 == ap_CS_fsm[ap_const_lv32_62]);
-end
-
-always @ (*) begin
-    ap_sig_116 = (ap_CS_fsm[ap_const_lv32_0] == 1'b1);
-end
-
-always @ (*) begin
-    ap_sig_1169 = (1'b1 == ap_NS_fsm[ap_const_lv32_9]);
-end
-
-always @ (*) begin
-    ap_sig_1176 = (1'b1 == ap_NS_fsm[ap_const_lv32_12]);
-end
-
-always @ (*) begin
-    ap_sig_1184 = (1'b1 == ap_NS_fsm[ap_const_lv32_1B]);
-end
-
-always @ (*) begin
-    ap_sig_1192 = (1'b1 == ap_NS_fsm[ap_const_lv32_24]);
-end
-
-always @ (*) begin
-    ap_sig_1200 = (1'b1 == ap_NS_fsm[ap_const_lv32_2D]);
-end
-
-always @ (*) begin
-    ap_sig_1208 = (1'b1 == ap_NS_fsm[ap_const_lv32_36]);
-end
-
-always @ (*) begin
-    ap_sig_1216 = (1'b1 == ap_NS_fsm[ap_const_lv32_3F]);
-end
-
-always @ (*) begin
-    ap_sig_1224 = (1'b1 == ap_NS_fsm[ap_const_lv32_48]);
-end
-
-always @ (*) begin
-    ap_sig_1232 = (1'b1 == ap_NS_fsm[ap_const_lv32_51]);
-end
-
-always @ (*) begin
-    ap_sig_1240 = (1'b1 == ap_NS_fsm[ap_const_lv32_5A]);
-end
-
-always @ (*) begin
-    ap_sig_1545 = (1'b1 == ap_NS_fsm[ap_const_lv32_8]);
-end
-
-always @ (*) begin
-    ap_sig_1552 = (1'b1 == ap_NS_fsm[ap_const_lv32_11]);
-end
-
-always @ (*) begin
-    ap_sig_1560 = (1'b1 == ap_NS_fsm[ap_const_lv32_1A]);
-end
-
-always @ (*) begin
-    ap_sig_1568 = (1'b1 == ap_NS_fsm[ap_const_lv32_23]);
-end
-
-always @ (*) begin
-    ap_sig_1576 = (1'b1 == ap_NS_fsm[ap_const_lv32_2C]);
-end
-
-always @ (*) begin
-    ap_sig_1584 = (1'b1 == ap_NS_fsm[ap_const_lv32_35]);
-end
-
-always @ (*) begin
-    ap_sig_1592 = (1'b1 == ap_NS_fsm[ap_const_lv32_3E]);
-end
-
-always @ (*) begin
-    ap_sig_1600 = (1'b1 == ap_NS_fsm[ap_const_lv32_47]);
-end
-
-always @ (*) begin
-    ap_sig_1608 = (1'b1 == ap_NS_fsm[ap_const_lv32_50]);
-end
-
-always @ (*) begin
-    ap_sig_1616 = (1'b1 == ap_NS_fsm[ap_const_lv32_59]);
-end
-
-always @ (*) begin
-    ap_sig_172 = (1'b1 == ap_CS_fsm[ap_const_lv32_9]);
-end
-
-always @ (*) begin
-    ap_sig_181 = (1'b1 == ap_CS_fsm[ap_const_lv32_12]);
-end
-
-always @ (*) begin
-    ap_sig_190 = (1'b1 == ap_CS_fsm[ap_const_lv32_1B]);
-end
-
-always @ (*) begin
-    ap_sig_199 = (1'b1 == ap_CS_fsm[ap_const_lv32_24]);
-end
-
-always @ (*) begin
-    ap_sig_208 = (1'b1 == ap_CS_fsm[ap_const_lv32_2D]);
-end
-
-always @ (*) begin
-    ap_sig_217 = (1'b1 == ap_CS_fsm[ap_const_lv32_36]);
-end
-
-always @ (*) begin
-    ap_sig_226 = (1'b1 == ap_CS_fsm[ap_const_lv32_3F]);
-end
-
-always @ (*) begin
-    ap_sig_235 = (1'b1 == ap_CS_fsm[ap_const_lv32_48]);
-end
-
-always @ (*) begin
-    ap_sig_244 = (1'b1 == ap_CS_fsm[ap_const_lv32_51]);
-end
-
-always @ (*) begin
-    ap_sig_321 = (1'b1 == ap_CS_fsm[ap_const_lv32_5A]);
-end
-
-always @ (*) begin
-    ap_sig_440 = (1'b1 == ap_CS_fsm[ap_const_lv32_1]);
-end
-
-always @ (*) begin
-    ap_sig_447 = (1'b1 == ap_CS_fsm[ap_const_lv32_2]);
-end
-
-always @ (*) begin
-    ap_sig_454 = (1'b1 == ap_CS_fsm[ap_const_lv32_3]);
-end
-
 always @ (*) begin
-    ap_sig_461 = (1'b1 == ap_CS_fsm[ap_const_lv32_4]);
+    ap_sig_111 = (1'b1 == ap_CS_fsm[ap_const_lv32_B]);
 end
 
 always @ (*) begin
-    ap_sig_468 = (1'b1 == ap_CS_fsm[ap_const_lv32_5]);
+    ap_sig_122 = (1'b1 == ap_CS_fsm[ap_const_lv32_12]);
 end
 
 always @ (*) begin
-    ap_sig_475 = (1'b1 == ap_CS_fsm[ap_const_lv32_6]);
+    ap_sig_140 = (1'b1 == ap_CS_fsm[ap_const_lv32_13]);
 end
 
 always @ (*) begin
-    ap_sig_482 = (1'b1 == ap_CS_fsm[ap_const_lv32_7]);
+    ap_sig_228 = (1'b1 == ap_CS_fsm[ap_const_lv32_3]);
 end
 
 always @ (*) begin
-    ap_sig_489 = (1'b1 == ap_CS_fsm[ap_const_lv32_8]);
+    ap_sig_238 = (1'b1 == ap_CS_fsm[ap_const_lv32_4]);
 end
 
 always @ (*) begin
-    ap_sig_496 = (1'b1 == ap_CS_fsm[ap_const_lv32_A]);
+    ap_sig_248 = (1'b1 == ap_CS_fsm[ap_const_lv32_C]);
 end
 
 always @ (*) begin
-    ap_sig_503 = (1'b1 == ap_CS_fsm[ap_const_lv32_B]);
+    ap_sig_258 = (1'b1 == ap_CS_fsm[ap_const_lv32_11]);
 end
 
 always @ (*) begin
-    ap_sig_510 = (1'b1 == ap_CS_fsm[ap_const_lv32_C]);
+    ap_sig_266 = (1'b1 == ap_CS_fsm[ap_const_lv32_14]);
 end
 
 always @ (*) begin
-    ap_sig_517 = (1'b1 == ap_CS_fsm[ap_const_lv32_D]);
+    ap_sig_275 = (1'b1 == ap_CS_fsm[ap_const_lv32_9]);
 end
 
 always @ (*) begin
-    ap_sig_524 = (1'b1 == ap_CS_fsm[ap_const_lv32_E]);
+    ap_sig_282 = (1'b1 == ap_CS_fsm[ap_const_lv32_A]);
 end
 
 always @ (*) begin
-    ap_sig_531 = (1'b1 == ap_CS_fsm[ap_const_lv32_F]);
+    ap_sig_294 = (1'b1 == ap_CS_fsm[ap_const_lv32_10]);
 end
 
 always @ (*) begin
-    ap_sig_538 = (1'b1 == ap_CS_fsm[ap_const_lv32_10]);
+    ap_sig_308 = (1'b1 == ap_CS_fsm[ap_const_lv32_7]);
 end
 
 always @ (*) begin
-    ap_sig_545 = (1'b1 == ap_CS_fsm[ap_const_lv32_11]);
+    ap_sig_315 = (1'b1 == ap_CS_fsm[ap_const_lv32_E]);
 end
 
 always @ (*) begin
-    ap_sig_552 = (1'b1 == ap_CS_fsm[ap_const_lv32_13]);
+    ap_sig_323 = (1'b1 == ap_CS_fsm[ap_const_lv32_8]);
 end
 
 always @ (*) begin
-    ap_sig_559 = (1'b1 == ap_CS_fsm[ap_const_lv32_14]);
+    ap_sig_330 = (1'b1 == ap_CS_fsm[ap_const_lv32_F]);
 end
 
 always @ (*) begin
-    ap_sig_566 = (1'b1 == ap_CS_fsm[ap_const_lv32_15]);
+    ap_sig_340 = (1'b1 == ap_CS_fsm[ap_const_lv32_5]);
 end
 
 always @ (*) begin
-    ap_sig_573 = (1'b1 == ap_CS_fsm[ap_const_lv32_16]);
+    ap_sig_353 = (1'b1 == ap_CS_fsm[ap_const_lv32_6]);
 end
 
 always @ (*) begin
-    ap_sig_580 = (1'b1 == ap_CS_fsm[ap_const_lv32_17]);
+    ap_sig_360 = (1'b1 == ap_CS_fsm[ap_const_lv32_D]);
 end
 
 always @ (*) begin
-    ap_sig_587 = (1'b1 == ap_CS_fsm[ap_const_lv32_18]);
+    ap_sig_38 = (ap_CS_fsm[ap_const_lv32_0] == 1'b1);
 end
 
 always @ (*) begin
-    ap_sig_594 = (1'b1 == ap_CS_fsm[ap_const_lv32_19]);
+    ap_sig_79 = (1'b1 == ap_CS_fsm[ap_const_lv32_1]);
 end
 
 always @ (*) begin
-    ap_sig_601 = (1'b1 == ap_CS_fsm[ap_const_lv32_1A]);
+    ap_sig_98 = (1'b1 == ap_CS_fsm[ap_const_lv32_2]);
 end
 
-always @ (*) begin
-    ap_sig_608 = (1'b1 == ap_CS_fsm[ap_const_lv32_1C]);
-end
-
-always @ (*) begin
-    ap_sig_615 = (1'b1 == ap_CS_fsm[ap_const_lv32_1D]);
-end
-
-always @ (*) begin
-    ap_sig_622 = (1'b1 == ap_CS_fsm[ap_const_lv32_1E]);
-end
-
-always @ (*) begin
-    ap_sig_629 = (1'b1 == ap_CS_fsm[ap_const_lv32_1F]);
-end
-
-always @ (*) begin
-    ap_sig_636 = (1'b1 == ap_CS_fsm[ap_const_lv32_20]);
-end
-
-always @ (*) begin
-    ap_sig_643 = (1'b1 == ap_CS_fsm[ap_const_lv32_21]);
-end
-
-always @ (*) begin
-    ap_sig_650 = (1'b1 == ap_CS_fsm[ap_const_lv32_22]);
-end
+assign exitcond1_fu_378_p2 = ((i_1_reg_225 == ap_const_lv3_4) ? 1'b1 : 1'b0);
 
-always @ (*) begin
-    ap_sig_657 = (1'b1 == ap_CS_fsm[ap_const_lv32_23]);
-end
+assign exitcond2_fu_361_p2 = ((r_reg_213 == ap_const_lv4_A) ? 1'b1 : 1'b0);
 
-always @ (*) begin
-    ap_sig_664 = (1'b1 == ap_CS_fsm[ap_const_lv32_25]);
-end
+assign exitcond4_fu_264_p2 = ((i_reg_201 == ap_const_lv3_4) ? 1'b1 : 1'b0);
 
-always @ (*) begin
-    ap_sig_671 = (1'b1 == ap_CS_fsm[ap_const_lv32_26]);
-end
+assign grp_single_block_AES_encrypt_add_round_key_fu_242_ap_start = ap_reg_grp_single_block_AES_encrypt_add_round_key_fu_242_ap_start;
 
-always @ (*) begin
-    ap_sig_678 = (1'b1 == ap_CS_fsm[ap_const_lv32_27]);
-end
+assign grp_single_block_AES_encrypt_mix_columns_fu_237_ap_start = ap_reg_grp_single_block_AES_encrypt_mix_columns_fu_237_ap_start;
 
-always @ (*) begin
-    ap_sig_685 = (1'b1 == ap_CS_fsm[ap_const_lv32_28]);
-end
+assign grp_single_block_AES_encrypt_shift_rows_fu_252_ap_start = ap_reg_grp_single_block_AES_encrypt_shift_rows_fu_252_ap_start;
 
-always @ (*) begin
-    ap_sig_692 = (1'b1 == ap_CS_fsm[ap_const_lv32_29]);
-end
+assign grp_single_block_AES_encrypt_sub_bytes_fu_257_ap_start = ap_reg_grp_single_block_AES_encrypt_sub_bytes_fu_257_ap_start;
 
-always @ (*) begin
-    ap_sig_699 = (1'b1 == ap_CS_fsm[ap_const_lv32_2A]);
-end
+assign i_7_fu_270_p2 = (i_reg_201 + ap_const_lv3_1);
 
-always @ (*) begin
-    ap_sig_706 = (1'b1 == ap_CS_fsm[ap_const_lv32_2B]);
-end
+assign i_8_fu_384_p2 = (i_1_reg_225 + ap_const_lv3_1);
 
-always @ (*) begin
-    ap_sig_713 = (1'b1 == ap_CS_fsm[ap_const_lv32_2C]);
-end
+assign out_r_d0 = state_q0;
 
-always @ (*) begin
-    ap_sig_720 = (1'b1 == ap_CS_fsm[ap_const_lv32_2E]);
-end
+assign out_r_d1 = state_q1;
 
-always @ (*) begin
-    ap_sig_727 = (1'b1 == ap_CS_fsm[ap_const_lv32_2F]);
-end
+assign r_1_fu_372_p2 = (r_reg_213 + ap_const_lv4_1);
 
-always @ (*) begin
-    ap_sig_734 = (1'b1 == ap_CS_fsm[ap_const_lv32_30]);
-end
+assign r_cast3_cast_fu_367_p1 = r_reg_213;
 
-always @ (*) begin
-    ap_sig_741 = (1'b1 == ap_CS_fsm[ap_const_lv32_31]);
-end
+assign tmp_100_1_fu_287_p1 = tmp_99_1_fu_281_p2;
 
-always @ (*) begin
-    ap_sig_748 = (1'b1 == ap_CS_fsm[ap_const_lv32_32]);
-end
+assign tmp_100_2_fu_328_p1 = tmp_99_s_fu_320_p3;
 
-always @ (*) begin
-    ap_sig_755 = (1'b1 == ap_CS_fsm[ap_const_lv32_33]);
-end
+assign tmp_100_3_fu_336_p1 = $unsigned(tmp_99_3_cast7_fu_333_p1);
 
-always @ (*) begin
-    ap_sig_762 = (1'b1 == ap_CS_fsm[ap_const_lv32_34]);
-end
+assign tmp_100_fu_276_p1 = i_reg_201;
 
-always @ (*) begin
-    ap_sig_769 = (1'b1 == ap_CS_fsm[ap_const_lv32_35]);
-end
+assign tmp_101_1_fu_341_p2 = (tmp_s_reg_498 | ap_const_lv4_2);
 
-always @ (*) begin
-    ap_sig_776 = (1'b1 == ap_CS_fsm[ap_const_lv32_37]);
-end
+assign tmp_101_2_fu_351_p2 = (tmp_s_reg_498 | ap_const_lv4_3);
 
-always @ (*) begin
-    ap_sig_783 = (1'b1 == ap_CS_fsm[ap_const_lv32_38]);
-end
+assign tmp_101_s_fu_309_p2 = (tmp_s_fu_296_p3 | ap_const_lv4_1);
 
-always @ (*) begin
-    ap_sig_790 = (1'b1 == ap_CS_fsm[ap_const_lv32_39]);
-end
+assign tmp_102_1_fu_315_p1 = tmp_101_s_fu_309_p2;
 
-always @ (*) begin
-    ap_sig_797 = (1'b1 == ap_CS_fsm[ap_const_lv32_3A]);
-end
+assign tmp_102_2_fu_346_p1 = tmp_101_1_fu_341_p2;
 
-always @ (*) begin
-    ap_sig_804 = (1'b1 == ap_CS_fsm[ap_const_lv32_3B]);
-end
+assign tmp_102_3_fu_356_p1 = tmp_101_2_fu_351_p2;
 
-always @ (*) begin
-    ap_sig_811 = (1'b1 == ap_CS_fsm[ap_const_lv32_3C]);
-end
+assign tmp_102_fu_304_p1 = tmp_s_fu_296_p3;
 
-always @ (*) begin
-    ap_sig_818 = (1'b1 == ap_CS_fsm[ap_const_lv32_3D]);
-end
+assign tmp_106_1_fu_434_p2 = (tmp_66_reg_535 | ap_const_lv4_2);
 
-always @ (*) begin
-    ap_sig_825 = (1'b1 == ap_CS_fsm[ap_const_lv32_3E]);
-end
+assign tmp_106_2_fu_444_p2 = (tmp_66_reg_535 | ap_const_lv4_3);
 
-always @ (*) begin
-    ap_sig_832 = (1'b1 == ap_CS_fsm[ap_const_lv32_40]);
-end
+assign tmp_106_s_fu_407_p2 = (tmp_66_fu_394_p3 | ap_const_lv4_1);
 
-always @ (*) begin
-    ap_sig_839 = (1'b1 == ap_CS_fsm[ap_const_lv32_41]);
-end
+assign tmp_107_1_fu_413_p1 = tmp_106_s_fu_407_p2;
 
-always @ (*) begin
-    ap_sig_846 = (1'b1 == ap_CS_fsm[ap_const_lv32_42]);
-end
+assign tmp_107_2_fu_439_p1 = tmp_106_1_fu_434_p2;
 
-always @ (*) begin
-    ap_sig_853 = (1'b1 == ap_CS_fsm[ap_const_lv32_43]);
-end
+assign tmp_107_3_fu_449_p1 = tmp_106_2_fu_444_p2;
 
-always @ (*) begin
-    ap_sig_860 = (1'b1 == ap_CS_fsm[ap_const_lv32_44]);
-end
+assign tmp_107_fu_402_p1 = tmp_66_fu_394_p3;
 
-always @ (*) begin
-    ap_sig_867 = (1'b1 == ap_CS_fsm[ap_const_lv32_45]);
-end
+assign tmp_109_1_fu_423_p2 = (i_1_reg_225 ^ ap_const_lv3_4);
 
-always @ (*) begin
-    ap_sig_874 = (1'b1 == ap_CS_fsm[ap_const_lv32_46]);
-end
+assign tmp_109_3_cast6_fu_467_p1 = $signed(tmp_109_1_reg_551);
 
-always @ (*) begin
-    ap_sig_881 = (1'b1 == ap_CS_fsm[ap_const_lv32_47]);
-end
+assign tmp_109_s_fu_454_p3 = {{1'b1}, {i_1_reg_225}};
 
-always @ (*) begin
-    ap_sig_888 = (1'b1 == ap_CS_fsm[ap_const_lv32_49]);
-end
+assign tmp_110_1_fu_429_p1 = tmp_109_1_fu_423_p2;
 
-always @ (*) begin
-    ap_sig_895 = (1'b1 == ap_CS_fsm[ap_const_lv32_4A]);
-end
+assign tmp_110_2_fu_462_p1 = tmp_109_s_fu_454_p3;
 
-always @ (*) begin
-    ap_sig_902 = (1'b1 == ap_CS_fsm[ap_const_lv32_4B]);
-end
+assign tmp_110_3_fu_470_p1 = $unsigned(tmp_109_3_cast6_fu_467_p1);
 
-always @ (*) begin
-    ap_sig_909 = (1'b1 == ap_CS_fsm[ap_const_lv32_4C]);
-end
+assign tmp_110_fu_418_p1 = i_1_reg_225;
 
-always @ (*) begin
-    ap_sig_916 = (1'b1 == ap_CS_fsm[ap_const_lv32_4D]);
-end
+assign tmp_30_fu_390_p1 = i_1_reg_225[1:0];
 
-always @ (*) begin
-    ap_sig_923 = (1'b1 == ap_CS_fsm[ap_const_lv32_4E]);
-end
+assign tmp_66_fu_394_p3 = {{tmp_30_fu_390_p1}, {ap_const_lv2_0}};
 
-always @ (*) begin
-    ap_sig_930 = (1'b1 == ap_CS_fsm[ap_const_lv32_4F]);
-end
+assign tmp_99_1_fu_281_p2 = (i_reg_201 ^ ap_const_lv3_4);
 
-always @ (*) begin
-    ap_sig_937 = (1'b1 == ap_CS_fsm[ap_const_lv32_50]);
-end
+assign tmp_99_3_cast7_fu_333_p1 = $signed(tmp_99_1_reg_488);
 
-always @ (*) begin
-    ap_sig_944 = (1'b1 == ap_CS_fsm[ap_const_lv32_52]);
-end
+assign tmp_99_s_fu_320_p3 = {{1'b1}, {i_reg_201}};
 
-always @ (*) begin
-    ap_sig_951 = (1'b1 == ap_CS_fsm[ap_const_lv32_53]);
-end
+assign tmp_fu_292_p1 = i_reg_201[1:0];
 
-always @ (*) begin
-    ap_sig_958 = (1'b1 == ap_CS_fsm[ap_const_lv32_54]);
-end
+assign tmp_s_fu_296_p3 = {{tmp_fu_292_p1}, {ap_const_lv2_0}};
 
-always @ (*) begin
-    ap_sig_965 = (1'b1 == ap_CS_fsm[ap_const_lv32_55]);
-end
+assign w_address0 = grp_single_block_AES_encrypt_add_round_key_fu_242_w_address0;
 
-always @ (*) begin
-    ap_sig_972 = (1'b1 == ap_CS_fsm[ap_const_lv32_56]);
-end
+assign w_address1 = grp_single_block_AES_encrypt_add_round_key_fu_242_w_address1;
 
-always @ (*) begin
-    ap_sig_979 = (1'b1 == ap_CS_fsm[ap_const_lv32_57]);
-end
+assign w_ce0 = grp_single_block_AES_encrypt_add_round_key_fu_242_w_ce0;
 
-always @ (*) begin
-    ap_sig_986 = (1'b1 == ap_CS_fsm[ap_const_lv32_58]);
-end
+assign w_ce1 = grp_single_block_AES_encrypt_add_round_key_fu_242_w_ce1;
 
-always @ (*) begin
-    ap_sig_993 = (1'b1 == ap_CS_fsm[ap_const_lv32_59]);
+always @ (posedge ap_clk) begin
+    tmp_s_reg_498[1:0] <= 2'b00;
+    r_cast3_cast_reg_517[5:4] <= 2'b00;
+    tmp_66_reg_535[1:0] <= 2'b00;
 end
-
-assign grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_start = ap_reg_grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_start;
-
-assign state_10_13_fu_691_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_10;
-
-assign state_10_17_fu_696_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_10;
-
-assign state_10_21_fu_701_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_10;
-
-assign state_10_25_fu_706_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_10;
-
-assign state_10_29_fu_711_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_10;
-
-assign state_10_33_fu_716_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_10;
-
-assign state_10_37_fu_721_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_10;
-
-assign state_10_5_fu_681_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_10;
-
-assign state_10_9_fu_686_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_10;
-
-assign state_11_13_fu_741_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_11;
-
-assign state_11_17_fu_746_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_11;
-
-assign state_11_21_fu_751_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_11;
-
-assign state_11_25_fu_756_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_11;
-
-assign state_11_29_fu_761_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_11;
-
-assign state_11_33_fu_766_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_11;
-
-assign state_11_37_fu_771_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_11;
-
-assign state_11_5_fu_731_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_11;
-
-assign state_11_9_fu_736_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_11;
-
-assign state_12_13_fu_791_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_12;
-
-assign state_12_17_fu_796_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_12;
-
-assign state_12_21_fu_801_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_12;
-
-assign state_12_25_fu_806_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_12;
-
-assign state_12_29_fu_811_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_12;
-
-assign state_12_33_fu_816_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_12;
-
-assign state_12_37_fu_821_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_12;
-
-assign state_12_5_fu_781_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_12;
-
-assign state_12_9_fu_786_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_12;
-
-assign state_13_13_fu_841_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_13;
-
-assign state_13_17_fu_846_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_13;
-
-assign state_13_21_fu_851_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_13;
-
-assign state_13_25_fu_856_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_13;
-
-assign state_13_29_fu_861_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_13;
-
-assign state_13_33_fu_866_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_13;
-
-assign state_13_37_fu_871_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_13;
-
-assign state_13_5_fu_831_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_13;
-
-assign state_13_9_fu_836_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_13;
-
-assign state_14_13_fu_891_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_14;
-
-assign state_14_17_fu_896_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_14;
-
-assign state_14_21_fu_901_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_14;
-
-assign state_14_25_fu_906_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_14;
-
-assign state_14_29_fu_911_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_14;
-
-assign state_14_33_fu_916_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_14;
-
-assign state_14_37_fu_921_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_14;
-
-assign state_14_5_fu_881_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_14;
-
-assign state_14_9_fu_886_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_14;
-
-assign state_15_13_fu_941_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_15;
-
-assign state_15_17_fu_946_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_15;
-
-assign state_15_21_fu_951_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_15;
-
-assign state_15_25_fu_956_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_15;
-
-assign state_15_29_fu_961_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_15;
-
-assign state_15_33_fu_966_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_15;
-
-assign state_15_37_fu_971_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_15;
-
-assign state_15_5_fu_931_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_15;
-
-assign state_15_9_fu_936_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_15;
-
-assign state_4_10_fu_986_p1 = grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_0;
-
-assign state_4_13_fu_391_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_4;
-
-assign state_4_14_fu_991_p1 = grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_0;
-
-assign state_4_17_fu_396_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_4;
-
-assign state_4_18_fu_996_p1 = grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_0;
-
-assign state_4_21_fu_401_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_4;
-
-assign state_4_22_fu_1001_p1 = grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_0;
-
-assign state_4_25_fu_406_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_4;
-
-assign state_4_26_fu_1006_p1 = grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_0;
-
-assign state_4_29_fu_411_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_4;
-
-assign state_4_30_fu_1011_p1 = grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_0;
-
-assign state_4_33_fu_416_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_4;
-
-assign state_4_34_fu_1016_p1 = grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_0;
-
-assign state_4_37_fu_421_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_4;
-
-assign state_4_5_fu_381_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_4;
-
-assign state_4_6_fu_981_p1 = grp_single_block_AES_encrypt_shift_rows_fu_256_ap_return_0;
-
-assign state_4_9_fu_386_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_4;
-
-assign state_5_13_fu_441_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_5;
-
-assign state_5_17_fu_446_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_5;
-
-assign state_5_21_fu_451_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_5;
-
-assign state_5_25_fu_456_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_5;
-
-assign state_5_29_fu_461_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_5;
-
-assign state_5_33_fu_466_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_5;
-
-assign state_5_37_fu_471_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_5;
-
-assign state_5_5_fu_431_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_5;
-
-assign state_5_9_fu_436_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_5;
-
-assign state_6_13_fu_491_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_6;
-
-assign state_6_17_fu_496_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_6;
-
-assign state_6_21_fu_501_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_6;
-
-assign state_6_25_fu_506_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_6;
-
-assign state_6_29_fu_511_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_6;
-
-assign state_6_33_fu_516_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_6;
-
-assign state_6_37_fu_521_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_6;
-
-assign state_6_5_fu_481_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_6;
-
-assign state_6_9_fu_486_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_6;
-
-assign state_7_13_fu_541_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_7;
-
-assign state_7_17_fu_546_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_7;
-
-assign state_7_21_fu_551_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_7;
-
-assign state_7_25_fu_556_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_7;
-
-assign state_7_29_fu_561_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_7;
-
-assign state_7_33_fu_566_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_7;
-
-assign state_7_37_fu_571_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_7;
-
-assign state_7_5_fu_531_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_7;
-
-assign state_7_9_fu_536_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_7;
-
-assign state_8_13_fu_591_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_8;
-
-assign state_8_17_fu_596_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_8;
-
-assign state_8_21_fu_601_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_8;
-
-assign state_8_25_fu_606_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_8;
-
-assign state_8_29_fu_611_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_8;
-
-assign state_8_33_fu_616_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_8;
-
-assign state_8_37_fu_621_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_8;
-
-assign state_8_5_fu_581_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_8;
-
-assign state_8_9_fu_586_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_8;
-
-assign state_9_13_fu_641_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_9;
-
-assign state_9_17_fu_646_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_9;
-
-assign state_9_21_fu_651_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_9;
-
-assign state_9_25_fu_656_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_9;
-
-assign state_9_29_fu_661_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_9;
-
-assign state_9_33_fu_666_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_9;
-
-assign state_9_37_fu_671_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_9;
-
-assign state_9_5_fu_631_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_9;
-
-assign state_9_9_fu_636_p1 = grp_single_block_AES_encrypt_sub_bytes_fu_234_ap_return_9;
-
-assign w_address0 = grp_single_block_AES_encrypt_add_round_key_fu_184_w_address0;
-
-assign w_address1 = grp_single_block_AES_encrypt_add_round_key_fu_184_w_address1;
-
-assign w_ce0 = grp_single_block_AES_encrypt_add_round_key_fu_184_w_ce0;
-
-assign w_ce1 = grp_single_block_AES_encrypt_add_round_key_fu_184_w_ce1;
 
 endmodule //single_block_AES_encrypt_aes_cipher

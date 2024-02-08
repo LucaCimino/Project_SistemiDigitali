@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'single_block_AES_encrypt_add_round_key'
 ================================================================
-* Date:           Thu Feb 08 12:12:22 2024
+* Date:           Thu Feb 08 15:39:29 2024
 
 * Version:        2016.2 (Build 1577090 on Thu Jun 02 16:59:10 MDT 2016)
 * Project:        AES_Encryption
@@ -20,24 +20,29 @@
     +--------+-------+----------+------------+
     |  Clock | Target| Estimated| Uncertainty|
     +--------+-------+----------+------------+
-    |ap_clk  |  10.00|      4.08|        1.25|
+    |ap_clk  |  10.00|      6.47|        1.25|
     +--------+-------+----------+------------+
 
 + Latency (clock cycles): 
     * Summary: 
-    +-----+-----+-----+-----+----------+
-    |  Latency  |  Interval | Pipeline |
-    | min | max | min | max |   Type   |
-    +-----+-----+-----+-----+----------+
-    |    8|    8|    8|    8| function |
-    +-----+-----+-----+-----+----------+
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |   17|   17|   17|   17|   none  |
+    +-----+-----+-----+-----+---------+
 
     + Detail: 
         * Instance: 
         N/A
 
         * Loop: 
-        N/A
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |          |  Latency  | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name| min | max |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |- Loop 1  |   16|   16|         4|          -|          -|     4|    no    |
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
 
 
 
@@ -49,14 +54,14 @@
 |       Name      | BRAM_18K| DSP48E|   FF   |  LUT  |
 +-----------------+---------+-------+--------+-------+
 |DSP              |        -|      -|       -|      -|
-|Expression       |        -|      -|       0|    248|
+|Expression       |        -|      -|       0|     60|
 |FIFO             |        -|      -|       -|      -|
 |Instance         |        -|      -|       -|      -|
 |Memory           |        -|      -|       -|      -|
-|Multiplexer      |        -|      -|       -|     38|
-|Register         |        -|      -|     366|      -|
+|Multiplexer      |        -|      -|       -|     36|
+|Register         |        -|      -|      41|      -|
 +-----------------+---------+-------+--------+-------+
-|Total            |        0|      0|     366|    286|
+|Total            |        0|      0|      41|     96|
 +-----------------+---------+-------+--------+-------+
 |Available        |      280|    220|  106400|  53200|
 +-----------------+---------+-------+--------+-------+
@@ -77,112 +82,54 @@
     N/A
 
     * Expression: 
-    +---------------------------------+----------+-------+---+----+------------+------------+
-    |          Variable Name          | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
-    +---------------------------------+----------+-------+---+----+------------+------------+
-    |tmp_114_1_fu_403_p2              |    or    |      0|  0|   8|           8|           4|
-    |tmp_114_2_fu_443_p2              |    or    |      0|  0|   8|           8|           4|
-    |tmp_114_s_fu_363_p2              |    or    |      0|  0|   8|           8|           3|
-    |tmp_119_1_fu_373_p2              |    or    |      0|  0|   8|           8|           3|
-    |tmp_119_2_fu_413_p2              |    or    |      0|  0|   8|           8|           4|
-    |tmp_119_3_fu_453_p2              |    or    |      0|  0|   8|           8|           4|
-    |tmp_124_1_fu_383_p2              |    or    |      0|  0|   8|           8|           3|
-    |tmp_124_2_fu_423_p2              |    or    |      0|  0|   8|           8|           4|
-    |tmp_124_3_fu_535_p2              |    or    |      0|  0|   8|           8|           4|
-    |tmp_129_1_fu_393_p2              |    or    |      0|  0|   8|           8|           3|
-    |tmp_129_2_fu_433_p2              |    or    |      0|  0|   8|           8|           4|
-    |tmp_129_3_fu_545_p2              |    or    |      0|  0|   8|           8|           4|
-    |tmp_42_fu_332_p2                 |    or    |      0|  0|   8|           8|           1|
-    |tmp_44_fu_343_p2                 |    or    |      0|  0|   8|           8|           2|
-    |tmp_46_fu_353_p2                 |    or    |      0|  0|   8|           8|           2|
-    |state_0_write_assign_fu_463_p2   |    xor   |      0|  0|   8|           8|           8|
-    |state_10_write_assign_fu_513_p2  |    xor   |      0|  0|   8|           8|           8|
-    |state_11_write_assign_fu_555_p2  |    xor   |      0|  0|   8|           8|           8|
-    |state_12_write_assign_fu_478_p2  |    xor   |      0|  0|   8|           8|           8|
-    |state_13_write_assign_fu_498_p2  |    xor   |      0|  0|   8|           8|           8|
-    |state_14_write_assign_fu_518_p2  |    xor   |      0|  0|   8|           8|           8|
-    |state_15_write_assign_fu_560_p2  |    xor   |      0|  0|   8|           8|           8|
-    |state_1_write_assign_fu_483_p2   |    xor   |      0|  0|   8|           8|           8|
-    |state_2_write_assign_fu_503_p2   |    xor   |      0|  0|   8|           8|           8|
-    |state_3_write_assign_fu_523_p2   |    xor   |      0|  0|   8|           8|           8|
-    |state_4_write_assign_fu_468_p2   |    xor   |      0|  0|   8|           8|           8|
-    |state_5_write_assign_fu_488_p2   |    xor   |      0|  0|   8|           8|           8|
-    |state_6_write_assign_fu_508_p2   |    xor   |      0|  0|   8|           8|           8|
-    |state_7_write_assign_fu_529_p2   |    xor   |      0|  0|   8|           8|           8|
-    |state_8_write_assign_fu_473_p2   |    xor   |      0|  0|   8|           8|           8|
-    |state_9_write_assign_fu_493_p2   |    xor   |      0|  0|   8|           8|           8|
-    +---------------------------------+----------+-------+---+----+------------+------------+
-    |Total                            |          |      0|  0| 248|         248|         177|
-    +---------------------------------+----------+-------+---+----+------------+------------+
+    +--------------------+----------+-------+---+----+------------+------------+
+    |    Variable Name   | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------+----------+-------+---+----+------------+------------+
+    |c_1_fu_148_p2       |     +    |      0|  0|   3|           3|           1|
+    |exitcond_fu_142_p2  |   icmp   |      0|  0|   2|           3|           4|
+    |tmp_75_fu_187_p2    |    or    |      0|  0|   8|           8|           1|
+    |tmp_80_fu_222_p2    |    or    |      0|  0|   8|           8|           2|
+    |tmp_85_fu_240_p2    |    or    |      0|  0|   8|           8|           2|
+    |grp_fu_135_p2       |    xor   |      0|  0|   8|           8|           8|
+    |state_d1            |    xor   |      0|  0|   8|           8|           8|
+    |tmp_73_fu_176_p2    |    xor   |      0|  0|   7|           3|           4|
+    |tmp_77_fu_202_p2    |    xor   |      0|  0|   8|           8|           8|
+    +--------------------+----------+-------+---+----+------------+------------+
+    |Total               |          |      0|  0|  60|          57|          38|
+    +--------------------+----------+-------+---+----+------------+------------+
 
     * Multiplexer: 
-    +-----------------------+----+-----------+-----+-----------+
-    |          Name         | LUT| Input Size| Bits| Total Bits|
-    +-----------------------+----+-----------+-----+-----------+
-    |ap_NS_fsm              |   4|          9|    1|          9|
-    |ap_reg_ppiten_pp0_it0  |   1|          2|    1|          2|
-    |ap_reg_ppiten_pp0_it1  |   1|          2|    1|          2|
-    |w_address0             |  16|          9|    8|         72|
-    |w_address1             |  16|          9|    8|         72|
-    +-----------------------+----+-----------+-----+-----------+
-    |Total                  |  38|         31|   19|        157|
-    +-----------------------+----+-----------+-----+-----------+
+    +----------------+----+-----------+-----+-----------+
+    |      Name      | LUT| Input Size| Bits| Total Bits|
+    +----------------+----+-----------+-----+-----------+
+    |ap_NS_fsm       |   1|          6|    1|          6|
+    |c_reg_118       |   3|          2|    3|          6|
+    |reg_130         |   8|          2|    8|         16|
+    |state_address0  |   4|          5|    4|         20|
+    |state_address1  |   4|          5|    4|         20|
+    |state_d0        |   8|          3|    8|         24|
+    |w_address0      |   8|          4|    8|         32|
+    +----------------+----+-----------+-----+-----------+
+    |Total           |  36|         27|   36|        124|
+    +----------------+----+-----------+-----+-----------+
 
     * Register: 
-    +-------------------------------+---+----+-----+-----------+
-    |              Name             | FF| LUT| Bits| Const Bits|
-    +-------------------------------+---+----+-----+-----------+
-    |ap_CS_fsm                      |  8|   0|    8|          0|
-    |ap_reg_ppiten_pp0_it1          |  1|   0|    1|          0|
-    |ap_reg_ppiten_pp0_iter0_preg   |  1|   0|    1|          0|
-    |ap_reg_ptbuf_state_0_read      |  8|   0|    8|          0|
-    |ap_reg_ptbuf_state_10_read     |  8|   0|    8|          0|
-    |ap_reg_ptbuf_state_11_read     |  8|   0|    8|          0|
-    |ap_reg_ptbuf_state_12_read     |  8|   0|    8|          0|
-    |ap_reg_ptbuf_state_13_read     |  8|   0|    8|          0|
-    |ap_reg_ptbuf_state_14_read     |  8|   0|    8|          0|
-    |ap_reg_ptbuf_state_15_read     |  8|   0|    8|          0|
-    |ap_reg_ptbuf_state_1_read      |  8|   0|    8|          0|
-    |ap_reg_ptbuf_state_2_read      |  8|   0|    8|          0|
-    |ap_reg_ptbuf_state_3_read      |  8|   0|    8|          0|
-    |ap_reg_ptbuf_state_4_read      |  8|   0|    8|          0|
-    |ap_reg_ptbuf_state_5_read      |  8|   0|    8|          0|
-    |ap_reg_ptbuf_state_6_read      |  8|   0|    8|          0|
-    |ap_reg_ptbuf_state_7_read      |  8|   0|    8|          0|
-    |ap_reg_ptbuf_state_8_read      |  8|   0|    8|          0|
-    |ap_reg_ptbuf_state_9_read      |  8|   0|    8|          0|
-    |state_0_write_assign_reg_805   |  8|   0|    8|          0|
-    |state_10_write_assign_reg_855  |  8|   0|    8|          0|
-    |state_11_read12_reg_800        |  8|   0|    8|          0|
-    |state_12_write_assign_reg_820  |  8|   0|    8|          0|
-    |state_13_write_assign_reg_840  |  8|   0|    8|          0|
-    |state_14_write_assign_reg_860  |  8|   0|    8|          0|
-    |state_15_read_4_reg_795        |  8|   0|    8|          0|
-    |state_1_write_assign_reg_825   |  8|   0|    8|          0|
-    |state_2_write_assign_reg_845   |  8|   0|    8|          0|
-    |state_3_write_assign_reg_865   |  8|   0|    8|          0|
-    |state_4_write_assign_reg_810   |  8|   0|    8|          0|
-    |state_5_write_assign_reg_830   |  8|   0|    8|          0|
-    |state_6_write_assign_reg_850   |  8|   0|    8|          0|
-    |state_7_write_assign_reg_870   |  8|   0|    8|          0|
-    |state_8_write_assign_reg_815   |  8|   0|    8|          0|
-    |state_9_write_assign_reg_835   |  8|   0|    8|          0|
-    |tmp_s_reg_647                  |  4|   0|    8|          4|
-    |w_load_10_reg_760              |  8|   0|    8|          0|
-    |w_load_11_reg_775              |  8|   0|    8|          0|
-    |w_load_12_reg_780              |  8|   0|    8|          0|
-    |w_load_1_reg_715               |  8|   0|    8|          0|
-    |w_load_2_reg_755               |  8|   0|    8|          0|
-    |w_load_4_reg_680               |  8|   0|    8|          0|
-    |w_load_5_reg_695               |  8|   0|    8|          0|
-    |w_load_6_reg_700               |  8|   0|    8|          0|
-    |w_load_7_reg_720               |  8|   0|    8|          0|
-    |w_load_8_reg_735               |  8|   0|    8|          0|
-    |w_load_9_reg_740               |  8|   0|    8|          0|
-    |w_load_reg_675                 |  8|   0|    8|          0|
-    +-------------------------------+---+----+-----+-----------+
-    |Total                          |366|   0|  370|          4|
-    +-------------------------------+---+----+-----+-----------+
+    +-----------------------+---+----+-----+-----------+
+    |          Name         | FF| LUT| Bits| Const Bits|
+    +-----------------------+---+----+-----+-----------+
+    |ap_CS_fsm              |  5|   0|    5|          0|
+    |c_1_reg_265            |  3|   0|    3|          0|
+    |c_reg_118              |  3|   0|    3|          0|
+    |reg_130                |  8|   0|    8|          0|
+    |state_addr_12_reg_287  |  3|   0|    4|          1|
+    |state_addr_13_reg_303  |  3|   0|    4|          1|
+    |state_addr_14_reg_314  |  4|   0|    4|          0|
+    |state_addr_reg_270     |  3|   0|    4|          1|
+    |tmp_70_reg_275         |  6|   0|    8|          2|
+    |tmp_73_reg_282         |  3|   0|    3|          0|
+    +-----------------------+---+----+-----+-----------+
+    |Total                  | 41|   0|   46|          5|
+    +-----------------------+---+----+-----+-----------+
 
 
 
@@ -190,54 +137,31 @@
 == Interface
 ================================================================
 * Summary: 
-+---------------+-----+-----+------------+----------------------------------------+--------------+
-|   RTL Ports   | Dir | Bits|  Protocol  |              Source Object             |    C Type    |
-+---------------+-----+-----+------------+----------------------------------------+--------------+
-|ap_clk         |  in |    1| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
-|ap_rst         |  in |    1| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
-|ap_start       |  in |    1| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
-|ap_done        | out |    1| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
-|ap_idle        | out |    1| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
-|ap_ready       | out |    1| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
-|ap_ce          |  in |    1| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
-|ap_return_0    | out |    8| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
-|ap_return_1    | out |    8| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
-|ap_return_2    | out |    8| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
-|ap_return_3    | out |    8| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
-|ap_return_4    | out |    8| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
-|ap_return_5    | out |    8| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
-|ap_return_6    | out |    8| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
-|ap_return_7    | out |    8| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
-|ap_return_8    | out |    8| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
-|ap_return_9    | out |    8| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
-|ap_return_10   | out |    8| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
-|ap_return_11   | out |    8| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
-|ap_return_12   | out |    8| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
-|ap_return_13   | out |    8| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
-|ap_return_14   | out |    8| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
-|ap_return_15   | out |    8| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
-|state_0_read   |  in |    8|   ap_none  |              state_0_read              |    scalar    |
-|state_1_read   |  in |    8|   ap_none  |              state_1_read              |    scalar    |
-|state_2_read   |  in |    8|   ap_none  |              state_2_read              |    scalar    |
-|state_3_read   |  in |    8|   ap_none  |              state_3_read              |    scalar    |
-|state_4_read   |  in |    8|   ap_none  |              state_4_read              |    scalar    |
-|state_5_read   |  in |    8|   ap_none  |              state_5_read              |    scalar    |
-|state_6_read   |  in |    8|   ap_none  |              state_6_read              |    scalar    |
-|state_7_read   |  in |    8|   ap_none  |              state_7_read              |    scalar    |
-|state_8_read   |  in |    8|   ap_none  |              state_8_read              |    scalar    |
-|state_9_read   |  in |    8|   ap_none  |              state_9_read              |    scalar    |
-|state_10_read  |  in |    8|   ap_none  |              state_10_read             |    scalar    |
-|state_11_read  |  in |    8|   ap_none  |              state_11_read             |    scalar    |
-|state_12_read  |  in |    8|   ap_none  |              state_12_read             |    scalar    |
-|state_13_read  |  in |    8|   ap_none  |              state_13_read             |    scalar    |
-|state_14_read  |  in |    8|   ap_none  |              state_14_read             |    scalar    |
-|state_15_read  |  in |    8|   ap_none  |              state_15_read             |    scalar    |
-|w_address0     | out |    8|  ap_memory |                    w                   |     array    |
-|w_ce0          | out |    1|  ap_memory |                    w                   |     array    |
-|w_q0           |  in |    8|  ap_memory |                    w                   |     array    |
-|w_address1     | out |    8|  ap_memory |                    w                   |     array    |
-|w_ce1          | out |    1|  ap_memory |                    w                   |     array    |
-|w_q1           |  in |    8|  ap_memory |                    w                   |     array    |
-|r              |  in |    5|   ap_none  |                    r                   |    scalar    |
-+---------------+-----+-----+------------+----------------------------------------+--------------+
++----------------+-----+-----+------------+----------------------------------------+--------------+
+|    RTL Ports   | Dir | Bits|  Protocol  |              Source Object             |    C Type    |
++----------------+-----+-----+------------+----------------------------------------+--------------+
+|ap_clk          |  in |    1| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
+|ap_rst          |  in |    1| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
+|ap_start        |  in |    1| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
+|ap_done         | out |    1| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
+|ap_idle         | out |    1| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
+|ap_ready        | out |    1| ap_ctrl_hs | single_block_AES_encrypt_add_round_key | return value |
+|state_address0  | out |    4|  ap_memory |                  state                 |     array    |
+|state_ce0       | out |    1|  ap_memory |                  state                 |     array    |
+|state_we0       | out |    1|  ap_memory |                  state                 |     array    |
+|state_d0        | out |    8|  ap_memory |                  state                 |     array    |
+|state_q0        |  in |    8|  ap_memory |                  state                 |     array    |
+|state_address1  | out |    4|  ap_memory |                  state                 |     array    |
+|state_ce1       | out |    1|  ap_memory |                  state                 |     array    |
+|state_we1       | out |    1|  ap_memory |                  state                 |     array    |
+|state_d1        | out |    8|  ap_memory |                  state                 |     array    |
+|state_q1        |  in |    8|  ap_memory |                  state                 |     array    |
+|w_address0      | out |    8|  ap_memory |                    w                   |     array    |
+|w_ce0           | out |    1|  ap_memory |                    w                   |     array    |
+|w_q0            |  in |    8|  ap_memory |                    w                   |     array    |
+|w_address1      | out |    8|  ap_memory |                    w                   |     array    |
+|w_ce1           | out |    1|  ap_memory |                    w                   |     array    |
+|w_q1            |  in |    8|  ap_memory |                    w                   |     array    |
+|r               |  in |    6|   ap_none  |                    r                   |    scalar    |
++----------------+-----+-----+------------+----------------------------------------+--------------+
 
