@@ -7,21 +7,22 @@ from multiprocessing import Process
 import os
 import signal
 
-COMPRESSED_WIDTH=240
-COMPRESSED_HEIGHT=180
+COMPRESSED_WIDTH = 240
+COMPRESSED_HEIGHT = 180
+
 
 def record(frame, server_socket, client_address):
-    #ret, buffer = cv2.imencode('.jpg', frame)
-    #frame = buffer.tobytes()
-    
+    # ret, buffer = cv2.imencode('.jpg', frame)
+    # frame = buffer.tobytes()
+
     print('sto registrando, scrivo un frame sul tunnel UDP')
-    
-    #resize (640,480) -> (COMPRESSED_WIDTH,COMPRESSED_HEIGHT)
+
+    # resize (640,480) -> (COMPRESSED_WIDTH,COMPRESSED_HEIGHT)
     frame = cv2.resize(frame, (COMPRESSED_WIDTH, COMPRESSED_HEIGHT))
 
-    #RGB -> YUV
+    # RGB -> YUV
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2YUV_I420)
-    
+
     # Ottieni i dati del frame come bytes
     frame_data = frame.tobytes()
 
@@ -33,7 +34,7 @@ def record(frame, server_socket, client_address):
     return
 
 
-def get_mask(frame1, frame2, kernel=np.array((9,9), dtype=np.uint8)):
+def get_mask(frame1, frame2, kernel=np.array((9, 9), dtype=np.uint8)):
     """ Obtains image mask
         Inputs: 
             frame1 - Grayscale frame at time t
@@ -46,9 +47,9 @@ def get_mask(frame1, frame2, kernel=np.array((9,9), dtype=np.uint8)):
 
     # blur the frame difference
     frame_diff = cv2.medianBlur(frame_diff, 3)
-    
-    mask = cv2.adaptiveThreshold(frame_diff, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
-                cv2.THRESH_BINARY_INV, 11, 3)
+
+    mask = cv2.adaptiveThreshold(frame_diff, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, \
+                                 cv2.THRESH_BINARY_INV, 11, 3)
 
     mask = cv2.medianBlur(mask, 3)
 
@@ -65,15 +66,14 @@ def test(server_socket, client_address):
     WIDTH = 256
     HEIGHT = 256
     ########################
-    #camera status
-    recording=False
+    # camera status
+    recording = False
 
-    threshold_start_reg=5
-    threshold_stop_reg=5
+    threshold_start_reg = 5
+    threshold_stop_reg = 5
 
-    threshold_start_num_pixel=500
-    threshold_stop_num_pixel=200
-
+    threshold_start_num_pixel = 500
+    threshold_stop_num_pixel = 200
 
     ########################
     # Inizializza la telecamera (imposta il parametro 0 se stai usando la webcam integrata)
@@ -83,21 +83,20 @@ def test(server_socket, client_address):
     _, oldFrame = cap.read()
 
     # Effettua il resize del frame
-    #resized_frame = cv2.resize(oldFrame, (WIGHT, HEIGHT))
+    # resized_frame = cv2.resize(oldFrame, (WIGHT, HEIGHT))
 
-
-    startTime=0
-    endTime=0
-    threshold_count=0
+    startTime = 0
+    endTime = 0
+    threshold_count = 0
     while True:
         # Cattura un frame dalla telecamera
 
-        startTime=time.time()
+        startTime = time.time()
 
         _, actualFrame = cap.read()
 
         # Visualizza il frame
-        #cv2.imshow("Frame", actualFrame)
+        # cv2.imshow("Frame", actualFrame)
 
         img1_rgb = cv2.cvtColor(oldFrame, cv2.COLOR_BGR2RGB)
         img2_rgb = cv2.cvtColor(actualFrame, cv2.COLOR_BGR2RGB)
@@ -106,68 +105,65 @@ def test(server_socket, client_address):
         img1 = cv2.cvtColor(img1_rgb, cv2.COLOR_RGB2GRAY)
         img2 = cv2.cvtColor(img2_rgb, cv2.COLOR_RGB2GRAY)
 
-
-        kernel = np.array((9,9), dtype=np.uint8)
+        kernel = np.array((9, 9), dtype=np.uint8)
         mask, frame_diff = get_mask(img1, img2, kernel)
 
         cv2.imshow("motion", mask)
-        print('il numero di pixel che differiscono è: ',frame_diff, ' su ', np.size(mask))
+        print('il numero di pixel che differiscono è: ', frame_diff, ' su ', np.size(mask))
         print('\n')
 
         ########################
         # se non sta registrando, dopo 5 volte che sono stati rilevati in una diff 500+ pixel di differenza viene fatta partire la registrazione
-        #se sta registrando, quando viene rilevata per 5 volte una diff < 200 stoppa la registrazione
-        
-        if(not recording):
-            if(frame_diff>threshold_start_num_pixel):
-                threshold_count+=1
-            elif(threshold_count>0):
-                threshold_count-=1
-            
-            if(threshold_count>=threshold_start_reg):
-                recording=True
+        # se sta registrando, quando viene rilevata per 5 volte una diff < 200 stoppa la registrazione
+
+        if (not recording):
+            if (frame_diff > threshold_start_num_pixel):
+                threshold_count += 1
+            elif (threshold_count > 0):
+                threshold_count -= 1
+
+            if (threshold_count >= threshold_start_reg):
+                recording = True
                 record(actualFrame, server_socket, client_address)
-                threshold_count=0
+                threshold_count = 0
         else:
-            if(frame_diff<threshold_stop_num_pixel):
-                threshold_count+=1
-            elif(threshold_count>0):
-                threshold_count-=1
-            
-            if(threshold_count>=threshold_stop_reg):
-                recording=False
-                threshold_count=0
+            if (frame_diff < threshold_stop_num_pixel):
+                threshold_count += 1
+            elif (threshold_count > 0):
+                threshold_count -= 1
+
+            if (threshold_count >= threshold_stop_reg):
+                recording = False
+                threshold_count = 0
             else:
                 record(actualFrame, server_socket, client_address)
-        
-        endTime=time.time()
-        print('time: ',endTime-startTime)
 
-        time.sleep(0.5)
+        endTime = time.time()
+        print('time: ', endTime - startTime)
 
-
+        # time.sleep(0.05)
 
         # Interruzione del loop se viene premuto 'q'
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
-        oldFrame=actualFrame
+        oldFrame = actualFrame
 
     # Rilascia la telecamera e chiudi la finestra
     cap.release()
     cv2.destroyAllWindows()
     return
 
-def start_server():
 
+def start_server():
     # Accedi al primo argomento passato da linea di comando
     if len(sys.argv) != 3:
         print("usage: serverSocket ip_server port_server")
         exit()
 
-    #indirizzo ip e porta del server
-    server_ip=sys.argv[1]
-    server_port=int(sys.argv[2])
+    # indirizzo ip e porta del server
+    server_ip = sys.argv[1]
+    server_port = int(sys.argv[2])
 
     # Creazione della socket UDP
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -177,7 +173,7 @@ def start_server():
 
     while True:
         try:
-            print('socket UDP in ascolto sulla porta ', server_port, 'all\'indirizzo ',server_ip)
+            print('socket UDP in ascolto sulla porta ', server_port, 'all\'indirizzo ', server_ip)
 
             # Ricezione del messaggio di richiesta dal client
             request_message, client_address = server_socket.recvfrom(1024)
@@ -188,20 +184,20 @@ def start_server():
 
             pid = os.fork()
 
-            if(pid == 0):
-                test(server_socket,client_address)  
+            if (pid == 0):
+                test(server_socket, client_address)
             else:
                 while True:
                     try:
-                        
+
                         feedback_message, client_address = server_socket.recvfrom(1024)
                         print(feedback_message.decode())
-                    
+
                     except socket.timeout:
                         print('killo il processo')
-                        os.kill(pid,signal.SIGTERM)
+                        os.kill(pid, signal.SIGTERM)
                         break
-                    
+
             '''
             p = Process(target=test(server_socket,client_address))
             p.start()
@@ -216,9 +212,12 @@ def start_server():
             #test(server_socket,client_address)
             '''
         except socket.timeout:
-            print('######################################################################################################\n\n\n\n\n')
+            print(
+                '######################################################################################################\n\n\n\n\n')
             continue
 
         time.sleep(0.05)
+
+
 if __name__ == "__main__":
     start_server()
