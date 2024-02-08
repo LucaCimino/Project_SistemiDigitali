@@ -26,6 +26,35 @@ Original message (after inv cipher):
 00 11 22 33 44 55 66 77 88 99 aa bb cc dd ee ff
 ```
 
+## Modalità ECB
+
+#### Test
+
+```
+Key:             63 d3 71 e3 6b b2 12 85 e7 67 d2 ff 11 15 e3 ab
+```
+
+```
+Plaintext:       04 b4 56 ee 17 a6 6a be 53 28 a7 73 d6 7c d8 6a
+Cipher:          91 19 b8 ea 48 1c ab 35 82 27 43 68 de 16 fc f9
+```
+
+```
+Plaintext:	 33 dd 56 ee 17 a6 1a 13 32 23 a7 73 65 1c d2 41
+Chiper:		 1a fe 92 29 1d 80 84 23 0f 17 72 b2 76 0b 96 c7
+```
+
+```
+Plaintext:	 c4 74 15 74 a7 a6 c1 a3 73 28 17 76 73 bc 3f e1
+Chiper:		 0c 58 be 33 ee 60 49 3b a0 f9 b9 e8 86 8a 3a 1d
+```
+
+```
+Plaintext:	 36 c5 74 14 f7 90 ac b1 02 2e f6 12 83 6e 31 e6
+Chiper:		 08 1d e4 06 92 9b 29 41 31 b3 ab a5 5c 3e ac 86 
+```
+
+
 ## Modalità CTR
 
 Usando il codice precedente ho implementato la modalità di cifratura CTR

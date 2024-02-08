@@ -16,33 +16,22 @@ IMG_HEIGTH = 30
 
 ##########################
 
-
-# Receive cipher image from network
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) 
 sock.bind((UDP_IP, UDP_PORT))
 
+# Receive cipher_image from network
 cipher_image, addr = sock.recvfrom(65536)  # buffer size is 64 KiB bytes
-
 print("Ricevuta immagine di",len(cipher_image),"bytes da",addr)
 
-
-original_image_bytes = b""
-
 start = time.time()
-for i in range(0, len(cipher_image), 16):
-    chunk = cipher_image[i:i+16]
 
-    cipher = Cipher(algorithms.AES(key), modes.ECB())
-    decryptor = cipher.decryptor()
+cipher = Cipher(algorithms.AES(key), modes.ECB())
+decryptor = cipher.decryptor()
 
-    dt = decryptor.update(chunk) + decryptor.finalize()
+dt = decryptor.update(cipher_image) + decryptor.finalize()
     
-    original_image_bytes = original_image_bytes + bytes(bytearray(dt))
+original_image_bytes = bytes(bytearray(dt))
 
-    print("CHIPER:\t",chunk)
-    print("PLAIN:\t",bytes(bytearray(dt)))
-    print("")
-   
 end = time.time()
 print("Execution time:", end - start, "s")
 

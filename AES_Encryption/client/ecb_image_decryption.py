@@ -5,24 +5,22 @@ from PIL import Image
 key = b"\x63\xd3\x71\xe3\x6b\xb2\x12\x85\xe7\x67\xd2\xff\x11\x15\xe3\xab"
 
 
-# Carico l'immagine
-# encrypted_image = Image.open("encrypted_image.jpg")
+# with open("file.bin", "rb") as file:
+#    cipher_image = file.read()
 
-# Ottieni i dati dell'immagine come byte
-# image_data = encrypted_image.tobytes()
+
+encrypted_image = Image.open("image40x30.jpg")
+image_data = encrypted_image.tobytes()
 # Crea un bytearray dalla data dell'immagine
-# chiper = bytearray(image_data)
+cipher_image = bytearray(image_data)
 
-with open("file.bin", "rb") as file:
-    chiper = file.read()
-
-
+print("Byte to decrypt =",len(cipher_image))
 
 original_image_bytes = b""
 
 start = time.time()
-for i in range(0, len(chiper), 16):
-    chunk = chiper[i:i+16]
+for i in range(0, len(cipher_image), 16):
+    chunk = cipher_image[i:i+16]
 
     cipher = Cipher(algorithms.AES(key), modes.ECB())
     decryptor = cipher.decryptor()
@@ -31,17 +29,38 @@ for i in range(0, len(chiper), 16):
     
     original_image_bytes = original_image_bytes + bytes(bytearray(dt))
 
-    print("CHIPER:\t",chunk)
-    print("PLAIN:\t",bytes(bytearray(dt)))
-    print("")
+    #print("CHIPER:\t",chunk)
+    #print("PLAIN:\t",bytes(bytearray(dt)))
+    #print("")
    
 end = time.time()
 print("Execution time:", end - start, "s")
 
-original_image = Image.frombytes('RGB',(8, 6 ), original_image_bytes)
+original_image = Image.frombytes('RGB',(40, 30), original_image_bytes)
 
 # Salvo l'immagine su disco
 original_image.save("original_image.jpg")
+
+
+##########################
+
+start = time.time()
+cipher = Cipher(algorithms.AES(key), modes.ECB())
+decryptor = cipher.decryptor()
+dt = decryptor.update(cipher_image) + decryptor.finalize()
+original_image_bytes = bytes(bytearray(dt))
+end = time.time()
+print("Execution time:", end - start, "s")
+
+original_image = Image.frombytes('RGB',(40, 30), original_image_bytes)
+
+# Salvo l'immagine su disco
+original_image.save("original_image_ECB.jpg")
+
+
+
+
+
 
 
 
