@@ -145,10 +145,7 @@ def test(server_socket, client_address):
         # cv2.imshow("motion", mask)
         print('il numero di pixel che differiscono è: ', frame_diff, ' su ', np.size(mask))
         print('\n')
-        time.sleep(0.1)
-        ########################
-        # se non sta registrando, dopo 5 volte che sono stati rilevati in una diff 500+ pixel di differenza viene fatta partire la registrazione
-        # se sta registrando, quando viene rilevata per 5 volte una diff < 200 stoppa la registrazione
+        
         startTime = time.time()
         if (not recording):
             if (frame_diff > threshold_start_num_pixel):
