@@ -5,10 +5,19 @@ import numpy as np
 import time
 import os
 import signal
-from multiprocessing import Process
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+
+
+
+################## Configuration ###############
+
+key = b"\x63\xd3\x71\xe3\x6b\xb2\x12\x85\xe7\x67\xd2\xff\x11\x15\xe3\xab"
+
+#################################################
+
 
 if len(sys.argv) != 3:
-    print("usage: serverSocket ip_server port_server")
+    print("usage: clientSocket ip_server port_server")
     exit()
 
 # indirizzo ip e porta del server
@@ -65,22 +74,35 @@ else:
     window_name = "Received Frame"
     prev_frame_received = False
 
+    start = time.time()
+    cont = 0
+
     while True:
         try:
+
             # Ricezione del frame dal server
-            data, server_address = client_socket.recvfrom(64800)  # Dimensione massima del pacchetto UDP
-            print('ricevuti 64800B')
-            frame = np.frombuffer(data, dtype=np.uint8).reshape((270, 240))
+            cipher_image, server_address = client_socket.recvfrom(64800)  # Dimensione massima del pacchetto UDP
+
+            cipher = Cipher(algorithms.AES(key), modes.ECB())
+            decryptor = cipher.decryptor()
+
+            dt = decryptor.update(cipher_image) + decryptor.finalize()
+                
+            original_image_bytes = bytes(bytearray(dt))
+
+
+            frame = np.frombuffer(original_image_bytes, dtype=np.uint8).reshape((270, 240))
+
 
             # Conversione YUV -> RGB
             frame_rgb = cv2.cvtColor(frame, cv2.COLOR_YUV2BGR_I420)
-            print('dimensione prima del resize', frame_rgb.shape)
-            frame_rgb = cv2.resize(frame_rgb, (640, 480))
-            print('dimensione dopo il resize', frame_rgb.shape)
+            frame_rgb = cv2.resize(frame_rgb, (640, 480))            
 
             # Visualizzazione del frame
             cv2.imshow(window_name, frame_rgb)
             prev_frame_received = True
+            
+            cont = cont+1
 
             # Interruzione del loop se viene premuto il tasto 'q'
             if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -96,6 +118,11 @@ else:
             cv2.waitKey(1)
             continue
             # print("Timeout sulla ricezione della conferma. Riprovare.")
+        
+    end = time.time()
+    print("Time:", end - start, "s")
+    print("Frame ricevuti:",cont)
+    print("FPS =", cont / (end - start))
 
     # Chiusura della finestra e della socket
     cv2.destroyAllWindows()

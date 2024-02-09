@@ -13,9 +13,6 @@ key = b"\x63\xd3\x71\xe3\x6b\xb2\x12\x85\xe7\x67\xd2\xff\x11\x15\xe3\xab"
 UDP_IP = "192.168.2.1"
 UDP_PORT = 5555
 
-WIDTH = int(sys.argv[3])
-HEIGHT= int(sys.argv[4])
-
 ################################################
 
 

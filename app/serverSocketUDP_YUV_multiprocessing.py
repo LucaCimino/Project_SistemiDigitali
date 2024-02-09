@@ -3,12 +3,35 @@ import numpy as np
 import sys
 import time
 import socket
-from multiprocessing import Process
 import os
 import signal
+from pynq import Overlay
+import pynq.lib.dma
+
+
+################# Configuration ###################
 
 COMPRESSED_WIDTH = 240
 COMPRESSED_HEIGHT = 180
+
+data_size = 7200
+
+
+# Caricamento dell'overlay
+overlay = Overlay('/home/xilinx/pynq/overlays/AES_Encryption/design_1.bit')
+
+#####################################################
+
+
+
+# Caricamento del DMA
+dma = overlay.axi_dma_0
+
+# Alloca memoria per l'input e l'output -> 2 array da 7200 byte
+in_buffer = pynq.allocate(shape=(data_size,), dtype=np.uint8)
+out_buffer = pynq.allocate(shape=(data_size,), dtype=np.uint8)
+
+
 
 
 def record(frame, server_socket, client_address):
@@ -26,11 +49,27 @@ def record(frame, server_socket, client_address):
     # Ottieni i dati del frame come bytes
     frame_data = frame.tobytes()
 
-    # Ottieni la dimensione dei dati
-    print(len(frame_data))
+    # Crea un bytearray dell'immagine
+    plaintext = bytearray(frame_data)
+
+    encrypted_img_bytes = b""
+
+    for i in range(0, len(plaintext), data_size):
+        chunk = plaintext[i:i+data_size]
+
+        # Copia dei dati nel buffer
+        np.copyto(in_buffer, chunk)
+
+        # Avviare il trasferimento del DMA ed aspettare i risultati
+        dma.sendchannel.transfer(in_buffer)
+        dma.recvchannel.transfer(out_buffer)
+        dma.sendchannel.wait()
+        dma.recvchannel.wait()
+
+        encrypted_img_bytes = encrypted_img_bytes + bytes(bytearray(out_buffer))
 
     # Invia il pacchetto sulla socket
-    server_socket.sendto(frame_data, client_address)
+    server_socket.sendto(encrypted_img_bytes, client_address)
     return
 
 
@@ -51,7 +90,7 @@ def get_mask(frame1, frame2, kernel=np.array((9, 9), dtype=np.uint8)):
     mask = cv2.adaptiveThreshold(frame_diff, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, \
                                  cv2.THRESH_BINARY_INV, 11, 3)
 
-    mask = cv2.medianBlur(mask, 3)
+    #mask = cv2.medianBlur(mask, 3)
 
     # morphological operations
     mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel, iterations=1)
@@ -59,6 +98,7 @@ def get_mask(frame1, frame2, kernel=np.array((9, 9), dtype=np.uint8)):
     num_diff_pixels = np.sum(mask == 255)
 
     return mask, num_diff_pixels
+
 
 
 def test(server_socket, client_address):
@@ -108,14 +148,16 @@ def test(server_socket, client_address):
         kernel = np.array((9, 9), dtype=np.uint8)
         mask, frame_diff = get_mask(img1, img2, kernel)
 
-        cv2.imshow("motion", mask)
+        endTime = time.time()
+        print("Fine getmask:", endTime-startTime)
+        # cv2.imshow("motion", mask)
         print('il numero di pixel che differiscono è: ', frame_diff, ' su ', np.size(mask))
         print('\n')
-
+        time.sleep(0.1)
         ########################
         # se non sta registrando, dopo 5 volte che sono stati rilevati in una diff 500+ pixel di differenza viene fatta partire la registrazione
         # se sta registrando, quando viene rilevata per 5 volte una diff < 200 stoppa la registrazione
-
+        startTime = time.time()
         if (not recording):
             if (frame_diff > threshold_start_num_pixel):
                 threshold_count += 1
@@ -139,7 +181,7 @@ def test(server_socket, client_address):
                 record(actualFrame, server_socket, client_address)
 
         endTime = time.time()
-        print('time: ', endTime - startTime)
+        print('Record time: ', endTime - startTime)
 
         # time.sleep(0.05)
 
@@ -216,7 +258,7 @@ def start_server():
                 '######################################################################################################\n\n\n\n\n')
             continue
 
-        time.sleep(0.05)
+        #time.sleep(0.05)
 
 
 if __name__ == "__main__":
