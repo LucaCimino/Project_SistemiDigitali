@@ -69,7 +69,8 @@ def record(frame, server_socket, client_address):
         encrypted_img_bytes = encrypted_img_bytes + bytes(bytearray(out_buffer))
 
     # Invia il pacchetto sulla socket
-    server_socket.sendto(encrypted_img_bytes, client_address)
+    server_socket.sendto(encrypted_img_bytes, client_address)    
+
     return
 
 
@@ -102,10 +103,7 @@ def get_mask(frame1, frame2, kernel=np.array((9, 9), dtype=np.uint8)):
 
 
 def test(server_socket, client_address):
-    # IMAGE SIZE
-    WIDTH = 256
-    HEIGHT = 256
-    ########################
+
     # camera status
     recording = False
 
@@ -129,21 +127,15 @@ def test(server_socket, client_address):
     endTime = 0
     threshold_count = 0
     while True:
-        # Cattura un frame dalla telecamera
 
+        # Cattura un frame dalla telecamera
         startTime = time.time()
 
         _, actualFrame = cap.read()
 
-        # Visualizza il frame
-        # cv2.imshow("Frame", actualFrame)
-
-        img1_rgb = cv2.cvtColor(oldFrame, cv2.COLOR_BGR2RGB)
-        img2_rgb = cv2.cvtColor(actualFrame, cv2.COLOR_BGR2RGB)
-
         # convert to grayscale
-        img1 = cv2.cvtColor(img1_rgb, cv2.COLOR_RGB2GRAY)
-        img2 = cv2.cvtColor(img2_rgb, cv2.COLOR_RGB2GRAY)
+        img1 = cv2.cvtColor(oldFrame, cv2.COLOR_BGR2GRAY)
+        img2 = cv2.cvtColor(actualFrame, cv2.COLOR_BGR2GRAY)
 
         kernel = np.array((9, 9), dtype=np.uint8)
         mask, frame_diff = get_mask(img1, img2, kernel)
