@@ -4,7 +4,7 @@
 ## Copyright (C) 1986-2016 Xilinx, Inc. All Rights Reserved.
 ############################################################
 open_project AES_Encryption
-set_top single_block_AES_encrypt
+set_top AES_encryption
 add_files AES_Encryption/aes.cpp
 add_files AES_Encryption/aes.h
 add_files AES_Encryption/main.cpp

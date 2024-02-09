@@ -8,7 +8,7 @@
 #
 # Settings for Vivado implementation flow
 #
-set top_module single_block_AES_encrypt
+set top_module AES_encryption
 set language verilog
 set family zynq
 set device xc7z020

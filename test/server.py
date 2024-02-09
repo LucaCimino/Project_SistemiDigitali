@@ -65,8 +65,8 @@ def start_server():
     # indirizzo ip e porta del server
     server_ip = sys.argv[1]
     server_port = int(sys.argv[2])
-    WIDTH = int(sys.argv[3])
-    HEIGHT= int(sys.argv[4])
+    WIDTH = 240
+    HEIGHT= 180
 
     # Creazione della socket UDP
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)

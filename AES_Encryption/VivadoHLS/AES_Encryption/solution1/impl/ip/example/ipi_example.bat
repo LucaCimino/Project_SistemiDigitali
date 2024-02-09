@@ -8,4 +8,4 @@
 
 @echo off
 
-C:/Xilinx/Vivado_HLS/2016.2/../../Vivado/2016.2/bin/vivado  -notrace -mode batch -source ipi_example.tcl -tclargs xc7z020clg400-1 ../xilinx_com_hls_single_block_AES_encrypt_1_0.zip
+C:/Xilinx/Vivado_HLS/2016.2/../../Vivado/2016.2/bin/vivado  -notrace -mode batch -source ipi_example.tcl -tclargs xc7z020clg400-1 ../xilinx_com_hls_AES_encryption_1_0.zip

@@ -1324,8 +1324,7 @@ uint8_t gsub(uint8_t a, uint8_t b) {
  * Irreducible polynomial m(x) = x8 + x4 + x3 + x + 1
  *
  * NOTE: This function can be easily replaced with a look up table for a speed
- *       boost, at the expense of an increase in memory size (around 65 KB). See
- *       the aes.h header file to find the macro definition.
+ *       boost, at the expense of an increase in memory size (around 65 KB).
  */
 uint8_t gmult(uint8_t a, uint8_t b) {
 #pragma empty_line
@@ -1432,7 +1431,7 @@ void add_round_key(uint8_t *state, uint8_t *w, uint8_t r) {
  uint8_t c;
 #pragma empty_line
  for (c = 0; c < 4; c++) {
-  state[4*0+c] = state[4*0+c]^w[4*4*r+4*c+0]; //debug, so it works for Nb !=4
+  state[4*0+c] = state[4*0+c]^w[4*4*r+4*c+0];
   state[4*1+c] = state[4*1+c]^w[4*4*r+4*c+1];
   state[4*2+c] = state[4*2+c]^w[4*4*r+4*c+2];
   state[4*3+c] = state[4*3+c]^w[4*4*r+4*c+3];
@@ -1471,8 +1470,6 @@ void shift_rows(uint8_t *state) {
  uint8_t i, k, s, tmp;
 #pragma empty_line
  for (i = 1; i < 4; i++) {
-  // shift(1,4)=1; shift(2,4)=2; shift(3,4)=3
-  // shift(r, 4) = r;
   s = 0;
   while (s < i) {
    tmp = state[4*i+0];
@@ -1498,9 +1495,6 @@ void sub_bytes(uint8_t *state) {
 #pragma empty_line
  for (i = 0; i < 4; i++) {
   for (j = 0; j < 4; j++) {
-   // s_box row: yyyy ----
-   // s_box col: ---- xxxx
-   // s_box[16*(yyyy) + xxxx] == s_box[yyyyxxxx]
    state[4*i+j] = s_box[state[4*i+j]];
   }
  }

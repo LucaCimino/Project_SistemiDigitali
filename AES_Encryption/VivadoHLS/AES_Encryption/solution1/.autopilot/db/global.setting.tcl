@@ -1,5 +1,5 @@
 
-set TopModule "single_block_AES_encrypt"
+set TopModule "AES_encryption"
 set ClockPeriod "10.000000"
 set ClockList {ap_clk}
 set multiClockList {}

@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include <ap_int.h>
 
-#define BLOCK_SIZE 16 //bytes
+#define BLOCK_SIZE 16 // bytes
 
 struct stream_type {
 	uint8_t data;
@@ -11,14 +11,14 @@ struct stream_type {
 };
 
 /*
- * Funzione che implementa la cifratura con AES su un singolo blocco di testo
+ * Funzione che implementa la cifratura con AES su uno stream di bytes singolo blocco di testo
  *
  * Input:
- *   - plaintext -> 128 bit di testo da cifrare
+ *   - plaintext -> testo da cifrare
  *
  * Output:
- *   - cipher    -> 128 bit di testo cifrato
+ *   - cipher    -> testo cifrato
  *
  */
 
-void single_block_AES_encrypt(hls::stream<stream_type> &i_plaintext, hls::stream<stream_type> &cipher);
+void AES_encryption(hls::stream<stream_type> &i_plaintext, hls::stream<stream_type> &cipher);

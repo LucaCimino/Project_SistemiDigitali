@@ -204,10 +204,10 @@
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
-        <spirit:instanceName>single_block_AES_encrypt_0</spirit:instanceName>
-        <spirit:componentRef spirit:library="hls" spirit:name="single_block_AES_encrypt" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:instanceName>AES_encryption_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="hls" spirit:name="AES_encryption" spirit:vendor="xilinx.com" spirit:version="1.0"/>
         <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">design_1_single_block_AES_encrypt_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">design_1_AES_encryption_0_0</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
     </spirit:componentInstances>
@@ -238,13 +238,13 @@
         <spirit:activeInterface spirit:busRef="S02_AXI" spirit:componentRef="axi_mem_intercon"/>
       </spirit:interconnection>
       <spirit:interconnection>
-        <spirit:name>single_block_AES_encrypt_0_cipher</spirit:name>
-        <spirit:activeInterface spirit:busRef="cipher" spirit:componentRef="single_block_AES_encrypt_0"/>
+        <spirit:name>AES_encryption_0_cipher</spirit:name>
+        <spirit:activeInterface spirit:busRef="cipher" spirit:componentRef="AES_encryption_0"/>
         <spirit:activeInterface spirit:busRef="S_AXIS_S2MM" spirit:componentRef="axi_dma_0"/>
       </spirit:interconnection>
       <spirit:interconnection>
         <spirit:name>axi_dma_0_M_AXIS_MM2S</spirit:name>
-        <spirit:activeInterface spirit:busRef="i_plaintext" spirit:componentRef="single_block_AES_encrypt_0"/>
+        <spirit:activeInterface spirit:busRef="i_plaintext" spirit:componentRef="AES_encryption_0"/>
         <spirit:activeInterface spirit:busRef="M_AXIS_MM2S" spirit:componentRef="axi_dma_0"/>
       </spirit:interconnection>
     </spirit:interconnections>
@@ -266,7 +266,7 @@
         <spirit:internalPortReference spirit:componentRef="processing_system7_0_axi_periph" spirit:portRef="M00_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="axi_mem_intercon" spirit:portRef="S01_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="axi_mem_intercon" spirit:portRef="S02_ACLK"/>
-        <spirit:internalPortReference spirit:componentRef="single_block_AES_encrypt_0" spirit:portRef="ap_clk"/>
+        <spirit:internalPortReference spirit:componentRef="AES_encryption_0" spirit:portRef="ap_clk"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>xlconcat_0_dout</spirit:name>
@@ -288,7 +288,7 @@
         <spirit:internalPortReference spirit:componentRef="processing_system7_0_axi_periph" spirit:portRef="M00_ARESETN"/>
         <spirit:internalPortReference spirit:componentRef="axi_mem_intercon" spirit:portRef="S01_ARESETN"/>
         <spirit:internalPortReference spirit:componentRef="axi_mem_intercon" spirit:portRef="S02_ARESETN"/>
-        <spirit:internalPortReference spirit:componentRef="single_block_AES_encrypt_0" spirit:portRef="ap_rst_n"/>
+        <spirit:internalPortReference spirit:componentRef="AES_encryption_0" spirit:portRef="ap_rst_n"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>rst_processing_system7_0_50M_interconnect_aresetn</spirit:name>

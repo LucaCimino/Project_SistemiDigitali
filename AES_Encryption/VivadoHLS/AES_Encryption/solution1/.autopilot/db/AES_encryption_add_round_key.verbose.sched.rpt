@@ -1,0 +1,301 @@
+
+
+================================================================
+== Vivado HLS Report for 'AES_encryption_add_round_key'
+================================================================
+* Date:           Fri Feb 09 10:18:37 2024
+
+* Version:        2016.2 (Build 1577090 on Thu Jun 02 16:59:10 MDT 2016)
+* Project:        AES_Encryption
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      6.47|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |   17|   17|   17|   17|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |          |  Latency  | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name| min | max |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |- Loop 1  |   16|   16|         4|          -|          -|     4|    no    |
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 5
+* Pipeline: 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / (!exitcond)
+3 --> 
+	4  / true
+4 --> 
+	5  / true
+5 --> 
+	2  / true
+* FSM state operations: 
+
+ <State 1>: 1.57ns
+ST_1: r_read [1/1] 1.04ns
+:0  %r_read = call i6 @_ssdm_op_Read.ap_auto.i6(i6 %r)
+
+ST_1: stg_7 [1/1] 1.57ns
+:1  br label %1
+
+
+ <State 2>: 3.76ns
+ST_2: c [1/1] 0.00ns
+:0  %c = phi i3 [ 0, %0 ], [ %c_1, %2 ]
+
+ST_2: exitcond [1/1] 1.62ns
+:1  %exitcond = icmp eq i3 %c, -4
+
+ST_2: empty [1/1] 0.00ns
+:2  %empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4)
+
+ST_2: c_1 [1/1] 0.80ns
+:3  %c_1 = add i3 %c, 1
+
+ST_2: stg_12 [1/1] 0.00ns
+:4  br i1 %exitcond, label %3, label %2
+
+ST_2: tmp_s [1/1] 0.00ns
+:0  %tmp_s = zext i3 %c to i64
+
+ST_2: state_addr [1/1] 0.00ns
+:1  %state_addr = getelementptr [16 x i8]* %state, i64 0, i64 %tmp_s
+
+ST_2: state_load [2/2] 2.39ns
+:2  %state_load = load i8* %state_addr, align 1
+
+ST_2: tmp [1/1] 0.00ns
+:3  %tmp = trunc i3 %c to i2
+
+ST_2: tmp_57 [1/1] 0.00ns
+:4  %tmp_57 = trunc i6 %r_read to i4
+
+ST_2: tmp_36 [1/1] 0.00ns
+:5  %tmp_36 = call i8 @_ssdm_op_BitConcatenate.i8.i4.i2.i2(i4 %tmp_57, i2 %tmp, i2 0)
+
+ST_2: tmp_39 [1/1] 1.37ns
+:11  %tmp_39 = xor i3 %c, -4
+
+ST_2: tmp_40 [1/1] 0.00ns
+:12  %tmp_40 = zext i3 %tmp_39 to i64
+
+ST_2: state_addr_12 [1/1] 0.00ns
+:13  %state_addr_12 = getelementptr [16 x i8]* %state, i64 0, i64 %tmp_40
+
+ST_2: state_load_1 [2/2] 2.39ns
+:14  %state_load_1 = load i8* %state_addr_12, align 1
+
+ST_2: tmp_41 [1/1] 0.00ns
+:15  %tmp_41 = or i8 %tmp_36, 1
+
+ST_2: tmp_42 [1/1] 0.00ns
+:16  %tmp_42 = zext i8 %tmp_41 to i64
+
+ST_2: w_addr_28 [1/1] 0.00ns
+:17  %w_addr_28 = getelementptr [176 x i8]* %w, i64 0, i64 %tmp_42
+
+ST_2: w_load_4 [2/2] 2.71ns
+:18  %w_load_4 = load i8* %w_addr_28, align 1
+
+ST_2: stg_27 [1/1] 0.00ns
+:0  ret void
+
+
+ <State 3>: 6.47ns
+ST_3: state_load [1/2] 2.39ns
+:2  %state_load = load i8* %state_addr, align 1
+
+ST_3: tmp_37 [1/1] 0.00ns
+:6  %tmp_37 = zext i8 %tmp_36 to i64
+
+ST_3: w_addr [1/1] 0.00ns
+:7  %w_addr = getelementptr [176 x i8]* %w, i64 0, i64 %tmp_37
+
+ST_3: w_load [2/2] 2.71ns
+:8  %w_load = load i8* %w_addr, align 1
+
+ST_3: state_load_1 [1/2] 2.39ns
+:14  %state_load_1 = load i8* %state_addr_12, align 1
+
+ST_3: w_load_4 [1/2] 2.71ns
+:18  %w_load_4 = load i8* %w_addr_28, align 1
+
+ST_3: tmp_43 [1/1] 1.37ns
+:19  %tmp_43 = xor i8 %w_load_4, %state_load_1
+
+ST_3: stg_35 [1/1] 2.39ns
+:20  store i8 %tmp_43, i8* %state_addr_12, align 1
+
+ST_3: tmp_44 [1/1] 0.00ns
+:21  %tmp_44 = call i4 @_ssdm_op_BitConcatenate.i4.i1.i3(i1 true, i3 %c)
+
+ST_3: tmp_45 [1/1] 0.00ns
+:22  %tmp_45 = zext i4 %tmp_44 to i64
+
+ST_3: state_addr_13 [1/1] 0.00ns
+:23  %state_addr_13 = getelementptr [16 x i8]* %state, i64 0, i64 %tmp_45
+
+ST_3: state_load_2 [2/2] 2.39ns
+:24  %state_load_2 = load i8* %state_addr_13, align 1
+
+
+ <State 4>: 6.47ns
+ST_4: w_load [1/2] 2.71ns
+:8  %w_load = load i8* %w_addr, align 1
+
+ST_4: tmp_38 [1/1] 1.37ns
+:9  %tmp_38 = xor i8 %w_load, %state_load
+
+ST_4: stg_42 [1/1] 2.39ns
+:10  store i8 %tmp_38, i8* %state_addr, align 1
+
+ST_4: state_load_2 [1/2] 2.39ns
+:24  %state_load_2 = load i8* %state_addr_13, align 1
+
+ST_4: tmp_46 [1/1] 0.00ns
+:25  %tmp_46 = or i8 %tmp_36, 2
+
+ST_4: tmp_47 [1/1] 0.00ns
+:26  %tmp_47 = zext i8 %tmp_46 to i64
+
+ST_4: w_addr_29 [1/1] 0.00ns
+:27  %w_addr_29 = getelementptr [176 x i8]* %w, i64 0, i64 %tmp_47
+
+ST_4: w_load_5 [2/2] 2.71ns
+:28  %w_load_5 = load i8* %w_addr_29, align 1
+
+ST_4: tmp_76_cast3 [1/1] 0.00ns
+:31  %tmp_76_cast3 = sext i3 %tmp_39 to i4
+
+ST_4: tmp_49 [1/1] 0.00ns
+:32  %tmp_49 = zext i4 %tmp_76_cast3 to i64
+
+ST_4: state_addr_14 [1/1] 0.00ns
+:33  %state_addr_14 = getelementptr [16 x i8]* %state, i64 0, i64 %tmp_49
+
+ST_4: state_load_3 [2/2] 2.39ns
+:34  %state_load_3 = load i8* %state_addr_14, align 1
+
+ST_4: tmp_50 [1/1] 0.00ns
+:35  %tmp_50 = or i8 %tmp_36, 3
+
+ST_4: tmp_51 [1/1] 0.00ns
+:36  %tmp_51 = zext i8 %tmp_50 to i64
+
+ST_4: w_addr_30 [1/1] 0.00ns
+:37  %w_addr_30 = getelementptr [176 x i8]* %w, i64 0, i64 %tmp_51
+
+ST_4: w_load_6 [2/2] 2.71ns
+:38  %w_load_6 = load i8* %w_addr_30, align 1
+
+
+ <State 5>: 6.47ns
+ST_5: w_load_5 [1/2] 2.71ns
+:28  %w_load_5 = load i8* %w_addr_29, align 1
+
+ST_5: tmp_48 [1/1] 1.37ns
+:29  %tmp_48 = xor i8 %w_load_5, %state_load_2
+
+ST_5: stg_58 [1/1] 2.39ns
+:30  store i8 %tmp_48, i8* %state_addr_13, align 1
+
+ST_5: state_load_3 [1/2] 2.39ns
+:34  %state_load_3 = load i8* %state_addr_14, align 1
+
+ST_5: w_load_6 [1/2] 2.71ns
+:38  %w_load_6 = load i8* %w_addr_30, align 1
+
+ST_5: tmp_52 [1/1] 1.37ns
+:39  %tmp_52 = xor i8 %w_load_6, %state_load_3
+
+ST_5: stg_62 [1/1] 2.39ns
+:40  store i8 %tmp_52, i8* %state_addr_14, align 1
+
+ST_5: stg_63 [1/1] 0.00ns
+:41  br label %1
+
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ No timing violations. 
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

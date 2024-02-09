@@ -13,4 +13,4 @@ const Port_Property HLS_Design_Meta::port_props[]={
 	Port_Property("cipher_TUSER", 1, hls_out, 4, "axis", "out_data", 1),
 	Port_Property("cipher_TLAST", 1, hls_out, 5, "axis", "out_data", 1),
 };
-const char* HLS_Design_Meta::dut_name = "single_block_AES_encrypt";
+const char* HLS_Design_Meta::dut_name = "AES_encryption";

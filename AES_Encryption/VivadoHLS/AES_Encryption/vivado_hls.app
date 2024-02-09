@@ -1,4 +1,4 @@
-<project xmlns="com.autoesl.autopilot.project" name="AES_Encryption" top="single_block_AES_encrypt">
+<project xmlns="com.autoesl.autopilot.project" name="AES_Encryption" top="AES_encryption">
     <includePaths/>
     <libraryPaths/>
     <Simulation>

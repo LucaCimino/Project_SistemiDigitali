@@ -12,7 +12,7 @@
   <warningLogs>
     <logs>
       <synLog>
-        <logs message="WARNING: [RTGEN 206-101] Global array 'R' will not be exposed as RTL port." projectName="AES_Encryption" solutionName="solution1" date="2024-02-08T15:39:37.329+0100" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Global array 'R' will not be exposed as RTL port." projectName="AES_Encryption" solutionName="solution1" date="2024-02-09T10:21:31.443+0100" type="Warning"/>
       </synLog>
       <simLog/>
       <mgLog/>

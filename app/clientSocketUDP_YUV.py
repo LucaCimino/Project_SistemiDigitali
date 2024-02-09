@@ -25,7 +25,6 @@ request_message = "Inizia invio frame"
 
 def feedback():
     while True:
-        print("Sono una principessa")
         client_socket.sendto("ack".encode(), (server_ip, server_port))
         time.sleep(1.0)
 

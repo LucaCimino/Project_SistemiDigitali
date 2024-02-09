@@ -6,7 +6,7 @@
 <Project Version="7" Minor="14" Path="C:/Users/lucac/VivadoHLS/AES_Encryption/solution1/impl/vhdl/project.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
-    <Option Name="Id" Val="d5d64c08539c4a1481bdf7385f6d384f"/>
+    <Option Name="Id" Val="3888cd46ca4f4d9abdc3094e9996c58e"/>
     <Option Name="Part" Val="xc7z020clg400-1"/>
     <Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
     <Option Name="CompiledLibDirXSim" Val=""/>
@@ -43,91 +43,91 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
       <Filter Type="Srcs"/>
-      <File Path="$PPRDIR/single_block_AES_encrypt.vhd">
+      <File Path="$PPRDIR/AES_encryption.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/single_block_AES_encrypt_add_round_key.vhd">
+      <File Path="$PPRDIR/AES_encryption_add_round_key.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/single_block_AES_encrypt_aes_cipher.vhd">
+      <File Path="$PPRDIR/AES_encryption_aes_cipher.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/single_block_AES_encrypt_aes_cipher_state.vhd">
+      <File Path="$PPRDIR/AES_encryption_aes_cipher_state.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/single_block_AES_encrypt_aes_key_expansion.vhd">
+      <File Path="$PPRDIR/AES_encryption_aes_key_expansion.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/single_block_AES_encrypt_aes_key_expansion_R.vhd">
+      <File Path="$PPRDIR/AES_encryption_aes_key_expansion_R.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/single_block_AES_encrypt_aes_key_expansion_s_box.vhd">
+      <File Path="$PPRDIR/AES_encryption_aes_key_expansion_s_box.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/single_block_AES_encrypt_gmult.vhd">
+      <File Path="$PPRDIR/AES_encryption_gmult.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/single_block_AES_encrypt_mix_columns.vhd">
+      <File Path="$PPRDIR/AES_encryption_mix_columns.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/single_block_AES_encrypt_mux_4to1_sel2_8_1.vhd">
+      <File Path="$PPRDIR/AES_encryption_mux_4to1_sel2_8_1.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/single_block_AES_encrypt_out.vhd">
+      <File Path="$PPRDIR/AES_encryption_out.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/single_block_AES_encrypt_plaintext.vhd">
+      <File Path="$PPRDIR/AES_encryption_plaintext.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/single_block_AES_encrypt_shift_rows.vhd">
+      <File Path="$PPRDIR/AES_encryption_shift_rows.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/single_block_AES_encrypt_sub_bytes.vhd">
+      <File Path="$PPRDIR/AES_encryption_sub_bytes.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/single_block_AES_encrypt_w.vhd">
+      <File Path="$PPRDIR/AES_encryption_w.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -140,7 +140,7 @@
     </FileSet>
     <FileSet Name="constrs_1" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
       <Filter Type="Constrs"/>
-      <File Path="$PPRDIR/single_block_AES_encrypt.xdc">
+      <File Path="$PPRDIR/AES_encryption.xdc">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>

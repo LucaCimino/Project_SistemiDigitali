@@ -2,7 +2,7 @@
 <spirit:component xmlns:xilinx="http://www.xilinx.com" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <spirit:vendor>xilinx.com</spirit:vendor>
   <spirit:library>hls</spirit:library>
-  <spirit:name>single_block_AES_encrypt</spirit:name>
+  <spirit:name>AES_encryption</spirit:name>
   <spirit:version>1.0</spirit:version>
   <spirit:busInterfaces>
     <spirit:busInterface>
@@ -201,7 +201,7 @@
         <spirit:displayName>Verilog Synthesis</spirit:displayName>
         <spirit:envIdentifier>verilogSource:vivado.xilinx.com:synthesis</spirit:envIdentifier>
         <spirit:language>verilog</spirit:language>
-        <spirit:modelName>single_block_AES_encrypt</spirit:modelName>
+        <spirit:modelName>AES_encryption</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_verilogsynthesis_view_fileset</spirit:localName>
         </spirit:fileSetRef>
@@ -211,7 +211,7 @@
         <spirit:displayName>Verilog Simulation</spirit:displayName>
         <spirit:envIdentifier>verilogSource:vivado.xilinx.com:simulation</spirit:envIdentifier>
         <spirit:language>verilog</spirit:language>
-        <spirit:modelName>single_block_AES_encrypt</spirit:modelName>
+        <spirit:modelName>AES_encryption</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_verilogbehavioralsimulation_view_fileset</spirit:localName>
         </spirit:fileSetRef>
@@ -221,7 +221,7 @@
         <spirit:displayName>VHDL Synthesis</spirit:displayName>
         <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:synthesis</spirit:envIdentifier>
         <spirit:language>vhdl</spirit:language>
-        <spirit:modelName>single_block_AES_encrypt</spirit:modelName>
+        <spirit:modelName>AES_encryption</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_vhdlsynthesis_view_fileset</spirit:localName>
         </spirit:fileSetRef>
@@ -231,7 +231,7 @@
         <spirit:displayName>VHDL Simulation</spirit:displayName>
         <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:simulation</spirit:envIdentifier>
         <spirit:language>vhdl</spirit:language>
-        <spirit:modelName>single_block_AES_encrypt</spirit:modelName>
+        <spirit:modelName>AES_encryption</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_vhdlbehavioralsimulation_view_fileset</spirit:localName>
         </spirit:fileSetRef>
@@ -470,161 +470,161 @@
     <spirit:fileSet>
       <spirit:name>xilinx_verilogsynthesis_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>constraints/single_block_AES_encrypt_ooc.xdc</spirit:name>
+        <spirit:name>constraints/AES_encryption_ooc.xdc</spirit:name>
         <spirit:userFileType>xdc</spirit:userFileType>
         <spirit:userFileType>USED_IN_out_of_context</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_add_round_key.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_add_round_key.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_aes_cipher.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_aes_cipher.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_aes_cipher_state.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_aes_cipher_state.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_aes_key_expansion.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_aes_key_expansion.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_aes_key_expansion_R.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_aes_key_expansion_R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_aes_key_expansion_R_ram.dat</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_aes_key_expansion_R_ram.dat</spirit:name>
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_aes_key_expansion_s_box.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_aes_key_expansion_s_box.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_aes_key_expansion_s_box_rom.dat</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_aes_key_expansion_s_box_rom.dat</spirit:name>
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_gmult.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_gmult.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_mix_columns.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_mix_columns.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_mux_4to1_sel2_8_1.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_mux_4to1_sel2_8_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_out.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_out.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_plaintext.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_plaintext.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_shift_rows.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_shift_rows.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_sub_bytes.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_sub_bytes.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_w.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_w.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_verilogbehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_add_round_key.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_add_round_key.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_aes_cipher.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_aes_cipher.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_aes_cipher_state.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_aes_cipher_state.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_aes_key_expansion.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_aes_key_expansion.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_aes_key_expansion_R.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_aes_key_expansion_R.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_aes_key_expansion_R_ram.dat</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_aes_key_expansion_R_ram.dat</spirit:name>
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_aes_key_expansion_s_box.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_aes_key_expansion_s_box.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_aes_key_expansion_s_box_rom.dat</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_aes_key_expansion_s_box_rom.dat</spirit:name>
         <spirit:userFileType>mif</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_gmult.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_gmult.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_mix_columns.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_mix_columns.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_mux_4to1_sel2_8_1.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_mux_4to1_sel2_8_1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_out.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_out.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_plaintext.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_plaintext.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_shift_rows.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_shift_rows.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_sub_bytes.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_sub_bytes.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/single_block_AES_encrypt_w.v</spirit:name>
+        <spirit:name>hdl/verilog/AES_encryption_w.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -632,146 +632,146 @@
     <spirit:fileSet>
       <spirit:name>xilinx_vhdlsynthesis_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>constraints/single_block_AES_encrypt_ooc.xdc</spirit:name>
+        <spirit:name>constraints/AES_encryption_ooc.xdc</spirit:name>
         <spirit:userFileType>xdc</spirit:userFileType>
         <spirit:userFileType>USED_IN_out_of_context</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_add_round_key.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_add_round_key.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_aes_cipher.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_aes_cipher.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_aes_cipher_state.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_aes_cipher_state.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_aes_key_expansion.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_aes_key_expansion.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_aes_key_expansion_R.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_aes_key_expansion_R.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_aes_key_expansion_s_box.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_aes_key_expansion_s_box.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_gmult.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_gmult.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_mix_columns.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_mix_columns.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_mux_4to1_sel2_8_1.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_mux_4to1_sel2_8_1.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_out.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_out.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_plaintext.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_plaintext.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_shift_rows.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_shift_rows.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_sub_bytes.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_sub_bytes.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_w.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_w.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_29c6f8e9</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_e340403e</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_vhdlbehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_add_round_key.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_add_round_key.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_aes_cipher.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_aes_cipher.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_aes_cipher_state.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_aes_cipher_state.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_aes_key_expansion.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_aes_key_expansion.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_aes_key_expansion_R.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_aes_key_expansion_R.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_aes_key_expansion_s_box.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_aes_key_expansion_s_box.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_gmult.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_gmult.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_mix_columns.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_mix_columns.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_mux_4to1_sel2_8_1.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_mux_4to1_sel2_8_1.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_out.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_out.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_plaintext.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_plaintext.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_shift_rows.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_shift_rows.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_sub_bytes.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_sub_bytes.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/vhdl/single_block_AES_encrypt_w.vhd</spirit:name>
+        <spirit:name>hdl/vhdl/AES_encryption_w.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -800,7 +800,7 @@
     <spirit:fileSet>
       <spirit:name>xilinx_xpgui_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>xgui/single_block_AES_encrypt_v1_0.tcl</spirit:name>
+        <spirit:name>xgui/AES_encryption_v1_0.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
         <spirit:userFileType>CHECKSUM_bdef2832</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
@@ -819,7 +819,7 @@
   <spirit:parameters>
     <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">single_block_AES_encrypt_v1_0</spirit:value>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">AES_encryption_v1_0</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>clk_period</spirit:name>
@@ -850,10 +850,10 @@
       <xilinx:taxonomies>
         <xilinx:taxonomy>/VIVADO_HLS_IP</xilinx:taxonomy>
       </xilinx:taxonomies>
-      <xilinx:displayName>Single_block_aes_encrypt</xilinx:displayName>
+      <xilinx:displayName>Aes_encryption</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2113419224</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2024-02-08T14:44:57Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2113420345</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2024-02-09T09:25:46Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2016.2</xilinx:xilinxVersion>

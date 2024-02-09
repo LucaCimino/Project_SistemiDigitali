@@ -6,7 +6,7 @@
         <clock default="false" name="default" period="10"/>
     </clockList>
     <config>
-        <schedule model="single_block_AES_encrypt"/>
+        <schedule model="AES_encryption"/>
     </config>
     <UIConfigurations>
         <UIAutosynConf hideTrivialOp="true" isBasedOnBoard="false" isSolutionDirty="false" isStopAskAgain="false" showDetailDesignViewer="false">

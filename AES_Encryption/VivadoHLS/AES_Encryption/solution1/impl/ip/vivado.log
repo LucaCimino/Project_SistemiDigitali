@@ -2,8 +2,8 @@
 # Vivado v2016.2 (64-bit)
 # SW Build 1577090 on Thu Jun  2 16:32:40 MDT 2016
 # IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
-# Start of session at: Thu Feb 08 15:44:48 2024
-# Process ID: 8540
+# Start of session at: Fri Feb 09 10:25:27 2024
+# Process ID: 10052
 # Current directory: C:/Users/lucac/VivadoHLS/AES_Encryption/solution1/impl/ip
 # Command line: vivado.exe -notrace -mode batch -source run_ippack.tcl
 # Log file: C:/Users/lucac/VivadoHLS/AES_Encryption/solution1/impl/ip/vivado.log
@@ -13,4 +13,4 @@ source run_ippack.tcl -notrace
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2016.2/data/ip'.
-INFO: [Common 17-206] Exiting Vivado at Thu Feb 08 15:44:58 2024...
+INFO: [Common 17-206] Exiting Vivado at Fri Feb 09 10:25:46 2024...

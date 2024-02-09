@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2016.2 (win64) Build 1577090 Thu Jun  2 16:32:40 MDT 2016
-| Date             : Thu Feb 08 15:58:20 2024
+| Date             : Fri Feb 09 10:49:14 2024
 | Host             : DESKTOP-DJ9UMHB running 64-bit major release  (build 9200)
 | Command          : report_power -file design_1_wrapper_power_routed.rpt -pb design_1_wrapper_power_summary_routed.pb -rpx design_1_wrapper_power_routed.rpx
 | Design           : design_1_wrapper
@@ -30,12 +30,12 @@ Table of Contents
 ----------
 
 +--------------------------+--------+
-| Total On-Chip Power (W)  | 1.755  |
-| Dynamic (W)              | 1.603  |
-| Device Static (W)        | 0.151  |
+| Total On-Chip Power (W)  | 1.772  |
+| Dynamic (W)              | 1.621  |
+| Device Static (W)        | 0.152  |
 | Effective TJA (C/W)      | 11.5   |
-| Max Ambient (C)          | 64.8   |
-| Junction Temperature (C) | 45.2   |
+| Max Ambient (C)          | 64.6   |
+| Junction Temperature (C) | 45.4   |
 | Confidence Level         | Medium |
 | Setting File             | ---    |
 | Simulation Activity File | ---    |
@@ -49,20 +49,20 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.029 |        3 |       --- |             --- |
-| Slice Logic              |     0.017 |    22646 |       --- |             --- |
-|   LUT as Logic           |     0.016 |     9298 |     53200 |           17.48 |
-|   Register               |    <0.001 |     9628 |    106400 |            9.05 |
+| Clocks                   |     0.040 |        3 |       --- |             --- |
+| Slice Logic              |     0.020 |    31818 |       --- |             --- |
+|   LUT as Logic           |     0.019 |    13321 |     53200 |           25.04 |
+|   Register               |    <0.001 |    13313 |    106400 |           12.51 |
 |   CARRY4                 |    <0.001 |      112 |     13300 |            0.84 |
 |   LUT as Distributed RAM |    <0.001 |       38 |     17400 |            0.22 |
 |   F7/F8 Muxes            |    <0.001 |       12 |     53200 |            0.02 |
 |   LUT as Shift Register  |    <0.001 |      236 |     17400 |            1.36 |
 |   Others                 |     0.000 |      497 |       --- |             --- |
-| Signals                  |     0.018 |    16377 |       --- |             --- |
+| Signals                  |     0.022 |    23160 |       --- |             --- |
 | Block RAM                |     0.008 |        7 |       140 |            5.00 |
 | PS7                      |     1.530 |        1 |       --- |             --- |
-| Static Power             |     0.151 |          |           |                 |
-| Total                    |     1.755 |          |           |                 |
+| Static Power             |     0.152 |          |           |                 |
+| Total                    |     1.772 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -72,7 +72,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.088 |       0.072 |      0.016 |
+| Vccint    |       1.000 |     0.105 |       0.090 |      0.016 |
 | Vccaux    |       1.800 |     0.021 |       0.000 |      0.021 |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -148,8 +148,56 @@ Table of Contents
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
 | Name                                                                                                                                                                                                                                              | Power (W) |
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| design_1_wrapper                                                                                                                                                                                                                                  |     1.603 |
-|   design_1_i                                                                                                                                                                                                                                      |     1.603 |
+| design_1_wrapper                                                                                                                                                                                                                                  |     1.621 |
+|   design_1_i                                                                                                                                                                                                                                      |     1.621 |
+|     AES_encryption_0                                                                                                                                                                                                                              |     0.069 |
+|       inst                                                                                                                                                                                                                                        |     0.069 |
+|         grp_AES_encryption_aes_cipher_fu_16313                                                                                                                                                                                                    |     0.013 |
+|           grp_AES_encryption_add_round_key_fu_242                                                                                                                                                                                                 |    <0.001 |
+|           grp_AES_encryption_mix_columns_fu_237                                                                                                                                                                                                   |     0.007 |
+|             grp_AES_encryption_gmult_fu_103                                                                                                                                                                                                       |    <0.001 |
+|             grp_AES_encryption_gmult_fu_110                                                                                                                                                                                                       |    <0.001 |
+|             grp_AES_encryption_gmult_fu_117                                                                                                                                                                                                       |    <0.001 |
+|             grp_AES_encryption_gmult_fu_124                                                                                                                                                                                                       |    <0.001 |
+|             grp_AES_encryption_gmult_fu_131                                                                                                                                                                                                       |    <0.001 |
+|             grp_AES_encryption_gmult_fu_138                                                                                                                                                                                                       |    <0.001 |
+|             grp_AES_encryption_gmult_fu_145                                                                                                                                                                                                       |    <0.001 |
+|             grp_AES_encryption_gmult_fu_152                                                                                                                                                                                                       |    <0.001 |
+|             grp_AES_encryption_gmult_fu_159                                                                                                                                                                                                       |    <0.001 |
+|             grp_AES_encryption_gmult_fu_166                                                                                                                                                                                                       |    <0.001 |
+|             grp_AES_encryption_gmult_fu_173                                                                                                                                                                                                       |    <0.001 |
+|             grp_AES_encryption_gmult_fu_180                                                                                                                                                                                                       |    <0.001 |
+|           grp_AES_encryption_shift_rows_fu_252                                                                                                                                                                                                    |    <0.001 |
+|           grp_AES_encryption_sub_bytes_fu_257                                                                                                                                                                                                     |    <0.001 |
+|           state_U                                                                                                                                                                                                                                 |     0.003 |
+|             AES_encryption_aes_cipher_state_ram_U                                                                                                                                                                                                 |     0.003 |
+|         grp_AES_encryption_aes_key_expansion_fu_16322                                                                                                                                                                                             |     0.004 |
+|           R_U                                                                                                                                                                                                                                     |    <0.001 |
+|             AES_encryption_aes_key_expansion_R_ram_U                                                                                                                                                                                              |    <0.001 |
+|               ram_reg_0_3_0_0                                                                                                                                                                                                                     |    <0.001 |
+|               ram_reg_0_3_1_1                                                                                                                                                                                                                     |    <0.001 |
+|               ram_reg_0_3_2_2                                                                                                                                                                                                                     |    <0.001 |
+|               ram_reg_0_3_3_3                                                                                                                                                                                                                     |    <0.001 |
+|               ram_reg_0_3_4_4                                                                                                                                                                                                                     |    <0.001 |
+|               ram_reg_0_3_5_5                                                                                                                                                                                                                     |    <0.001 |
+|               ram_reg_0_3_6_6                                                                                                                                                                                                                     |    <0.001 |
+|               ram_reg_0_3_7_7                                                                                                                                                                                                                     |    <0.001 |
+|           s_box_U                                                                                                                                                                                                                                 |     0.001 |
+|             AES_encryption_aes_key_expansion_s_box_rom_U                                                                                                                                                                                          |     0.001 |
+|         out_U                                                                                                                                                                                                                                     |     0.003 |
+|           AES_encryption_out_ram_U                                                                                                                                                                                                                |     0.003 |
+|         plaintext_U                                                                                                                                                                                                                               |     0.011 |
+|           AES_encryption_plaintext_ram_U                                                                                                                                                                                                          |     0.011 |
+|             ram_reg_0_15_0_0                                                                                                                                                                                                                      |    <0.001 |
+|             ram_reg_0_15_1_1                                                                                                                                                                                                                      |    <0.001 |
+|             ram_reg_0_15_2_2                                                                                                                                                                                                                      |    <0.001 |
+|             ram_reg_0_15_3_3                                                                                                                                                                                                                      |    <0.001 |
+|             ram_reg_0_15_4_4                                                                                                                                                                                                                      |    <0.001 |
+|             ram_reg_0_15_5_5                                                                                                                                                                                                                      |    <0.001 |
+|             ram_reg_0_15_6_6                                                                                                                                                                                                                      |    <0.001 |
+|             ram_reg_0_15_7_7                                                                                                                                                                                                                      |    <0.001 |
+|         w_U                                                                                                                                                                                                                                       |     0.002 |
+|           AES_encryption_w_ram_U                                                                                                                                                                                                                  |     0.002 |
 |     axi_dma_0                                                                                                                                                                                                                                     |     0.011 |
 |       U0                                                                                                                                                                                                                                          |     0.011 |
 |         GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/GEN_ENABLE_INDET_BTT_SF.I_INDET_BTT/I_XD_FIFO/NON_BLK_MEM.I_SYNC_FIFOGEN_FIFO/FAMILY_SUPPORTED.I_SYNC_FIFO_BRAM/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gdm.dm_gen.dm/RAM_reg_0_7_0_5   |    <0.001 |
@@ -346,7 +394,7 @@ Table of Contents
 |                                 RAM_reg_0_31_0_0                                                                                                                                                                                                  |    <0.001 |
 |                             rstblk                                                                                                                                                                                                                |    <0.001 |
 |               USE_WRITE.USE_SPLIT_W.write_resp_inst                                                                                                                                                                                               |    <0.001 |
-|               USE_WRITE.write_addr_inst                                                                                                                                                                                                           |    <0.001 |
+|               USE_WRITE.write_addr_inst                                                                                                                                                                                                           |     0.001 |
 |                 USE_BURSTS.cmd_queue                                                                                                                                                                                                              |    <0.001 |
 |                   inst                                                                                                                                                                                                                            |    <0.001 |
 |                     fifo_gen_inst                                                                                                                                                                                                                 |    <0.001 |
@@ -450,7 +498,7 @@ Table of Contents
 |                 aw_pipe                                                                                                                                                                                                                           |    <0.001 |
 |                 b_pipe                                                                                                                                                                                                                            |    <0.001 |
 |                 r_pipe                                                                                                                                                                                                                            |    <0.001 |
-|               WR.aw_channel_0                                                                                                                                                                                                                     |     0.001 |
+|               WR.aw_channel_0                                                                                                                                                                                                                     |    <0.001 |
 |                 aw_cmd_fsm_0                                                                                                                                                                                                                      |    <0.001 |
 |                 cmd_translator_0                                                                                                                                                                                                                  |    <0.001 |
 |                   incr_cmd_0                                                                                                                                                                                                                      |    <0.001 |
@@ -464,54 +512,6 @@ Table of Contents
 |           ACTIVE_LOW_EXT.ACT_LO_EXT                                                                                                                                                                                                               |    <0.001 |
 |         SEQ                                                                                                                                                                                                                                       |    <0.001 |
 |           SEQ_COUNTER                                                                                                                                                                                                                             |    <0.001 |
-|     single_block_AES_encrypt_0                                                                                                                                                                                                                    |     0.051 |
-|       inst                                                                                                                                                                                                                                        |     0.051 |
-|         grp_single_block_AES_encrypt_aes_cipher_fu_9328                                                                                                                                                                                           |     0.014 |
-|           grp_single_block_AES_encrypt_add_round_key_fu_242                                                                                                                                                                                       |    <0.001 |
-|           grp_single_block_AES_encrypt_mix_columns_fu_237                                                                                                                                                                                         |     0.007 |
-|             grp_single_block_AES_encrypt_gmult_fu_103                                                                                                                                                                                             |    <0.001 |
-|             grp_single_block_AES_encrypt_gmult_fu_110                                                                                                                                                                                             |    <0.001 |
-|             grp_single_block_AES_encrypt_gmult_fu_117                                                                                                                                                                                             |    <0.001 |
-|             grp_single_block_AES_encrypt_gmult_fu_124                                                                                                                                                                                             |    <0.001 |
-|             grp_single_block_AES_encrypt_gmult_fu_131                                                                                                                                                                                             |    <0.001 |
-|             grp_single_block_AES_encrypt_gmult_fu_138                                                                                                                                                                                             |    <0.001 |
-|             grp_single_block_AES_encrypt_gmult_fu_145                                                                                                                                                                                             |    <0.001 |
-|             grp_single_block_AES_encrypt_gmult_fu_152                                                                                                                                                                                             |    <0.001 |
-|             grp_single_block_AES_encrypt_gmult_fu_159                                                                                                                                                                                             |    <0.001 |
-|             grp_single_block_AES_encrypt_gmult_fu_166                                                                                                                                                                                             |    <0.001 |
-|             grp_single_block_AES_encrypt_gmult_fu_173                                                                                                                                                                                             |    <0.001 |
-|             grp_single_block_AES_encrypt_gmult_fu_180                                                                                                                                                                                             |    <0.001 |
-|           grp_single_block_AES_encrypt_shift_rows_fu_252                                                                                                                                                                                          |    <0.001 |
-|           grp_single_block_AES_encrypt_sub_bytes_fu_257                                                                                                                                                                                           |     0.001 |
-|             s_box_U                                                                                                                                                                                                                               |     0.001 |
-|               single_block_AES_encrypt_aes_key_expansion_s_box_rom_U                                                                                                                                                                              |     0.001 |
-|           state_U                                                                                                                                                                                                                                 |     0.003 |
-|             single_block_AES_encrypt_aes_cipher_state_ram_U                                                                                                                                                                                       |     0.003 |
-|         grp_single_block_AES_encrypt_aes_key_expansion_fu_9337                                                                                                                                                                                    |     0.004 |
-|           R_U                                                                                                                                                                                                                                     |    <0.001 |
-|             single_block_AES_encrypt_aes_key_expansion_R_ram_U                                                                                                                                                                                    |    <0.001 |
-|               ram_reg_0_3_0_0                                                                                                                                                                                                                     |    <0.001 |
-|               ram_reg_0_3_1_1                                                                                                                                                                                                                     |    <0.001 |
-|               ram_reg_0_3_2_2                                                                                                                                                                                                                     |    <0.001 |
-|               ram_reg_0_3_3_3                                                                                                                                                                                                                     |    <0.001 |
-|               ram_reg_0_3_4_4                                                                                                                                                                                                                     |    <0.001 |
-|               ram_reg_0_3_5_5                                                                                                                                                                                                                     |    <0.001 |
-|               ram_reg_0_3_6_6                                                                                                                                                                                                                     |    <0.001 |
-|               ram_reg_0_3_7_7                                                                                                                                                                                                                     |    <0.001 |
-|         out_U                                                                                                                                                                                                                                     |     0.003 |
-|           single_block_AES_encrypt_out_ram_U                                                                                                                                                                                                      |     0.003 |
-|         plaintext_U                                                                                                                                                                                                                               |     0.008 |
-|           single_block_AES_encrypt_plaintext_ram_U                                                                                                                                                                                                |     0.008 |
-|             ram_reg_0_15_0_0                                                                                                                                                                                                                      |    <0.001 |
-|             ram_reg_0_15_1_1                                                                                                                                                                                                                      |    <0.001 |
-|             ram_reg_0_15_2_2                                                                                                                                                                                                                      |    <0.001 |
-|             ram_reg_0_15_3_3                                                                                                                                                                                                                      |    <0.001 |
-|             ram_reg_0_15_4_4                                                                                                                                                                                                                      |    <0.001 |
-|             ram_reg_0_15_5_5                                                                                                                                                                                                                      |    <0.001 |
-|             ram_reg_0_15_6_6                                                                                                                                                                                                                      |    <0.001 |
-|             ram_reg_0_15_7_7                                                                                                                                                                                                                      |    <0.001 |
-|         w_U                                                                                                                                                                                                                                       |     0.002 |
-|           single_block_AES_encrypt_w_ram_U                                                                                                                                                                                                        |     0.002 |
 |     xlconcat_0                                                                                                                                                                                                                                    |     0.000 |
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
 

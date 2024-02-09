@@ -1,7 +1,7 @@
 //Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2016.2 (win64) Build 1577090 Thu Jun  2 16:32:40 MDT 2016
-//Date        : Thu Feb 08 15:47:14 2024
+//Date        : Fri Feb 09 10:27:53 2024
 //Host        : DESKTOP-DJ9UMHB running 64-bit major release  (build 9200)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -54,6 +54,10 @@ module design_1
   inout FIXED_IO_ps_porb;
   inout FIXED_IO_ps_srstb;
 
+  wire [7:0]AES_encryption_0_cipher_TDATA;
+  wire [0:0]AES_encryption_0_cipher_TLAST;
+  wire AES_encryption_0_cipher_TREADY;
+  wire AES_encryption_0_cipher_TVALID;
   wire [7:0]axi_dma_0_M_AXIS_MM2S_TDATA;
   wire axi_dma_0_M_AXIS_MM2S_TLAST;
   wire axi_dma_0_M_AXIS_MM2S_TREADY;
@@ -206,12 +210,20 @@ module design_1
   wire processing_system7_0_axi_periph_M00_AXI_WVALID;
   wire [0:0]rst_processing_system7_0_50M_interconnect_aresetn;
   wire [0:0]rst_processing_system7_0_50M_peripheral_aresetn;
-  wire [7:0]single_block_AES_encrypt_0_cipher_TDATA;
-  wire [0:0]single_block_AES_encrypt_0_cipher_TLAST;
-  wire single_block_AES_encrypt_0_cipher_TREADY;
-  wire single_block_AES_encrypt_0_cipher_TVALID;
   wire [1:0]xlconcat_0_dout;
 
+  design_1_AES_encryption_0_0 AES_encryption_0
+       (.ap_clk(processing_system7_0_FCLK_CLK0),
+        .ap_rst_n(rst_processing_system7_0_50M_peripheral_aresetn),
+        .cipher_TDATA(AES_encryption_0_cipher_TDATA),
+        .cipher_TLAST(AES_encryption_0_cipher_TLAST),
+        .cipher_TREADY(AES_encryption_0_cipher_TREADY),
+        .cipher_TVALID(AES_encryption_0_cipher_TVALID),
+        .i_plaintext_TDATA(axi_dma_0_M_AXIS_MM2S_TDATA),
+        .i_plaintext_TLAST(axi_dma_0_M_AXIS_MM2S_TLAST),
+        .i_plaintext_TREADY(axi_dma_0_M_AXIS_MM2S_TREADY),
+        .i_plaintext_TUSER(1'b0),
+        .i_plaintext_TVALID(axi_dma_0_M_AXIS_MM2S_TVALID));
   design_1_axi_dma_0_2 axi_dma_0
        (.axi_resetn(rst_processing_system7_0_50M_peripheral_aresetn),
         .m_axi_mm2s_aclk(processing_system7_0_FCLK_CLK0),
@@ -268,11 +280,11 @@ module design_1
         .s_axi_lite_wdata(processing_system7_0_axi_periph_M00_AXI_WDATA),
         .s_axi_lite_wready(processing_system7_0_axi_periph_M00_AXI_WREADY),
         .s_axi_lite_wvalid(processing_system7_0_axi_periph_M00_AXI_WVALID),
-        .s_axis_s2mm_tdata(single_block_AES_encrypt_0_cipher_TDATA),
+        .s_axis_s2mm_tdata(AES_encryption_0_cipher_TDATA),
         .s_axis_s2mm_tkeep(1'b1),
-        .s_axis_s2mm_tlast(single_block_AES_encrypt_0_cipher_TLAST),
-        .s_axis_s2mm_tready(single_block_AES_encrypt_0_cipher_TREADY),
-        .s_axis_s2mm_tvalid(single_block_AES_encrypt_0_cipher_TVALID));
+        .s_axis_s2mm_tlast(AES_encryption_0_cipher_TLAST),
+        .s_axis_s2mm_tready(AES_encryption_0_cipher_TREADY),
+        .s_axis_s2mm_tvalid(AES_encryption_0_cipher_TVALID));
   design_1_axi_mem_intercon_2 axi_mem_intercon
        (.ACLK(processing_system7_0_FCLK_CLK0),
         .ARESETN(rst_processing_system7_0_50M_interconnect_aresetn),
@@ -551,18 +563,6 @@ module design_1
         .mb_debug_sys_rst(1'b0),
         .peripheral_aresetn(rst_processing_system7_0_50M_peripheral_aresetn),
         .slowest_sync_clk(processing_system7_0_FCLK_CLK0));
-  design_1_single_block_AES_encrypt_0_0 single_block_AES_encrypt_0
-       (.ap_clk(processing_system7_0_FCLK_CLK0),
-        .ap_rst_n(rst_processing_system7_0_50M_peripheral_aresetn),
-        .cipher_TDATA(single_block_AES_encrypt_0_cipher_TDATA),
-        .cipher_TLAST(single_block_AES_encrypt_0_cipher_TLAST),
-        .cipher_TREADY(single_block_AES_encrypt_0_cipher_TREADY),
-        .cipher_TVALID(single_block_AES_encrypt_0_cipher_TVALID),
-        .i_plaintext_TDATA(axi_dma_0_M_AXIS_MM2S_TDATA),
-        .i_plaintext_TLAST(axi_dma_0_M_AXIS_MM2S_TLAST),
-        .i_plaintext_TREADY(axi_dma_0_M_AXIS_MM2S_TREADY),
-        .i_plaintext_TUSER(1'b0),
-        .i_plaintext_TVALID(axi_dma_0_M_AXIS_MM2S_TVALID));
   design_1_xlconcat_0_2 xlconcat_0
        (.In0(axi_dma_0_mm2s_introut),
         .In1(axi_dma_0_s2mm_introut),

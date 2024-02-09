@@ -1,25 +1,13 @@
 #include "main.h"
 #include "aes.h"
 
-/*
- * ATTENZIONE: plaintext DEVE essere di 128 bit (ovvero il padding, se necessario, deve essere fatto prima)
- *             si possono usare SOLO chiavi da 128 bit
- */
-void single_block_AES_encrypt(hls::stream<stream_type> &i_plaintext, hls::stream<stream_type> &cipher)
+
+void AES_encryption(hls::stream<stream_type> &i_plaintext, hls::stream<stream_type> &cipher)
 {
 	#pragma HLS INTERFACE axis port=i_plaintext
 	#pragma HLS INTERFACE axis port=cipher
 
 	#pragma HLS INTERFACE ap_ctrl_none port=return
-
-
-	/* Input:
-	 *   - plaintext -> 4096 Byte di testo da cifrare
-	 *
-	 * Output:
-	 *   - cipher    -> 4096 Byte di testo cifrato
-	 */
-
 
 	/* 128 bit key */
 	static uint8_t key[] = {
@@ -34,10 +22,12 @@ void single_block_AES_encrypt(hls::stream<stream_type> &i_plaintext, hls::stream
 	stream_type tmp;
 
 	uint8_t w[176];    // [Nb*(Nr+1)*4] expanded key
-
 	aes_key_expansion(key, w);
 
-	loop: for(block = 0; block < 256; block++)
+	/*
+	 * Cifratura parallela di 450 blocchi
+	 */
+	loop: for(block = 0; block < 450; block++)
 	{
 	#pragma HLS unroll
 		// Lettura del plaintext dallo stream di input
@@ -46,6 +36,7 @@ void single_block_AES_encrypt(hls::stream<stream_type> &i_plaintext, hls::stream
 			plaintext[i] = tmp.data;
 		}
 
+		// Cifratura
 		aes_cipher(plaintext, out, w);
 
 		// Scrittura sull'interfaccia AXI-Stream di output
@@ -53,7 +44,7 @@ void single_block_AES_encrypt(hls::stream<stream_type> &i_plaintext, hls::stream
 			tmp.user = 1;
 			tmp.data = out[i];
 
-			if(i == BLOCK_SIZE-1 && block == 255)
+			if(i == BLOCK_SIZE-1 && block == 449)
 				tmp.last = 1;
 			else
 				tmp.last = 0;
