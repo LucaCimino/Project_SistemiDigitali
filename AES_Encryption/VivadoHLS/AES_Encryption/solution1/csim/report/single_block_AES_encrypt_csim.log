@@ -1,5 +1,0 @@
-   Compiling ../../../testbench.cpp in debug mode
-../../../testbench.cpp: In function 'int main()':
-../../../testbench.cpp:58:46: error: 'single_block_AES_encrypt' was not declared in this scope
-make: *** [obj/testbench.o] Error 1
-CRITICAL WARNING: [SIM 1] 'csim_design' failed: compilation error(s).

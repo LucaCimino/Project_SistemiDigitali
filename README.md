@@ -29,3 +29,25 @@ Si pensa anche alla possibilità di salvare i video in cui si verificano delle s
 
 ## Link Utili
 [http://www.pynq.io/](http://www.pynq.io/)
+
+## Organizzazione del repository
+
+- ```serverPynq.py```: script Python in esecuzione sulla Pynq che cattura le immagini dalla fotocamera, analizza i movimenti, cifra i frame e li invia ad un host remoto.  
+
+- ```client.py```: client remoto che riceve il flusso video dalla Pynq
+
+- ```VivadoHLS```: progetto VivadoHLS dell'IP Core di cifratura
+
+- ```Vivado```: progetto Vivado del design della Pynq
+
+- ```test```: materiale usato per il test ed il debug
+
+## Istruzioni per l'uso
+
+1. Importare i file ```Vivado/AES_Encryption_Pynq/design_1.bit```, ```Vivado/AES_Encryption_Pynq/design_1.tcl``` e ```Vivado/AES_Encryption_Pynq/design_1.hwh``` nella directory ```/home/xilinx/pynq/overlays/AES_Encryption/``` della Pynq
+
+2. Importare ```serverPynq.py``` sulla Pynq e ```client.py``` sull'host remoto su cui si desidera ricevere e visualizzare lo stream video
+
+3. Eseguire sulla Pynq ```python3 serverPynq.py 192.168.2.99 5555```
+
+4. Eseguire sull'host remoto ```python3 client.py 192.168.2.99 5555``` 
