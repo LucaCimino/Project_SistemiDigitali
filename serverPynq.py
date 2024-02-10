@@ -40,13 +40,14 @@ out_buffer = pynq.allocate(shape=(data_size,), dtype=np.uint8)
 
 
 def record(frame, server_socket, client_address):
-    # print('sto registrando, scrivo un frame sul tunnel UDP')
 
     # resize (640,480) -> (COMPRESSED_WIDTH,COMPRESSED_HEIGHT)
     frame = cv2.resize(frame, (COMPRESSED_WIDTH, COMPRESSED_HEIGHT))
 
     # RGB -> YUV
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2YUV_I420)
+
+    print("frame size:", frame.shape)
 
     # Ottieni i dati del frame come bytes
     frame_data = frame.tobytes()
@@ -93,8 +94,6 @@ def get_mask(frame1, frame2, kernel=np.array((9, 9), dtype=np.uint8)):
     mask = cv2.adaptiveThreshold(frame_diff, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, \
                                  cv2.THRESH_BINARY_INV, 11, 3)
 
-    # mask = cv2.medianBlur(mask, 3)
-
     # morphological operations
     mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel, iterations=1)
 
@@ -119,8 +118,6 @@ def test(server_socket, client_address):
     endTime = 0
     threshold_count = 0
     while True:
-        
-        #startTime = time.time()
 
         # Cattura un frame dalla telecamera
         _, actualFrame = cap.read()
@@ -129,16 +126,12 @@ def test(server_socket, client_address):
         img1 = cv2.cvtColor(oldFrame, cv2.COLOR_BGR2GRAY)
         img2 = cv2.cvtColor(actualFrame, cv2.COLOR_BGR2GRAY)
 
+        img1 = cv2.resize(img1, (240, 180))
+        img2 = cv2.resize(img2, (240, 180))
+
         kernel = np.array((9, 9), dtype=np.uint8)
         mask, frame_diff = get_mask(img1, img2, kernel)
-
-        #endTime = time.time()
-        #print("Fine getmask:", endTime-startTime)
-        # cv2.imshow("motion", mask)
-        #print('il numero di pixel che differiscono è: ', frame_diff, ' su ', np.size(mask))
-        #print('\n')
         
-        startTime = time.time()
         if (not recording):
             if (frame_diff > threshold_start_num_pixel):
                 threshold_count += 1
@@ -160,9 +153,6 @@ def test(server_socket, client_address):
                 threshold_count = 0
             else:
                 record(actualFrame, server_socket, client_address)
-
-        #endTime = time.time()
-        #print('Record time: ', endTime - startTime)
 
         # Interruzione del loop se viene premuto 'q'
         if cv2.waitKey(1) & 0xFF == ord('q'):

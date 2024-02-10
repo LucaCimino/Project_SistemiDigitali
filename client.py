@@ -9,11 +9,15 @@ from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 
 
 
-################## Configuration ###############
+####################### Configuration ######################
 
 key = b"\x63\xd3\x71\xe3\x6b\xb2\x12\x85\xe7\x67\xd2\xff\x11\x15\xe3\xab"
 
-#################################################
+# Dimensioni a cui viene visualizzata l'immagine
+SHOW_WIDTH = 640
+SHOW_HEIGHT = 480
+
+###########################################################
 
 
 if len(sys.argv) != 3:
@@ -60,13 +64,10 @@ while True:
 pid = os.fork()
 
 if pid == 0:
-    # Questo è il processo figlio
-    print("Sono il processo figlio")
+    # Processo figlio
     feedback()
 else:
-    # Questo è il processo padre
-    print("Sono il processo padre")
-
+    # Processo padre
 
     # Configurazione della finestra per la visualizzazione dei frame
     window_name = "Received Frame"
@@ -94,7 +95,7 @@ else:
 
             # Conversione YUV -> RGB
             frame_rgb = cv2.cvtColor(frame, cv2.COLOR_YUV2BGR_I420)
-            frame_rgb = cv2.resize(frame_rgb, (640, 480))            
+            frame_rgb = cv2.resize(frame_rgb, (SHOW_WIDTH, SHOW_HEIGHT))            
 
             # Visualizzazione del frame
             cv2.imshow(window_name, frame_rgb)
