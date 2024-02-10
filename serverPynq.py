@@ -9,18 +9,23 @@ from pynq import Overlay
 import pynq.lib.dma
 
 
-################# Configuration ###################
+######################## Configuration ############################
 
 COMPRESSED_WIDTH = 240
 COMPRESSED_HEIGHT = 180
 
-data_size = 7200
+threshold_start_reg = 5
+threshold_stop_reg = 5
 
+threshold_start_num_pixel = 500
+threshold_stop_num_pixel = 200
+
+data_size = 7200
 
 # Caricamento dell'overlay
 overlay = Overlay('/home/xilinx/pynq/overlays/AES_Encryption/design_1.bit')
 
-#####################################################
+###################################################################
 
 
 
@@ -35,10 +40,7 @@ out_buffer = pynq.allocate(shape=(data_size,), dtype=np.uint8)
 
 
 def record(frame, server_socket, client_address):
-    # ret, buffer = cv2.imencode('.jpg', frame)
-    # frame = buffer.tobytes()
-
-    print('sto registrando, scrivo un frame sul tunnel UDP')
+    # print('sto registrando, scrivo un frame sul tunnel UDP')
 
     # resize (640,480) -> (COMPRESSED_WIDTH,COMPRESSED_HEIGHT)
     frame = cv2.resize(frame, (COMPRESSED_WIDTH, COMPRESSED_HEIGHT))
@@ -91,7 +93,7 @@ def get_mask(frame1, frame2, kernel=np.array((9, 9), dtype=np.uint8)):
     mask = cv2.adaptiveThreshold(frame_diff, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, \
                                  cv2.THRESH_BINARY_INV, 11, 3)
 
-    #mask = cv2.medianBlur(mask, 3)
+    # mask = cv2.medianBlur(mask, 3)
 
     # morphological operations
     mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel, iterations=1)
@@ -107,30 +109,20 @@ def test(server_socket, client_address):
     # camera status
     recording = False
 
-    threshold_start_reg = 5
-    threshold_stop_reg = 5
-
-    threshold_start_num_pixel = 500
-    threshold_stop_num_pixel = 200
-
-    ########################
-    # Inizializza la telecamera (imposta il parametro 0 se stai usando la webcam integrata)
+    # Inizializza la telecamera
     cap = cv2.VideoCapture(0)
 
     # Cattura un frame dalla telecamera
     _, oldFrame = cap.read()
 
-    # Effettua il resize del frame
-    # resized_frame = cv2.resize(oldFrame, (WIGHT, HEIGHT))
-
     startTime = 0
     endTime = 0
     threshold_count = 0
     while True:
+        
+        #startTime = time.time()
 
         # Cattura un frame dalla telecamera
-        startTime = time.time()
-
         _, actualFrame = cap.read()
 
         # convert to grayscale
@@ -140,11 +132,11 @@ def test(server_socket, client_address):
         kernel = np.array((9, 9), dtype=np.uint8)
         mask, frame_diff = get_mask(img1, img2, kernel)
 
-        endTime = time.time()
-        print("Fine getmask:", endTime-startTime)
+        #endTime = time.time()
+        #print("Fine getmask:", endTime-startTime)
         # cv2.imshow("motion", mask)
-        print('il numero di pixel che differiscono è: ', frame_diff, ' su ', np.size(mask))
-        print('\n')
+        #print('il numero di pixel che differiscono è: ', frame_diff, ' su ', np.size(mask))
+        #print('\n')
         
         startTime = time.time()
         if (not recording):
@@ -169,10 +161,8 @@ def test(server_socket, client_address):
             else:
                 record(actualFrame, server_socket, client_address)
 
-        endTime = time.time()
-        print('Record time: ', endTime - startTime)
-
-        # time.sleep(0.05)
+        #endTime = time.time()
+        #print('Record time: ', endTime - startTime)
 
         # Interruzione del loop se viene premuto 'q'
         if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -189,7 +179,7 @@ def test(server_socket, client_address):
 def start_server():
     # Accedi al primo argomento passato da linea di comando
     if len(sys.argv) != 3:
-        print("usage: serverSocket ip_server port_server")
+        print("usage: serverPynq ip_server port_server")
         exit()
 
     # indirizzo ip e porta del server
@@ -229,22 +219,8 @@ def start_server():
                         os.kill(pid, signal.SIGTERM)
                         break
 
-            '''
-            p = Process(target=test(server_socket,client_address))
-            p.start()
-
-            try:
-                while True:
-                    feedback_message, client_address = server_socket.recvfrom(1024)
-                    print(feedback_message.decode())
-            except socket.timeout:
-                print('killo il processo')
-                p.terminate()
-            #test(server_socket,client_address)
-            '''
         except socket.timeout:
-            print(
-                '######################################################################################################\n\n\n\n\n')
+            print('################################################################\n\n\n')
             continue
 
         #time.sleep(0.05)
