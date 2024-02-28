@@ -6,7 +6,7 @@ Realizzazione di un sistema di sorveglianza basato sulla board PYNQ-Z2. Il siste
 
 Il progetto prevede anche un client remoto che riceve il flusso video e dopo averlo decifrato lo mostra all’utente.
 
-![Flusso di esecuzione](https://github.com/LucaCimino/Project_SistemiDigitali/test/image/Overview.png)
+![Flusso di esecuzione](https://github.com/LucaCimino/Project_SistemiDigitali/test/images/Overview.png)
 
 ## Link Utili
 [http://www.pynq.io/](http://www.pynq.io/)
