@@ -1,31 +1,12 @@
-# Project_SistemiDigitali
-Progetto di Sistemi Digitali M Unibo - Sistema di sorveglianza attraverso l'utilizzo di una PYNQ.
+# Pynq Motion Detective
+Progetto di Sistemi Digitali M Unibo.
 
-L'obiettivo di questo progetto è implementare un sistema di sorveglianza avanzato utilizzando la scheda PYNQ. Il sistema sarà in grado di rilevare movimenti attraverso l'utilizzo di una fotocamera e, in caso di situazioni di pericolo, comunicherà in tempo reale con un dispositivo del proprietario per trasmettere lo stream video.
+## Abstract
+Realizzazione di un sistema di sorveglianza basato sulla board PYNQ-Z2. Il sistema usa la motion detection per rilevare i movimenti nella scena monitorata, e quando rileva un movimento invia un flusso video cifrato un host remoto tramite una connessione di rete. Le operazioni crittografiche sono gestite da un IP Core di cifratura implementato sull’FPGA della PYNQ. Ogni frame del flusso video viene cifrato prima di essere trasmesso sulla rete, garantendo la sicurezza e la privacy dei dati trasmessi.
 
-## Funzionalità Chiave
+Il progetto prevede anche un client remoto che riceve il flusso video e dopo averlo decifrato lo mostra all’utente.
 
-1. **Rilevamento Movimenti:**
-   - Utilizzo di una fotocamera connessa alla PYNQ per il rilevamento dei movimenti nell'area monitorata.
-
-2. **Comunicazione in Tempo Reale:**
-   - Comunicazione immediata con un dispositivo del proprietario in caso di rilevamento di movimenti sospetti.
-
-3. **Archiviazione Video:**
-   - Salvataggio automatico di video in cui si verificano situazioni di pericolo per ulteriori analisi o evidenze.
-
-4. **Cifratura dei Dati:**
-   - Implementazione di un sistema di cifratura per garantire la sicurezza durante la comunicazione e l'archiviazione dei video.
-
-5. **Modalità di Standby:**
-   - Nessuna comunicazione quando la telecamera non rileva movimenti o situazioni insolite.
-
-6. **Interfaccia Utente Remota:**
-   - Fornitura di un'interfaccia utente remota per consentire al possessore del sistema di visualizzare lo stream video catturato dalla fotocamera in qualsiasi momento.
-
-## Sviluppi Futuri
-
-Si pensa anche alla possibilità di salvare i video in cui si verificano delle situazioni di pericolo. Nel caso in cui invece la telecamera non rileva nessun movimento e nessuna situazione insolita, non viene effettuata nessuna comunicazione. Si valuta inoltre l'implementazione di ulteriori funzionalità di sicurezza e analisi dati.
+![image](https://github.com/LucaCimino/Project_SistemiDigitali/test/image/Overview.jpg)
 
 ## Link Utili
 [http://www.pynq.io/](http://www.pynq.io/)
